@@ -12,7 +12,7 @@ namespace gui {
 // ----------------------------------------------------------------------------
 //  Constructor
 // ----------------------------------------------------------------------------
-GuiManager::GuiManager() {
+GuiManager::GuiManager(state::State& state) : state(state) {
 
 }
 
@@ -28,8 +28,39 @@ void GuiManager::update() {
   glfwPollEvents();
   ImGui_ImplGlfwGL3_NewFrame();
 
+  // Update user with user input
   ImGuiIO& io = ImGui::GetIO();
+  this->updateCamera(io);
+
+  // Draw elements
+  this->drawTopMenu();
   
+}
+
+void GuiManager::render() {
+  ImGui::Render();
+}
+
+// ----------------------------------------------------------------------------
+//  Update methods
+void GuiManager::updateCamera(const ImGuiIO& io) {
+  if ((!io.WantCaptureMouse || !io.WantCaptureKeyboard) && io.MouseDown[0]) {
+    // we assume that we're interested in seeing if we need to update the
+    // camera whenever none of the GUI elements is active.
+    if (focus == GuiFocus::Camera) {
+      this->state.view.camera.update(io);
+    } else {
+      this->state.view.camera.toFocus(io);
+      this->focus = GuiFocus::Camera;
+    }
+  } else if (focus == GuiFocus::Camera) {
+    this->focus = GuiFocus::Gui;
+  }
+}
+
+// ----------------------------------------------------------------------------
+//  Draw methods
+void GuiManager::drawTopMenu() {
   // menu
   if (ImGui::BeginMainMenuBar()) {
     // menu tab
@@ -42,10 +73,6 @@ void GuiManager::update() {
     }
     ImGui::EndMainMenuBar();
   }
-}
-
-void GuiManager::render() {
-  ImGui::Render();
 }
 
 } // gui

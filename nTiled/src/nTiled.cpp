@@ -80,15 +80,16 @@ int main() {
   glViewport(0, 0, WIDTH, HEIGHT);
 
   // nTiled components
-  nTiled::gui::GuiManager gui_manager = nTiled::gui::GuiManager();
-  gui_manager.init(*window);
-
   nTiled::state::State state = nTiled::state::constructStateFromJson(SCENE_PATH);
-
 
   nTiled::pipeline::Shader shader = nTiled::pipeline::Shader(*(state.p_world),
                                                              state.view);
   shader.init();
+
+  nTiled::gui::GuiManager gui_manager = nTiled::gui::GuiManager(state);
+  gui_manager.init(*window);
+
+
 
   // Render Loop
   // -----------

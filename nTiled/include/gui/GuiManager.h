@@ -11,10 +11,13 @@
 // ----------------------------------------------------------------------------
 //  nTiled headers
 // ----------------------------------------------------------------------------
+#include "state\State.h"
 
 
 namespace nTiled {
 namespace gui {
+
+enum class GuiFocus;
 
 class GuiManager {
 public:
@@ -24,7 +27,7 @@ public:
   /*!
    * Construct a new GuiManager
    */
-  GuiManager();
+  GuiManager(state::State& state);
 
   // ----------------------------------
   //  Interaction methods
@@ -42,10 +45,21 @@ public:
   void render();
 
 private:
-  // elements
+  /*! The state this GuiManager interacts with */
+  state::State& state;
 
+  // input handling
+  void updateCamera(const ImGuiIO& io);
+  /*! Whether camera has focus or the GUI manager */
+  GuiFocus focus;
 
+  // draw elements
+  void drawTopMenu();
+};
 
+enum class GuiFocus {
+  Camera,
+  Gui
 };
 
 } // gui
