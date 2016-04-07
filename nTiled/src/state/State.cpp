@@ -14,6 +14,7 @@
 // ----------------------------------------------------------------------------
 //  nTiled headers
 // ----------------------------------------------------------------------------
+#include "world\light-constructor\PointLightConstructor.h"
 
 // TODO add graceful error handling
 namespace nTiled {
@@ -126,6 +127,18 @@ State constructStateFromJson(const std::string& path) {
 
     std::string geometry_path = (*itr)["path"].GetString();
     parseGeometry(geometry_path, *p_world, texture_file_map);
+  }
+
+  // Load lights
+  world::PointLightConstructor light_constructor =
+    world::PointLightConstructor(*p_world);
+
+  auto& lights_array_json = config["lights"];
+  for (rapidjson::Value::ConstValueIterator itr = lights_array_json.Begin();
+  itr != lights_array_json.End();
+    ++itr) {
+    std::string lights_path = (*itr)["path"].GetString();
+    parseLights(lights_path, light_constructor);
   }
 
   return State(camera,
