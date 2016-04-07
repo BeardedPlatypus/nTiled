@@ -12,6 +12,7 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "world\World.h"
+#include "world\light-constructor\LightConstructor.h"
 
 namespace nTiled {
 namespace state {
@@ -48,6 +49,21 @@ struct State {
 State constructStateFromJson(const std::string& path);
 
 // Parsing functions
+/*!
+Parse the lights from a specified lights.json file
+
+Parse the lights from a specified lights.json file,
+these will be added to the world with the provided
+LightConstructor object
+
+Args:
+path (const std::string& ): Path to the lights.json file
+constructor (nTiled::world::LightConstructor&):
+Light constructor used to add the specified lights to
+the world the LightConstructor belongs to
+*/
+void parseLights(const std::string& path,
+                 world::LightConstructor& constructor);
 
 /*!
  Parse the geometry form a specified geometry.json file

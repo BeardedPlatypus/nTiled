@@ -2,6 +2,10 @@
 
 namespace nTiled {
 namespace world {
+
+// ----------------------------------------------------------------------------
+//  Constructor
+// ----------------------------------------------------------------------------
 Object::Object(const std::string& name,
                const Mesh& mesh,
                glm::mat4 transformation_matrix,

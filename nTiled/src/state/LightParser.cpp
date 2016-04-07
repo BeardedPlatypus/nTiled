@@ -12,7 +12,6 @@
 #include <rapidjson\document.h>
 
 #include <glm/gtc/matrix_transform.hpp>
-#include "world\LightConstructor.h"
 
 #define DEBUG
 
@@ -70,11 +69,10 @@ void nTiled::state::parseLights(const std::string& path,
 		float radius = (*itr)["radius"].GetFloat();
 
 		constructor.add("point_light" + std::to_string(i),
-			            intensity, 
-					    radius, 
-					    true,
-					    glm::translate(glm::mat4(1.0f), 
-									   position));
+                    glm::vec4(position, 1.0f),
+                    intensity, 
+                    radius, 
+                    true);
 		i++;
 	}
 #ifdef DEBUG

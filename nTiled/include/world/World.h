@@ -9,6 +9,7 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "world\Object.h"
+#include "world\PointLight.h"
 
 namespace nTiled {
 namespace world {
@@ -47,6 +48,12 @@ public:
                           pipeline::ShaderKey shader,
                           std::map<std::string, std::string> texture_map,
                           bool is_rendered);
+  PointLight* constructPointLight(const std::string& name,
+                                  glm::vec4 position,
+                                  glm::vec3 intensity,
+                                  float radius,
+                                  bool is_emitting,
+                                  std::map<std::string, Object*> debug_light_objects);
 
   // --------------------------------------------------------------------------
   //  Class members
@@ -55,6 +62,8 @@ public:
   std::vector<Mesh*> p_mesh_catalog;
   /*! vector of pointers to every object of this World */
   std::vector<Object*> p_objects;
+  /*! vector of pointers to every PointLight of this World */
+  std::vector<PointLight*> p_lights;
 };
 
 }

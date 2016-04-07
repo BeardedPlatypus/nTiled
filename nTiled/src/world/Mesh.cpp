@@ -4,7 +4,7 @@ namespace nTiled {
 namespace world {
 
 // ----------------------------------------------------------------------------
-//  Mesh
+//  Constructors
 // ----------------------------------------------------------------------------
 Mesh::Mesh(std::vector<glm::vec4> vertices,
            std::vector<glm::vec3> normals,

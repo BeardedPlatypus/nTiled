@@ -20,6 +20,10 @@ World::~World() {
   for (Mesh* p_mesh : this->p_mesh_catalog) {
     delete p_mesh;
   }
+
+  for (PointLight* p_light : this->p_lights) {
+    delete p_light;
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -51,6 +55,23 @@ Object* World::constructObject(const std::string& name,
                              is_rendered);
   this->p_objects.push_back(p_obj);
   return p_obj;
+}
+
+PointLight* World::constructPointLight(const std::string& name,
+                                       glm::vec4 position,
+                                       glm::vec3 intensity,
+                                       float radius,
+                                       bool is_emitting,
+                                       std::map<std::string, Object*> debug_light_objects) {
+  PointLight* p_light = new PointLight(name,
+                                       position,
+                                       intensity,
+                                       radius,
+                                       is_emitting,
+                                       debug_light_objects);
+  this->p_lights.push_back(p_light);
+  return p_light;
+
 }
 
 
