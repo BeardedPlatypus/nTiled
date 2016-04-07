@@ -28,7 +28,7 @@
 #define WIDTH 1200
 #define HEIGHT 1200
 
-#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/scenes/scene-definitions/test_0/scene.json")
+#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/scenes/scene-definitions/test_1/scene.json")
 
 // ----------------------------------------------------------------------------
 //  Function prototypes

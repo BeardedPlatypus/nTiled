@@ -1,11 +1,12 @@
 #include "pipeline\Shader.h"
 
 #include <string>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "pipeline\shader-util\LoadShaders.h"
 
-#define VERT_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/texture_display.vert")
-#define FRAG_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/texture_display.frag")
+#define VERT_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/solid.vert")
+#define FRAG_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/solid.frag")
 
 #define WIDTH 1200
 #define HEIGHT 1200
@@ -89,11 +90,22 @@ Shader::Shader(world::World& world,
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
   this->p_obj = new PipelineObject(vao, 
                                    element_buffer,
-                                   6);
-
+                                   6,
+                                   (*(world.p_objects[0])).transformation_matrix);
   // setup shader
   this->shader = createVertexFragmentProgram(VERT_PATH, FRAG_PATH);
-  
+
+  // setup shader
+  glm::mat4 perspective_matrix = view.camera.getPerspectiveMatrix();
+  GLint p_camera_to_clip = glGetUniformLocation(this->shader,
+                                                "camera_to_clip");
+
+  glUseProgram(this->shader);
+  glUniformMatrix4fv(p_camera_to_clip,
+                     1,
+                     GL_FALSE,
+                     glm::value_ptr(perspective_matrix));
+
   glUseProgram(0);
 
 }
@@ -107,7 +119,19 @@ void Shader::init() {
 }
 
 void Shader::render() {
-  glUseProgram(this->shader);
+  glUseProgram(this->shader);    
+  glm::mat4 lookAt = this->view.camera.getLookAt();
+
+  GLint p_modelToCamera = glGetUniformLocation(this->shader,
+                                               "model_to_camera");
+
+  glm::mat4 model_to_camera = lookAt * (*p_obj).transformation_matrix;
+
+  glUniformMatrix4fv(p_modelToCamera,
+                     1,
+                     GL_FALSE,
+                     glm::value_ptr(model_to_camera));
+
   const GLuint vao = (*p_obj).vao;
   
   glBindVertexArray(vao);
