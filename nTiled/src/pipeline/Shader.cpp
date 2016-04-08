@@ -17,60 +17,22 @@ namespace pipeline {
 Shader::Shader(world::World& world,
                state::View& view) : world(world),
                                     view(view) {
-  /*
-  // Position data
-  std::vector<glm::vec4> vertices =  {
-    glm::vec4(-1.0f, -1.0f, 0.0f, 1.0f),
-    glm::vec4(1.0f, -1.0f, 0.0f, 1.0f),
-    glm::vec4(1.0f,  1.0f, 0.0f, 1.0f),
-    glm::vec4(-1.0f,  1.0f, 0.0f, 1.0f),
-  };
-
-  // Element data
-  std::vector<glm::tvec3<glm::u32>> elements = {
-    glm::tvec3<glm::u32>(0, 1, 2),
-    glm::tvec3<glm::u32>(0, 2, 3)
-  };
-
-  world::Mesh* p_mesh = world.constructMesh(vertices,
-                                            std::vector<glm::vec3>(),
-                                            std::vector<glm::vec3>(),
-                                            elements);
-
-  world::Object* p_obj = world.constructObject("test",
-                                               p_mesh,
-                                               glm::mat4(1.0f),
-                                               ShaderKey(),
-                                               std::map<std::string, std::string>(),
-                                               true);
-                                               */
-  /*
-  GLfloat vertices[] =  {
-    -1.0f, -1.0f, 0.0f, 1.0f,
-    1.0f, -1.0f, 0.0f, 1.0f,
-    1.0f,  1.0f, 0.0f, 1.0f,
-    -1.0f,  1.0f, 0.0f, 1.0f,
-  };
-
-  GLuint elements[] = {
-    0, 1, 2,
-    0, 2, 3
-  };
-  */
-
   // setup buffers
-  GLuint vbo_handles[2];
-  glGenBuffers(2, vbo_handles);
+  GLuint vbo_handles[4];
+  glGenBuffers(4, vbo_handles);
   GLuint position_buffer = vbo_handles[0];
-  GLuint element_buffer = vbo_handles[1];
+  GLuint normal_buffer = vbo_handles[1];
+  GLuint uv_buffer = vbo_handles[2];
+  GLuint element_buffer = vbo_handles[3];
   GLuint vao;
-
 
   // setup vertex array object
   glGenVertexArrays(1, &(vao));
   glBindVertexArray(vao);
   glEnableVertexAttribArray(0);
   glEnableVertexAttribArray(1);
+  glEnableVertexAttribArray(2);
+  glEnableVertexAttribArray(3);
 
   // set up position buffer
   glBindBuffer(GL_ARRAY_BUFFER, position_buffer);
@@ -80,13 +42,33 @@ Shader::Shader(world::World& world,
                GL_STATIC_DRAW);
   glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, NULL);
 
+  // set up normal buffer
+  glBindBuffer(GL_ARRAY_BUFFER, normal_buffer);
+  if ((*(world.p_objects[0])).mesh.normals.size() > 0) {
+    glBufferData(GL_ARRAY_BUFFER,
+                 (*(world.p_objects[0])).mesh.normals.size() * sizeof(glm::vec3), //* 4 * sizeof(GLfloat),
+                 &((*(world.p_objects[0])).mesh.normals[0]),
+                 GL_STATIC_DRAW);
+  }
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
+  // set up uvw buffer  
+  glBindBuffer(GL_ARRAY_BUFFER, uv_buffer);
+  if ((*(world.p_objects[0])).mesh.uvs.size() > 0) {
+    glBufferData(GL_ARRAY_BUFFER,
+                 (*(world.p_objects[0])).mesh.uvs.size() * sizeof(glm::vec3), //* 4 * sizeof(GLfloat),
+                 &((*(world.p_objects[0])).mesh.uvs[0]),
+                 GL_STATIC_DRAW);
+  }
+  glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
   // set up element buffer
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER,
                (*(world.p_objects[0])).mesh.elements.size() * sizeof(glm::tvec3<glm::u32>), // * 3 * sizeof(GLuint),
                &((*(world.p_objects[0])).mesh.elements[0]),
                GL_STATIC_DRAW);
-  glVertexAttribPointer(1, 3, GL_UNSIGNED_INT, GL_FALSE, 0, NULL);
+  glVertexAttribPointer(3, 3, GL_UNSIGNED_INT, GL_FALSE, 0, NULL);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
   this->p_obj = new PipelineObject(vao, 
                                    element_buffer,
@@ -105,6 +87,9 @@ Shader::Shader(world::World& world,
                      1,
                      GL_FALSE,
                      glm::value_ptr(perspective_matrix));
+
+  // setup light information
+
 
   glUseProgram(0);
 
