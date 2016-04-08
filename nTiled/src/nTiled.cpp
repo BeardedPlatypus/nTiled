@@ -17,7 +17,7 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "gui\GuiManager.h"
-#include "pipeline\Shader.h"
+#include "pipeline\forward\shaders\ForwardAttenuatedShader.h"
 #include "world\World.h"
 #include "state\State.h"
 
@@ -30,6 +30,8 @@
 
 #define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/scenes/scene-definitions/test_1/scene.json")
 
+#define VERT_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic.vert")
+#define FRAG_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_attenuated.frag")
 // ----------------------------------------------------------------------------
 //  Function prototypes
 // ----------------------------------------------------------------------------
@@ -80,11 +82,15 @@ int main() {
   glViewport(0, 0, WIDTH, HEIGHT);
 
   // nTiled components
+  // -----------------
   nTiled::state::State state = nTiled::state::constructStateFromJson(SCENE_PATH);
 
-  nTiled::pipeline::Shader shader = nTiled::pipeline::Shader(*(state.p_world),
-                                                             state.view);
-  shader.init();
+  nTiled::pipeline::ForwardAttenuatedShader shader = nTiled::pipeline::ForwardAttenuatedShader(
+    nTiled::pipeline::ForwardShaderId::ForwardAttenuated,
+    VERT_PATH,
+    FRAG_PATH,
+    *(state.p_world),
+    state.view);
 
   nTiled::gui::GuiManager gui_manager = nTiled::gui::GuiManager(state);
   gui_manager.init(*window);

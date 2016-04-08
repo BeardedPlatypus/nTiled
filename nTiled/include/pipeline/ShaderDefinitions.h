@@ -8,37 +8,11 @@
 // ----------------------------------------------------------------------------
 //  nTiled headers
 // ----------------------------------------------------------------------------
+#include "pipeline\forward\shaders\ForwardShaderId.h"
 #include "pipeline\PipelineType.h"
 
 namespace nTiled {
 namespace pipeline {
-
-/*!
- * Enum specifying all the possible forward shaders
- */
-enum class ForwardShaderId {
-  //  Regular Forward Shaders
-  // --------------------------------------------------------------------
-  ForwardSolid,
-  ForwardVertex,
-  ForwardAttenuated,
-  ForwardTexturedAttenuated,
-
-  // Tiled Forward Shaders
-  // --------------------------------------------------------------------
-  ForwardTiled,
-  ForwardTexturedTiled,
-
-  // Clustered Forward Shaders
-  // --------------------------------------------------------------------
-
-  //  Debug Forward Shaders
-  // --------------------------------------------------------------------
-  ForwardDebugCoreLight,
-  ForwardDebugCutOffLight,
-  TEST,
-};
-
 
 /*!
  * Enum specifying all the possible deferred shaders

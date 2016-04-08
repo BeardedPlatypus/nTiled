@@ -15,6 +15,8 @@ Object::Object(const std::string& name,
   name(name),
   mesh(mesh),
   transformation_matrix(transformation_matrix),
+  shader_key(shader),
+  texture_map(texture_map),
   is_rendered(is_rendered) { }
 
 }
