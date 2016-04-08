@@ -3,6 +3,7 @@
 #include <glad\glad.h>
 #include "world\World.h"
 #include "pipeline\PipelineObject.h"
+#include "pipeline\PipelineLight.h"
 #include "state\StateView.h"
 
 namespace nTiled {
@@ -21,9 +22,11 @@ private:
   world::World& world;
   state::View& view;
 
-  PipelineObject* p_obj;
+  std::vector<PipelineObject*> ps_obj;
+  std::vector<PipelineLight> lights;
 
   GLuint shader;
+  GLuint light_ubo;
 };
 
 
