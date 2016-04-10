@@ -20,11 +20,12 @@ namespace pipeline {
 class ForwardPipeline : public Pipeline {
 public:
   ForwardPipeline(state::State& state);
+  ~ForwardPipeline();
 
   // Render Methods
-  void render();
+  virtual void render() override;
 private:
-  std::map<
+  std::vector<ForwardShader*> shader_catalog;
 };
 
 } // pipeline

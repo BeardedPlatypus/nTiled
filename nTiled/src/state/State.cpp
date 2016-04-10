@@ -25,12 +25,15 @@ State::State(camera::Camera camera,                  // view
              glm::uvec2 viewport,
              world::World* p_world,                     // world
              std::map<std::string, std::string> texture_file_map,
+             std::vector<pipeline::ForwardShaderId> forward_shader_ids,
              pipeline::PipelineType pipeline_type) :
     view(View(camera,
               camera_control,
               viewport)),
     p_world(p_world),
-    texture_catalog(TextureCatalog(texture_file_map)) { }
+    texture_catalog(TextureCatalog(texture_file_map)),
+    shading(Shading(forward_shader_ids, 
+                    pipeline_type)) { }
 
 State::~State() {
   delete this->p_world;
@@ -116,8 +119,11 @@ State constructStateFromJson(const std::string& path) {
   // ------------------------------------------------------------------------
   // construct world
   world::World* p_world = new world::World();
+
   std::map<std::string, std::string> texture_file_map =
     std::map<std::string, std::string>();
+
+  std::vector<pipeline::ForwardShaderId> forward_shader_ids;
 
   // load geometry
   auto& geometry_array_json = config["geometry"];
@@ -126,7 +132,10 @@ State constructStateFromJson(const std::string& path) {
        ++itr) {
 
     std::string geometry_path = (*itr)["path"].GetString();
-    parseGeometry(geometry_path, *p_world, texture_file_map);
+    parseGeometry(geometry_path, 
+                  *p_world, 
+                  forward_shader_ids,
+                  texture_file_map);
   }
 
   // Load lights
@@ -146,6 +155,7 @@ State constructStateFromJson(const std::string& path) {
                viewport,
                p_world,
                texture_file_map,
+               forward_shader_ids,
                pipeline_type);
 }
 

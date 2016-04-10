@@ -17,9 +17,9 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "gui\GuiManager.h"
-#include "pipeline\forward\shaders\ForwardAttenuatedShader.h"
 #include "world\World.h"
 #include "state\State.h"
+#include "pipeline\forward\ForwardPipeline.h"
 
 
 // ----------------------------------------------------------------------------
@@ -85,12 +85,7 @@ int main() {
   // -----------------
   nTiled::state::State state = nTiled::state::constructStateFromJson(SCENE_PATH);
 
-  nTiled::pipeline::ForwardAttenuatedShader shader = nTiled::pipeline::ForwardAttenuatedShader(
-    nTiled::pipeline::ForwardShaderId::ForwardAttenuated,
-    VERT_PATH,
-    FRAG_PATH,
-    *(state.p_world),
-    state.view);
+  nTiled::pipeline::Pipeline* pipeline = new nTiled::pipeline::ForwardPipeline(state);
 
   nTiled::gui::GuiManager gui_manager = nTiled::gui::GuiManager(state);
   gui_manager.init(*window);
@@ -109,7 +104,7 @@ int main() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // render nTiled components
-    shader.render();
+    pipeline->render();
     gui_manager.render();
 
     // Display on screen
@@ -118,6 +113,8 @@ int main() {
 
   // Terminate program
   // -----------------
+  delete pipeline;
+
   glfwTerminate();
   return 0;
 }

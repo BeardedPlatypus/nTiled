@@ -3,14 +3,12 @@
 // ----------------------------------------------------------------------------
 //  Libraries
 // ----------------------------------------------------------------------------
-#include <map>
+#include <vector>
 
 // ----------------------------------------------------------------------------
 //  nTiled headers
 // ----------------------------------------------------------------------------
-#include "pipeline\shaders\forward-shading\ForwardShader.h"
-#include "pipeline\shaders\deferred-shading\DeferredShader.h"
-#include "pipeline\shaders\ShaderDefinitions.h"
+#include "pipeline\forward\shaders\ForwardShaderId.h"
 
 #include "pipeline\PipelineType.h"
 
@@ -23,19 +21,11 @@ namespace state {
  */
 struct Shading {
   // Constructor
-  Shading(std::map<pipeline::ForwardShaderId,
-                   pipeline::ForwardShader*> forward_shader_catalog,
-          std::map<pipeline::DeferredShaderId,
-                   pipeline::DeferredShader*> deferred_shader_catalog,
+  Shading(std::vector<pipeline::ForwardShaderId> forward_shader_ids,
           pipeline::PipelineType pipeline_type);
-  //  Destructor
-  ~Shading();
 
   // Shaders
-  std::map<pipeline::ForwardShaderId,
-           pipeline::ForwardShader*> forward_shader_catalog;
-  std::map<pipeline::DeferredShaderId,
-           pipeline::DeferredShader*> deferred_shader_catalog;
+  std::vector<pipeline::ForwardShaderId> forward_shader_ids;
 
   // Pipeline type
   pipeline::PipelineType pipeline_type;

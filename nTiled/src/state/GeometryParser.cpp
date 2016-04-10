@@ -14,6 +14,9 @@
 // glm
 #include <glm\gtc\matrix_transform.hpp>
 
+// stl
+#include <algorithm>
+
 // ----------------------------------------------------------------------------
 //  nTiled headers
 // ----------------------------------------------------------------------------
@@ -23,6 +26,7 @@ namespace nTiled {
 
 void state::parseGeometry(const std::string& path,
                           world::World& world,
+                          std::vector<pipeline::ForwardShaderId>& forward_shader_ids,
                           std::map<std::string, std::string>& texture_file_map) {
   // Read file to string
   // --------------------------------------------------------------------------
@@ -120,6 +124,16 @@ void state::parseGeometry(const std::string& path,
     // name
     std::string name = (*itr)["name"].GetString();
     pipeline::ShaderKey shader_key = strToId[(*itr)["shader_id"].GetString()];
+
+    // update shader keys
+    if (shader_key.type == pipeline::PipelineType::Forward ||
+        shader_key.type == pipeline::PipelineType::ForwardDebug) {
+      if (std::find(forward_shader_ids.begin(),
+                    forward_shader_ids.end(),
+                    shader_key.forward_id) == forward_shader_ids.end()) {
+        forward_shader_ids.push_back(shader_key.forward_id);
+      }
+    }
 
     // translation
     // ------------------------------------------------------------------------

@@ -46,6 +46,20 @@ layout (std140) uniform LightBlock {
     Light lights[NUM_LIGHTS];
 };
 
+//  Light Management
+// -----------------------------------------------------------------------------
+layout (std430, binding = 0) buffer LightGridBuffer {
+    uvec2 tiles[];
+};
+
+layout (std430, binding = 1) buffer LightIndexBuffer {
+    uint light_indices[];
+};
+
+uniform uvec2 tile_size;
+uniform uint n_tiles_x;
+
+
 // Function Definitions
 // -----------------------------------------------------------------------------
 /*!
@@ -102,9 +116,24 @@ void main() {
                                         vec3(1.0f));
 
     // compute the contribution of each light
+    /*
     for (int i =0; i < NUM_LIGHTS; i++) {
         light_acc += computeLight(lights[i], param);
     }
+    */
+       // determine contributing lights
+    vec2 screen_position = gl_FragCoord.xy - vec2(0.5f, 0.5f);
+    uint tile_index = uint(floor(screen_position.x / tile_size.x) +
+                           floor(screen_position.y / tile_size.y) * n_tiles_x);
+
+    uint offset = tiles[tile_index].x;
+    uint n_lights = tiles[tile_index].y;
+
+    // compute the contribution of each light
+    for (uint i = offset; i < offset + n_lights; i++) {
+        light_acc += computeLight(lights[light_indices[i]], param);
+    }
+
     
     // output result
     fragment_colour = vec4((vec3(0.1f) + (light_acc * 0.9)), 1.0f);

@@ -50,7 +50,7 @@ ForwardShader::ForwardShader(ForwardShaderId shader_id,
   glUseProgram(0);
 }
 
-void ForwardShader::render() const {
+void ForwardShader::render() {
 
 }
 

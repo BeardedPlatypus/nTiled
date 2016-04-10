@@ -17,7 +17,7 @@ public:
                           const world::World& world,
                           const state::View& view);
 
-  virtual void render() const;
+  virtual void render() override;
 };
 
 } // pipeline

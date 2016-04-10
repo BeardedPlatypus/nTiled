@@ -6,6 +6,7 @@
 #include <string>
 
 #include "state\StateView.h"
+#include "state\StateShading.h"
 #include "state\StateTexture.h"
 
 // ----------------------------------------------------------------------------
@@ -28,6 +29,7 @@ struct State {
         glm::uvec2 viewport,
         world::World* p_world,                     // world
         std::map<std::string, std::string> texture_file_map,
+        std::vector<pipeline::ForwardShaderId> forward_shader_ids,
         pipeline::PipelineType pipeline_type);
 
   ~State();
@@ -36,6 +38,7 @@ struct State {
   View view;
   world::World* p_world;
   TextureCatalog texture_catalog;
+  Shading shading;
 };
 
 /*!
@@ -78,6 +81,7 @@ void parseLights(const std::string& path,
  */
 void parseGeometry(const std::string& path,
                    world::World& world,
+                   std::vector<pipeline::ForwardShaderId>& forward_shader_ids,
                    std::map<std::string, std::string>& texture_map_file);
 } // state
 } // nTiled

@@ -20,7 +20,6 @@ public:
    *     state (State&): reference to the state this Pipeline renders
    */
   Pipeline(state::State& state);
-
   /*!
    * Destruct this Pipeline
    */
@@ -32,7 +31,7 @@ public:
   /*!
    * Render the state of this Pipeline into the framebuffer
    */
-  virtual void render() = 0;
+  virtual void render();
 
 protected:
   state::State& state;

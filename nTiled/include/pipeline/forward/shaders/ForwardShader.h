@@ -72,7 +72,7 @@ public:
   camera (Camera&): The camera used to render with this
   ForwardShader
   */
-  virtual void render() const;
+  virtual void render();
 
 protected:
   // --------------------------------------------------------------------------
@@ -105,6 +105,10 @@ protected:
    Construct a PipelineLight from the specified Light and add to this Shader
    */
   virtual void constructPipelineLight(const world::PointLight& light);
+
+  // --------------------------------------------------------------------------
+  //  Render subfunctions
+  // --------------------------------------------------------------------------
 
   // client side attributes
   // --------------------------------------------------------------------------
