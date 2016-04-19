@@ -2,11 +2,6 @@
 
 #define NUM_LIGHTS 3
 
-// Fragment Input Buffers
-// -----------------------------------------------------------------------------
-in vec4 fragment_position;
-in vec3 fragment_normal;
-
 // Fragment Output Buffers
 // -----------------------------------------------------------------------------
 out vec4 fragment_colour;
@@ -41,11 +36,6 @@ struct GeometryParam {
     vec3 colour;
 };
 
-// -----------------------------------------------------------------------------
-layout (std140) uniform LightBlock {
-    Light lights[NUM_LIGHTS];
-};
-
 //  Light Management
 // -----------------------------------------------------------------------------
 layout (std430, binding = 0) buffer LightGridBuffer {
@@ -59,6 +49,24 @@ layout (std430, binding = 1) buffer LightIndexBuffer {
 uniform uvec2 tile_size;
 uniform uint n_tiles_x;
 
+// -----------------------------------------------------------------------------
+layout (std140) uniform LightBlock {
+    Light lights[NUM_LIGHTS];
+};
+
+// -----------------------------------------------------------------------------
+// MRT texture samplers
+layout(binding = 0) uniform sampler2D diffuse_tex;
+layout(binding = 1) uniform sampler2D normal_tex;
+layout(binding = 2) uniform sampler2D depth_tex;
+
+// -----------------------------------------------------------------------------
+// Position definition
+uniform mat4 perspective_matrix;
+uniform mat4 inv_perspective_matrix;
+
+uniform vec4 viewport;
+uniform vec2 depth_range;
 
 // Function Definitions
 // -----------------------------------------------------------------------------
@@ -102,38 +110,69 @@ vec3 computeLight(Light light,
     }
 }
 
+/*!
+ * Compute the texture coordinates of this fragment.
+ */
+vec2 calcTextureCoordinates() {
+    return gl_FragCoord.xy / viewport.zw;
+}
+
+/*!
+ * Compute the camera coordinates of this fragment given the texture coordinates
+ *
+ * param:
+ *     tex_coords (vec2): the texture coordinates of this fragment.
+ */
+vec4 getCameraCoordinates(in vec2 tex_coords) {
+    // Define the normalized device coordinates
+    vec3 device;
+    device.xy = (2.0f * ((gl_FragCoord.xy - vec2(0.5f, 0.5f) - viewport.xy) /
+                          viewport.zw)) - 1.0f;
+    device.z = 2.0f * texture(depth_tex, tex_coords).x - 1.0f;
+
+    // Calculate actual coordinates
+    vec4 raw_coords = inv_perspective_matrix * vec4(device, 1.0f);
+    vec4 coords = raw_coords / raw_coords.w;
+
+    return coords;
+}
+
 
 // -----------------------------------------------------------------------------
 // Main
 // -----------------------------------------------------------------------------
 void main() {
-    // light accumulator
-    vec3 light_acc = vec3(0.0f);
+    vec2 tex_coords = calcTextureCoordinates();
+    vec3 diffuse_colour = texture(diffuse_tex, tex_coords).xyz;
+    
+    vec4 coords_camera_space = getCameraCoordinates(tex_coords);
+    if (diffuse_colour.rgb == vec3(0.0f)) {
+        fragment_colour = vec4(0.0f);
+    } else {
+        vec4 coords_camera_space = getCameraCoordinates(tex_coords);
+        vec3 normal = normalize(texture(normal_tex, tex_coords)).xyz;
 
-    // set geometry param
-    GeometryParam param = GeometryParam(fragment_position,
-                                        normalize(fragment_normal),
-                                        vec3(1.0f));
+        // light accumulator
+        vec3 light_acc = vec3(0.0f);
 
-    // compute the contribution of each light
-    /*
-    for (int i =0; i < NUM_LIGHTS; i++) {
-        light_acc += computeLight(lights[i], param);
-    }
-    */
-    // determine contributing lights
-    vec2 screen_position = gl_FragCoord.xy - vec2(0.5f, 0.5f);
-    uint tile_index = uint(floor(screen_position.x / tile_size.x) +
-                           floor(screen_position.y / tile_size.y) * n_tiles_x);
+        GeometryParam param = GeometryParam(coords_camera_space,
+                                            normal,
+                                            diffuse_colour);
 
-    uint offset = tiles[tile_index].x;
-    uint n_lights = tiles[tile_index].y;
+        // determine contributing lights
+        vec2 screen_position = gl_FragCoord.xy - vec2(0.5f, 0.5f);
+        uint tile_index = uint(floor(screen_position.x / tile_size.x) +
+                               floor(screen_position.y / tile_size.y) * n_tiles_x);
 
-    // compute the contribution of each light
-    for (uint i = offset; i < offset + n_lights; i++) {
-        light_acc += computeLight(lights[light_indices[i]], param);
-    }
+        uint offset = tiles[tile_index].x;
+        uint n_lights = tiles[tile_index].y;
 
-    // output result
-    fragment_colour = vec4((vec3(0.1f) + (light_acc * 0.9)), 1.0f);
+        // compute the contribution of each light
+        for (uint i = offset; i < offset + n_lights; i++) {
+            light_acc += computeLight(lights[light_indices[i]], param);
+        }
+
+        // output result
+        fragment_colour = vec4((vec3(0.1) + (0.9 * light_acc)), 1.0);
+    }   
 }

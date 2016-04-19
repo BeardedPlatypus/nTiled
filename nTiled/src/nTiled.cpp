@@ -21,7 +21,7 @@
 #include "state\State.h"
 #include "pipeline\forward\ForwardPipeline.h"
 
-#include "pipeline\deferred\shaders\DeferredAttenuatedShader.h"
+#include "pipeline\deferred\shaders\DeferredTiledShader.h"
 
 
 // ----------------------------------------------------------------------------
@@ -37,7 +37,7 @@
 #define VERT_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.vert")
 #define FRAG_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.frag")
 #define VERT_PATH_LIGHT std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light.vert")
-#define FRAG_PATH_LIGHT std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_attenuated.frag")
+#define FRAG_PATH_LIGHT std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_tiled.frag")
 // ----------------------------------------------------------------------------
 //  Function prototypes
 // ----------------------------------------------------------------------------
@@ -92,14 +92,15 @@ int main() {
   nTiled::state::State state = nTiled::state::constructStateFromJson(SCENE_PATH);
 
   //nTiled::pipeline::Pipeline* pipeline = new nTiled::pipeline::ForwardPipeline(state);
-  nTiled::pipeline::DeferredAttenuatedShader* shader = new nTiled::pipeline::DeferredAttenuatedShader(
+  nTiled::pipeline::DeferredTiledShader* shader = new nTiled::pipeline::DeferredTiledShader(
     nTiled::pipeline::DeferredShaderId::DeferredAttenuated,
     VERT_PATH_GEO,
     FRAG_PATH_GEO,
     VERT_PATH_LIGHT,
     FRAG_PATH_LIGHT,
     *(state.p_world),
-    state.view);
+    state.view,
+    glm::uvec2(32, 32));
 
   nTiled::gui::GuiManager gui_manager = nTiled::gui::GuiManager(state);
   gui_manager.init(*window);
