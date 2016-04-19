@@ -1,4 +1,4 @@
-#include "pipeline\ShaderDefinitions.h"
+#include "pipeline\ShaderKey.h"
 
 namespace nTiled {
 namespace pipeline {

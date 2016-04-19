@@ -1,10 +1,5 @@
 #include "pipeline\forward\shaders\ForwardAttenuatedShader.h"
 
-// ----------------------------------------------------------------------------
-//  Libraries
-// ----------------------------------------------------------------------------
-#include <glm/gtc/type_ptr.hpp>
-
 namespace nTiled {
 namespace pipeline {
 

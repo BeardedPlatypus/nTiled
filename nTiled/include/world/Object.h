@@ -9,7 +9,7 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "world\Mesh.h"
-#include "pipeline\ShaderDefinitions.h"
+#include "pipeline\ShaderKey.h"
 
 namespace nTiled {
 namespace world {

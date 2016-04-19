@@ -67,10 +67,6 @@ public:
   /*!
   Render all objects in the world this Shader observes that indicate 
   They are rendered with this shader.
-
-  Args:
-  camera (Camera&): The camera used to render with this
-  ForwardShader
   */
   virtual void render();
 
@@ -110,6 +106,10 @@ protected:
   //  Render subfunctions
   // --------------------------------------------------------------------------
   virtual void renderObjects();
+
+  // --------------------------------------------------------------------------
+  //  Attributes
+  // --------------------------------------------------------------------------
 
   // client side attributes
   // --------------------------------------------------------------------------
