@@ -30,8 +30,14 @@ struct State {
         world::World* p_world,                     // world
         std::map<std::string, std::string> texture_file_map,
         std::vector<pipeline::ForwardShaderId> forward_shader_ids,
-        pipeline::PipelineType pipeline_type);
-
+        bool is_debug);
+  State(camera::Camera camera,                  // view
+        camera::CameraControl* camera_control,
+        glm::uvec2 viewport,
+        world::World* p_world,                     // world
+        std::map<std::string, std::string> texture_file_map,
+        pipeline::DeferredShaderId deferred_shader_id,
+        bool is_debug);
   ~State();
 
   // Member attributes
@@ -82,6 +88,7 @@ void parseLights(const std::string& path,
 void parseGeometry(const std::string& path,
                    world::World& world,
                    std::vector<pipeline::ForwardShaderId>& forward_shader_ids,
+                   pipeline::DeferredShaderId& deferred_shader_id,
                    std::map<std::string, std::string>& texture_map_file);
 } // state
 } // nTiled

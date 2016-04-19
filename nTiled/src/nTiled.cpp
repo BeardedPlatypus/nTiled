@@ -20,8 +20,7 @@
 #include "world\World.h"
 #include "state\State.h"
 #include "pipeline\forward\ForwardPipeline.h"
-
-#include "pipeline\deferred\shaders\DeferredTiledShader.h"
+#include "pipeline\deferred\DeferredPipeline.h"
 
 
 // ----------------------------------------------------------------------------
@@ -32,12 +31,6 @@
 
 #define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/scenes/scene-definitions/test_2/scene.json")
 
-//#define VERT_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic.vert")
-//#define FRAG_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_attenuated.frag")
-#define VERT_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.vert")
-#define FRAG_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.frag")
-#define VERT_PATH_LIGHT std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light.vert")
-#define FRAG_PATH_LIGHT std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_tiled.frag")
 // ----------------------------------------------------------------------------
 //  Function prototypes
 // ----------------------------------------------------------------------------
@@ -91,16 +84,13 @@ int main() {
   // -----------------
   nTiled::state::State state = nTiled::state::constructStateFromJson(SCENE_PATH);
 
-  //nTiled::pipeline::Pipeline* pipeline = new nTiled::pipeline::ForwardPipeline(state);
-  nTiled::pipeline::DeferredTiledShader* shader = new nTiled::pipeline::DeferredTiledShader(
-    nTiled::pipeline::DeferredShaderId::DeferredAttenuated,
-    VERT_PATH_GEO,
-    FRAG_PATH_GEO,
-    VERT_PATH_LIGHT,
-    FRAG_PATH_LIGHT,
-    *(state.p_world),
-    state.view,
-    glm::uvec2(32, 32));
+  nTiled::pipeline::Pipeline* p_pipeline;
+
+  if (state.shading.pipeline_type == nTiled::pipeline::PipelineType::Forward) {
+     p_pipeline = new nTiled::pipeline::ForwardPipeline(state);
+  } else {
+    p_pipeline = new nTiled::pipeline::DeferredPipeline(state);
+  }
 
   nTiled::gui::GuiManager gui_manager = nTiled::gui::GuiManager(state);
   gui_manager.init(*window);
@@ -117,8 +107,7 @@ int main() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // render nTiled components
-    shader->render();
-    //pipeline->render();
+    p_pipeline->render();
     gui_manager.render();
 
     // Display on screen
@@ -127,7 +116,7 @@ int main() {
 
   // Terminate program
   // -----------------
-  delete shader;
+  delete p_pipeline;
 
   glfwTerminate();
   return 0;

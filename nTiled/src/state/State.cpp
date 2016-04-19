@@ -26,14 +26,29 @@ State::State(camera::Camera camera,                  // view
              world::World* p_world,                     // world
              std::map<std::string, std::string> texture_file_map,
              std::vector<pipeline::ForwardShaderId> forward_shader_ids,
-             pipeline::PipelineType pipeline_type) :
+             bool is_debug) :
     view(View(camera,
               camera_control,
               viewport)),
     p_world(p_world),
     texture_catalog(TextureCatalog(texture_file_map)),
     shading(Shading(forward_shader_ids, 
-                    pipeline_type)) { }
+                    is_debug)) { }
+
+State::State(camera::Camera camera,                  // view
+             camera::CameraControl* camera_control,
+             glm::uvec2 viewport,
+             world::World* p_world,                     // world
+             std::map<std::string, std::string> texture_file_map,
+             pipeline::DeferredShaderId deferred_shader_id,
+             bool is_debug) :
+    view(View(camera,
+              camera_control,
+              viewport)),
+    p_world(p_world),
+    texture_catalog(TextureCatalog(texture_file_map)),
+    shading(Shading(deferred_shader_id, 
+                    is_debug)) { }
 
 State::~State() {
   delete this->p_world;
@@ -59,11 +74,13 @@ State constructStateFromJson(const std::string& path) {
     pipeline_type = pipeline::PipelineType::Deferred;
   } else if (pipeline_type_str.compare("FORWARD") == 0) {
     pipeline_type = pipeline::PipelineType::Forward;
-  } else if (pipeline_type_str.compare("FORWARD-DEBUG") == 0) {
-    pipeline_type = pipeline::PipelineType::ForwardDebug;
   } else {
-    pipeline_type = pipeline::PipelineType::Forward;
+    throw std::runtime_error(std::string("Unspecified pipeline type: ") + pipeline_type_str);
   }
+
+  // is debug
+  rapidjson::Value::ConstMemberIterator itr = config.FindMember("is_debug");
+  bool is_debug = ((itr != config.MemberEnd()) && itr->value.GetBool());
 
   // Build View Component
   // ------------------------------------------------------------------------
@@ -124,6 +141,7 @@ State constructStateFromJson(const std::string& path) {
     std::map<std::string, std::string>();
 
   std::vector<pipeline::ForwardShaderId> forward_shader_ids;
+  pipeline::DeferredShaderId deferred_shader_id;
 
   // load geometry
   auto& geometry_array_json = config["geometry"];
@@ -132,9 +150,10 @@ State constructStateFromJson(const std::string& path) {
        ++itr) {
 
     std::string geometry_path = (*itr)["path"].GetString();
-    parseGeometry(geometry_path, 
-                  *p_world, 
+    parseGeometry(geometry_path,
+                  *p_world,
                   forward_shader_ids,
+                  deferred_shader_id,
                   texture_file_map);
   }
 
@@ -150,13 +169,23 @@ State constructStateFromJson(const std::string& path) {
     parseLights(lights_path, light_constructor);
   }
 
-  return State(camera,
-               camera_control,
-               viewport,
-               p_world,
-               texture_file_map,
-               forward_shader_ids,
-               pipeline_type);
+  if (pipeline_type == pipeline::PipelineType::Forward) {
+    return State(camera,
+                 camera_control,
+                 viewport,
+                 p_world,
+                 texture_file_map,
+                 forward_shader_ids,
+                 is_debug);
+  } else {
+    return State(camera,
+                 camera_control,
+                 viewport,
+                 p_world,
+                 texture_file_map,
+                 deferred_shader_id,
+                 is_debug);
+  }
 }
 
 } // state

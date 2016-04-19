@@ -4,6 +4,7 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "pipeline\Pipeline.h"
+#include "pipeline\deferred\shaders\DeferredShader.h"
 
 namespace nTiled {
 namespace pipeline {
@@ -15,6 +16,9 @@ public:
 
   // Render Methods
   virtual void render() override;
+
+private:
+  DeferredShader* p_deferred_shader;
 };
 
 }

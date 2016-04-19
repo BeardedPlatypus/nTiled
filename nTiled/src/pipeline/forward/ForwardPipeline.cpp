@@ -1,4 +1,8 @@
 #include "pipeline\forward\ForwardPipeline.h"
+
+// ----------------------------------------------------------------------------
+//  nTiled headers
+// ----------------------------------------------------------------------------
 #include "pipeline\forward\shaders\ForwardAttenuatedShader.h"
 #include "pipeline\forward\shaders\ForwardTiledShader.h"
 

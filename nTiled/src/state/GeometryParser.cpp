@@ -27,6 +27,7 @@ namespace nTiled {
 void state::parseGeometry(const std::string& path,
                           world::World& world,
                           std::vector<pipeline::ForwardShaderId>& forward_shader_ids,
+                          pipeline::DeferredShaderId& deferred_shader_id,
                           std::map<std::string, std::string>& texture_file_map) {
   // Read file to string
   // --------------------------------------------------------------------------
@@ -124,13 +125,14 @@ void state::parseGeometry(const std::string& path,
     pipeline::ShaderKey shader_key = strToId[(*itr)["shader_id"].GetString()];
 
     // update shader keys
-    if (shader_key.type == pipeline::PipelineType::Forward ||
-        shader_key.type == pipeline::PipelineType::ForwardDebug) {
+    if (shader_key.type == pipeline::PipelineType::Forward) {
       if (std::find(forward_shader_ids.begin(),
                     forward_shader_ids.end(),
                     shader_key.forward_id) == forward_shader_ids.end()) {
         forward_shader_ids.push_back(shader_key.forward_id);
       }
+    } else {
+      deferred_shader_id = shader_key.deferred_id;
     }
 
     // translation
