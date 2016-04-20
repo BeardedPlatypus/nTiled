@@ -25,12 +25,14 @@ DeferredShader::DeferredShader(DeferredShaderId shader_id,
                                const std::string& path_light_vert_shader,
                                const std::string& path_light_frag_shader,
                                const world::World& world,
-                               const state::View& view) :
+                               const state::View& view,
+                               GLint p_output_buffer) :
     id(shader_id),
     world(world),
     view(view),
     gBuffer(GBuffer(view.viewport.x,
-                    view.viewport.y)) {
+                    view.viewport.y)),
+    p_output_buffer(p_output_buffer) {
   this->loadShaders(path_geometry_vert_shader,
                     path_geometry_frag_shader,
                     path_light_vert_shader,
@@ -112,7 +114,6 @@ DeferredShader::DeferredShader(DeferredShaderId shader_id,
 }
 
 void DeferredShader::render() {
-
   // enable writing to gBuffer
   this->gBuffer.bindForWriting();
   glEnable(GL_DEPTH_TEST);
@@ -122,7 +123,10 @@ void DeferredShader::render() {
 
   this->renderGeometryPass();
   glDisable(GL_DEPTH_TEST);
-  this->gBuffer.unbindForWriting();
+  //this->gBuffer.unbindForWriting();
+
+  // set output to the specified buffer
+  glBindFramebuffer(GL_DRAW_FRAMEBUFFER, this->p_output_buffer);
 
   // bind the texture for reading
   this->gBuffer.bindForReading();
@@ -369,10 +373,10 @@ void DeferredShader::loadShaders(const std::string& path_geometry_vert_shader,
   // -------------
   // Vertex Shader
   // -----------------------------------------------------------------
-  std::stringstream vert_shader_buffer =
+  std::stringstream geometry_vert_shader_buffer =
     readShader(path_geometry_vert_shader);
   GLuint geometry_vert_shader = compileShader(GL_VERTEX_SHADER,
-                                              vert_shader_buffer.str());
+                                              geometry_vert_shader_buffer.str());
 
   // Fragment Shader
   // -----------------------------------------------------------------

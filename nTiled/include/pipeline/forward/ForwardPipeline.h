@@ -17,6 +17,8 @@ public:
 
   // Render Methods
   virtual void render() override;
+
+  virtual void setOutputBuffer(GLint p_output_buffer) override;
 private:
   std::vector<ForwardShader*> shader_catalog;
 };

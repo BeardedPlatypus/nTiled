@@ -14,7 +14,8 @@ public:
                           const std::string& path_vertex_shader,
                           const std::string& path_fragment_shader,
                           const world::World& world,
-                          const state::View& view);
+                          const state::View& view,
+                          GLint p_output_buffer);
 
   virtual void render() override;
 };

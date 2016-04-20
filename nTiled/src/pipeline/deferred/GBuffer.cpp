@@ -101,7 +101,7 @@ void GBuffer::unbindForWriting() {
 
 // ----------------------------------------------------------------------------
 void GBuffer::bindForReading() {
-  glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+  //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, this->p_textures[0]);

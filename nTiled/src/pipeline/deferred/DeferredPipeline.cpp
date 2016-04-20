@@ -28,7 +28,8 @@ DeferredPipeline::DeferredPipeline(state::State& state) : Pipeline(state) {
       VERT_PATH_LIGHT,
       FRAG_PATH_LIGHT_ATTENUATED,
       *(this->state.p_world),
-      this->state.view);
+      this->state.view,
+      this->output_buffer);
   } else if (id == DeferredShaderId::DeferredTiled) {
     this->p_deferred_shader = new DeferredTiledShader(
       DeferredShaderId::DeferredTiled,
@@ -38,6 +39,7 @@ DeferredPipeline::DeferredPipeline(state::State& state) : Pipeline(state) {
       FRAG_PATH_LIGHT_TILED,
       *(this->state.p_world),
       this->state.view,
+      this->output_buffer,
       glm::uvec2(32, 32));
   } else {
       throw std::runtime_error(std::string("Unsupported shader"));
@@ -50,6 +52,11 @@ DeferredPipeline::~DeferredPipeline() {
 
 void DeferredPipeline::render() {
   this->p_deferred_shader->render();
+}
+
+void DeferredPipeline::setOutputBuffer(GLint p_output_buffer) {
+  Pipeline::setOutputBuffer(p_output_buffer);
+  this->p_deferred_shader->setOutputBuffer(p_output_buffer);
 }
 
 } // pipeline

@@ -10,6 +10,7 @@
 // ----------------------------------------------------------------------------
 #include "pipeline\forward\shaders\ForwardShaderId.h"
 #include "pipeline\deferred\shaders\DeferredShaderId.h"
+#include "pipeline\debug\shaders\DebugShaderId.h"
 
 #include "pipeline\PipelineType.h"
 
@@ -30,6 +31,7 @@ struct Shading {
   // Shaders
   std::vector<pipeline::ForwardShaderId> forward_shader_ids;
   pipeline::DeferredShaderId deferred_shader_id;
+  std::vector<pipeline::DebugShaderId> debug_shader_ids;
 
   // Pipeline type
   pipeline::PipelineType pipeline_type;

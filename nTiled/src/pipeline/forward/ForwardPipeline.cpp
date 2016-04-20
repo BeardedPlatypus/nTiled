@@ -23,13 +23,15 @@ ForwardPipeline::ForwardPipeline(state::State& state) : Pipeline(state) {
                                              VERT_PATH_BASIC,
                                              FRAG_PATH_BASIC_ATTENUATED,
                                              *(this->state.p_world),
-                                             this->state.view);
+                                             this->state.view,
+                                             this->output_buffer);
     } else if (id == ForwardShaderId::ForwardTiled) {
       p_shader = new ForwardTiledShader(id,
                                         VERT_PATH_BASIC,
                                         FRAG_PATH_BASIC_TILED,
                                         *(this->state.p_world),
                                         this->state.view,
+                                        this->output_buffer,
                                         glm::uvec2(32, 32));
     } else {
       throw std::runtime_error(std::string("Unsupported shader"));
@@ -47,6 +49,14 @@ ForwardPipeline::~ForwardPipeline() {
 void ForwardPipeline::render() {
   for (ForwardShader* p_shader : this->shader_catalog) {
     p_shader->render();
+  }
+}
+
+void ForwardPipeline::setOutputBuffer(GLint p_output_buffer) {
+  Pipeline::setOutputBuffer(p_output_buffer);
+
+  for (ForwardShader* p_shader : this->shader_catalog) {
+    p_shader->setOutputBuffer(this->output_buffer);
   }
 }
 

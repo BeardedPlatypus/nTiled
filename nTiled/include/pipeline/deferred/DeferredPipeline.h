@@ -17,6 +17,7 @@ public:
   // Render Methods
   virtual void render() override;
 
+  virtual void setOutputBuffer(GLint p_output_buffer) override;
 private:
   DeferredShader* p_deferred_shader;
 };

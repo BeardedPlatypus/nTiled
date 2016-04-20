@@ -63,7 +63,8 @@ public:
                  const std::string& path_light_pass_vertex_shader,
                  const std::string& path_light_pass_fragment_shader,
                  const world::World& world,
-                 const state::View& view);
+                 const state::View& view,
+                 GLint p_output_buffer);
  
   // --------------------------------------------------------------------
   //  Attribute Getters
@@ -83,6 +84,16 @@ public:
   Render all objects of this DeferredShader
   */
   virtual void render();
+
+  /*!
+   Set the output buffer of this DeferredShader to p_output_buffer
+
+   Param:
+       p_output_buffer (GLint): the new output buffer of this shader
+   */
+  virtual void setOutputBuffer(GLint p_output_buffer) { 
+    this->p_output_buffer = p_output_buffer; 
+  }
 
 protected:
   // --------------------------------------------------------------------------
@@ -182,6 +193,8 @@ protected:
 
   /*! PipelineObject of the fullscreen quad used in the Light Pass */
   PipelineObject* fullscreen_quad;
+
+  GLint p_output_buffer;
 };
 
 } // pipeline 

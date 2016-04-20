@@ -21,6 +21,7 @@
 #include "state\State.h"
 #include "pipeline\forward\ForwardPipeline.h"
 #include "pipeline\deferred\DeferredPipeline.h"
+#include "pipeline\debug\DebugPipeline.h"
 
 
 // ----------------------------------------------------------------------------
@@ -84,13 +85,23 @@ int main() {
   // -----------------
   nTiled::state::State state = nTiled::state::constructStateFromJson(SCENE_PATH);
 
-  nTiled::pipeline::Pipeline* p_pipeline;
+  nTiled::pipeline::Pipeline* p_render_pipeline;
 
   if (state.shading.pipeline_type == nTiled::pipeline::PipelineType::Forward) {
-     p_pipeline = new nTiled::pipeline::ForwardPipeline(state);
+     p_render_pipeline = new nTiled::pipeline::ForwardPipeline(state);
   } else {
-    p_pipeline = new nTiled::pipeline::DeferredPipeline(state);
+    p_render_pipeline = new nTiled::pipeline::DeferredPipeline(state);
   }
+
+  nTiled::pipeline::Pipeline* p_pipeline;
+  if (state.shading.is_debug) {
+    p_pipeline = new nTiled::pipeline::DebugPipeline(p_render_pipeline,
+                                                     state);
+  } else {
+    p_pipeline = p_render_pipeline;
+  }
+
+
 
   nTiled::gui::GuiManager gui_manager = nTiled::gui::GuiManager(state);
   gui_manager.init(*window);
@@ -116,7 +127,11 @@ int main() {
 
   // Terminate program
   // -----------------
+  // clean up
   delete p_pipeline;
+  if (state.shading.is_debug) {
+    delete p_render_pipeline;
+  }
 
   glfwTerminate();
   return 0;

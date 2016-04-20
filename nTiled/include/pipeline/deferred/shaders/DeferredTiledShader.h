@@ -19,6 +19,7 @@ public:
                       const std::string& path_light_pass_fragment_shader,
                       const world::World& world,
                       const state::View& view,
+                      GLint p_output_buffer,
                       glm::uvec2 tile_size);
 
   virtual void renderGeometryPass() override;

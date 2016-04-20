@@ -10,13 +10,15 @@ DeferredAttenuatedShader::DeferredAttenuatedShader(
     const std::string& path_light_pass_vertex_shader,
     const std::string& path_light_pass_fragment_shader,
     const world::World& world,
-    const state::View& view) : DeferredShader(shader_id,
-                                              path_geometry_pass_vertex_shader,
-                                              path_geometry_pass_fragment_shader,
-                                              path_light_pass_vertex_shader,
-                                              path_light_pass_fragment_shader,
-                                              world,
-                                              view) { }
+    const state::View& view,
+    GLint p_output_buffer) : DeferredShader(shader_id,
+                                            path_geometry_pass_vertex_shader,
+                                            path_geometry_pass_fragment_shader,
+                                            path_light_pass_vertex_shader,
+                                            path_light_pass_fragment_shader,
+                                            world,
+                                            view,
+                                            p_output_buffer) { }
 
 void DeferredAttenuatedShader::renderGeometryPass() {
   glUseProgram(this->geometry_pass_sp);

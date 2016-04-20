@@ -48,7 +48,8 @@ public:
                 const std::string& path_vertex_shader,
                 const std::string& path_fragment_shader,
                 const world::World& world,
-                const state::View& view);
+                const state::View& view,
+                GLint p_output_buffer);
 
   // --------------------------------------------------------------------
   //  Attribute Getters
@@ -69,6 +70,16 @@ public:
   They are rendered with this shader.
   */
   virtual void render();
+
+  /*!
+   Set the output buffer of this ForwardShader to p_output_buffer
+
+   Param:
+       p_output_buffer (GLint): the new output buffer of this shader
+   */
+  virtual void setOutputBuffer(GLint p_output_buffer) { 
+    this->p_output_buffer = p_output_buffer; 
+  }
 
 protected:
   // --------------------------------------------------------------------------
@@ -135,6 +146,10 @@ protected:
   light data.
   */
   GLuint light_ubo;
+
+  /*! output buffer that should be restored upon changing the framebuffer, and 
+      to which the final result should be written */
+  GLint p_output_buffer;
 };
 
 

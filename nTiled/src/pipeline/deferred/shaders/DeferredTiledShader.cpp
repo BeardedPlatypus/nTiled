@@ -16,6 +16,7 @@ DeferredTiledShader::DeferredTiledShader(
     const std::string& path_light_pass_fragment_shader,
     const world::World& world,
     const state::View& view,
+    GLint p_output_buffer,
     glm::uvec2 tile_size) : 
     DeferredShader(shader_id,
                    path_geometry_pass_vertex_shader,
@@ -23,7 +24,8 @@ DeferredTiledShader::DeferredTiledShader(
                    path_light_pass_vertex_shader,
                    path_light_pass_fragment_shader,
                    world,
-                   view),
+                   view,
+                   p_output_buffer),
     projector(BoxProjector()),
     light_manager(TiledLightManager(world, view,
                                     tile_size.x, tile_size.y, 
