@@ -21,7 +21,7 @@
 #include "state\State.h"
 #include "pipeline\forward\ForwardPipeline.h"
 #include "pipeline\deferred\DeferredPipeline.h"
-#include "pipeline\debug\DebugPipeline.h"
+#include "pipeline\debug-view\DebugPipeline.h"
 
 
 // ----------------------------------------------------------------------------

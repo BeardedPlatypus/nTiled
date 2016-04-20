@@ -10,7 +10,7 @@
 // ----------------------------------------------------------------------------
 #include "pipeline\forward\shaders\ForwardShaderId.h"
 #include "pipeline\deferred\shaders\DeferredShaderId.h"
-#include "pipeline\debug\shaders\DebugShaderId.h"
+#include "pipeline\debug-view\shaders\DebugShaderId.h"
 
 #include "pipeline\PipelineType.h"
 
