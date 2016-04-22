@@ -20,5 +20,7 @@ GLuint loadAndCompileShader(GLenum shaderType, const std::string& path);
 GLuint createVertexFragmentProgram(const std::string& vertex_shader_path,
 	                                 const std::string& fragment_shader_path);
 
+GLuint createComputeProgram(const std::string& compute_shader);
+
 } // pipeline
 } // nTiled

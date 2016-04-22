@@ -174,5 +174,42 @@ GLuint createVertexFragmentProgram(const std::string& vertex_shader_path,
   return program;
 }
 
+// ----------------------------------------------------------------------------
+//  ComputeShader compilation
+// ----------------------------------------------------------------------------
+GLuint createComputeProgram(const std::string& compute_shader_buffer) {
+  // create shader
+  GLint compute_shader = compileShader(GL_COMPUTE_SHADER, compute_shader_buffer);
+
+  // create program
+  GLuint program = glCreateProgram();
+  if (!program) {
+    throw std::runtime_error("Can't create GLSL program.");
+  }
+
+  glAttachShader(program, compute_shader);
+  glLinkProgram(program);
+
+  GLint status;
+  glGetProgramiv(program, GL_LINK_STATUS, &status);
+  if (!status) {
+    std::cerr << "Linking error in shader program!" << std::endl;
+    GLint logLen;
+    glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLen);
+    if (logLen > 0) {
+      char *log = new char[logLen];
+      GLsizei written;
+      glGetProgramInfoLog(program, logLen, &written, log);
+      std::cerr << "Shader log: " << std::endl;
+      std::cerr << log << std::endl;
+
+      delete[] log;
+    }
+    throw std::runtime_error("Can't link shader program.");
+  }
+  return program;
+}
+
+
 } // pipeline
 } // nTiled
