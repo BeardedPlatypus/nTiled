@@ -12,7 +12,7 @@ class DebugShader {
 public:
   DebugShader(GLfloat z_value);
 
-  void render();
+  virtual void render();
 protected:
   GLfloat z_value;
 };

@@ -18,8 +18,8 @@
 // ----------------------------------------------------------------------------
 // Defines
 // ----------------------------------------------------------------------------
-#define VERT_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/debug/shaders-glsl/view-pipeline/view_pipeline.vert")
-#define FRAG_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/debug/shaders-glsl/view-pipeline/view_pipeline.frag")
+#define VERT_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/debug-view/shaders-glsl/view-pipeline/view_pipeline.vert")
+#define FRAG_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/debug-view/shaders-glsl/view-pipeline/view_pipeline.frag")
 
 
 namespace nTiled {
@@ -139,15 +139,8 @@ void DebugPipeline::render() {
   this->frame_pipeline->render();
 
   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-  glBindFramebuffer(GL_READ_FRAMEBUFFER,
-                    this->p_fbo);
-  glReadBuffer(GL_COLOR_ATTACHMENT0);
-  glBlitFramebuffer(0, 0, this->state.view.viewport.x, this->state.view.viewport.y,
-                    0, 0, this->state.view.viewport.x, this->state.view.viewport.y,
-                    GL_COLOR_BUFFER_BIT, GL_LINEAR);
 
   // activate texture for render shader
-  /*
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, this->p_pass_result);
 
@@ -159,7 +152,6 @@ void DebugPipeline::render() {
                  this->display_quad->n_elements,
                  GL_UNSIGNED_SHORT, 0);
   glUseProgram(0);
-  */
 
   // render overlay shaders
   for (DebugShader* p_shader : this->debug_shaders) {

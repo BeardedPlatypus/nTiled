@@ -12,6 +12,8 @@
 #include "pipeline\debug-view\shaders\DebugShader.h"
 #include "pipeline\PipelineObject.h"
 
+#include "pipeline\debug-view\shaders\DebugTileDisplayShader.h"
+
 namespace nTiled {
 namespace pipeline {
 
@@ -32,7 +34,6 @@ private:
   GLuint p_fbo;
   GLuint p_pass_result;
   GLuint display_pipeline_sp;
-
 };
 
 } // pipeline

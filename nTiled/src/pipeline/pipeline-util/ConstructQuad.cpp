@@ -3,13 +3,15 @@
 namespace nTiled {
 namespace pipeline {
 
-PipelineObject* constructQuad() {
+PipelineObject* constructQuad(glm::vec2 lower_left_corner,
+                              glm::vec2 upper_right_corner,
+                              GLfloat depth) {
   // Position data
   GLfloat quad_vertices[] = {
-    -1.0f, -1.0f, 0.0f, 1.0f,
-    1.0f, -1.0f, 0.0f, 1.0f,
-    1.0f,  1.0f, 0.0f, 1.0f,
-    -1.0f,  1.0f, 0.0f, 1.0f
+    lower_left_corner.x , lower_left_corner.y,  depth, 1.0f,
+    upper_right_corner.x, lower_left_corner.y,  depth, 1.0f,
+    upper_right_corner.x, upper_right_corner.y, depth, 1.0f,
+    lower_left_corner.x,  upper_right_corner.y, depth, 1.0f
   };
 
   // Element data
@@ -53,6 +55,12 @@ PipelineObject* constructQuad() {
                             element_buffer,
                             6,
                             glm::mat4(1.0f));
+}
+
+PipelineObject* constructQuad() {
+  return constructQuad(glm::vec2(-1.0, -1.0),
+                       glm::vec2( 1.0,  1.0),
+                       1.0f);
 }
 
 }
