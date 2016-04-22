@@ -123,14 +123,16 @@ State constructStateFromJson(const std::string& path) {
   float z_near = config["camera"]["clip"]["near"].GetFloat();
   float z_far = config["camera"]["clip"]["far"].GetFloat();
 
+  camera::CameraConstructionData construction_data = 
+    camera::CameraConstructionData(camera_eye,
+                                   camera_center,
+                                   camera_up,
+                                   fovy,
+                                   aspect,
+                                   z_near,
+                                   z_far);
   camera::Camera camera = camera::Camera(camera_control,
-                                         camera_eye,
-                                         camera_center,
-                                         camera_up,
-                                         fovy,
-                                         aspect,
-                                         z_near,
-                                         z_far);
+                                         construction_data);
 
   // Build World and Texture Component
   // ------------------------------------------------------------------------
