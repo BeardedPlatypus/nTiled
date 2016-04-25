@@ -17,7 +17,7 @@ layout (binding = 0, r16ui) uniform writeonly uimage2D k_tex;
 
 // Variable Definitions 
 // ----------------------------------------------------------------------------
-layout(binding = 0) uniform sampler2D depth_tex;
+layout(binding = 2) uniform sampler2D depth_tex;
 uniform mat4 inv_perspective_matrix;
 
 uniform vec4 viewport;
@@ -33,12 +33,11 @@ uniform float near_plane_z;
  * param:
  *     tex_coords (vec2): the texture coordinates of this fragment.
  */
-vec4 getCameraCoordinates(in ivec2 screen_pos) {
+vec4 getCameraCoordinates(in vec2 norm_screen_pos) {
     // Define the normalized device coordinates
     vec3 device;
-    device.xy = (2.0f * ((screen_pos - viewport.xy) /
-                          viewport.zw)) - 1.0f;
-    device.z = 2.0f * texture(depth_tex, screen_pos).r - 1.0f;
+    device.xy = 2.0f * norm_screen_pos - 1.0f;
+    device.z = 2.0f * texture(depth_tex, norm_screen_pos).r - 1.0f;
 
     // Calculate actual coordinates
     vec4 raw_coords = inv_perspective_matrix * vec4(device, 1.0f);
@@ -52,8 +51,19 @@ vec4 getCameraCoordinates(in ivec2 screen_pos) {
 // ----------------------------------------------------------------------------
 void main() {
     ivec2 screen_pos = ivec2(gl_GlobalInvocationID.xy);
-    vec4 camera_coords = getCameraCoordinates(screen_pos);
+    vec2 norm_screen_pos = screen_pos / viewport.zw;
+    vec4 camera_coords = getCameraCoordinates(norm_screen_pos);
 
-    uint k = uint(floor(log( camera_coords.z / near_plane_z ) * k_inv_denominator ));
+    /*
+    vec3 device;
+    device.xy = 2.0f * norm_screen_pos - 1.0f;
+    device.z = 2.0 * texture(depth_tex, norm_screen_pos).r - 1.0f;
+
+    vec4 coords = inv_perspective_matrix * vec4(device, 1.0f);
+    coords /= coords.w;
+    */
+
+
+    uint k = uint(floor(log( -camera_coords.z / near_plane_z ) * k_inv_denominator ));
     imageStore(k_tex, screen_pos, uvec4(k));
 }

@@ -153,7 +153,7 @@ int main() {
     // render nTiled components
     //p_pipeline->render();
     p_shader->render();
-    gui_manager.render();
+    //gui_manager.render();
 
     // Display on screen
     glfwSwapBuffers(window);

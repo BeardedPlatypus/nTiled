@@ -38,6 +38,7 @@ void DeferredClusteredShader::renderGeometryPass() {
 
 void DeferredClusteredShader::renderLightPass() {
   glUseProgram(this->light_pass_sp);
+  //this->renderLightPassObjects();
   p_shader->execute();
   p_shader->debugVisualise();
   glUseProgram(0);

@@ -113,7 +113,7 @@ KeyComputeShader::KeyComputeShader(GLuint depth_texture,
 
   //   link to shader
   glUseProgram(this->key_compute_shader);
-  glUniform1i(p_depth_tex, GL_TEXTURE0);
+  glUniform1i(p_depth_tex, GL_TEXTURE2);
 
   glUniformMatrix4fv(p_inv_perspective_matrix,
                      1, GL_FALSE,
@@ -150,11 +150,20 @@ void KeyComputeShader::execute() {
                      GL_R16UI);        // Format
 
   // Bind depth texture
-  glActiveTexture(GL_TEXTURE0);
+  glActiveTexture(GL_TEXTURE2);
   glBindTexture(GL_TEXTURE_2D, this->depth_texture);
 
+  /*
+  GLfloat z_value[1024 * 4];
+  glGetTexImage(GL_TEXTURE_2D,
+                0,
+                GL_DEPTH_COMPONENT,
+                GL_FLOAT,
+                z_value);
+                */
+
   // Compute results
-  glDispatchCompute(1, 1, 1);
+  glDispatchCompute(this->n_tiles.x, this->n_tiles.y, 1);
   glMemoryBarrier(GL_ALL_BARRIER_BITS);
 
   // Bind texture
@@ -168,7 +177,7 @@ void KeyComputeShader::execute() {
 
   // Check if values are correctly written
   /*
-  GLushort value[1024];
+  GLushort value[1024 * 4];
   glBindTexture(GL_TEXTURE_2D, this->k_texture);
   glGetTexImage(GL_TEXTURE_2D,
                 0,

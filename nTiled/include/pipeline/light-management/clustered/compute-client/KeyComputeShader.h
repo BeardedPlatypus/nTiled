@@ -49,10 +49,8 @@ public:
 protected:
   // Attributes
   // --------------------------------------------------------------------------
-  /*! Number of tiles in the x direction */
-  unsigned int n_tiles_x;
-  /*! Number of tiles in the y direction */
-  unsigned int n_tiles_y;
+  /*! Number of tiles */
+  glm::uvec2 n_tiles;
 
   // Compute shader
   // --------------------------------------------------------------------------
@@ -82,7 +80,6 @@ protected:
   PipelineObject* display_quad;
 
   glm::uvec2 tile_size;
-  glm::uvec2 n_tiles;
   glm::uvec2 viewport;
 };
 
