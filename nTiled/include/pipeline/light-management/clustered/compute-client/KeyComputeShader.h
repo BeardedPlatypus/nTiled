@@ -47,11 +47,23 @@ public:
   virtual void debugVisualise();
   
 protected:
+  // Attributes
+  // --------------------------------------------------------------------------
+  /*! Number of tiles in the x direction */
   unsigned int n_tiles_x;
+  /*! Number of tiles in the y direction */
   unsigned int n_tiles_y;
+
+  // Compute shader
+  // --------------------------------------------------------------------------
+  /*!
+   Compile and load the compute shader of this KeyComputeShader
+   */
+  void loadComputeShader();
 
   /*! Compute shader reference */
   GLuint key_compute_shader;
+
   // Program attributes
   //---------------------------------------------------------------------------
   /*! Depth texture this KeyComputeShader acts upon */

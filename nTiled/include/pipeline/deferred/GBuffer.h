@@ -42,6 +42,7 @@ public:
   void setReadBuffer(GBUFFER_TEXTURE_TYPE TextureType);
 
   GLuint getPointerFBO() { return this->p_fbo; }
+  GLuint getPointerDepthTexture() { return this->p_depth_texture; }
 
 private:
   // GBuffer attributes

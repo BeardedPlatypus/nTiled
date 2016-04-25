@@ -8,8 +8,12 @@
 #include <sstream>
 #include <iostream>
 
+//  shader loading
+#include <glm/gtc/type_ptr.hpp>
+
 //  mathematics
 #include <cmath>
+#include <glm/gtc/matrix_inverse.hpp>
 
 // debug
 #include <vector>
@@ -44,8 +48,141 @@ KeyComputeShader::KeyComputeShader(GLuint depth_texture,
     n_tiles(glm::uvec2((unsigned int) std::ceil(view.viewport.x / tile_size.x),
                        (unsigned int) std::ceil(view.viewport.y / tile_size.y))),
     viewport(view.viewport) {
-  //  Compile compute shader
-  // --------------------------------------------------------------------------
+  // Compile compute shader
+  // ----------------------
+  this->loadComputeShader();
+
+  // Set Textures of this compute shader
+  // -----------------------------------
+  //   Generate texture
+  glGenTextures(1, &(this->k_texture));
+  glBindTexture(GL_TEXTURE_2D, this->k_texture);
+
+  //   Set texture wrapping
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+ 
+  //   Set one to one mapping
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 1);
+
+  //   Specify texture representation
+  glTexStorage2D(GL_TEXTURE_2D,
+                 GLint(1),
+                 GL_R16UI,
+                 view.viewport.x, view.viewport.y);
+
+  //   Unbind texture
+  glBindTexture(GL_TEXTURE_2D, 0);
+
+  //   Link created output texture with program
+  GLuint p_k_tex = glGetUniformLocation(this->key_compute_shader,
+                                        "k_tex");
+  glUseProgram(this->key_compute_shader);
+  glUniform1i(p_k_tex, 0);
+  glUseProgram(0);
+
+  // Link uniform values with program
+  // --------------------------------
+  //   depth values
+  GLuint p_depth_tex = glGetUniformLocation(this->key_compute_shader,
+                                            "depth_tex");
+
+  glm::mat4 inv_perspective_matrix = glm::inverse(view.camera.getPerspectiveMatrix());
+  GLuint p_inv_perspective_matrix = glGetUniformLocation(this->key_compute_shader,
+                                                         "inv_perspective_matrix");
+  glm::vec4 viewport = glm::vec4(0.0, 0.0, view.viewport);
+  GLuint p_viewport = glGetUniformLocation(this->key_compute_shader,
+                                           "viewport");
+
+  //   k inv denominator
+  GLfloat theta = 0.5 * math::to_radians(view.camera.getFoV());
+  GLfloat tile_width_percentage = (float)tile_size.x / (float)view.viewport.x;
+  GLfloat k_inv_denominator = 1.0f / (log(1 + (2 * tan(theta) *
+                                                   tile_width_percentage)));
+  GLint p_k_inv_denominator = glGetUniformLocation(this->key_compute_shader,
+                                                   "k_inv_denominator");
+
+  //   z plane
+  GLfloat near_plane_z = view.camera.getDepthrange().x;
+  GLuint p_near_plane_z = glGetUniformLocation(this->key_compute_shader,
+                                               "near_plane_z");
+
+  //   link to shader
+  glUseProgram(this->key_compute_shader);
+  glUniform1i(p_depth_tex, GL_TEXTURE0);
+
+  glUniformMatrix4fv(p_inv_perspective_matrix,
+                     1, GL_FALSE,
+                     glm::value_ptr(inv_perspective_matrix));
+
+  glUniform4fv(p_viewport, 1, glm::value_ptr(viewport));
+
+  glUniform1f(p_k_inv_denominator, k_inv_denominator);
+  glUniform1f(p_near_plane_z, near_plane_z);
+  glUseProgram(0);
+
+  // Load Debug Capabilities
+  // -----------------------
+  // Todo make this all DEBUG define
+  this->loadDebugVisualiseShaders();
+}
+
+KeyComputeShader::~KeyComputeShader() {
+  glDeleteTextures(1, &(this->k_texture));
+
+  delete this->display_quad;
+}
+
+void KeyComputeShader::execute() {
+  glUseProgram(this->key_compute_shader);
+
+  // Bind the output texture
+  glBindImageTexture(0,                // Binding image unit
+                     this->k_texture,  // Texture to be bound
+                     0,                // Level
+                     GL_FALSE,         // Layered?
+                     0,                // specified layer
+                     GL_WRITE_ONLY,    // Access method
+                     GL_R16UI);        // Format
+
+  // Bind depth texture
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, this->depth_texture);
+
+  // Compute results
+  glDispatchCompute(1, 1, 1);
+  glMemoryBarrier(GL_ALL_BARRIER_BITS);
+
+  // Bind texture
+  glBindImageTexture(0,
+                     0,
+                     0,
+                     GL_FALSE,
+                     0,
+                     GL_READ_WRITE,
+                     GL_R16UI);
+
+  // Check if values are correctly written
+  /*
+  GLushort value[1024];
+  glBindTexture(GL_TEXTURE_2D, this->k_texture);
+  glGetTexImage(GL_TEXTURE_2D,
+                0,
+                GL_RED_INTEGER,
+                GL_UNSIGNED_SHORT,
+                value);
+  glBindTexture(GL_TEXTURE_2D, 0);
+  */
+
+  glUseProgram(0);
+}
+
+
+void KeyComputeShader::loadComputeShader() {
   std::stringstream compute_shader_buffer;
 
   // lines to be updated
@@ -75,129 +212,52 @@ KeyComputeShader::KeyComputeShader(GLuint depth_texture,
   }
 
   this->key_compute_shader = createComputeProgram(compute_shader_buffer.str());
-
-  // Generate output texture
-  // --------------------------------------------------------------------------
-  glGenTextures(1, &(this->k_texture));
-  glBindTexture(GL_TEXTURE_2D, this->k_texture);
-  glTexImage2D(GL_TEXTURE_2D,                    // target
-               0,                                // mipmap level
-               GL_R16,                           // internal format
-               view.viewport.x, view.viewport.y, // texture dimensions
-               0,                                // border
-               GL_RED,                           // format
-               GL_UNSIGNED_SHORT,                // type
-               NULL                              // data
-               );
-  // set 1 to 1 mapping so no interpolation between pixels occurs
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-  glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
-  // Update uniform variables of Compute shader program
-  // --------------------------------------------------------------------------
-  GLfloat theta = 0.5 * math::to_radians(view.camera.getFoV());
-  GLfloat tile_width_percentage = (float)tile_size.x / (float)view.viewport.x;
-  GLfloat k_inv_denominator = 1.0f / (log(1 + (2 * tan(theta) *
-                                                   tile_width_percentage)));
-
-  GLfloat near_plane_z = view.camera.getDepthrange().x;
-
-  // memory locations
-  // uniform floats
-  GLint p_k_inv_denominator = glGetUniformLocation(this->key_compute_shader,
-                                                   "k_inv_denominator");
-  GLint p_near_plane_z = glGetUniformLocation(this->key_compute_shader,
-                                              "near_plane_z");
-
-  GLint p_depth_texture = glGetUniformLocation(this->key_compute_shader,
-                                               "depth_tex");
-  GLint p_k_tex = glGetUniformLocation(this->key_compute_shader,
-                                       "k_tex");
-
-  glUseProgram(this->key_compute_shader);
-  // set uniform floats
-  glUniform1f(p_k_inv_denominator,
-              k_inv_denominator);
-  glUniform1f(p_near_plane_z,
-              near_plane_z);
-
-  // set textures
-  glUniform1i(p_depth_texture,
-              GL_TEXTURE0);
-  glUniform1i(p_k_tex,
-              GL_TEXTURE1);
-  glUseProgram(0);
-
-  this->loadDebugVisualiseShaders();
-}
-
-KeyComputeShader::~KeyComputeShader() {
-  glDeleteTextures(1, &(this->k_texture));
-
-  delete this->display_quad;
-}
-
-void KeyComputeShader::execute() {
-  glUseProgram(this->key_compute_shader);
-  // Bind textures
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, this->depth_texture);
-
-  glActiveTexture(GL_TEXTURE1);
-  glBindTexture(GL_TEXTURE_2D, this->k_texture);
-
-  // Execute Compute Shader
-  glDispatchCompute(this->n_tiles_x,
-                    this->n_tiles_y,
-                    0);
-
-  glUseProgram(0);
 }
 
 void KeyComputeShader::debugVisualise() {
-  // determine max k
-  // loop over tiles
-  /*
-  std::vector<GLushort> k_max_values = std::vector<unsigned short>();
-
-  GLushort k_max_tile;
-  GLushort k_current;
-  */
-  //GLushort k_values[] = new GLushort[viewport.x * viewport.y];
-  std::vector<GLushort> k_values = std::vector<GLushort>(viewport.x * viewport.y);
-  
+  // compute the highest k
+  unsigned int n_pixels = viewport.x * viewport.y;
+  GLushort* values = new GLushort[n_pixels];
   glBindTexture(GL_TEXTURE_2D, this->k_texture);
   glGetTexImage(GL_TEXTURE_2D,
                 0,
-                GL_RED,
+                GL_RED_INTEGER,
                 GL_UNSIGNED_SHORT,
-                k_values.data());
-  glBindTexture(GL_TEXTURE_2D, 0);
+                values);
 
-  /*
-  for (unsigned int y = 0; y < this->n_tiles.y; y++) {
-    for (unsigned int x = 0; x < this->n_tiles_x; x++) {
-      k_max_tile = 0;
-      for (unsigned short tile_y = 0; tile_y < this->tile_size.y; tile_y++) {
-        for (unsigned short tile_x = 0; tile_x < this->tile_size.x; tile_x++) {
-        }
-      }
-      k_max_values.push_back(k_max_tile);
+  GLushort k_max = 0;
+  for (unsigned int i = 0; i < n_pixels; i++) {
+    if (values[i] > k_max) {
+      k_max = values[i];
     }
   }
-  */
+
+  delete[] values;
+
+  GLfloat k_step = 1.0f / k_max;
+
 
   glUseProgram(this->key_visualise_shader);
-  // render k_tex
+  // set k step in shader
+  GLuint p_k_step = glGetUniformLocation(this->key_visualise_shader,
+                                         "k_step");
+  glUniform1f(p_k_step, k_step);
+
+  // activate k_texture
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_2D, this->k_texture);
+
+  // Render the view
   glBindVertexArray(this->display_quad->vao);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,
                this->display_quad->element_buffer);
   glDrawElements(GL_TRIANGLES,
                  this->display_quad->n_elements,
-                 GL_UNSIGNED_SHORT, 0);
-  glUseProgram(0);
+                 GL_UNSIGNED_SHORT,
+                 0);
 
-  //delete[] k_values;
+  glBindTexture(GL_TEXTURE_2D, 0);
+  glUseProgram(0);
 }
 
 void KeyComputeShader::loadDebugVisualiseShaders() {
@@ -226,6 +286,11 @@ void KeyComputeShader::loadDebugVisualiseShaders() {
                                             "tile_size");
   GLuint p_colour_step = glGetUniformLocation(this->key_visualise_shader,
                                               "colour_step");
+  GLuint p_viewport = glGetUniformLocation(this->key_visualise_shader,
+                                           "viewport");
+  GLuint p_k_tex = glGetUniformLocation(this->key_visualise_shader,
+                                        "k_tex");
+
 
   glUseProgram(this->key_visualise_shader);
   glUniform2f(p_tile_size,
@@ -234,7 +299,16 @@ void KeyComputeShader::loadDebugVisualiseShaders() {
   glUniform2f(p_colour_step,
               colour_step.x,
               colour_step.y);
+  glUniform2f(p_viewport,
+              this->viewport.x,
+              this->viewport.y);
+
+  glUniform1i(p_k_tex,
+              GL_TEXTURE0);
+
   glUseProgram(0);
+
+  this->display_quad = constructQuad();
 }
 
 }
