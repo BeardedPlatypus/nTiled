@@ -34,7 +34,7 @@ public:
    Compute the Key texture, which subdivides depth space into a discrete set 
    of bins per tile.
    */
-  virtual void execute();
+  virtual void execute() override;
   
   /*!
    Get the opengl pointer to the k_texture to which this ComputeShader outputs
