@@ -69,7 +69,7 @@ public:
   std::vector<glm::uvec2> cluster_to_light_index_map;
   /*! The list of light indices */
   std::vector<GLuint> light_index_list;
-  
+ 
 private:
   /*! 
    Internal array for constructing light clusters. 
@@ -82,7 +82,6 @@ private:
 
   const glm::uvec2 image_dimensions;
   const glm::uvec2 tile_size;
-  glm::uvec2 n_tiles;
 };
 
 }
