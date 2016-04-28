@@ -82,6 +82,7 @@ private:
 
   const glm::uvec2 image_dimensions;
   const glm::uvec2 tile_size;
+  glm::uvec2 n_tiles;
 };
 
 }

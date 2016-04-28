@@ -53,6 +53,14 @@ void ClusteredLightManager::constructClusteringFrame() {
   std::vector<GLushort> k_values_tiles =
     this->key_sort_compact_shader.getKValuesTiles();
 
+  // Calculate summed indices
+  this->summed_indices.clear();
+  GLuint summed_index = 0;
+  for (GLushort n_k_vals : n_clusters_tiles) {
+    this->summed_indices.push_back(summed_index);
+    summed_index += n_k_vals;
+  }
+
   // Clear Clustering
   this->light_clustering.initFrame(k_values_tiles,
                                    n_clusters_tiles);
@@ -92,6 +100,21 @@ void ClusteredLightManager::constructClusteringFrame() {
   this->light_clustering.finaliseClusters();
 }
 
+const std::vector<GLuint>& ClusteredLightManager::getSummedIndicesData() const {
+  return this->summed_indices;
+}
+
+GLuint ClusteredLightManager::getKIndexMapPointer() const {
+  return this->key_sort_compact_shader.getIndexTexture();
+}
+
+const std::vector<glm::uvec2>& ClusteredLightManager::getLightClusterData() const {
+  return this->light_clustering.cluster_to_light_index_map;
+}
+
+const std::vector<GLuint>& ClusteredLightManager::getLightIndexData() const {
+  return this->light_clustering.light_index_list;
+}
 
 
 }

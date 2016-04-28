@@ -4,7 +4,7 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "DeferredShader.h"
-#include "pipeline\light-management\clustered\compute-client\KeyComputeShader.h"
+#include "pipeline\light-management\clustered\ClusteredLightManager.h"
 
 namespace nTiled {
 namespace pipeline {
@@ -26,8 +26,28 @@ public:
   virtual void renderLightPass() override;
 
 protected:
-  // clustered shading elements
-  clustered::KeyComputeShader* p_shader;
+  /*! ClusteredLightManager of this DeferredClusteredShader */
+  ClusteredLightManager clustered_light_manager;
+
+  // --------------------------------------------------------------------------
+  //  openGL LightManagement datastructures
+  // --------------------------------------------------------------------------
+  /*! GLuint pointer to the summed indices buffer */
+  GLuint summed_indices_buffer;
+  /*! GLuint pointer to the k_index map computed by the ClusteredLightManager*/
+  GLuint k_index_map;
+  /*!
+  GLuint pointer to the Shader Storage Buffer Object storing
+  the light clustering of this DeferredClusteredShader
+  */
+  GLuint light_cluster_buffer;
+  /*!
+  GLuint pointer to the Shader Storage Buffer Object storing
+  the light index of this DeferredClusteredShader
+  */
+  GLuint light_index_buffer;
+
+  
 };
 
 }

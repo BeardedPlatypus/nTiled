@@ -31,6 +31,26 @@ public:
 
   void constructClusteringFrame();
 
+  // Accessors
+  // ---------
+  /*!
+   Get the data of the summed indices of this clustering
+   */
+  const std::vector<GLuint>& getSummedIndicesData() const;
+  /*!
+   Get the openGL pointer to the k index textureimage object.
+   */
+  GLuint getKIndexMapPointer() const;
+
+  /*!
+   Get the data of the light clusters buffer calculated in the light clustering
+   */
+  const std::vector<glm::uvec2>& getLightClusterData() const;
+  /*!
+   Get the data of the light index buffer calculated in light_clustering
+   */
+  const std::vector<GLuint>& getLightIndexData() const;
+
 private:
   /*! LightProjector to be used to calculate the affected lights */
   const LightProjector& projector;
@@ -41,6 +61,7 @@ private:
   /*! Dimensions of each individual tile*/
   const glm::uvec2 tile_size;
 
+  std::vector<GLuint> summed_indices;
   clustered::LightClustering light_clustering;
 
   // --------------------------------------------------------------------------

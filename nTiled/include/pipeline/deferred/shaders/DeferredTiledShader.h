@@ -29,9 +29,9 @@ protected:
   // --------------------------------------------------------------------------
   // LightManagement Functions
   // --------------------------------------------------------------------------
-  /*! Sphere projector of this ForwardTiledShader */
+  /*! Sphere projector of this DeferredTiledShader */
   const BoxProjector projector;
-  /*! TiledLightManager of this ForwardTiledShader */
+  /*! TiledLightManager of this DeferredTiledShader */
   TiledLightManager light_manager;
 
   // --------------------------------------------------------------------------
@@ -39,12 +39,12 @@ protected:
   // --------------------------------------------------------------------------
   /*!
   GLuint pointer to the Shader Storage Buffer Object storing
-  the light grid of this ForwardTiledShader
+  the light grid of this DeferredTiledShader
   */
   GLuint light_grid_buffer;
   /*!
   GLuint pointer to the Shader Storage Buffer Object storing
-  the light index of this ForwardTiledShader
+  the light index of this DeferredTiledShader
   */
   GLuint light_index_buffer;
 };
