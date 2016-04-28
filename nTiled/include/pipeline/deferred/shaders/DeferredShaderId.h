@@ -11,9 +11,13 @@ enum class DeferredShaderId {
   // --------------------------------------------------------------------
   DeferredAttenuated,
 
-  // Tiled Forward Shaders
+  // Tiled Deferred Shaders
   // --------------------------------------------------------------------
-  DeferredTiled
+  DeferredTiled, 
+
+  // Clustered Deferred Shaders
+  // --------------------------------------------------------------------
+  DeferredClustered
 };
 
 } // pipeline

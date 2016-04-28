@@ -5,6 +5,7 @@
 // ----------------------------------------------------------------------------
 #include "pipeline\deferred\shaders\DeferredAttenuatedShader.h"
 #include "pipeline\deferred\shaders\DeferredTiledShader.h"
+#include "pipeline\deferred\shaders\DeferredClusteredShader.h"
 
 // Path defines
 #define VERT_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.vert")
@@ -14,6 +15,7 @@
 
 #define FRAG_PATH_LIGHT_ATTENUATED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_attenuated.frag")
 #define FRAG_PATH_LIGHT_TILED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_tiled.frag")
+#define FRAG_PATH_LIGHT_CLUSTERED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_clustered.frag")
 
 namespace nTiled {
 namespace pipeline {
@@ -37,6 +39,17 @@ DeferredPipeline::DeferredPipeline(state::State& state) : Pipeline(state) {
       FRAG_PATH_GEO,
       VERT_PATH_LIGHT,
       FRAG_PATH_LIGHT_TILED,
+      *(this->state.p_world),
+      this->state.view,
+      this->output_buffer,
+      glm::uvec2(32, 32));
+  } else if (id == DeferredShaderId::DeferredClustered) {
+    this->p_deferred_shader = new DeferredClusteredShader(
+      DeferredShaderId::DeferredClustered,
+      VERT_PATH_GEO,
+      FRAG_PATH_GEO,
+      VERT_PATH_LIGHT,
+      FRAG_PATH_LIGHT_CLUSTERED,
       *(this->state.p_world),
       this->state.view,
       this->output_buffer,
