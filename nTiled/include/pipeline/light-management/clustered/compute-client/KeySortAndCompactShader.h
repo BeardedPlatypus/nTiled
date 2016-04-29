@@ -37,7 +37,6 @@ public:
   KeySortAndCompactShader(GLuint k_tex,
                           const state::View& view,
                           glm::uvec2 tile_size);
-  ~KeySortAndCompactShader();
 
   // --------------------------------------------------------------------------
   // Execute
@@ -108,6 +107,13 @@ protected:
   const glm::uvec2 n_tiles;
   /*! viewport size */
   const glm::uvec2 viewport;
+
+  // --------------------------------------------------------------------------
+  //  DebugMethods
+  // --------------------------------------------------------------------------
+  void printToConsole(std::string message,
+                      GLushort* values, 
+                      unsigned int total_size);
 };
 
 }

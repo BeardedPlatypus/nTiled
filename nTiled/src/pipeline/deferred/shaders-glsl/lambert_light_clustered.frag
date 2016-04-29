@@ -40,7 +40,7 @@ struct GeometryParam {
 // -----------------------------------------------------------------------------
 layout (std430, binding = 0) buffer SummedClusterIndices {
     uint summed_cluster_indices[];
-}
+};
 
 layout (std430, binding = 1) buffer LightClusterBuffer {
     uvec2 clusters[];
@@ -169,7 +169,7 @@ void main() {
         uint tile_index = uint(floor(screen_position.x / tile_size.x) +
                                floor(screen_position.y / tile_size.y) * n_tiles_x);
         uint tile_offset = summed_cluster_indices[tile_index];
-        uint k_offset = texture(k_index_tex, tex_coords).x
+        uint k_offset = texture(k_index_tex, tex_coords).x;
 
         uvec2 cluster_map = clusters[tile_offset + k_offset];
 
@@ -177,6 +177,11 @@ void main() {
         uint n_lights = cluster_map.y;
 
         // compute the contribution of each light
+        /*
+        for (int i = 0; i < NUM_LIGHTS; i++) {
+            light_acc += computeLight(lights[i], param);
+        }
+        */
         for (uint i = offset; i < offset + n_lights; i++) {
             light_acc += computeLight(lights[light_indices[i]], param);
         }

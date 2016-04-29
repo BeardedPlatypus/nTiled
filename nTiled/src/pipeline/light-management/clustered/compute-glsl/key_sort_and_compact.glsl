@@ -32,22 +32,23 @@ void main() {
     uint sort_buffer_a[TOTAL_SIZE];
     uint sort_buffer_b[TOTAL_SIZE];
 
-    uvec2 offset = gl_GlobalInvocationID.xy * uvec2(TILE_SIZE_X, TILE_SIZE_Y);
+    ivec2 offset = ivec2(gl_GlobalInvocationID.xy) * 
+                   ivec2(TILE_SIZE_X, TILE_SIZE_Y);
 
     // First Step
     uint index;
-    uvec2 coord_i;
+    ivec2 coord_i;
 
     uint val_1;
     uint val_2;
 
     for (uint y_i = 0; y_i < TILE_SIZE_Y; y_i++) {
         for (uint x_i = 0; x_i < TILE_SIZE_X / 2; x_i++) {
-            coord_i = uvec2(x_i * 2, y_i);
+            coord_i = ivec2(x_i * 2, y_i);
             index = coord_i.x + coord_i.y * TILE_SIZE_X;
 
-            val_1 = (imageLoad(k_tex, offset + coord_i) << 16) + index;
-            val_2 = (imageLoad(k_tex, offset + coord_i + uvec(1, 0)) << 16) + index + 1;
+            val_1 = (imageLoad(k_tex, offset + coord_i).r << 16) + index;
+            val_2 = (imageLoad(k_tex, offset + coord_i + ivec2(1, 0)).r << 16) + index + 1;
 
             if (val_1 < val_2) {
                 sort_buffer_a[index] = val_1;
@@ -133,7 +134,8 @@ void main() {
 
     // Final step
     int cursor_index = -1;
-    int value_unique = -1;
+    uint value_unique;
+    bool value_unique_is_not_set = true;
 
     uint cursor_1 = 0;
     uint cursor_2 = TOTAL_SIZE / 2;
@@ -189,19 +191,26 @@ void main() {
         output_y_coord = (output_pixel_index - output_x_coord ) / TILE_SIZE_X;
 
         // new cluster has been found
-        if (output_k_val > value_unique) {
+        if (output_k_val > value_unique || (value_unique_is_not_set)) {
             cursor_index++;
             
             x_unique = cursor_index % TILE_SIZE_X;
             y_unique = (cursor_index - x_unique) / TILE_SIZE_X;
 
-            imageStore(unique_clusters_tex, uvec2(x_unique, y_unique) + offset, output_k_val);
+            imageStore(unique_clusters_tex, 
+                       ivec2(x_unique, y_unique) + offset, 
+                       uvec4(output_k_val));
             value_unique = output_k_val;
+            value_unique_is_not_set = false;
         }
 
-        imageStore(cluster_index_tex, uvec2(output_x_coord, output_y_coord) + offset, cursor_index);
+        imageStore(cluster_index_tex, 
+                   ivec2(output_x_coord, output_y_coord) + offset, 
+                   uvec4(cursor_index));
     }
 
     // write away the total number of unique clusters found
-    imageStore(n_clusters_tex, gl_GlobalInvocationID.xy, cursor_index + 1);
+    imageStore(n_clusters_tex, 
+               ivec2(gl_GlobalInvocationID.xy), 
+               uvec4(cursor_index + 1));
 }

@@ -86,7 +86,7 @@ void state::parseGeometry(const std::string& path,
       pipeline::ShaderKey(pipeline::DeferredShaderId::DeferredAttenuated) },
     { "deferred_tiled",
       pipeline::ShaderKey(pipeline::DeferredShaderId::DeferredTiled) },
-    {" deferred_clustered",
+    { "deferred_clustered",
       pipeline::ShaderKey(pipeline::DeferredShaderId::DeferredClustered) },
   };
 

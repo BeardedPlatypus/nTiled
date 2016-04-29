@@ -61,10 +61,14 @@ DeferredClusteredShader::DeferredClusteredShader(
   glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, this->light_cluster_buffer);
   glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, this->light_index_buffer);
   glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
-  glUseProgram(0);
-}
 
-DeferredClusteredShader::~DeferredClusteredShader() {
+  // Link usampler k_tex
+  // -------------------
+  GLint p_k_index_texture = glGetUniformLocation(this->light_pass_sp,
+                                                 "k_index_tex");
+  glUniform1i(p_k_index_texture,
+              GL_TEXTURE3);
+  glUseProgram(0);
 }
 
 void DeferredClusteredShader::renderGeometryPass() {
@@ -86,7 +90,7 @@ void DeferredClusteredShader::renderLightPass() {
     this->clustered_light_manager.getLightClusterData();
   const std::vector<GLuint>& light_indices =
     this->clustered_light_manager.getLightIndexData();
-
+  
   // Load values into openGL memory
   // ------------------------------
   glUseProgram(this->light_pass_sp);
@@ -112,7 +116,6 @@ void DeferredClusteredShader::renderLightPass() {
   glActiveTexture(GL_TEXTURE3);
   glBindTexture(GL_TEXTURE_2D, this->k_index_map);
   glActiveTexture(GL_TEXTURE0);
-
   // Object-Rendering
   // ----------------
   this->renderLightPassObjects();

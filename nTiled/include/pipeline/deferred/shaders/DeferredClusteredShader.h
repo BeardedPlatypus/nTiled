@@ -20,7 +20,6 @@ public:
                           const state::View& view,
                           GLint p_output_buffer,
                           glm::uvec2 tile_size);
-  ~DeferredClusteredShader();
 
   virtual void renderGeometryPass() override;
   virtual void renderLightPass() override;

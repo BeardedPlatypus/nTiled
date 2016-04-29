@@ -28,15 +28,11 @@ LightClustering::LightClustering(glm::uvec2 dimensions,
   this->n_tiles = glm::uvec2(n_x, n_y);
 
   this->cluster_map_raw = 
-    new std::vector<std::pair<GLushort, std::vector<GLuint>>>[n_tiles.x * n_tiles.y];
+    std::vector<std::vector<std::pair<GLushort, std::vector<GLuint>>>>(n_tiles.x * n_tiles.y);
 
   for (unsigned int i = 0; i < this->n_tiles.x * n_tiles.y; i++) {
     this->cluster_map_raw[i] = std::vector<std::pair<GLushort, std::vector<GLuint>>>();
   }
-}
-
-LightClustering::~LightClustering() {
-  delete[] this->cluster_map_raw;
 }
 
 void LightClustering::initFrame(const std::vector<GLushort>& unique_clusters,

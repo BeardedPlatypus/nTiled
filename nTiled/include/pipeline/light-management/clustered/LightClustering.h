@@ -26,7 +26,6 @@ public:
    */
   LightClustering(glm::uvec2 dimensions,
                   glm::uvec2 tile_size);
-  ~LightClustering();
 
   // --------------------------------------------------------------------------
   // Frame construction steps
@@ -78,7 +77,7 @@ private:
      ...
    }
    */
-  std::vector<std::pair<GLushort, std::vector<GLuint>>>* cluster_map_raw;
+  std::vector<std::vector<std::pair<GLushort, std::vector<GLuint>>>> cluster_map_raw;
 
   const glm::uvec2 image_dimensions;
   const glm::uvec2 tile_size;

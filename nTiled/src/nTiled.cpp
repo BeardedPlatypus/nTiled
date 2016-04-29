@@ -31,7 +31,7 @@
 // ----------------------------------------------------------------------------
 //  Defines
 // ----------------------------------------------------------------------------
-#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/scenes/scene-definitions/test_2/scene.json")
+#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/scenes/scene-definitions/test_3/scene.json")
 
 #define VERT_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.vert")
 #define FRAG_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.frag")
@@ -95,7 +95,6 @@ int main() {
   // nTiled components
   // -----------------
 
-  /*
   nTiled::pipeline::Pipeline* p_render_pipeline;
 
   if (state.shading.pipeline_type == nTiled::pipeline::PipelineType::Forward) {
@@ -111,30 +110,7 @@ int main() {
   } else {
     p_pipeline = p_render_pipeline;
   }
-  */
 
-  /*
-  nTiled::pipeline::clustered::KeyComputeShader* p_shader =
-    new nTiled::pipeline::clustered::KeyComputeShader(0,
-                                                      state.view,
-                                                      glm::uvec2(32, 32));
-                                                      */
-  nTiled::pipeline::DeferredClusteredShader* p_shader = 
-    new nTiled::pipeline::DeferredClusteredShader(
-      nTiled::pipeline::DeferredShaderId::DeferredAttenuated,
-      VERT_PATH_GEO,
-      FRAG_PATH_GEO,
-      VERT_PATH_LIGHT,
-      FRAG_PATH_LIGHT_ATTENUATED,
-      *(state.p_world),
-      state.view,
-      0,
-      glm::uvec2(32, 32));
-
-   /*
-  nTiled::pipeline::clustered::TestComputeShader* p_shader =
-    new nTiled::pipeline::clustered::TestComputeShader();
-    */
 
   nTiled::gui::GuiManager gui_manager = nTiled::gui::GuiManager(state);
   gui_manager.init(*window);
@@ -151,9 +127,8 @@ int main() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // render nTiled components
-    //p_pipeline->render();
-    p_shader->render();
-    //gui_manager.render();
+    p_pipeline->render();
+    gui_manager.render();
 
     // Display on screen
     glfwSwapBuffers(window);
@@ -162,13 +137,10 @@ int main() {
   // Terminate program
   // -----------------
   // clean up
-  /*
   delete p_pipeline;
   if (state.shading.is_debug) {
     delete p_render_pipeline;
   }
-  */
-  delete p_shader;
 
   glfwTerminate();
   return 0;

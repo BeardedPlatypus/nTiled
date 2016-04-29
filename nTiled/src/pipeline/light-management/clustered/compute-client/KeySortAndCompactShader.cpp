@@ -74,9 +74,6 @@ KeySortAndCompactShader::KeySortAndCompactShader(GLuint k_tex,
   glUseProgram(0);
 }
 
-KeySortAndCompactShader::~KeySortAndCompactShader() {
-}
-
 // Execute
 // ----------------------------------------------------------------------------
 void KeySortAndCompactShader::execute() {
@@ -120,6 +117,7 @@ void KeySortAndCompactShader::execute() {
   // -----------------------
   // extract
   GLushort* unique_indices = new GLushort[viewport.x * viewport.y];
+  glActiveTexture(GL_TEXTURE5);
   glBindTexture(GL_TEXTURE_2D, this->unique_clusters_texture);
   glGetTexImage(GL_TEXTURE_2D,
                 0,
@@ -127,27 +125,52 @@ void KeySortAndCompactShader::execute() {
                 GL_UNSIGNED_SHORT,
                 unique_indices);
 
+  /*
+  printToConsole(std::string("unique indices: "),
+                 unique_indices,
+                 viewport.x * viewport.y);
+
+  std::cout << std::endl;
+  */
   GLushort* n_indices = new GLushort[n_tiles.x * n_tiles.y];
   glBindTexture(GL_TEXTURE_2D, this->n_clusters_texture);
   glGetTexImage(GL_TEXTURE_2D,
                 0,
                 GL_RED_INTEGER,
                 GL_UNSIGNED_SHORT,
-                unique_indices);
+                n_indices);
+  /*
+  printToConsole(std::string("number of indices per tile:"),
+                 n_indices,
+                 n_tiles.x * n_tiles.y);
+                 */
   glBindTexture(GL_TEXTURE_2D, 0);
   // format
   this->n_indices_tiles = std::vector<GLushort>();
   this->k_values_tiles = std::vector<GLushort>();
 
-  GLushort n_indices_tile;
-  unsigned int offset;
-  for (unsigned int i = 0; i < this->n_tiles.x * this->n_tiles.y; i++) {
-    n_indices_tile = n_indices[i];
-    this->n_indices_tiles.push_back(n_indices_tile);
-    offset = i * (this->tile_size.x * this->tile_size.y);
-    
-    for (unsigned int j = 0; j < n_indices_tile; j++) {
-      this->k_values_tiles.push_back(unique_indices[offset + j]);
+  unsigned int n_clusters_tile;
+  unsigned int pixel_cursor;
+  unsigned int tile_y_jump_counter;
+
+  for (unsigned y_i = 0; y_i < this->n_tiles.y; y_i++) {
+    for (unsigned x_i = 0; x_i < this->n_tiles.x; x_i++) {
+      n_clusters_tile = n_indices[y_i * n_tiles.x + x_i];
+      this->n_indices_tiles.push_back(n_clusters_tile);
+
+      pixel_cursor = y_i * this->tile_size.y * this->viewport.x + x_i * this->tile_size.x;
+      tile_y_jump_counter = this->tile_size.x;
+
+      for (unsigned int k_i = 0; k_i < n_clusters_tile; k_i++) {
+        this->k_values_tiles.push_back(unique_indices[pixel_cursor]);
+        pixel_cursor++;
+
+        tile_y_jump_counter--;
+        if (tile_y_jump_counter == 0) {
+          tile_y_jump_counter = this->tile_size.x;
+          pixel_cursor += (this->viewport.x - tile_size.x);
+        }
+      }
     }
   }
 
@@ -197,7 +220,7 @@ void KeySortAndCompactShader::loadComputeShader() {
       total_size_updated = true;
     } else if (!n_steps_updated && 
                line.compare(0, define_n_steps.size(), define_n_steps) == 0) {
-      compute_shader_buffer << define_n_steps << str_total_size << std::endl;
+      compute_shader_buffer << define_n_steps << str_n_steps << std::endl;
       n_steps_updated = true;
     } else {
       compute_shader_buffer << line << std::endl;
@@ -231,6 +254,23 @@ void KeySortAndCompactShader::specifyTexture(GLuint tex_name,
 
   //   Unbind texture
   glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+
+void KeySortAndCompactShader::printToConsole(std::string message,
+                                             GLushort* values,
+                                             unsigned int total_size) {
+  std::cout << message << std::endl;
+  unsigned int simple_count = 0;
+  std::cout << "| ";
+  for (unsigned int i = 0; i < total_size; i++) {
+    std::cout << std::to_string(values[i]) << " ";
+    simple_count++;
+    if (simple_count >= this->tile_size.x) {
+      simple_count = 0;
+      std::cout << "|" << std::endl << "| ";
+    }
+  }
 }
 
 }

@@ -177,7 +177,7 @@ void KeyComputeShader::execute() {
 
   // Check if values are correctly written
   /*
-  GLushort value[1024 * 4];
+  GLushort value[1024];
   glBindTexture(GL_TEXTURE_2D, this->k_texture);
   glGetTexImage(GL_TEXTURE_2D,
                 0,

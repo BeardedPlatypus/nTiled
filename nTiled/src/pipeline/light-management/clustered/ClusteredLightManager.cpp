@@ -5,6 +5,11 @@
 // ----------------------------------------------------------------------------
 #include <cmath>
 
+//  shader source manipulation
+#include <fstream>
+#include <sstream>
+#include <iostream>
+
 // ----------------------------------------------------------------------------
 //  nTiled headers 
 // ----------------------------------------------------------------------------
@@ -46,7 +51,6 @@ void ClusteredLightManager::constructClusteringFrame() {
   // Execute compute shaders
   this->key_compute_shader.execute();
   this->key_sort_compact_shader.execute();
-
   // Extract values
   std::vector<GLushort> n_clusters_tiles = 
     this->key_sort_compact_shader.getNIndicesTiles();
@@ -82,10 +86,10 @@ void ClusteredLightManager::constructClusteringFrame() {
       frustrum_begin.y = affected_tiles.y;
 
       frustrum_end.x = affected_tiles.z;
-      frustrum_end.y = affected_tiles.z;
+      frustrum_end.y = affected_tiles.w;
 
       // calculate z_value of light in camera space
-      glm::uvec4 light_camera_pos = view.camera.getLookAt() * light->position;
+      glm::vec4 light_camera_pos = view.camera.getLookAt() * light->position;
       frustrum_begin.z = GLuint(floor(log(-(light_camera_pos.z + light->radius) / view.camera.getDepthrange().x) * this->k_inv_denominator));
       frustrum_end.z = GLuint(floor(log(-(light_camera_pos.z - light->radius) / view.camera.getDepthrange().x) * this->k_inv_denominator));
 
@@ -96,7 +100,7 @@ void ClusteredLightManager::constructClusteringFrame() {
     index++;
   }
 
-  // Finilse clustering
+  // Finalise clustering
   this->light_clustering.finaliseClusters();
 }
 
