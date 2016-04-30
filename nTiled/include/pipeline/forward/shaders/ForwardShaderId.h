@@ -19,6 +19,7 @@ enum class ForwardShaderId {
 
   // Clustered Forward Shaders
   // --------------------------------------------------------------------
+  ForwardClustered,
 };
 
 } // pipeline
