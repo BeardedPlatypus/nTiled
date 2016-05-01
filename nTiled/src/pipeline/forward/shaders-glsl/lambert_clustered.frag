@@ -63,9 +63,20 @@ layout (std430, binding = 2) buffer LightIndexBuffer {
 uniform uvec2 tile_size;
 uniform uint n_tiles_x;
 
+uniform vec4 viewport;
+uniform vec2 depth_range;
+
+layout(binding = 0) uniform usampler2D k_index_tex;
 
 // Function Definitions
 // -----------------------------------------------------------------------------
+/*!
+ * Compute the texture coordinates of this fragment.
+ */
+vec2 calcTextureCoordinates() {
+    return gl_FragCoord.xy / viewport.zw;
+}
+
 /*!
  * Compute lambert shading for the attenuated light.
  *
@@ -118,9 +129,9 @@ void main() {
     GeometryParam param = GeometryParam(fragment_position,
                                         normalize(fragment_normal),
                                         vec3(1.0f));
-
     // determine contributing lights
     // determine contributing lights
+    vec2 tex_coords = calcTextureCoordinates();
     vec2 screen_position = gl_FragCoord.xy - vec2(0.5f, 0.5f);
     uint tile_index = uint(floor(screen_position.x / tile_size.x) +
                            floor(screen_position.y / tile_size.y) * n_tiles_x);
@@ -136,6 +147,7 @@ void main() {
     for (uint i = offset; i < offset + n_lights; i++) {
         light_acc += computeLight(lights[light_indices[i]], param);
     }
+
     // output result
     fragment_colour = vec4((vec3(0.1f) + (light_acc * 0.9)), 1.0f);
 }
