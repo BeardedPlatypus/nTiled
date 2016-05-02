@@ -45,8 +45,6 @@ protected:
   the light index of this DeferredClusteredShader
   */
   GLuint light_index_buffer;
-
-  
 };
 
 }

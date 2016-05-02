@@ -22,6 +22,9 @@ public:
   virtual void render() override;
 
 protected:
+  /*! Depth pass program of this ForwardClusteredShader */
+  GLuint depth_pass_shader;
+
   /*! ClusteredLightManager of this DeferredClusteredShader */
   ClusteredLightManager clustered_light_manager;
 
