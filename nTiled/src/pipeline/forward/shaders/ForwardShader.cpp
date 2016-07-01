@@ -49,6 +49,7 @@ ForwardShader::ForwardShader(ForwardShaderId shader_id,
                      GL_FALSE,
                      glm::value_ptr(perspective_matrix));
   glUseProgram(0);
+  glEnable(GL_DEPTH_TEST);  //TODO: check if this is right place
 }
 
 void ForwardShader::render() {
