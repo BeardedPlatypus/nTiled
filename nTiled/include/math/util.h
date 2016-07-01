@@ -9,6 +9,11 @@ constexpr double kPi = 3.1415926535897932384626433832795028841971693993751058209
  */
 inline double to_radians(double x) { return (x * kPi) / 180.0; }
 
+/*!
+ * Convert the given value in radians to degrees
+ */
+inline double to_degrees(double x) { return (x * (180 / kPi)); }
+
 // http://stackoverflow.com/questions/1322510/given-an-integer-how-do-i-find-the-next-largest-power-of-two-using-bit-twiddlin
 /*!
  * Get the next power of 2 of the given unsigned int.

@@ -13,7 +13,9 @@
 
 // glm
 #include <glm\gtc\matrix_transform.hpp>
+#include <glm\gtx\transform.hpp>
 
+#include <iostream>
 // stl
 #include <algorithm>
 
@@ -21,6 +23,7 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "world\object-constructor\AssImpConstructor.h"
+#include "math\util.h"
 
 namespace nTiled {
 
@@ -139,17 +142,52 @@ void state::parseGeometry(const std::string& path,
       deferred_shader_id = shader_key.deferred_id;
     }
 
+    // rotation
+    // ------------------------------------------------------------------------
+    glm::mat4 rotation_matrix = glm::mat4(1.0);
+
+    auto& rotation_itr = (*itr).FindMember("rotation");
+    if (rotation_itr != (*itr).MemberEnd()) {
+      auto& rotation_json = rotation_itr->value;
+      glm::vec3 rotation = glm::vec3(rotation_json["x"].GetFloat(),
+                                     rotation_json["y"].GetFloat(),
+                                     rotation_json["z"].GetFloat());
+      rotation_matrix = glm::rotate(rotation_matrix,
+                                    float((rotation.x)),
+                                    glm::vec3(1.0, 0.0, 0.0));
+      rotation_matrix = glm::rotate(rotation_matrix,
+                                    float((rotation.y)),
+                                    glm::vec3(0.0, 1.0, 0.0));
+
+      rotation_matrix = glm::rotate(rotation_matrix,
+                                    float((rotation.z)),
+                                    glm::vec3(0.0, 0.0, 1.0));
+    }
+
+
     // translation
     // ------------------------------------------------------------------------
-    auto& translation_json = (*itr)["translation"];
-    glm::vec3 translation = glm::vec3(translation_json["x"].GetFloat(),
-                                      translation_json["y"].GetFloat(),
-                                      translation_json["z"].GetFloat());
+    glm::mat4 translation_matrix;
 
-    glm::mat4 transformation_matrix = glm::translate(glm::mat4(1.0), 
-                                                     translation);
+    auto& translation_itr = (*itr).FindMember("translation");
+    if (translation_itr != (*itr).MemberEnd()) {
+      auto& translation_json = translation_itr->value;
+      glm::vec3 translation = glm::vec3(translation_json["x"].GetFloat(),
+                                        translation_json["y"].GetFloat(),
+                                        translation_json["z"].GetFloat());
+
+    translation_matrix = glm::translate(glm::mat4(1.0), 
+                                        translation);
+    } else {
+      translation_matrix = glm::mat4(1.0);
+    }
+
+    // Transformation Matrix
+    // ------------------------------------------------------------------------
+    glm::mat4 transformation_matrix = translation_matrix * rotation_matrix;
 
     // textures 
+    // ------------------------------------------------------------------------
     std::map<std::string, std::string> texture_map_object =
       std::map < std::string, std::string>();
 
