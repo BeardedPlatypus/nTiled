@@ -3,10 +3,13 @@
 #include "camera\CameraData.h"
 #include <imgui.h>
 
+#include <vector>
+#include <glm\glm.hpp>
+
 namespace nTiled {
 namespace camera {
-/*
- * Camera Control Interface
+/*!
+  Camera Control Interface
  */
 class CameraControl {
  public:
@@ -17,6 +20,9 @@ class CameraControl {
 };
 
 
+/*!
+ TurnTable Camera Control
+ */
 class TurnTableCameraControl : public CameraControl {
  public:
   //TODO: figure out a smarter way to deal with window instead of passing 
@@ -56,6 +62,26 @@ class AutomaticRotateCameraControl : public CameraControl {
 
  private:
   double rotation_speed;
+};
+
+class PathCameraControl : public CameraControl {
+public: 
+  // --------------------------------------------------------------------------
+  //  Constructors
+  // --------------------------------------------------------------------------
+  PathCameraControl(std::vector<glm::mat4> frames);
+
+  // --------------------------------------------------------------------------
+  //  Member functions
+  // --------------------------------------------------------------------------
+  void update(const ImGuiIO& io,
+              CameraData& data);
+  void activate(const ImGuiIO& io);
+
+ private:
+   const std::vector<glm::mat4> frames;
+   /** Current frame of this PathCameraControl */
+   int current_frame = 0;
 };
 
 } // camera

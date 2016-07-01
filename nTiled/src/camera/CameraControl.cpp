@@ -4,7 +4,6 @@
 //  System Libraries
 // ----------------------------------------------------------------------------
 #include <GLFW\glfw3.h>
-#include <glm\glm.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
 namespace nTiled {
@@ -76,6 +75,30 @@ void AutomaticRotateCameraControl::update(const ImGuiIO& io,
 
 void AutomaticRotateCameraControl::activate(const ImGuiIO& io) {
 }
+
+
+// ----------------------------------------------------------------------------
+//  PathCameraControl
+// ----------------------------------------------------------------------------
+// Constructor
+PathCameraControl::PathCameraControl(std::vector<glm::mat4> frames) :
+  frames(frames) {
+}
+
+// ----------------------------------------------------------------------------
+//  Methods
+void PathCameraControl::update(const ImGuiIO& io,
+                               CameraData& data) {
+  // Load the look at matrix of this frame into the data
+  if (current_frame < this->frames.size()) {
+    data.lookAt = frames[this->current_frame];
+    this->current_frame += 1;
+  }
+}
+
+void PathCameraControl::activate(const ImGuiIO& io) { 
+}
+
 
 } // camera
 } // pipeline
