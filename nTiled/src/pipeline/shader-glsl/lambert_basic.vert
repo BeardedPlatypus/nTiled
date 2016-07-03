@@ -16,6 +16,7 @@ out vec3 fragment_normal;
 // Camera Definition
 uniform mat4 camera_to_clip;
 uniform mat4 model_to_camera;
+uniform mat4 inv_transpose_model_to_camera;
 
 // -----------------------------------------------------------------------------
 //  Main
@@ -26,6 +27,7 @@ void main() {
     gl_Position = camera_to_clip * vertex_camera_position;
 
     // Pass values to fragment shader
-    fragment_position = vertex_position;
-    fragment_normal = vertex_normal;
+    fragment_position = vertex_camera_position;
+    fragment_normal = (inv_transpose_model_to_camera *
+                       vec4(vertex_normal, 0.0f)).xyz;
 }
