@@ -12,7 +12,7 @@
 #include <imgui.h>
 #include "gui/imgui_impl_glfw_gl3.h"
 
-
+#include "lodepng.h"
 // ----------------------------------------------------------------------------
 //  nTiled headers
 // ----------------------------------------------------------------------------
@@ -31,14 +31,7 @@
 // ----------------------------------------------------------------------------
 //  Defines
 // ----------------------------------------------------------------------------
-#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/scenes/scene-definitions/test_4/scene.json")
-
-#define VERT_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.vert")
-#define FRAG_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.frag")
-
-#define VERT_PATH_LIGHT std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light.vert")
-
-#define FRAG_PATH_LIGHT_ATTENUATED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_attenuated.frag")
+#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/indoor-spaceship/scene-def/test_path_export.json")
 // ----------------------------------------------------------------------------
 //  Function prototypes
 // ----------------------------------------------------------------------------
@@ -47,6 +40,16 @@ void key_callback(GLFWwindow* window,
                   int scancode, 
                   int action, 
                   int mode);
+
+
+void renderToView(GLFWwindow* window,
+                  nTiled::pipeline::Pipeline* p_pipeline,
+                  nTiled::gui::GuiManager& gui_manager);
+
+void renderToMemory(GLFWwindow* window,
+                    nTiled::pipeline::Pipeline* p_pipeline,
+                    nTiled::gui::GuiManager& gui_manager,
+                    nTiled::state::View& view);
 
 
 // ----------------------------------------------------------------------------
@@ -117,21 +120,15 @@ int main() {
 
   // Render Loop
   // -----------
-  while (!glfwWindowShouldClose(window)) {
-    // update nTiled components
-    gui_manager.update();
-
-    // Clear colour buffer
-    glClearColor(0, 0, 0, 1);
-    glClearDepth(1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    // render nTiled components
-    p_pipeline->render();
-    gui_manager.render();
-
-    // Display on screen
-    glfwSwapBuffers(window);
+  if (state.view.output->type == nTiled::state::OutputType::Display) {
+    renderToView(window,
+                 p_pipeline,
+                 gui_manager);
+  } else if (state.view.output->type == nTiled::state::OutputType::Memory) {
+    renderToMemory(window,
+                   p_pipeline,
+                   gui_manager,
+                   state.view);
   }
 
   // Terminate program
@@ -154,4 +151,129 @@ void key_callback(GLFWwindow* window,
                   int mode) {
   if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
     glfwSetWindowShouldClose(window, GL_TRUE);
+}
+
+
+void renderToView(GLFWwindow* window,
+                  nTiled::pipeline::Pipeline* p_pipeline,
+                  nTiled::gui::GuiManager& gui_manager ) {
+  while (!glfwWindowShouldClose(window)) {
+    // update nTiled components
+    gui_manager.update();
+
+    // Clear colour buffer
+    glClearColor(0, 0, 0, 1);
+    glClearDepth(1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // render nTiled components
+    p_pipeline->render();
+    gui_manager.render();
+
+    // Display on screen
+    glfwSwapBuffers(window);
+  }
+}
+
+
+void renderToMemory(GLFWwindow* window,
+                    nTiled::pipeline::Pipeline* p_pipeline,
+                    nTiled::gui::GuiManager& gui_manager,
+                    nTiled::state::View& view) {
+  // FIXME: clean up
+
+  // -----------------------------------------------------------------
+  // Define Output Buffer
+  const size_t n_values = view.viewport.x * view.viewport.y * 4;
+  GLubyte* raw_pixel_buffer = new GLubyte[n_values];
+  GLubyte* output_buffer = new GLubyte[n_values];
+
+  // -----------------------------------------------------------------
+  // Render initial frames
+  for (int i = 0; i < view.output->frame_start + 1; i++) {
+    gui_manager.update();
+
+    // Clear colour buffer
+    glClearColor(0, 0, 0, 1);
+    glClearDepth(1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // render nTiled components
+    p_pipeline->render();
+
+    // Display on screen
+    glfwSwapBuffers(window);
+  }
+
+  // -----------------------------------------------------------------
+  // Render frames to memory
+  for (int i = view.output->frame_start + 1; 
+       i < view.output->frame_end + 1; 
+       i++) {
+    // update nTiled components
+    gui_manager.update();
+
+    // Clear colour buffer
+    glClearColor(0, 0, 0, 1);
+    glClearDepth(1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // render nTiled components
+    p_pipeline->render();
+
+    // Display on screen
+    glfwSwapBuffers(window);
+
+
+    //Read current buffer
+    glReadPixels(0, 0,
+                 view.viewport.x, view.viewport.y,
+                 GL_RGBA, GL_UNSIGNED_BYTE,
+                 raw_pixel_buffer);
+
+    // Dirty y-axis invert
+    int index_output;
+    int index_pixel;
+    for (int y = 0; y < view.viewport.y; y++) {
+      for (int x = 0; x < view.viewport.x; x++) {
+        index_output = (y * view.viewport.x + x) * 4;
+        index_pixel = ((view.viewport.y - 1 - y) * view.viewport.x + x) * 4;
+
+        output_buffer[index_output + 0] = raw_pixel_buffer[index_pixel + 0];
+        output_buffer[index_output + 1] = raw_pixel_buffer[index_pixel + 1];
+        output_buffer[index_output + 2] = raw_pixel_buffer[index_pixel + 2];
+        output_buffer[index_output + 3] = raw_pixel_buffer[index_pixel + 3];
+      }
+    }
+
+    // invert in y-axis
+
+    std::string image_path = 
+      view.output->image_base_path + "frame_" + std::to_string(i) + ".png";
+    unsigned error = lodepng::encode(image_path,
+                                     output_buffer,
+                                     view.viewport.x,
+                                     view.viewport.y);
+
+    if (error) std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
+  }
+
+  // -----------------------------------------------------------------
+  // Display application after rendering
+  while (!glfwWindowShouldClose(window)) {
+    // update nTiled components
+    gui_manager.update();
+
+    // Clear colour buffer
+    glClearColor(0, 0, 0, 1);
+    glClearDepth(1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // render nTiled components
+    p_pipeline->render();
+    gui_manager.render();
+
+    // Display on screen
+    glfwSwapBuffers(window);
+  }
 }

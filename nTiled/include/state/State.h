@@ -27,6 +27,7 @@ struct State {
   State(camera::Camera camera,                  // view
         camera::CameraControl* camera_control,
         glm::uvec2 viewport,
+        ViewOutput* output,
         world::World* p_world,                     // world
         std::map<std::string, std::string> texture_file_map,
         std::vector<pipeline::ForwardShaderId> forward_shader_ids,
@@ -34,6 +35,7 @@ struct State {
   State(camera::Camera camera,                  // view
         camera::CameraControl* camera_control,
         glm::uvec2 viewport,
+        ViewOutput* output,
         world::World* p_world,                     // world
         std::map<std::string, std::string> texture_file_map,
         pipeline::DeferredShaderId deferred_shader_id,

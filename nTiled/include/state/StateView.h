@@ -8,14 +8,35 @@
 namespace nTiled { 
 namespace state {
 
+enum class OutputType {
+  Display,
+  Memory,
+};
+
+
+struct ViewOutput {
+  // Constructors
+  ViewOutput(const std::string& image_base_path,
+             const unsigned int frame_start,
+             const unsigned int frame_end);
+  ViewOutput();
+
+  // Member elements
+  OutputType type;
+  const std::string image_base_path;
+  const unsigned int frame_start;
+  const unsigned int frame_end;
+};
+
+
 /*!
  View contains all attributes related to the view of the State
  */
 struct View {
-	// Constructor
-	View(camera::Camera camera,
-		   camera::CameraControl* camera_control,
-		   glm::uvec2 viewport);
+  View(camera::Camera camera,
+       camera::CameraControl* camera_control,
+       glm::uvec2 viewport,
+       ViewOutput* output);
 	// Destructor
 	~View();
 
@@ -23,7 +44,10 @@ struct View {
 	camera::Camera camera;
 	camera::CameraControl* camera_control;
 	glm::uvec2 viewport;
+
+  const ViewOutput* output;
 };
+
 
 } // state
 } // nTiled
