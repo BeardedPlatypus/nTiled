@@ -44,9 +44,11 @@ void GuiManager::render() {
 // ----------------------------------------------------------------------------
 //  Update methods
 void GuiManager::updateCamera(const ImGuiIO& io) {
-  if ((!io.WantCaptureMouse || !io.WantCaptureKeyboard) && io.MouseDown[0]) {
+  if (((!io.WantCaptureMouse || !io.WantCaptureKeyboard) && io.MouseDown[0]) || 
+      (!this->state.view.camera.isUserControlled())) {
     // we assume that we're interested in seeing if we need to update the
-    // camera whenever none of the GUI elements is active.
+    // camera whenever none of the GUI elements is active, or when the 
+    // camera does not depend on user_input
     if (focus == GuiFocus::Camera) {
       this->state.view.camera.update(io);
     } else {

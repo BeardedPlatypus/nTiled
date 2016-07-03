@@ -14,7 +14,7 @@ namespace camera {
 
 Camera::Camera(CameraControl* control,
                CameraConstructionData construction_data) :
-  control(new TurnTableCameraControl()),
+  control(control),
   construction_data(construction_data),
   data(CameraData(glm::lookAt(construction_data.camera_eye,
                               construction_data.camera_center,

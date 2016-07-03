@@ -17,6 +17,8 @@ class CameraControl {
   virtual void update(const ImGuiIO& io,
                       CameraData& data) = 0;
   virtual void activate(const ImGuiIO& io) = 0;
+
+  virtual inline bool isUserControlled() = 0;
 };
 
 
@@ -39,6 +41,8 @@ class TurnTableCameraControl : public CameraControl {
   void update(const ImGuiIO& io,
               CameraData& data);
   void activate(const ImGuiIO& io);
+
+  inline bool isUserControlled() { return true; }
 
  private:
   double sensitivity;
@@ -78,6 +82,7 @@ public:
               CameraData& data);
   void activate(const ImGuiIO& io);
 
+  inline bool isUserControlled() { return false; }
  private:
    const std::vector<glm::mat4> frames;
    /** Current frame of this PathCameraControl */

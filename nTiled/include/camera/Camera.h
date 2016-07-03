@@ -34,6 +34,8 @@ class Camera {
   void update(const ImGuiIO& io);
   void toFocus(const ImGuiIO& io);
 
+  inline bool isUserControlled() { return this->control->isUserControlled(); }
+
  private:
   CameraControl* control;
   CameraConstructionData construction_data;

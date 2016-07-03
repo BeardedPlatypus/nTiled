@@ -75,7 +75,7 @@ void parseLights(const std::string& path,
                  world::LightConstructor& constructor);
 
 /*!
- Parse the geometry form a specified geometry.json file
+ Parse the geometry from a specified geometry.json file
 
  Parse the geometry from a specified geometry.json file, 
  these objects will be added to the referenced world.
@@ -90,6 +90,15 @@ void parseGeometry(const std::string& path,
                    std::vector<pipeline::ForwardShaderId>& forward_shader_ids,
                    pipeline::DeferredShaderId& deferred_shader_id,
                    std::map<std::string, std::string>& texture_map_file);
+
+
+/*!
+ Parse the camera lookAt matrix per frame for the PathCamera 
+
+ Args:
+     path (const std::string&): Path to the camera_path.json file
+ */
+std::vector<glm::mat4> readCameraFrames(const std::string& path);
 } // state
 } // nTiled
 
