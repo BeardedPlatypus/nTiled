@@ -24,24 +24,25 @@
 namespace nTiled {
 namespace pipeline {
 
-ForwardClusteredShader::ForwardClusteredShader(ForwardShaderId shader_id,
-                                               const std::string& path_vertex_shader,
-                                               const std::string& path_fragment_shader,
-                                               const world::World& world,
-                                               const state::View& view,
-                                               GLint p_output_buffer,
-                                               glm::uvec2 tile_size) :
+ForwardClusteredShader::ForwardClusteredShader(
+    ForwardShaderId shader_id,
+    const std::string& path_vertex_shader,
+    const std::string& path_fragment_shader,
+    const world::World& world,
+    const state::View& view,
+    GLint p_output_buffer,
+    glm::uvec2 tile_size,
+    const ClusteredLightManagerBuilder& light_manager_builder) :
   ForwardShader(shader_id,
                 path_vertex_shader,
                 path_fragment_shader,
                 world,
                 view,
                 p_output_buffer),
-  clustered_light_manager(ClusteredLightManager(view,
-                                                world,
-                                                tile_size,
-                                                attachDepthTexture(view.viewport.x,
-                                                                   view.viewport.y))) {
+  p_clustered_light_manager(
+    light_manager_builder.constructNewClusteredLightManager(
+      view, world, tile_size,
+      attachDepthTexture(view.viewport.x, view.viewport.y))) {
   glUseProgram(this->shader);
 
   // set uniform variables
@@ -112,8 +113,17 @@ ForwardClusteredShader::ForwardClusteredShader(ForwardShaderId shader_id,
 }
 
 void ForwardClusteredShader::render() {
-  // Depth pass
-  // ---------------------------------------------------------------------------------
+  this->depthPass();
+  this->p_clustered_light_manager->constructClusteringFrame();
+
+  glUseProgram(this->shader);
+  this->loadLightClustering();
+  this->renderObjects();
+  glUseProgram(0);
+}
+
+
+void ForwardClusteredShader::depthPass() {
   glUseProgram(this->depth_pass_shader);
   // TODO make sure this can be written as a default, and is restored upon finishing
   glEnable(GL_DEPTH_TEST);  
@@ -147,19 +157,16 @@ void ForwardClusteredShader::render() {
   }
   glBindVertexArray(0);
   glUseProgram(0);
+}
 
-  this->clustered_light_manager.constructClusteringFrame();
 
-  // Get values from clustered light manager
-  // ---------------------------------------
+void ForwardClusteredShader::loadLightClustering() {
   const std::vector<GLuint>& summed_indices = 
-    this->clustered_light_manager.getSummedIndicesData();
+    this->p_clustered_light_manager->getSummedIndicesData();
   const std::vector<glm::uvec2>& light_clusters = 
-    this->clustered_light_manager.getLightClusterData();
+    this->p_clustered_light_manager->getLightClusterData();
   const std::vector<GLuint>& light_indices =
-    this->clustered_light_manager.getLightIndexData();
-
-  glUseProgram(this->shader);
+    this->p_clustered_light_manager->getLightIndexData();
 
   glBindBuffer(GL_SHADER_STORAGE_BUFFER, this->summed_indices_buffer);
   glBufferData(GL_SHADER_STORAGE_BUFFER,
@@ -187,11 +194,7 @@ void ForwardClusteredShader::render() {
   glDepthFunc(GL_LEQUAL);   // EQUAL should work, too. (Only draw pixels if they are the closest ones)
   glColorMask(1.0, 1.0, 1.0, 1.0);
   glDepthMask(GL_FALSE);
-
-  this->renderObjects();
-  glUseProgram(0);
 }
-
 
 // ----------------------------------------------------------------------------
 GLuint attachDepthTexture(GLuint width,

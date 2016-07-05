@@ -34,7 +34,8 @@ ForwardPipeline::ForwardPipeline(state::State& state) : Pipeline(state) {
                                         *(this->state.p_world),
                                         this->state.view,
                                         this->output_buffer,
-                                        glm::uvec2(32, 32));
+                                        glm::uvec2(32, 32),
+                                        TiledLightManagerBuilder());
     } else if (id == ForwardShaderId::ForwardClustered) {
       p_shader = new ForwardClusteredShader(id,
                                             VERT_PATH_BASIC,
@@ -42,7 +43,8 @@ ForwardPipeline::ForwardPipeline(state::State& state) : Pipeline(state) {
                                             *(this->state.p_world),
                                             this->state.view,
                                             this->output_buffer,
-                                            glm::uvec2(32, 32));
+                                            glm::uvec2(32, 32),
+                                            ClusteredLightManagerBuilder());
     } else {
       throw std::runtime_error(std::string("Unsupported shader"));
     }

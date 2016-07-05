@@ -56,7 +56,29 @@ class TiledLightManager {
   /*! LightGrid datastructure to which this lightmanager writes. */
   LightGrid light_grid;
 
- private:
+protected:
+  // -------------------------------------------------------------------------
+  //  constructGridFrame() sub-functions
+  // -------------------------------------------------------------------------
+  /*! 
+   Clear the current light_grid of this TiledLightManager
+   */
+  void clearGrid();
+
+  /*!
+   Build the light_grid of this TiledLightManager
+   */
+  void buildGrid();
+
+  /*!
+   Finalise the light_grid of this TiledLightManager
+   */
+  void finaliseGrid();
+
+
+  // -------------------------------------------------------------------------
+  //  Member variables
+  // -------------------------------------------------------------------------
   /*! LightProjector to be used to calculate the affected lights */
   const LightProjector& projector;
 
@@ -64,7 +86,31 @@ class TiledLightManager {
   const world::World& world;
   /*! View Reference of this TiledLightManager */
   const state::View& view;
+
 };
+
+
+/*!
+ The TiledLightManagerBuilder is responsible for constructing 
+ TiledLightManagers. 
+ */
+class TiledLightManagerBuilder {
+public:
+  /*! 
+   Construct a new TiledLightManagerBuilder
+   */
+  TiledLightManagerBuilder();
+
+  /*! 
+   Construct a new TiledLightManager with the given parameters and return 
+   a pointer to it.
+   */
+  TiledLightManager* constructNewTiledLightManager(const world::World& world,
+                                                   const state::View& view,
+                                                   GLuint tile_width, GLuint tile_height,
+                                                   const LightProjector& projector) const;
+};
+
 
 } // pipeline
 } // nTiled

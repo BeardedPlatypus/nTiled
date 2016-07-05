@@ -51,7 +51,20 @@ public:
    */
   const std::vector<GLuint>& getLightIndexData() const;
 
-private:
+protected:
+  // -------------------------------------------------------------------------
+  //  constructClusteringFrame sub-functions
+  // -------------------------------------------------------------------------
+  // TODO: documentation
+  void computeKeys();
+  void sortAndCompactKeys();
+  void clearClustering();
+  void buildClustering();
+  void finaliseClustering();
+
+  // -------------------------------------------------------------------------
+  //  Member variables
+  // -------------------------------------------------------------------------
   /*! LightProjector to be used to calculate the affected lights */
   const LightProjector& projector;
   /*! World Reference of this ClusteredLightManager */
@@ -71,7 +84,23 @@ private:
   clustered::KeySortAndCompactShader key_sort_compact_shader;
 
   float k_inv_denominator;
+};
 
+
+class ClusteredLightManagerBuilder {
+public:
+  /*! 
+   Construct a new ClusteredLightManagerBuilder
+  */
+  ClusteredLightManagerBuilder();
+
+  /*!
+   Construct a new ClusteredLightManager with the given parameters and return a 
+   pointer to it.
+   */
+  ClusteredLightManager* constructNewClusteredLightManager(
+    const state::View& view, const world::World& world,
+    glm::uvec2 tile_size, GLuint depth_texture) const;
 };
 
 } // pipeline

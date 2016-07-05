@@ -19,14 +19,23 @@ public:
                           const world::World& world,
                           const state::View& view,
                           GLint p_output_buffer,
-                          glm::uvec2 tile_size);
+                          glm::uvec2 tile_size,
+                          const ClusteredLightManagerBuilder& light_manager_builder);
 
   virtual void renderGeometryPass() override;
   virtual void renderLightPass() override;
 
 protected:
+  // --------------------------------------------------------------------------
+  // render sub-functions
+  // --------------------------------------------------------------------------
+  void loadLightClustering();
+
+  // --------------------------------------------------------------------------
+  //  Member functions
+  // --------------------------------------------------------------------------
   /*! ClusteredLightManager of this DeferredClusteredShader */
-  ClusteredLightManager clustered_light_manager;
+  ClusteredLightManager* p_clustered_light_manager;
 
   // --------------------------------------------------------------------------
   //  openGL LightManagement datastructures

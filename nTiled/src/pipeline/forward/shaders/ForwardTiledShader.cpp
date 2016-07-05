@@ -14,7 +14,8 @@ ForwardTiledShader::ForwardTiledShader(ForwardShaderId shader_id,
                                        const world::World& world,
                                        const state::View& view,
                                        GLint p_output_buffer,
-                                       glm::uvec2 tile_size) :
+                                       glm::uvec2 tile_size,
+                                       const TiledLightManagerBuilder& light_manager_builder) :
     ForwardShader(shader_id,
                   path_vertex_shader,
                   path_fragment_shader,
@@ -22,14 +23,15 @@ ForwardTiledShader::ForwardTiledShader(ForwardShaderId shader_id,
                   view,
                   p_output_buffer),
     projector(BoxProjector()),
-    light_manager(TiledLightManager(world, view,
-                                    tile_size.x, tile_size.y,
-                                    projector)) {
+    p_light_manager(
+      light_manager_builder.constructNewTiledLightManager(world, view,
+                                                          tile_size.x, tile_size.y, 
+                                                          projector)) {
   glUseProgram(this->shader);
 
   // set uniform variables
   // --------------------------------------------------------------------------
-  GLuint n_tiles_x = this->light_manager.light_grid.n_x;
+  GLuint n_tiles_x = this->p_light_manager->light_grid.n_x;
 
   GLint p_tile_size = glGetUniformLocation(this->shader, "tile_size");
   GLint p_n_tiles_x = glGetUniformLocation(this->shader, "n_tiles_x");
@@ -50,9 +52,9 @@ ForwardTiledShader::ForwardTiledShader(ForwardShaderId shader_id,
   // --------------------------
   glBindBuffer(GL_SHADER_STORAGE_BUFFER, light_grid_buffer);
   glBufferData(GL_SHADER_STORAGE_BUFFER,
-               sizeof(this->light_manager.light_grid.grid[0]) *
-               this->light_manager.light_grid.n_tiles,
-               this->light_manager.light_grid.grid,
+               sizeof(this->p_light_manager->light_grid.grid[0]) *
+               this->p_light_manager->light_grid.n_tiles,
+               this->p_light_manager->light_grid.grid,
                GL_DYNAMIC_DRAW);
 
   // Link LightGrid buffer
@@ -62,8 +64,8 @@ ForwardTiledShader::ForwardTiledShader(ForwardShaderId shader_id,
   // ---------------------------
   glBindBuffer(GL_SHADER_STORAGE_BUFFER, light_index_buffer);
   glBufferData(GL_SHADER_STORAGE_BUFFER,
-               sizeof(GLuint) * this->light_manager.light_grid.light_index_list.size(),
-               this->light_manager.light_grid.light_index_list.data(),
+               sizeof(GLuint) * this->p_light_manager->light_grid.light_index_list.size(),
+               this->p_light_manager->light_grid.light_index_list.data(),
                GL_DYNAMIC_DRAW);
 
   // Link LightIndex buffer
@@ -78,31 +80,30 @@ ForwardTiledShader::ForwardTiledShader(ForwardShaderId shader_id,
 
 void ForwardTiledShader::render() {
   glUseProgram(this->shader);
-  // Light-Management
-  // ----------------
-  // construct the light grid of tiled shading
-  this->light_manager.constructGridFrame();
-
-  // load the tiled datastructures into memory
-  // Load LightGridBuffer
-  glBindBuffer(GL_SHADER_STORAGE_BUFFER, this->light_grid_buffer);
-  glBufferSubData(GL_SHADER_STORAGE_BUFFER,
-                  0,
-                  sizeof(this->light_manager.light_grid.grid[0]) *
-                  this->light_manager.light_grid.n_tiles,
-                  this->light_manager.light_grid.grid);
-  // Load LightIndexBuffer
-  glBindBuffer(GL_SHADER_STORAGE_BUFFER, light_index_buffer);
-  glBufferData(GL_SHADER_STORAGE_BUFFER,
-               sizeof(GLuint) * this->light_manager.light_grid.light_index_list.size(),
-               this->light_manager.light_grid.light_index_list.data(),
-               GL_DYNAMIC_DRAW);
-  glBindBuffer(GL_UNIFORM_BUFFER, 0);
-
-  // Object-Rendering
-  // ----------------
+  this->p_light_manager->constructGridFrame();
+  this->loadLightGrid();
   this->renderObjects();
   glUseProgram(0);
 }
+
+
+void ForwardTiledShader::loadLightGrid() {
+  glBindBuffer(GL_SHADER_STORAGE_BUFFER, this->light_grid_buffer);
+  glBufferSubData(GL_SHADER_STORAGE_BUFFER,
+                  0,
+                  sizeof(this->p_light_manager->light_grid.grid[0]) *
+                  this->p_light_manager->light_grid.n_tiles,
+                  this->p_light_manager->light_grid.grid);
+  // Load LightIndexBuffer
+  glBindBuffer(GL_SHADER_STORAGE_BUFFER, light_index_buffer);
+  glBufferData(GL_SHADER_STORAGE_BUFFER,
+               sizeof(GLuint) * this->p_light_manager->light_grid.light_index_list.size(),
+               this->p_light_manager->light_grid.light_index_list.data(),
+               GL_DYNAMIC_DRAW);
+  glBindBuffer(GL_UNIFORM_BUFFER, 0);
+}
+
+
+
 } // pipeline
 } // nTiled

@@ -18,6 +18,11 @@
 namespace nTiled {
 namespace pipeline {
 
+// ============================================================================
+// ClusteredLightManager
+// ----------------------------------------------------------------------------
+//  Constructor 
+// ----------------------------------------------------------------------------
 ClusteredLightManager::ClusteredLightManager(const state::View& view,
                                              const world::World& world,
                                              glm::uvec2 tile_size,
@@ -47,10 +52,29 @@ ClusteredLightManager::~ClusteredLightManager() {
   delete &(this->projector);
 }
 
+// ----------------------------------------------------------------------------
+//  constructClusteringFrame
+// ----------------------------------------------------------------------------
 void ClusteredLightManager::constructClusteringFrame() {
   // Execute compute shaders
+  this->computeKeys();
+  this->sortAndCompactKeys();
+
+  this->clearClustering();
+  this->buildClustering();
+  this->finaliseClustering();
+}
+
+
+void ClusteredLightManager::computeKeys() {
   this->key_compute_shader.execute();
+}
+
+void ClusteredLightManager::sortAndCompactKeys() {
   this->key_sort_compact_shader.execute();
+}
+
+void ClusteredLightManager::clearClustering() {
   // Extract values
   std::vector<GLushort> n_clusters_tiles = 
     this->key_sort_compact_shader.getNIndicesTiles();
@@ -68,7 +92,9 @@ void ClusteredLightManager::constructClusteringFrame() {
   // Clear Clustering
   this->light_clustering.initFrame(k_values_tiles,
                                    n_clusters_tiles);
+}
 
+void ClusteredLightManager::buildClustering() {
   GLuint index = 0;
   glm::uvec4 affected_tiles;
 
@@ -99,11 +125,15 @@ void ClusteredLightManager::constructClusteringFrame() {
     }
     index++;
   }
+}
 
-  // Finalise clustering
+void ClusteredLightManager::finaliseClustering() {
   this->light_clustering.finaliseClusters();
 }
 
+// ----------------------------------------------------------------------------
+//  Accessors
+// ----------------------------------------------------------------------------
 const std::vector<GLuint>& ClusteredLightManager::getSummedIndicesData() const {
   return this->summed_indices;
 }
@@ -118,6 +148,21 @@ const std::vector<glm::uvec2>& ClusteredLightManager::getLightClusterData() cons
 
 const std::vector<GLuint>& ClusteredLightManager::getLightIndexData() const {
   return this->light_clustering.light_index_list;
+}
+
+
+// ============================================================================
+// ClusteredLightManagerBuilder
+// ----------------------------------------------------------------------------
+//  Constructor 
+// ----------------------------------------------------------------------------
+ClusteredLightManagerBuilder::ClusteredLightManagerBuilder() { }
+
+
+ClusteredLightManager* ClusteredLightManagerBuilder::constructNewClusteredLightManager(
+  const state::View& view, const world::World& world,
+  glm::uvec2 tile_size, GLuint depth_texture) const {
+  return new ClusteredLightManager(view, world, tile_size, depth_texture);
 }
 
 

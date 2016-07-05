@@ -17,16 +17,26 @@ public:
                          const world::World& world,
                          const state::View& view,
                          GLint p_output_buffer,
-                         glm::uvec2 tile_size);
+                         glm::uvec2 tile_size,
+                         const ClusteredLightManagerBuilder& light_manager_builder);
 
   virtual void render() override;
 
 protected:
+  // --------------------------------------------------------------------------
+  // render sub-functions
+  // --------------------------------------------------------------------------
+  void depthPass();
+  void loadLightClustering();
+
+  // --------------------------------------------------------------------------
+  //  Member functions
+  // --------------------------------------------------------------------------
   /*! Depth pass program of this ForwardClusteredShader */
   GLuint depth_pass_shader;
 
   /*! ClusteredLightManager of this DeferredClusteredShader */
-  ClusteredLightManager clustered_light_manager;
+  ClusteredLightManager* p_clustered_light_manager;
 
   // --------------------------------------------------------------------------
   //  openGL LightManagement datastructures

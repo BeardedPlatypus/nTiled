@@ -18,18 +18,24 @@ public:
                      const world::World& world,
                      const state::View& view,
                      GLint p_output_buffer,
-                     glm::uvec2 tile_size);
+                     glm::uvec2 tile_size,
+                     const TiledLightManagerBuilder& light_manager_builder);
 
   virtual void render() override;
 
 protected:
+  // --------------------------------------------------------------------------
+  // render sub-functions
+  // --------------------------------------------------------------------------
+  void loadLightGrid();
+
   // --------------------------------------------------------------------------
   // LightManagement Functions
   // --------------------------------------------------------------------------
   /*! Sphere projector of this ForwardTiledShader */
   const BoxProjector projector;
   /*! TiledLightManager of this ForwardTiledShader */
-  TiledLightManager light_manager;
+  TiledLightManager* p_light_manager;
 
   // --------------------------------------------------------------------------
   //  openGL LightManagement datastructures
