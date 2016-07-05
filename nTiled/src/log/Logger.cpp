@@ -16,7 +16,7 @@
 
 
 namespace nTiled {
-namespace log {
+namespace logged {
 
 // ----------------------------------------------------------------------------
 //  Constructor
