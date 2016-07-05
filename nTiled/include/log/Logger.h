@@ -11,7 +11,7 @@
 #include <Windows.h>
 
 namespace nTiled {
-namespace log {
+namespace logged {
 
 /*!
  Global Logger to be created by the main function to keep track of the 
