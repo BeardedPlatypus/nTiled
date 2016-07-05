@@ -26,8 +26,8 @@ protected:
   // --------------------------------------------------------------------------
   // render sub-functions
   // --------------------------------------------------------------------------
-  void depthPass();
-  void loadLightClustering();
+  virtual void depthPass();
+  virtual void loadLightClustering();
 
   // --------------------------------------------------------------------------
   //  Member functions

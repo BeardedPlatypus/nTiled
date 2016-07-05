@@ -56,11 +56,11 @@ protected:
   //  constructClusteringFrame sub-functions
   // -------------------------------------------------------------------------
   // TODO: documentation
-  void computeKeys();
-  void sortAndCompactKeys();
-  void clearClustering();
-  void buildClustering();
-  void finaliseClustering();
+  virtual void computeKeys();
+  virtual void sortAndCompactKeys();
+  virtual void clearClustering();
+  virtual void buildClustering();
+  virtual void finaliseClustering();
 
   // -------------------------------------------------------------------------
   //  Member variables
@@ -98,7 +98,7 @@ public:
    Construct a new ClusteredLightManager with the given parameters and return a 
    pointer to it.
    */
-  ClusteredLightManager* constructNewClusteredLightManager(
+  virtual ClusteredLightManager* constructNewClusteredLightManager(
     const state::View& view, const world::World& world,
     glm::uvec2 tile_size, GLuint depth_texture) const;
 };

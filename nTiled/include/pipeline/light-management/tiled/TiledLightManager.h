@@ -63,17 +63,17 @@ protected:
   /*! 
    Clear the current light_grid of this TiledLightManager
    */
-  void clearGrid();
+  virtual void clearGrid();
 
   /*!
    Build the light_grid of this TiledLightManager
    */
-  void buildGrid();
+  virtual void buildGrid();
 
   /*!
    Finalise the light_grid of this TiledLightManager
    */
-  void finaliseGrid();
+  virtual void finaliseGrid();
 
 
   // -------------------------------------------------------------------------
@@ -105,10 +105,10 @@ public:
    Construct a new TiledLightManager with the given parameters and return 
    a pointer to it.
    */
-  TiledLightManager* constructNewTiledLightManager(const world::World& world,
-                                                   const state::View& view,
-                                                   GLuint tile_width, GLuint tile_height,
-                                                   const LightProjector& projector) const;
+  virtual TiledLightManager* constructNewTiledLightManager(const world::World& world,
+                                                           const state::View& view,
+                                                           GLuint tile_width, GLuint tile_height,
+                                                           const LightProjector& projector) const;
 };
 
 

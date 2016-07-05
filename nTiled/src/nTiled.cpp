@@ -31,7 +31,7 @@
 // ----------------------------------------------------------------------------
 //  Defines
 // ----------------------------------------------------------------------------
-#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/indoor-spaceship/scene-def/test_path_export.json")
+#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/indoor-spaceship/scene-def/test_path.json")
 // ----------------------------------------------------------------------------
 //  Function prototypes
 // ----------------------------------------------------------------------------
