@@ -18,7 +18,8 @@ public:
   virtual void render() override;
 
   virtual void setOutputBuffer(GLint p_output_buffer) override;
-private:
+protected:
+  virtual void constructShader(); 
   DeferredShader* p_deferred_shader;
 };
 

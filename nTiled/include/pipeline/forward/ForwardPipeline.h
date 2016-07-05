@@ -19,7 +19,9 @@ public:
   virtual void render() override;
 
   virtual void setOutputBuffer(GLint p_output_buffer) override;
-private:
+protected:
+  virtual void constructShaderCatalog(); 
+
   std::vector<ForwardShader*> shader_catalog;
 };
 

@@ -1,11 +1,14 @@
-#include "pipeline\deferred\DeferredPipeline.h"
+#include "pipeline\deferred\DeferredPipelineLogged.h"
 
 // ----------------------------------------------------------------------------
 //  nTiled headers
 // ----------------------------------------------------------------------------
-#include "pipeline\deferred\shaders\DeferredAttenuatedShader.h"
-#include "pipeline\deferred\shaders\DeferredTiledShader.h"
-#include "pipeline\deferred\shaders\DeferredClusteredShader.h"
+#include "pipeline\deferred\shaders\logged\DeferredAttenuatedShaderLogged.h"
+#include "pipeline\deferred\shaders\logged\DeferredTiledShaderLogged.h"
+#include "pipeline\deferred\shaders\logged\DeferredClusteredShaderLogged.h"
+
+#include "pipeline\light-management\tiled\TiledLightManagerLogged.h"
+#include "pipeline\light-management\clustered\ClusteredLightManagerLogged.h"
 
 // Path defines
 #define VERT_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.vert")
@@ -20,27 +23,16 @@
 namespace nTiled {
 namespace pipeline {
 
-DeferredPipeline::DeferredPipeline(state::State& state) : Pipeline(state) {
-  this->constructShader();
+DeferredPipelineLogged::DeferredPipelineLogged(state::State& state,
+                                               logged::ExecutionTimeLogger& logger) :
+  DeferredPipeline(state),
+  logger(logger) {
 }
 
-DeferredPipeline::~DeferredPipeline() {
-  delete this->p_deferred_shader;
-}
-
-void DeferredPipeline::render() {
-  this->p_deferred_shader->render();
-}
-
-void DeferredPipeline::setOutputBuffer(GLint p_output_buffer) {
-  Pipeline::setOutputBuffer(p_output_buffer);
-  this->p_deferred_shader->setOutputBuffer(p_output_buffer);
-}
-
-void DeferredPipeline::constructShader() {
+void DeferredPipelineLogged::constructShader() {
   DeferredShaderId id = this->state.shading.deferred_shader_id;
   if (id == DeferredShaderId::DeferredAttenuated) {
-    this->p_deferred_shader = new DeferredAttenuatedShader(
+    this->p_deferred_shader = new DeferredAttenuatedShaderLogged(
       DeferredShaderId::DeferredAttenuated,
       VERT_PATH_GEO,
       FRAG_PATH_GEO,
@@ -48,9 +40,10 @@ void DeferredPipeline::constructShader() {
       FRAG_PATH_LIGHT_ATTENUATED,
       *(this->state.p_world),
       this->state.view,
-      this->output_buffer);
+      this->output_buffer,
+      this->logger);
   } else if (id == DeferredShaderId::DeferredTiled) {
-    this->p_deferred_shader = new DeferredTiledShader(
+    this->p_deferred_shader = new DeferredTiledShaderLogged(
       DeferredShaderId::DeferredTiled,
       VERT_PATH_GEO,
       FRAG_PATH_GEO,
@@ -60,9 +53,10 @@ void DeferredPipeline::constructShader() {
       this->state.view,
       this->output_buffer,
       glm::uvec2(32, 32),
-      TiledLightManagerBuilder());
+      TiledLightManagerLoggedBuilder(this->logger),
+      this->logger);
   } else if (id == DeferredShaderId::DeferredClustered) {
-    this->p_deferred_shader = new DeferredClusteredShader(
+    this->p_deferred_shader = new DeferredClusteredShaderLogged(
       DeferredShaderId::DeferredClustered,
       VERT_PATH_GEO,
       FRAG_PATH_GEO,
@@ -72,11 +66,12 @@ void DeferredPipeline::constructShader() {
       this->state.view,
       this->output_buffer,
       glm::uvec2(32, 32),
-      ClusteredLightManagerBuilder());
+      ClusteredLightManagerLoggedBuilder(this->logger),
+      this->logger);
   } else {
     throw std::runtime_error(std::string("Unsupported shader"));
   }
 }
 
-} // pipeline
-} // nTiled
+}
+}

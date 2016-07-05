@@ -17,6 +17,30 @@ namespace nTiled {
 namespace pipeline {
 
 ForwardPipeline::ForwardPipeline(state::State& state) : Pipeline(state) { 
+  this->constructShaderCatalog();
+}
+
+ForwardPipeline::~ForwardPipeline() {
+  for (ForwardShader* p_shader : this->shader_catalog) {
+    delete p_shader;
+  }
+}
+
+void ForwardPipeline::render() {
+  for (ForwardShader* p_shader : this->shader_catalog) {
+    p_shader->render();
+  }
+}
+
+void ForwardPipeline::setOutputBuffer(GLint p_output_buffer) {
+  Pipeline::setOutputBuffer(p_output_buffer);
+
+  for (ForwardShader* p_shader : this->shader_catalog) {
+    p_shader->setOutputBuffer(this->output_buffer);
+  }
+}
+
+void ForwardPipeline::constructShaderCatalog() {
   for (ForwardShaderId id : this->state.shading.forward_shader_ids) {
     ForwardShader* p_shader;
 
@@ -49,26 +73,6 @@ ForwardPipeline::ForwardPipeline(state::State& state) : Pipeline(state) {
       throw std::runtime_error(std::string("Unsupported shader"));
     }
     this->shader_catalog.push_back(p_shader);
-  }
-}
-
-ForwardPipeline::~ForwardPipeline() {
-  for (ForwardShader* p_shader : this->shader_catalog) {
-    delete p_shader;
-  }
-}
-
-void ForwardPipeline::render() {
-  for (ForwardShader* p_shader : this->shader_catalog) {
-    p_shader->render();
-  }
-}
-
-void ForwardPipeline::setOutputBuffer(GLint p_output_buffer) {
-  Pipeline::setOutputBuffer(p_output_buffer);
-
-  for (ForwardShader* p_shader : this->shader_catalog) {
-    p_shader->setOutputBuffer(this->output_buffer);
   }
 }
 
