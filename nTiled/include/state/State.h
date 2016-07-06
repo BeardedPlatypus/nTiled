@@ -8,6 +8,7 @@
 #include "state\StateView.h"
 #include "state\StateShading.h"
 #include "state\StateTexture.h"
+#include "state\StateLog.h"
 
 // ----------------------------------------------------------------------------
 //  nTiled headers
@@ -31,7 +32,9 @@ struct State {
         world::World* p_world,                     // world
         std::map<std::string, std::string> texture_file_map,
         std::vector<pipeline::ForwardShaderId> forward_shader_ids,
-        bool is_debug);
+        bool is_debug,
+        bool is_logging_data,
+        std::string log_output_path);
   State(camera::Camera camera,                  // view
         camera::CameraControl* camera_control,
         glm::uvec2 viewport,
@@ -39,7 +42,9 @@ struct State {
         world::World* p_world,                     // world
         std::map<std::string, std::string> texture_file_map,
         pipeline::DeferredShaderId deferred_shader_id,
-        bool is_debug);
+        bool is_debug,
+        bool is_logging_data,
+        std::string log_output_path);
   ~State();
 
   // Member attributes
@@ -47,6 +52,9 @@ struct State {
   world::World* p_world;
   TextureCatalog texture_catalog;
   Shading shading;
+  Log log;
+
+
 };
 
 /*!

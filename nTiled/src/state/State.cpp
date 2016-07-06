@@ -29,7 +29,9 @@ State::State(camera::Camera camera,                  // view
              world::World* p_world,                     // world
              std::map<std::string, std::string> texture_file_map,
              std::vector<pipeline::ForwardShaderId> forward_shader_ids,
-             bool is_debug) :
+             bool is_debug,
+             bool is_logging_data,
+             std::string log_output_path) :
     view(View(camera,
               camera_control,
               viewport,
@@ -37,7 +39,9 @@ State::State(camera::Camera camera,                  // view
     p_world(p_world),
     texture_catalog(TextureCatalog(texture_file_map)),
     shading(Shading(forward_shader_ids, 
-                    is_debug)) { }
+                    is_debug)),
+    log(is_logging_data,
+        log_output_path) { }
 
 State::State(camera::Camera camera,                  // view
              camera::CameraControl* camera_control,
@@ -46,7 +50,9 @@ State::State(camera::Camera camera,                  // view
              world::World* p_world,                     // world
              std::map<std::string, std::string> texture_file_map,
              pipeline::DeferredShaderId deferred_shader_id,
-             bool is_debug) :
+             bool is_debug,
+             bool is_logging_data,
+             std::string log_output_path) :
     view(View(camera,
               camera_control,
               viewport,
@@ -54,7 +60,9 @@ State::State(camera::Camera camera,                  // view
     p_world(p_world),
     texture_catalog(TextureCatalog(texture_file_map)),
     shading(Shading(deferred_shader_id, 
-                    is_debug)) { }
+                    is_debug)),
+    log(is_logging_data,
+        log_output_path) { }
 
 State::~State() {
   delete this->p_world;
@@ -87,6 +95,18 @@ State constructStateFromJson(const std::string& path) {
   // is debug
   rapidjson::Value::ConstMemberIterator itr = config.FindMember("is_debug");
   bool is_debug = ((itr != config.MemberEnd()) && itr->value.GetBool());
+
+  // is logging data
+  bool is_logging_data = false;
+  std::string log_output_path = "";
+
+  rapidjson::Value::ConstMemberIterator log_itr = config.FindMember("log");
+  if (log_itr != config.MemberEnd()) {
+    auto& log_json = log_itr->value;
+
+    is_logging_data = log_json["is_logging"].GetBool();
+    log_output_path = log_json["output_path"].GetString();
+  }
 
   // Build View Component
   // ------------------------------------------------------------------------
@@ -225,7 +245,9 @@ State constructStateFromJson(const std::string& path) {
                  p_world,
                  texture_file_map,
                  forward_shader_ids,
-                 is_debug);
+                 is_debug,
+                 is_logging_data,
+                 log_output_path);
   } else {
     return State(camera,
                  camera_control,
@@ -234,7 +256,9 @@ State constructStateFromJson(const std::string& path) {
                  p_world,
                  texture_file_map,
                  deferred_shader_id,
-                 is_debug);
+                 is_debug,
+                 is_logging_data,
+                 log_output_path);
   }
 }
 

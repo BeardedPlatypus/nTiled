@@ -19,13 +19,17 @@
 #include "gui\GuiManager.h"
 #include "world\World.h"
 #include "state\State.h"
+
 #include "pipeline\forward\ForwardPipeline.h"
 #include "pipeline\deferred\DeferredPipeline.h"
+
+#include "pipeline\forward\ForwardPipelineLogged.h"
+#include "pipeline\deferred\DeferredPipelineLogged.h"
+
+#include "log\Logger.h"
+
 #include "pipeline\debug-view\DebugPipeline.h"
 
-#include "pipeline\light-management\clustered\compute-client\KeyComputeShader.h"
-#include "pipeline\deferred\shaders\DeferredClusteredShader.h"
-#include "pipeline\light-management\clustered\compute-client\TestComputeShader.h"
 
 
 // ----------------------------------------------------------------------------
@@ -97,13 +101,23 @@ int main() {
 
   // nTiled components
   // -----------------
+  nTiled::logged::ExecutionTimeLogger logger = nTiled::logged::ExecutionTimeLogger();
 
   nTiled::pipeline::Pipeline* p_render_pipeline;
+  
 
   if (state.shading.pipeline_type == nTiled::pipeline::PipelineType::Forward) {
-     p_render_pipeline = new nTiled::pipeline::ForwardPipeline(state);
+    if (!state.log.is_logging_data) {
+      p_render_pipeline = new nTiled::pipeline::ForwardPipeline(state);
+    } else {
+      p_render_pipeline = new nTiled::pipeline::ForwardPipelineLogged(state, logger);
+    }
   } else {
-    p_render_pipeline = new nTiled::pipeline::DeferredPipeline(state);
+    if (!state.log.is_logging_data) {
+      p_render_pipeline = new nTiled::pipeline::DeferredPipeline(state);
+    } else {
+      p_render_pipeline = new nTiled::pipeline::DeferredPipelineLogged(state, logger);
+    }
   }
 
   nTiled::pipeline::Pipeline* p_pipeline;
@@ -137,6 +151,11 @@ int main() {
   delete p_pipeline;
   if (state.shading.is_debug) {
     delete p_render_pipeline;
+  }
+
+  // Dump logging file
+  if (state.log.is_logging_data) {
+    logger.exportLog(state.log.path);
   }
 
   glfwTerminate();
