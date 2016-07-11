@@ -34,7 +34,9 @@ struct State {
         std::vector<pipeline::ForwardShaderId> forward_shader_ids,
         bool is_debug,
         bool is_logging_data,
-        std::string log_output_path);
+        std::string log_output_path,
+        unsigned int frame_start,
+        unsigned int frame_end);
   State(camera::Camera camera,                  // view
         camera::CameraControl* camera_control,
         glm::uvec2 viewport,
@@ -44,7 +46,9 @@ struct State {
         pipeline::DeferredShaderId deferred_shader_id,
         bool is_debug,
         bool is_logging_data,
-        std::string log_output_path);
+        std::string log_output_path,
+        unsigned int frame_start,
+        unsigned int frame_end);
   ~State();
 
   // Member attributes

@@ -31,7 +31,9 @@ State::State(camera::Camera camera,                  // view
              std::vector<pipeline::ForwardShaderId> forward_shader_ids,
              bool is_debug,
              bool is_logging_data,
-             std::string log_output_path) :
+             std::string log_output_path,
+             unsigned int frame_start,
+             unsigned int frame_end) :
     view(View(camera,
               camera_control,
               viewport,
@@ -41,7 +43,9 @@ State::State(camera::Camera camera,                  // view
     shading(Shading(forward_shader_ids, 
                     is_debug)),
     log(is_logging_data,
-        log_output_path) { }
+        log_output_path,
+        frame_start, 
+        frame_end) { }
 
 State::State(camera::Camera camera,                  // view
              camera::CameraControl* camera_control,
@@ -52,7 +56,9 @@ State::State(camera::Camera camera,                  // view
              pipeline::DeferredShaderId deferred_shader_id,
              bool is_debug,
              bool is_logging_data,
-             std::string log_output_path) :
+             std::string log_output_path,
+             unsigned int frame_start,
+             unsigned int frame_end) :
     view(View(camera,
               camera_control,
               viewport,
@@ -62,7 +68,9 @@ State::State(camera::Camera camera,                  // view
     shading(Shading(deferred_shader_id, 
                     is_debug)),
     log(is_logging_data,
-        log_output_path) { }
+        log_output_path,
+        frame_start, 
+        frame_end) { }
 
 State::~State() {
   delete this->p_world;
@@ -98,6 +106,8 @@ State constructStateFromJson(const std::string& path) {
 
   // is logging data
   bool is_logging_data = false;
+  unsigned int logged_start_frame = 0;
+  unsigned int logged_end_frame = 0;
   std::string log_output_path = "";
 
   rapidjson::Value::ConstMemberIterator log_itr = config.FindMember("log");
@@ -106,11 +116,14 @@ State constructStateFromJson(const std::string& path) {
 
     is_logging_data = log_json["is_logging"].GetBool();
     log_output_path = log_json["output_path"].GetString();
+    logged_start_frame = log_json["frame_start"].GetUint();
+    logged_end_frame   = log_json["frame_end"].GetUint();
   }
 
   // Build View Component
   // ------------------------------------------------------------------------
   // camera control
+  // TODO move this to a seperate json parse file
   std::string camera_control_string = config["camera"]["control"].GetString();
 
   camera::CameraControl* camera_control = nullptr;
@@ -247,7 +260,9 @@ State constructStateFromJson(const std::string& path) {
                  forward_shader_ids,
                  is_debug,
                  is_logging_data,
-                 log_output_path);
+                 log_output_path,
+                 logged_start_frame,
+                 logged_end_frame);
   } else {
     return State(camera,
                  camera_control,
@@ -258,7 +273,9 @@ State constructStateFromJson(const std::string& path) {
                  deferred_shader_id,
                  is_debug,
                  is_logging_data,
-                 log_output_path);
+                 log_output_path,
+                 logged_start_frame,
+                 logged_end_frame);
   }
 }
 
