@@ -21,10 +21,15 @@ namespace logged {
 // ----------------------------------------------------------------------------
 //  Constructor
 // ----------------------------------------------------------------------------
-ExecutionTimeLogger::ExecutionTimeLogger() :
-  is_running(false),
-  time_data(std::vector<std::map<std::string, double>>()) {
-  // add zero frame
+ExecutionTimeLogger::ExecutionTimeLogger(const Clock& clock, 
+                                         unsigned int frame_start,
+                                         unsigned int frame_end) :
+    clock(clock),
+    is_running(false),
+    time_data(std::vector<std::map<std::string, double>>()),
+    frame_start(frame_start),
+    frame_end(frame_end) {
+  // add empty first frame
   this->incrementFrame();
 }
 
@@ -55,17 +60,23 @@ void ExecutionTimeLogger::endLog() {
   }
   this->is_running = false;
 
-  double execution_time = 
-    (this->end_time.QuadPart - this->start_time.QuadPart) * 1000.0 / this->frequency.QuadPart;  // in ms
-  this->time_data.back().insert(std::pair<std::string, double>(this->current_function_id,
-                                                             execution_time));
+  if (this->clock.getCurrentFrame() >= this->frame_start &&
+      this->clock.getCurrentFrame() < this->frame_end) {
+    double execution_time =
+      (this->end_time.QuadPart - this->start_time.QuadPart) * 1000.0 / this->frequency.QuadPart;  // in ms
+    this->time_data.back().insert(std::pair<std::string, double>(this->current_function_id,
+                                                                 execution_time));
+  }
 }
 
 void ExecutionTimeLogger::incrementFrame() {
-  std::map<std::string, double> empty_frame = 
-    std::map<std::string, double>();
-
-  this->time_data.push_back(empty_frame);
+  if (this->clock.getCurrentFrame() >= this->frame_start &&
+      this->clock.getCurrentFrame() < this->frame_end) {
+    std::map<std::string, double> empty_frame = 
+      std::map<std::string, double>();
+    
+    this->time_data.push_back(empty_frame);
+  }
 }
 
 void ExecutionTimeLogger::exportLog(const std::string& path) {

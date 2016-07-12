@@ -57,8 +57,6 @@ struct State {
   TextureCatalog texture_catalog;
   Shading shading;
   Log log;
-
-
 };
 
 /*!
@@ -69,7 +67,7 @@ struct State {
  Returns:
      A state corresponding with the provided scene.json file
  */
-State constructStateFromJson(const std::string& path);
+State* constructStateFromJson(const std::string& path);
 
 // Parsing functions
 /*!

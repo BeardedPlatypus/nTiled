@@ -10,6 +10,8 @@
 // TODO windows dependency, add alternative for UNIX 
 #include <Windows.h>
 
+#include "main/Clock.h"
+
 namespace nTiled {
 namespace logged {
 
@@ -39,7 +41,9 @@ public:
   // --------------------------------------------------------------------------
   //  Constructor || Destructor
   // --------------------------------------------------------------------------
-  ExecutionTimeLogger();
+  ExecutionTimeLogger(const Clock& clock,
+                      unsigned int frame_start,
+                      unsigned int frame_end);
 
   // --------------------------------------------------------------------------
   //  Member functions
@@ -90,6 +94,13 @@ private:
   LARGE_INTEGER start_time;
   /*! Time at end of the measurement */
   LARGE_INTEGER end_time;
+
+  /*! The first frame that is logged. */
+  unsigned int frame_start;
+  /*! The frame at which logging is stopped. */
+  unsigned int frame_end;
+
+  const Clock& clock;
 };
 
 } // log

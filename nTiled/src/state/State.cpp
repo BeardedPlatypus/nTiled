@@ -76,7 +76,7 @@ State::~State() {
   delete this->p_world;
 }
 
-State constructStateFromJson(const std::string& path) {
+State* constructStateFromJson(const std::string& path) {
   // Parse scene.json
   // -------------------------------------------------------------------------
   // stream file
@@ -251,31 +251,31 @@ State constructStateFromJson(const std::string& path) {
   }
 
   if (pipeline_type == pipeline::PipelineType::Forward) {
-    return State(camera,
-                 camera_control,
-                 viewport,
-                 output,
-                 p_world,
-                 texture_file_map,
-                 forward_shader_ids,
-                 is_debug,
-                 is_logging_data,
-                 log_output_path,
-                 logged_start_frame,
-                 logged_end_frame);
+    return new State(camera,
+                     camera_control,
+                     viewport,
+                     output,
+                     p_world,
+                     texture_file_map,
+                     forward_shader_ids,
+                     is_debug,
+                     is_logging_data,
+                     log_output_path,
+                     logged_start_frame,
+                     logged_end_frame);
   } else {
-    return State(camera,
-                 camera_control,
-                 viewport,
-                 output,
-                 p_world,
-                 texture_file_map,
-                 deferred_shader_id,
-                 is_debug,
-                 is_logging_data,
-                 log_output_path,
-                 logged_start_frame,
-                 logged_end_frame);
+    return new State(camera,
+                     camera_control,
+                     viewport,
+                     output,
+                     p_world,
+                     texture_file_map,
+                     deferred_shader_id,
+                     is_debug,
+                     is_logging_data,
+                     log_output_path,
+                     logged_start_frame,
+                     logged_end_frame);
   }
 }
 
