@@ -21,11 +21,14 @@ namespace nTiled {
 namespace pipeline {
 
 DeferredPipeline::DeferredPipeline(state::State& state) : Pipeline(state) {
-  this->constructShader();
 }
 
 DeferredPipeline::~DeferredPipeline() {
   delete this->p_deferred_shader;
+}
+
+void DeferredPipeline::initialiseShaders() {
+  this->constructShader();
 }
 
 void DeferredPipeline::render() {

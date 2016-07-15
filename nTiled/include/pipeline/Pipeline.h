@@ -20,11 +20,16 @@ public:
        state (State&): reference to the state this Pipeline renders
    */
   Pipeline(state::State& state);
+
   /*!
    Destruct this Pipeline
    */
   virtual ~Pipeline() {}
 
+  /*! 
+   Initialise shaders
+   */
+  virtual void initialiseShaders();
   // --------------------------------------------------------------------------
   //  Methods
   // --------------------------------------------------------------------------

@@ -36,7 +36,9 @@ struct State {
         bool is_logging_data,
         std::string log_output_path,
         unsigned int frame_start,
-        unsigned int frame_end);
+        unsigned int frame_end,
+        bool exit_after_done,
+        unsigned int exit_frame);
   State(camera::Camera camera,                  // view
         camera::CameraControl* camera_control,
         glm::uvec2 viewport,
@@ -48,7 +50,9 @@ struct State {
         bool is_logging_data,
         std::string log_output_path,
         unsigned int frame_start,
-        unsigned int frame_end);
+        unsigned int frame_end,
+        bool exit_after_done,
+        unsigned int exit_frame);
   ~State();
 
   // Member attributes

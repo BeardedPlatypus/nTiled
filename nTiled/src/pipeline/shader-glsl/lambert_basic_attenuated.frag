@@ -1,6 +1,6 @@
 #version 440
 
-#define NUM_LIGHTS 9
+#define NUM_LIGHTS 76
 
 // Fragment Input Buffers
 // -----------------------------------------------------------------------------

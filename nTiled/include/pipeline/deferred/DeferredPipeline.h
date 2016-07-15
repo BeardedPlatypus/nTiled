@@ -14,6 +14,7 @@ public:
   DeferredPipeline(state::State& state);
   ~DeferredPipeline();
 
+  virtual void initialiseShaders() override;
   // Render Methods
   virtual void render() override;
 

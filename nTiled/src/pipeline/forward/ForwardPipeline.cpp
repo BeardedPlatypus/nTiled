@@ -17,6 +17,9 @@ namespace nTiled {
 namespace pipeline {
 
 ForwardPipeline::ForwardPipeline(state::State& state) : Pipeline(state) { 
+}
+
+void ForwardPipeline::initialiseShaders() {
   this->constructShaderCatalog();
 }
 

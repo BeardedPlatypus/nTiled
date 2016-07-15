@@ -74,18 +74,24 @@ public:
    */
   void exportLog(const std::string& path);
 
+  void activate();
+  void deactivate();
+
 private:
   // --------------------------------------------------------------------------
   //  Data Members
   // --------------------------------------------------------------------------
   /*! Collected Data Per frame.*/
-  std::vector<std::map<std::string, double>> time_data;
+  std::vector<std::pair<unsigned long,
+                        std::map<std::string, double>>> time_data;
 
   // --------------------------------------------------------------------------
   //  Measurement Members
   // --------------------------------------------------------------------------
   /*! Whether this ExecutionTimeLogger is logging a function. */
   bool is_running;
+  /*! Whether this ExecutionTimeLogger is active*/
+  bool is_active;
   /*! Function_id of function that is currently being tracked*/
   std::string current_function_id;
   /*! Frequency at start of the measurement */

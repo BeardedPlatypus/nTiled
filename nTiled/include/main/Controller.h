@@ -1,5 +1,6 @@
 #pragma once
 
+
 // ----------------------------------------------------------------------------
 //  System Libraries 
 // ----------------------------------------------------------------------------
@@ -27,10 +28,8 @@
 #include "FrameEvent.h"
 #include "DrawMethod.h"
 
+
 namespace nTiled {
-
-
-
 
 // ----------------------------------------------------------------------------
 //  Controller
@@ -60,6 +59,7 @@ public:
      draw_method (const DrawMethod&): the new draw method of this controller
    */
   void setDrawMethod(DrawMethod* draw_method);
+  void toggleLoggingData(bool activate);
   void exportLogData();
   void exit();
 

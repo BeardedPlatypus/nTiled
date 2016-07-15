@@ -33,7 +33,9 @@ State::State(camera::Camera camera,                  // view
              bool is_logging_data,
              std::string log_output_path,
              unsigned int frame_start,
-             unsigned int frame_end) :
+             unsigned int frame_end,
+             bool exit_after_done,
+             unsigned int exit_frame) :
     view(View(camera,
               camera_control,
               viewport,
@@ -45,7 +47,9 @@ State::State(camera::Camera camera,                  // view
     log(is_logging_data,
         log_output_path,
         frame_start, 
-        frame_end) { }
+        frame_end,
+        exit_after_done,
+        exit_frame) { }
 
 State::State(camera::Camera camera,                  // view
              camera::CameraControl* camera_control,
@@ -58,7 +62,9 @@ State::State(camera::Camera camera,                  // view
              bool is_logging_data,
              std::string log_output_path,
              unsigned int frame_start,
-             unsigned int frame_end) :
+             unsigned int frame_end,
+             bool exit_after_done,
+             unsigned int exit_frame) :
     view(View(camera,
               camera_control,
               viewport,
@@ -70,7 +76,9 @@ State::State(camera::Camera camera,                  // view
     log(is_logging_data,
         log_output_path,
         frame_start, 
-        frame_end) { }
+        frame_end,
+        exit_after_done,
+        exit_frame) { }
 
 State::~State() {
   delete this->p_world;
@@ -118,6 +126,18 @@ State* constructStateFromJson(const std::string& path) {
     log_output_path = log_json["output_path"].GetString();
     logged_start_frame = log_json["frame_start"].GetUint();
     logged_end_frame   = log_json["frame_end"].GetUint();
+  }
+
+  // should exit after finishing data
+  bool exit_after_done = false;
+  unsigned int exit_frame = 0;
+
+  rapidjson::Value::ConstMemberIterator exit_frame_itr = config.FindMember("exit_frame");
+  if (exit_frame_itr != config.MemberEnd()) {
+    auto& exit_frame_json = exit_frame_itr->value;
+
+    exit_after_done = true;
+    exit_frame = exit_frame_json.GetUint();
   }
 
   // Build View Component
@@ -262,7 +282,9 @@ State* constructStateFromJson(const std::string& path) {
                      is_logging_data,
                      log_output_path,
                      logged_start_frame,
-                     logged_end_frame);
+                     logged_end_frame,
+                     exit_after_done,
+                     exit_frame);
   } else {
     return new State(camera,
                      camera_control,
@@ -275,7 +297,9 @@ State* constructStateFromJson(const std::string& path) {
                      is_logging_data,
                      log_output_path,
                      logged_start_frame,
-                     logged_end_frame);
+                     logged_end_frame,
+                     exit_after_done,
+                     exit_frame);
   }
 }
 

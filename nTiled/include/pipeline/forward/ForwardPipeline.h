@@ -15,6 +15,7 @@ public:
   ForwardPipeline(state::State& state);
   ~ForwardPipeline();
 
+  virtual void initialiseShaders() override;
   // Render Methods
   virtual void render() override;
 
