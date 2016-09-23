@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # nTiled documentation build configuration file, created by
-# sphinx-quickstart on Fri Sep 23 13:59:44 2016.
+# sphinx-quickstart on Fri Sep 23 14:12:29 2016.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -85,7 +85,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = []
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
