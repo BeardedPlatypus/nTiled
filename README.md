@@ -1,4 +1,4 @@
-<img src="https://github.com/BeardedPlatypus/nTiled/blob/master/nTiled_icon.png?raw=true" alt="nTiled" title="nTiled" align="center" height=100px />
+<img src="https://github.com/BeardedPlatypus/nTiled/blob/master/nTiled_icon.png?raw=true" alt="nTiled" title="nTiled" align="middle" height=100px />
 
 # Table of Contents
 - [nTiled](#ntiled)
@@ -64,7 +64,7 @@ to be used, if this is not the case you can obtain it free of charge
 
 # Usage
 
-![nTiled UI](http://i.imgur.com/kYHsWii.png =400x)
+<img src="http://i.imgur.com/kYHsWii.png" alt="nTiled ui" title="nTiled ui" align="middle" height=600px />
 
 `nTiled` can be run by running the produced executable followed by
 the path to a run configuration file.
