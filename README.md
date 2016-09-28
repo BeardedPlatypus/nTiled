@@ -64,6 +64,8 @@ to be used, if this is not the case you can obtain it free of charge
 
 # Usage
 
+![nTiled UI](http://i.imgur.com/kYHsWii.png)
+
 `nTiled` can be run by running the produced executable followed by
 the path to a run configuration file.
 
