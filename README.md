@@ -1,5 +1,6 @@
-# ![nTiled](https://github.com/BeardedPlatypus/nTiled/blob/master/nTiled_icon.png?raw=true =100x)
+<img src="https://github.com/BeardedPlatypus/nTiled/blob/master/nTiled_icon.png?raw=true" alt="nTiled" title="nTiled" align="center" height=100px />
 
+# Table of Contents
 - [nTiled](#ntiled)
 - [Installation](#installation)
 - [Usage](#usage)
