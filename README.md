@@ -26,8 +26,8 @@ to be used, if this is not the case you can obtain it free of charge
 
 1. Clone the `nTiled` repository  
 
-       cd <desired parent directory>
-       git clone https://github.com/BeardedPlatypus/nTiled.git
+        cd <desired parent directory>
+        git clone https://github.com/BeardedPlatypus/nTiled.git
       
 2. Download the dependencies and put them at their relative path
    1. openGL: [glad](https://github.com/Dav1dde/glad)  
