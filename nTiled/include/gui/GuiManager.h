@@ -1,3 +1,7 @@
+/*! @file GuiManager.h
+ *  @brief GuiManager.h contains the definition of the GuiManager class as 
+ *         well as supporting classes.
+ */
 #pragma once
 
 // ----------------------------------------------------------------------------
@@ -19,44 +23,59 @@ namespace gui {
 
 enum class GuiFocus;
 
+/*! @brief The GuiManager manages the dear, Imgui user interface of nTiled.
+ */
 class GuiManager {
 public:
   // ----------------------------------
   //  Constructor
   // ----------------------------------
-  /*!
-   * Construct a new GuiManager
+  /*! @brief Construct a new GuiManager with the given State
+   *  
+   * @param state The state of a nTiled execution
    */
   GuiManager(state::State& state);
 
   // ----------------------------------
   //  Interaction methods
   // ----------------------------------
+  /*! @brief Initialise this GuiManager with the given openGL context
+   * 
+   * @param window The openGL window created with GLFW
+   */
   void init(GLFWwindow& window);
 
-  /*!
-   * Update the state of this nTiled application through this GuiManager
+  /*! @brief Update the state of this nTiled application through this 
+   *         GuiManager.
    */
   void update();
 
-  /*!
-   * Render the state of this GuiManager on the screen
+  /*! @brief Render the gui managed by this GuiManager to the screen
    */
   void render();
 
 private:
-  /*! The state this GuiManager interacts with */
+  /*! @brief The state this GuiManager interacts with */
   state::State& state;
 
   // input handling
+  /*! @brief Update the Camera of this nTiled execution with collected 
+   *         user input
+   * 
+   * @param io The data collected by dear, ImGui library.
+   */
   void updateCamera(const ImGuiIO& io);
-  /*! Whether camera has focus or the GUI manager */
+
+  /*! @brief Whether camera has focus or the GUI manager */
   GuiFocus focus;
 
   // draw elements
+  /*! @brief Draw the TopMenu bar*/
   void drawTopMenu();
 };
 
+/*! @brief GuiFocus describes which part of the user-interface has focus.
+ */
 enum class GuiFocus {
   Camera,
   Gui
