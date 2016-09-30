@@ -1,3 +1,7 @@
+/*! @file AssIpmConstructor.h
+ *  @brief AssImpConstructor.h contains the definition of AssImpConstructor
+ *         which uses the AssImp library to construct Objects.
+ */
 #pragma once
 
 // ----------------------------------------------------------------------------
@@ -9,25 +13,29 @@
 namespace nTiled {
 namespace world {
 
+/*! @brief The AssImpConstructor is responsible for loading a single Mesh
+ *         through the AssImp library and constructing objects with this Mesh
+ */
 class AssImpConstructor : public PrimitiveConstructor {
 public:
-  /*!
-   * Construct a new Object constructor that modifies the specified world
-   * by adding objects with the specified mesh.
+  /*! @brief Construct a new Object constructor that modifies the specified world
+   *         by adding objects with the specified mesh.
+   * 
+   * @param path Path to the Mesh definition file.
+   * @param world World to which this AssImpConstructor should add the 
+   *        constructed objects.
    */
   AssImpConstructor(const std::string& path,
                     World& world);
 
-  /*!
-   * Add a new object with this AssImpConstructor's Mesh to this 
-   * AssImpConstructor's world
+  /*! @brief Add a new object with this AssImpConstructor's Mesh to this 
+   *         AssImpConstructor's world
    * 
-   * Param: 
-   *     name (const string&): name of the new Object
-   *     shader (pipeline::ShaderKey): the shader of the new Object
-   *     texture_map (map<string, string>): map containing the texture names
-   *     transformation_matrix (glm::mat4): transformation of this Object
-   *     is_rendered (bool): whether this object is rendered.
+   * @param name Name of the new Object
+   * @param shader The shader of the new Object
+   * @param texture_map Map containing the texture names
+   * @param transformation_matrix Transformation of this Object
+   * @param is_rendered Whether this object is rendered.
    */
   Object* add(const std::string& name,
               glm::mat4 transformation_matrix,
@@ -36,9 +44,9 @@ public:
               bool is_rendered);
 
 private:
-  /*! The world this AssImpConstructor modifies */
+  /*! @brief The world this AssImpConstructor modifies */
   World& world;
-  /*! Pointer to the mesh with which new objects are added */
+  /*! @brief Pointer to the mesh with which new objects are added */
   Mesh* obj_mesh;
 };
 
