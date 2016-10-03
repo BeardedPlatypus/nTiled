@@ -1,5 +1,12 @@
+/*! @file ForwardClusteredShaderLogged.h
+ *  @brief ForwardClusteredShaderLogged.h contains the definition of 
+ *         the logged version of ForwardClusteredShader.
+ */
 #pragma once
 
+// ----------------------------------------------------------------------------
+//  nTiled headers
+// ----------------------------------------------------------------------------
 #include "pipeline\forward\shaders\ForwardClusteredShader.h"
 #include "log\Logger.h"
 
@@ -7,6 +14,10 @@
 namespace nTiled {
 namespace pipeline {
 
+/*! @brief ForwardClusteredShaderLogged acts exactly like the 
+ *         ForwardClusteredShader however it tracks the execution time
+ *         of each defined function.
+ */
 class ForwardClusteredShaderLogged : public ForwardClusteredShader {
 public:
   ForwardClusteredShaderLogged(
@@ -25,6 +36,9 @@ protected:
   virtual void depthPass() override;
   virtual void loadLightClustering() override;
 
+  /*! @brief Reference to the ExecutionTimeLogger object which logs
+   *         the execution time of the constructed ForwardClusteredShaderLogged
+   */
   logged::ExecutionTimeLogger& logger;
 };
 

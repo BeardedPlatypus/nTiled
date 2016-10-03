@@ -1,3 +1,7 @@
+/*! @file DeferredAttenuatedShader.h 
+ *  @brief DeferredAttenuatedShader.h defines the DeferrerdAttenuatedShader
+ *         which implemnets the naive method to render in a Deferred Pipeline.
+ */
 #pragma once
 
 // ----------------------------------------------------------------------------
@@ -8,6 +12,10 @@
 namespace nTiled {
 namespace pipeline {
 
+/*! @brief DeferredAttenuatedShader implements the naive algorithm of 
+ *         rendering objects within a Deferred pipeline.
+ *         It inherits from the DeferredShader.
+ */
 class DeferredAttenuatedShader : public DeferredShader {
 public:
   DeferredAttenuatedShader(DeferredShaderId shader_id,

@@ -1,5 +1,12 @@
+/*! @file ForwardTiledShaderLogged.h
+ *  @brief ForwardTiledShaderLogged.h contains the definition of 
+ *         the logged version of ForwardTiledShader.
+ */
 #pragma once
 
+// ----------------------------------------------------------------------------
+//  nTiled headers
+// ----------------------------------------------------------------------------
 #include "pipeline\forward\shaders\ForwardTiledShader.h"
 #include "log\Logger.h"
 
@@ -7,6 +14,10 @@
 namespace nTiled {
 namespace pipeline {
 
+/*! @brief ForwardTiledShaderLogged acts exactly like the 
+ *         ForwardTiledShader however it tracks the execution time
+ *         of each defined function.
+ */
 class ForwardTiledShaderLogged : public ForwardTiledShader {
 public:
   ForwardTiledShaderLogged(
@@ -24,8 +35,11 @@ protected:
   virtual void renderObjects() override;
   virtual void loadLightGrid() override;
 
+  /*! @brief Reference to the ExecutionTimeLogger object which logs
+   *         the execution time of the constructed ForwardTiledShaderLogged
+   */
   logged::ExecutionTimeLogger& logger;
 };
 
-}
-}
+} // pipeline
+} // nTiled

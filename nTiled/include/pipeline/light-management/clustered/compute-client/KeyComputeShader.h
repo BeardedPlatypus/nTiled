@@ -1,3 +1,8 @@
+/*! @file KeyComputeShader.h
+ *  @brief KeyComputeShader.h contains the definitions of the 
+ *         KeyComputeShader used to calculate the keys of pixels within the
+ *         Clustered Shading algorithm. 
+ */
 #pragma once
 
 // ----------------------------------------------------------------------------
@@ -19,70 +24,85 @@ namespace nTiled {
 namespace pipeline {
 namespace clustered {
 
+/*! @brief KeyComputeShader is a ComputeShader responsible for calculating 
+ *         the k value per pixels and returning a texture containing all 
+ *         these values.
+ */
 class KeyComputeShader : public ComputeShader {
 public:
-  /*!
-   Construct a new KeyComputeShader, that takes at input a depth map texture 
-   reference.
+  /*! @brief Construct a new KeyComputeShader with the given parameters.
+   *
+   * @param depth_texture The depth texture which is used to calculate
+   *                      the k value of each pixel
+   * @param view Reference to the View this KeyComputeShader observes.
+   * @param tile_size The tile size in pixels that is used in this Clustered
+   *                  Shading algorithm.
    */
   KeyComputeShader(GLuint depth_texture,
                    const state::View& view,
                    glm::uvec2 tile_size);
+
+  /*! @brief Destruct this KeyComputeShader. */
   ~KeyComputeShader();
 
-  /*!
-   Compute the Key texture, which subdivides depth space into a discrete set 
-   of bins per tile.
+  /*! @brief Compute the Key texture, which subdivides depth space into 
+   *         a discrete set of bins per tile.
    */
   virtual void execute() override;
   
-  /*!
-   Get the opengl pointer to the k_texture to which this ComputeShader outputs
+  /*! @brief Get the opengl pointer to the k_texture to which this 
+   *         ComputeShader outputs
+   *
+   * @return openGL pointer to the k_texture of this KeyComputeShader.
    */
   virtual GLuint getKTexture() const { return this->k_texture; }
 
-  /*!
-   Visualise the k texture of this KeyComputeShader
+  /*! @brief Visualise the k texture of this KeyComputeShader
    */
   virtual void debugVisualise();
   
 protected:
   // Attributes
   // --------------------------------------------------------------------------
-  /*! Number of tiles */
+  /*! @brief Number of tiles */
   glm::uvec2 n_tiles;
 
   // Compute shader
   // --------------------------------------------------------------------------
-  /*!
-   Compile and load the compute shader of this KeyComputeShader
+  /*! @brief Compile and load the compute shader of this KeyComputeShader
    */
   void loadComputeShader();
 
-  /*! Compute shader reference */
+  /*! @brief openGL pointer to the KeyComputeShader in video memory. */
   GLuint key_compute_shader;
 
   // Program attributes
   //---------------------------------------------------------------------------
-  /*! Depth texture this KeyComputeShader acts upon */
+  /*! @brief Depth texture this KeyComputeShader acts upon */
   const GLuint depth_texture;
-  /*! K texture this KeyComputeShader writes too after each execute */
+  /*! @brief K texture this KeyComputeShader writes too after each execute */
   GLuint k_texture;
 
   // Debug componets
   //---------------------------------------------------------------------------
-  /*! Debug Shader for visualising k texture */
+  /*! @brief Debug Shader for visualising k texture */
   virtual void loadDebugVisualiseShaders();
 
+  /*! @brief openGL pointer to the KeyVisualise shader of this 
+   *         KeyComputeShader. */
   GLuint key_visualise_shader;
+  /*! @brief openGL pointer to the uniform value which holds the max k value */
   GLuint uniform_max_k;
 
+  /*! @brief pointer to the PipelineObject holding a screenspace quad. */
   PipelineObject* display_quad;
 
+  /*! @brief The tile size in pixels of this KeyComputeShader. */
   glm::uvec2 tile_size;
+  /*! @brief The size of the viewport in pixels of this KeyComputeShader. */
   glm::uvec2 viewport;
 };
 
-}
-}
-}
+} // clustered
+} // pipeline
+} // nTiled

@@ -1,5 +1,12 @@
+/*! @file ForwardAttenuatedShaderLogged.h
+ *  @brief ForwardAttenuatedShaderLogged.h contains the definition of 
+ *         the logged version of ForwardAttenuatedShader.
+ */
 #pragma once
 
+// ----------------------------------------------------------------------------
+//  nTiled headers
+// ----------------------------------------------------------------------------
 #include "pipeline\forward\shaders\ForwardAttenuatedShader.h"
 #include "log\Logger.h"
 
@@ -7,6 +14,10 @@
 namespace nTiled {
 namespace pipeline {
 
+/*! @brief ForwardAttenuatedShaderLogged acts exactly like the 
+ *         ForwardAttenuatedShader however it tracks the execution time
+ *         of each defined function.
+ */
 class ForwardAttenuatedShaderLogged : public ForwardAttenuatedShader {
 public:
   ForwardAttenuatedShaderLogged(
@@ -21,6 +32,9 @@ public:
 protected:
   virtual void renderObjects() override;
 
+  /*! @brief Reference to the ExecutionTimeLogger object which logs
+   *         the execution time of the constructed ForwardAttenuatedShaderLogged
+   */
   logged::ExecutionTimeLogger& logger;
 };
 

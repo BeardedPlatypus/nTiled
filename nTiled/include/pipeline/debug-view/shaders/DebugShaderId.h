@@ -1,10 +1,13 @@
+/*! @file DebugShaderId.h
+ *  @brief DebugShaderId.h contains the DebugShaderId enum 
+ *         specifying all DebugShaders available in nTiled.
+ */
 #pragma once
 
 namespace nTiled {
 namespace pipeline {
 
-/*!
- * Enum specifying all the possible deferred shaders
+/*! @brief Enum specifying all the possible DebugShaders
  */
 enum class DebugShaderId {
   TileDisplayShader,

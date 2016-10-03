@@ -1,3 +1,7 @@
+/*! @file LightProjector.h
+ *  @brief LightProjector.h contains the definition of the LightProjector 
+ *         class
+ */
 #pragma once
 
 // ----------------------------------------------------------------------------
@@ -15,24 +19,26 @@
 namespace nTiled {
 namespace pipeline {
 
+/*! @brief LightProjector is responsible for calculating the projection
+ *         of lights onto screenspace. It serves as a base class
+ *         for all different LightProjectors.
+ */
 class LightProjector {
 public:
   virtual ~LightProjector() {}
 
-  /*!
-   Compute the projection of light in to the tiles 
-
-   Param:
-       light (const PointLight&): the light that is projected onto the tiles.
-       camera (const Camera&): the camera used to project the light onto 
-                               the grid.
-       viewport (uvec2): size of the viewport in pixels
-       tilesize (uvec2): size of a single tile in pixels
-       projection (uvec4&): the result of the projection in tile indices
-   Return:
-       True if a projection exists given the parameters. The result is then 
-       returned through the projection parameter.
-       False if no projection exists. The projection parameter is untouched.
+  /*! @brief Compute the projection of light in to the tiles 
+   *
+   * @param light The PointLight that is projected onto the tiles.
+   * @param camera The Camera used to project the light onto the grid.
+   * @param viewport Size of the viewport in pixels
+   * @param tilesize Size of a single tile in pixels
+   * @param projection The result of the projection in tile indices
+   *
+   * @Rreturn True if a projection exists given the parameters. The result is 
+   *          then returned through the projection parameter.
+   *          False if no projection exists. The projection parameter is 
+   *          untouched.
    */
   virtual bool computeProjection(
     const world::PointLight& light,

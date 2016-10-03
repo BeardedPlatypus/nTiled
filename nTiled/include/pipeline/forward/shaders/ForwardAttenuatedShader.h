@@ -1,3 +1,7 @@
+/*! @file ForwardAttenuatedShader.h 
+ *  @brief ForwardAttenuatedShader.h defines the ForwardAttenuatedShader
+ *         which implemnets the naive method to render in a Forward Pipeline.
+ */
 #pragma once
 
 // ----------------------------------------------------------------------------
@@ -8,6 +12,10 @@
 namespace nTiled {
 namespace pipeline {
 
+/*! @brief ForwardAttenuatedShader implements the naive algorithm of 
+ *         rendering objects within a Forward pipeline.
+ *         It inherits from the ForwardShader.
+ */
 class ForwardAttenuatedShader : public ForwardShader {
 public:
   ForwardAttenuatedShader(ForwardShaderId shader_id,

@@ -1,3 +1,7 @@
+/*! @file DeferredShader.h
+ *  @brief DeferredShader.h contains the defition of the DeferredShader used
+ *         in the Deferred shading pipeline.
+ */
 #pragma once
 
 // ----------------------------------------------------------------------------
@@ -21,42 +25,39 @@
 namespace nTiled {
 namespace pipeline {
 
-/*!
-DeferredShader is responsible for rendering any objects assigned to it,
-with the specified openGL shader code utilising a deferred pipeline.
+/*! @brief DeferredShader is responsible for rendering any objects assigned 
+ *         to it, with the specified openGL shader code utilising a deferred 
+ *         pipeline.
 */
 class DeferredShader {
 public:
-  // --------------------------------------------------------------------
+  // --------------------------------------------------------------------------
   //  Constructor
-  // --------------------------------------------------------------------
-  /*!
-  Construct a new DeferredShader
+  // --------------------------------------------------------------------------
+  /*! @brief Construct a new DeferredShader with the specified parameters
 
-  Construct a new DeferredShader with the specified a DeferredShaderId
-  and vertex and fragment shader paths to the geometry and light pass
-  shaders.
-
-  Args:
-      shader_id (DeferredShaderId): the DeferredShaderId of this new
-                                    DeferredShader
-      path_geometry_pass_vertex_shader (const std::string&): path to the
-           geometry pass vertex shader file.
-      path_geometry_pass_fragment_shader (const std::string&): path to the
-           geometry pass fragment shader file.
-      path_light_pass_vertex_shader (const std::string&): path to the
-           light pass vertex shader file.
-      path_geometry_pass_fragment_shader (const std::string&): path to the
-          light pass fragment shader file.
-
-      world (World&): the world containing the objects and lights this 
-                      Shader observes
-      view (View&): the view and camera this shader uses to shade.
-
-  Returns:
-  A new DeferredShader of DeferredShaderId with the given shader
-  files paths.
-  */
+   * Construct a new DeferredShader with the specified a DeferredShaderId
+   * and vertex and fragment shader paths to the geometry and light pass
+   * shaders.
+   *
+   * @param shader_id The DeferredShaderId of this new DeferredShader
+   * @param path_geometry_pass_vertex_shader Path to the geometry pass 
+   *                                         vertex shader file.
+   * @param path_geometry_pass_fragment_shader Path to the  geometry pass 
+   *                                           fragment shader file.
+   * @param path_light_pass_vertex_shader Path to the light pass vertex 
+   *                                      shader file.
+   * @param path_light_pass_fragment_shader Path to the light pass 
+   *                                        fragment shader file.
+   * @param world Reference to the world containing the objects and lights this 
+   *              Shader observes
+   * @param view Reference to the View and Camera this shader uses to shade.
+   * @param p_output_buffer openGL pointer to the output buffer to which
+   *                        this DeferredShader should render.
+   * 
+   * @return A new DeferredShader of DeferredShaderId with the given shader 
+   *         files paths.
+   */
   DeferredShader(DeferredShaderId shader_id,
                  const std::string& path_geometry_pass_vertex_shader,
                  const std::string& path_geometry_pass_fragment_shader,
@@ -69,27 +70,22 @@ public:
   // --------------------------------------------------------------------
   //  Attribute Getters
   // --------------------------------------------------------------------
-  /*!
-  Get the DeferredShaderId of this DeferredShader
-
-  Returns:
-       The ForwardShaderId of this ForwardShader.
-  */
+  /*! @brief Get the DeferredShaderId of this DeferredShader
+   *
+   * @return The ForwardShaderId of this ForwardShader.
+   */
   DeferredShaderId getId() const { return this->id; }
 
   // --------------------------------------------------------------------------
   //  Render methods
   // --------------------------------------------------------------------------
-  /*!
-  Render all objects of this DeferredShader
-  */
+  /*! @brief Render all objects of this DeferredShader
+   */
   virtual void render();
 
-  /*!
-   Set the output buffer of this DeferredShader to p_output_buffer
-
-   Param:
-       p_output_buffer (GLint): the new output buffer of this shader
+  /*! @brief  Set the output buffer of this DeferredShader to p_output_buffer
+   * 
+   * @param p_output_buffer the new output buffer of this shader
    */
   virtual void setOutputBuffer(GLint p_output_buffer) { 
     this->p_output_buffer = p_output_buffer; 
@@ -99,61 +95,82 @@ protected:
   // --------------------------------------------------------------------------
   //  glsl management
   // --------------------------------------------------------------------------
-  /*!
-  Load the ShaderFiles specified in with the paths during construction
-  */
+  /*! @brief Load the ShaderFiles specified in with the paths during 
+   *         construction
+   *
+   * @param path_geometry_pass_vertex_shader Path to the geometry pass 
+   *                                         vertex shader file.
+   * @param path_geometry_pass_fragment_shader Path to the  geometry pass 
+   *                                           fragment shader file.
+   * @param path_light_pass_vertex_shader Path to the light pass vertex 
+   *                                      shader file.
+   * @param path_light_pass_fragment_shader Path to the light pass 
+   *                                        fragment shader file.
+   */
   virtual void loadShaders(const std::string& path_geometry_vert_shader,
                            const std::string& path_geometry_frag_shader,
                            const std::string& path_light_vert_shader,
                            const std::string& path_light_frag_shader);
 
-  /*!
-   Load all objects in the world
+  /*! @brief Load all objects in the world
    */
   virtual void loadObjects();
 
-  /*!
-   Construct a PipelineObject from the specified Object and add to this shader
+  /*! @brief Construct a PipelineObject from the specified Object and 
+   *         add to this shader
+   * 
+   * @param obj Reference to the object of which a PipelineObject should
+   *            be constructed.
+   * @param vao openGL pointer to Vertex Array Object (vao) of this new 
+   *            PipelineObject
+   * @param element_buffer openGL pointer to the element buffer of this
+   *                       PipelineObject
    */
   virtual void constructPipelineObject(const world::Object& obj,
                                        GLuint vao,
                                        GLuint element_buffer);
 
-  /*!
-   Load all lights in the world
+  /*! @brief Load all lights in the world
    */
   virtual void loadLights();
 
-  /*!
-   Construct a PipelineLight from the specified Light and add to this Shader
+  /*! @brief Construct a PipelineLight from the specified Light and 
+   *         add to this Shader
+   *
+   * @param light Reference to the PointLight of which a new PipelineLight
+   *              should be created.
    */
   virtual void constructPipelineLight(const world::PointLight& light);
+
   // --------------------------------------------------------------------------
   //  Render subfunctions
   // --------------------------------------------------------------------------
-  /*!
-  Render the geometry (first) pass of this DeferredShader
-
-  Render all the attributes needed for the light (second) pass
-  of this DeferredShader into the GBuffer of this DeferredShader.
-  */
+  /*! @brief Render the geometry (first) pass of this DeferredShader
+   *
+   * Render all the attributes needed for the light (second) pass
+   * of this DeferredShader into the GBuffer of this DeferredShader.
+   */
   virtual void renderGeometryPass();
 
+  /*! @brief Render all the objects for the Geometry pass of this 
+   *         DeferredShader.
+   */
   virtual void renderGeometryPassObjects();
 
-  /*!
-  Render the light (second) pass of this DeferredShader
-
-  Render a quad and use the GBuffer to obtain the attributes of the
-  scene to render the frame.
-  */
+  /*! @brief  Render the light (second) pass of this DeferredShader
+   *
+   * Render a quad and use the GBuffer to obtain the attributes of the
+   * scene to render the frame.
+   */
   virtual void renderLightPass();
 
+  /*! @brief Render all objects for the Light pass of this 
+   *         DeferredShader
+   */
   virtual void renderLightPassObjects();
 
-  /*!
-  Render the different GBuffers to frame.
-  */
+  /*! @brief Render the different GBuffers to frame.
+   */
   virtual void renderBuffers();
 
   // --------------------------------------------------------------------------
@@ -162,38 +179,44 @@ protected:
 
   // client side attributes
   // --------------------------------------------------------------------------
-  /*! DeferredShaderId of this DeferredShader */
+  /*! @brief DeferredShaderId of this DeferredShader */
   const DeferredShaderId id;
 
-  /*! GBuffer of this DeferredShader */
+  /*! @brief GBuffer of this DeferredShader */
   GBuffer gBuffer;
 
-  /*! The world this shader observes */
+  /*! @brief The world this shader observes */
   const world::World& world;
-  /*! The view this shader uses */
+  /*! @brief The view this shader uses */
   const state::View& view;
 
   // pipeline objects
   // --------------------------------------------------------------------------
+  /*! Vector containing pointers to all PipelineObjects of this DeferredShader 
+   */
   std::vector<PipelineObject*> ps_obj;
+
+  /*! Vector containing all PipelineLights of this DeferredShader. */
   std::vector<PipelineLight> lights;
 
   // glsl attributes
   // --------------------------------------------------------------------------
-  /*! GLuint pointer to the geometry pass ShaderProgam */
+  /*! @brief GLuint pointer to the geometry pass ShaderProgam */
   GLuint geometry_pass_sp;
-  /*! GLuint pointer to the light pass ShaderProgram */
+  /*! @brief GLuint pointer to the light pass ShaderProgram */
   GLuint light_pass_sp;
 
-  /*!
-  GLuint pointer to the Uniform Buffer Object holding the internal
-  light data.
+  /*! @brief GLuint pointer to the Uniform Buffer Object holding the internal
+   *         light data.
   */
   GLuint light_ubo;
 
-  /*! PipelineObject of the fullscreen quad used in the Light Pass */
+  /*! @brief PipelineObject of the fullscreen quad used in the Light Pass */
   PipelineObject* fullscreen_quad;
 
+  /*! @brief output buffer that should be restored upon changing the 
+   *         framebuffer, and to which the final result should be written 
+   */
   GLint p_output_buffer;
 };
 

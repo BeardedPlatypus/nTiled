@@ -1,10 +1,13 @@
+/*! @file ForwardShaderId.h
+ *  @brief ForwardShaderId.h contains the ForwardShaderId enum 
+ *         specifying all ForwardShaders available in nTiled.
+ */
 #pragma once
 
 namespace nTiled {
 namespace pipeline {
 
-/*!
-* Enum specifying all the possible forward shaders
+/*! @brief Enum specifying all the possible forward shaders
 */
 enum class ForwardShaderId {
   //  Regular Forward Shaders

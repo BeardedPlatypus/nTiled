@@ -1,10 +1,13 @@
+/*! @file DeferredShaderId.h
+ *  @brief DeferredShaderId.h contains the DeferredShaderId enum
+ *         specifying all the DeferredShaders available in nTiled.
+ */
 #pragma once
 
 namespace nTiled {
 namespace pipeline {
 
-/*!
- * Enum specifying all the possible deferred shaders
+/*! @brief Enum specifying all the possible deferred shaders
  */
 enum class DeferredShaderId {
   //  Regular Deferred Shaders
