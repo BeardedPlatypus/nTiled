@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="_key_sort_and_compact_shader_8h" kind="file" language="C++">
+    <compoundname>KeySortAndCompactShader.h</compoundname>
+    <includes local="no">glad\glad.h</includes>
+    <includes local="no">glm\glm.hpp</includes>
+    <includes local="no">vector</includes>
+    <includes refid="_compute_shader_8h" local="yes">pipeline\light-management\clustered\compute-client\ComputeShader.h</includes>
+    <includes refid="_state_view_8h" local="yes">state\StateView.h</includes>
+    <includedby refid="_clustered_light_manager_8h" local="yes">nTiled/include/pipeline/light-management/clustered/ClusteredLightManager.h</includedby>
+    <includedby refid="_key_sort_and_compact_shader_8cpp" local="yes">nTiled/src/pipeline/light-management/clustered/compute-client/KeySortAndCompactShader.cpp</includedby>
+    <incdepgraph>
+      <node id="1200">
+        <label>camera\CameraConstructionData.h</label>
+        <link refid="_camera_construction_data_8h"/>
+        <childnode refid="1192" relation="include">
+        </childnode>
+      </node>
+      <node id="1190">
+        <label>nTiled/include/pipeline/light-management/clustered/compute-client/KeySortAndCompactShader.h</label>
+        <link refid="_key_sort_and_compact_shader_8h"/>
+        <childnode refid="1191" relation="include">
+        </childnode>
+        <childnode refid="1192" relation="include">
+        </childnode>
+        <childnode refid="1193" relation="include">
+        </childnode>
+        <childnode refid="1194" relation="include">
+        </childnode>
+        <childnode refid="1195" relation="include">
+        </childnode>
+      </node>
+      <node id="1194">
+        <label>pipeline\light-management\clustered\compute-client\ComputeShader.h</label>
+        <link refid="_compute_shader_8h"/>
+      </node>
+      <node id="1191">
+        <label>glad\glad.h</label>
+      </node>
+      <node id="1196">
+        <label>camera\Camera.h</label>
+        <link refid="_camera_8h"/>
+        <childnode refid="1192" relation="include">
+        </childnode>
+        <childnode refid="1197" relation="include">
+        </childnode>
+        <childnode refid="1199" relation="include">
+        </childnode>
+        <childnode refid="1200" relation="include">
+        </childnode>
+      </node>
+      <node id="1192">
+        <label>glm\glm.hpp</label>
+      </node>
+      <node id="1195">
+        <label>state\StateView.h</label>
+        <link refid="_state_view_8h"/>
+        <childnode refid="1196" relation="include">
+        </childnode>
+      </node>
+      <node id="1197">
+        <label>camera\CameraControl.h</label>
+        <link refid="_camera_control_8h"/>
+        <childnode refid="1198" relation="include">
+        </childnode>
+        <childnode refid="1193" relation="include">
+        </childnode>
+        <childnode refid="1192" relation="include">
+        </childnode>
+        <childnode refid="1199" relation="include">
+        </childnode>
+      </node>
+      <node id="1193">
+        <label>vector</label>
+      </node>
+      <node id="1198">
+        <label>imgui.h</label>
+      </node>
+      <node id="1199">
+        <label>camera\CameraData.h</label>
+        <link refid="_camera_data_8h"/>
+        <childnode refid="1192" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1202">
+        <label>nTiled/include/pipeline/light-management/clustered/ClusteredLightManager.h</label>
+        <link refid="_clustered_light_manager_8h"/>
+        <childnode refid="1203" relation="include">
+        </childnode>
+        <childnode refid="1205" relation="include">
+        </childnode>
+        <childnode refid="1207" relation="include">
+        </childnode>
+      </node>
+      <node id="1201">
+        <label>nTiled/include/pipeline/light-management/clustered/compute-client/KeySortAndCompactShader.h</label>
+        <link refid="_key_sort_and_compact_shader_8h"/>
+        <childnode refid="1202" relation="include">
+        </childnode>
+      </node>
+      <node id="1204">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h</label>
+        <link refid="_deferred_clustered_shader_logged_8h_source"/>
+      </node>
+      <node id="1206">
+        <label>nTiled/include/pipeline/forward/shaders/logged/ForwardClusteredShaderLogged.h</label>
+        <link refid="_forward_clustered_shader_logged_8h"/>
+      </node>
+      <node id="1205">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardClusteredShader.h</label>
+        <link refid="_forward_clustered_shader_8h"/>
+        <childnode refid="1206" relation="include">
+        </childnode>
+      </node>
+      <node id="1207">
+        <label>nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h</label>
+        <link refid="_clustered_light_manager_logged_8h"/>
+      </node>
+      <node id="1203">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredClusteredShader.h</label>
+        <link refid="_deferred_clustered_shader_8h"/>
+        <childnode refid="1204" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader" prot="public">nTiled::pipeline::clustered::KeySortAndCompactShader</innerclass>
+    <innernamespace refid="namespacen_tiled">nTiled</innernamespace>
+    <innernamespace refid="namespacen_tiled_1_1pipeline">nTiled::pipeline</innernamespace>
+    <innernamespace refid="namespacen_tiled_1_1pipeline_1_1clustered">nTiled::pipeline::clustered</innernamespace>
+    <briefdescription>
+<para><ref refid="_key_sort_and_compact_shader_8h" kindref="compound">KeySortAndCompactShader.h</ref> contains the definition of the KeySortAndCompactShader. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="5"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Libraries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glad\glad.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm\glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>nTiled<sp/>headers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_compute_shader_8h" kindref="compound">pipeline\light-management\clustered\compute-client\ComputeShader.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_state_view_8h" kindref="compound">state\StateView.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacen_tiled" kindref="compound">nTiled</ref><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">pipeline<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">clustered<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader" kindref="compound">KeySortAndCompactShader</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_compute_shader" kindref="compound">ComputeShader</ref><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructor<sp/>|<sp/>Destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1ac8436702aeb4f18f353683212cadd367" kindref="member">KeySortAndCompactShader</ref>(GLuint<sp/>k_tex,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref>&amp;<sp/>view,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::uvec2<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1ae6b4b8093028a63743a165b60b847f75" kindref="member">tile_size</ref>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Execute</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a76a87ca39265b4e1dea23e408e48cc49" kindref="member">execute</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Attribute<sp/>access<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="62" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1addbde366f8ba5c1de8a3a5c727a094c3" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1addbde366f8ba5c1de8a3a5c727a094c3" kindref="member">getIndexTexture</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a505b7b5bd304c40308b3f8bd953b1401" kindref="member">cluster_index_texture</ref>;<sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a1d146ddb5a50ab6c754f1c91f889b67f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;GLushort&gt;<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a1d146ddb5a50ab6c754f1c91f889b67f" kindref="member">getNIndicesTiles</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1abc17076ac0dc58424a27f087771db09a" kindref="member">n_indices_tiles</ref>;<sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a506ac0c286d89c25ca58765a5f75df2e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::vector&lt;GLushort&gt;<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a506ac0c286d89c25ca58765a5f75df2e" kindref="member">getKValuesTiles</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a464d1bffe42009726c91e5bca2d71597" kindref="member">k_values_tiles</ref>;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="85" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1abcbc8e91d72644095fa829fe9bb35957" refkind="member"><highlight class="normal"><sp/><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1abcbc8e91d72644095fa829fe9bb35957" kindref="member">key_sort_shader</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>input</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="90" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1ac05d651fd34b0976bb29a71359634ce2" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1ac05d651fd34b0976bb29a71359634ce2" kindref="member">k_texture</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>output</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="95" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a505b7b5bd304c40308b3f8bd953b1401" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a505b7b5bd304c40308b3f8bd953b1401" kindref="member">cluster_index_texture</ref>;</highlight></codeline>
+<codeline lineno="97" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a9c475df0a0aea1f52172c4f9200900ed" refkind="member"><highlight class="normal"><sp/><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a9c475df0a0aea1f52172c4f9200900ed" kindref="member">unique_clusters_texture</ref>;</highlight></codeline>
+<codeline lineno="99" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1af64eb44d80a8396e28bbcfa99dd5f303" refkind="member"><highlight class="normal"><sp/><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1af64eb44d80a8396e28bbcfa99dd5f303" kindref="member">n_clusters_texture</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1abc17076ac0dc58424a27f087771db09a" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;GLushort&gt;<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1abc17076ac0dc58424a27f087771db09a" kindref="member">n_indices_tiles</ref>;</highlight></codeline>
+<codeline lineno="106" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a464d1bffe42009726c91e5bca2d71597" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;GLushort&gt;<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a464d1bffe42009726c91e5bca2d71597" kindref="member">k_values_tiles</ref>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Management<sp/>functions<sp/>and<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="113"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a9d90c54a5cc7cf92346f1278fdf605fe" kindref="member">loadComputeShader</ref>();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1acd623b5958e07b7b10e595cfaff50450" kindref="member">specifyTexture</ref>(GLuint<sp/>tex_name,</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GLenum<sp/>format,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::uvec2<sp/>dimensions);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1ae6b4b8093028a63743a165b60b847f75" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::uvec2<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1ae6b4b8093028a63743a165b60b847f75" kindref="member">tile_size</ref>;</highlight></codeline>
+<codeline lineno="124" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a6d14630917a3cd43094b444d8ab8c96c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::uvec2<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a6d14630917a3cd43094b444d8ab8c96c" kindref="member">n_tiles</ref>;</highlight></codeline>
+<codeline lineno="126" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1ad47a881c2b073bbd84bb835cd48aaa43" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::uvec2<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1ad47a881c2b073bbd84bb835cd48aaa43" kindref="member">viewport</ref>;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>DebugMethods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="132"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader_1a4e7b081429685ca4fbf545fb01464c51" kindref="member">printToConsole</ref>(std::string<sp/>message,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GLushort*<sp/>values,<sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>total_size);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeySortAndCompactShader.h"/>
+  </compounddef>
+</doxygen>

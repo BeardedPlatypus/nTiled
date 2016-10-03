@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::TiledLightManagerLoggedBuilder</compoundname>
+    <basecompoundref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_builder" prot="public" virt="non-virtual">nTiled::pipeline::TiledLightManagerBuilder</basecompoundref>
+    <includes refid="_tiled_light_manager_logged_8h" local="no">TiledLightManagerLogged.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder_1a869b8d9eac6868ee55f8a19391bbf567" prot="protected" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+        <definition>logged::ExecutionTimeLogger&amp; nTiled::pipeline::TiledLightManagerLoggedBuilder::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+<para>Reference to the ExecutionTimeLogger object which logs the execution time of the constructed TiledLightManagers. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManagerLogged.h" line="64" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/TiledLightManagerLogged.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder_1a79c1cff534288369596912d3b4b22138" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::TiledLightManagerLoggedBuilder::TiledLightManagerLoggedBuilder</definition>
+        <argsstring>(logged::ExecutionTimeLogger &amp;logger)</argsstring>
+        <name>TiledLightManagerLoggedBuilder</name>
+        <param>
+          <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+          <declname>logger</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new TiledLightmanagerLoggedBuilder with the the specified logger object. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>logger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ExecutionTimeLogger used in all <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged" kindref="compound">TiledLightManagerLogged</ref> created by this TiledLightmanagerLoggedBuilder. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManagerLogged.h" line="52" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/TiledLightManagerLogged.cpp" bodystart="42" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder_1a6f847b0d53f5661a97696a8a851917b4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> *</type>
+        <definition>TiledLightManager * nTiled::pipeline::TiledLightManagerLoggedBuilder::constructNewTiledLightManager</definition>
+        <argsstring>(const world::World &amp;world, const state::View &amp;view, GLuint tile_width, GLuint tile_height, const LightProjector &amp;projector) const override</argsstring>
+        <name>constructNewTiledLightManager</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_builder_1a98622f54b85ba5400d2aa3b0ee0de8f5">constructNewTiledLightManager</reimplements>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref> &amp;</type>
+          <declname>world</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>tile_width</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>tile_height</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1pipeline_1_1_light_projector" kindref="compound">LightProjector</ref> &amp;</type>
+          <declname>projector</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> with the given parameters and return a pointer to it. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>world</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the world which the new <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> observes. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>view</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the view which the new <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> observes. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Width of a tile of this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Height of a tile of the new <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>projector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the <ref refid="classn_tiled_1_1pipeline_1_1_light_projector" kindref="compound">LightProjector</ref> the new TiledLightmanager uses to project lights on clipspace coordinates.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+A pointer to the new <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> containing a new <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref>, observing the specified World and View. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManagerLogged.h" line="54" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/TiledLightManagerLogged.cpp" bodystart="46" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder" kindref="compound">TiledLightManagerLoggedBuilder</ref> constructs <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged" kindref="compound">TiledLightManagerLogged</ref> instead of <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>, in every other regard it acts the the same as <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_builder" kindref="compound">TiledLightManagerBuilder</ref>. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="635">
+        <label>nTiled::pipeline::TiledLightManagerLoggedBuilder</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder"/>
+        <childnode refid="636" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="636">
+        <label>nTiled::pipeline::TiledLightManagerBuilder</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_builder"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="639">
+        <label>nTiled::logged::ExecutionTimeLogger</label>
+        <link refid="classn_tiled_1_1logged_1_1_execution_time_logger"/>
+        <childnode refid="640" relation="usage">
+          <edgelabel>clock</edgelabel>
+        </childnode>
+      </node>
+      <node id="640">
+        <label>nTiled::Clock</label>
+        <link refid="classn_tiled_1_1_clock"/>
+      </node>
+      <node id="637">
+        <label>nTiled::pipeline::TiledLightManagerLoggedBuilder</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder"/>
+        <childnode refid="638" relation="public-inheritance">
+        </childnode>
+        <childnode refid="639" relation="usage">
+          <edgelabel>logger</edgelabel>
+        </childnode>
+      </node>
+      <node id="638">
+        <label>nTiled::pipeline::TiledLightManagerBuilder</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_builder"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManagerLogged.h" line="43" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/TiledLightManagerLogged.h" bodystart="43" bodyend="65"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder_1a6f847b0d53f5661a97696a8a851917b4" prot="public" virt="virtual"><scope>nTiled::pipeline::TiledLightManagerLoggedBuilder</scope><name>constructNewTiledLightManager</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder_1a869b8d9eac6868ee55f8a19391bbf567" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::TiledLightManagerLoggedBuilder</scope><name>logger</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_builder_1a2fcdf894890d0a31f25a97a0a382ffc3" prot="public" virt="non-virtual"><scope>nTiled::pipeline::TiledLightManagerLoggedBuilder</scope><name>TiledLightManagerBuilder</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_builder_1a79c1cff534288369596912d3b4b22138" prot="public" virt="non-virtual"><scope>nTiled::pipeline::TiledLightManagerLoggedBuilder</scope><name>TiledLightManagerLoggedBuilder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

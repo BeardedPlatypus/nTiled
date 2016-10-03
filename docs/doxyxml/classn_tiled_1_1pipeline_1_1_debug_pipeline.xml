@@ -1,0 +1,289 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_debug_pipeline" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::DebugPipeline</compoundname>
+    <basecompoundref refid="classn_tiled_1_1pipeline_1_1_pipeline" prot="public" virt="non-virtual">nTiled::pipeline::Pipeline</basecompoundref>
+    <includes refid="_debug_pipeline_8h" local="no">DebugPipeline.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_debug_pipeline_1aea7829015cce8e2693e86dc533faa78c" prot="private" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">Pipeline</ref> *</type>
+        <definition>Pipeline* nTiled::pipeline::DebugPipeline::frame_pipeline</definition>
+        <argsstring></argsstring>
+        <name>frame_pipeline</name>
+        <briefdescription>
+<para>The pipeline that is responsible for rendering the regular image. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="43" column="1" bodyfile="nTiled/include/pipeline/debug-view/DebugPipeline.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a83faa191328be81c7d87bb865b0c9424" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classn_tiled_1_1pipeline_1_1_debug_shader" kindref="compound">DebugShader</ref> * &gt;</type>
+        <definition>std::vector&lt;DebugShader*&gt; nTiled::pipeline::DebugPipeline::debug_shaders</definition>
+        <argsstring></argsstring>
+        <name>debug_shaders</name>
+        <briefdescription>
+<para>A vector containing pointers to all the DebugShaders in this <ref refid="classn_tiled_1_1pipeline_1_1_debug_pipeline" kindref="compound">DebugPipeline</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="47" column="1" bodyfile="nTiled/include/pipeline/debug-view/DebugPipeline.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a2af33a35332775e0b252fe7efbda9457" prot="private" static="no" mutable="no">
+        <type><ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref> *</type>
+        <definition>PipelineObject* nTiled::pipeline::DebugPipeline::display_quad</definition>
+        <argsstring></argsstring>
+        <name>display_quad</name>
+        <briefdescription>
+<para>Pointer to a <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref> quad covering the screen. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="50" column="1" bodyfile="nTiled/include/pipeline/debug-view/DebugPipeline.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a3ee78b534e9af7df726af7de3c2a3a43" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint nTiled::pipeline::DebugPipeline::p_fbo</definition>
+        <argsstring></argsstring>
+        <name>p_fbo</name>
+        <briefdescription>
+<para>Framebuffer object pointer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="55" column="1" bodyfile="nTiled/include/pipeline/debug-view/DebugPipeline.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a5fba9278a9190e9ed87f40bf8812a28a" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint nTiled::pipeline::DebugPipeline::p_pass_result</definition>
+        <argsstring></argsstring>
+        <name>p_pass_result</name>
+        <briefdescription>
+<para>openGL pointer to the result of the pass </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="58" column="1" bodyfile="nTiled/include/pipeline/debug-view/DebugPipeline.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_debug_pipeline_1ae16e151bef6ddb909ec618bf8a1a1493" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint nTiled::pipeline::DebugPipeline::display_pipeline_sp</definition>
+        <argsstring></argsstring>
+        <name>display_pipeline_sp</name>
+        <briefdescription>
+<para>openGL pointer to the display pipeline frame buffer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="60" column="1" bodyfile="nTiled/include/pipeline/debug-view/DebugPipeline.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_debug_pipeline_1ab1dcd90953ca02d054da5f0f73808d24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::DebugPipeline::DebugPipeline</definition>
+        <argsstring>(Pipeline *frame_pipeline, state::State &amp;state)</argsstring>
+        <name>DebugPipeline</name>
+        <param>
+          <type><ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">Pipeline</ref> *</type>
+          <declname>frame_pipeline</declname>
+        </param>
+        <param>
+          <type><ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">state::State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_debug_pipeline" kindref="compound">DebugPipeline</ref> with the specified parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frame_pipeline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pipeline that is responsible for rendering the regular image. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state this <ref refid="classn_tiled_1_1pipeline_1_1_debug_pipeline" kindref="compound">DebugPipeline</ref> observes. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="33" column="1" bodyfile="nTiled/src/pipeline/debug-view/DebugPipeline.cpp" bodystart="28" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a84b42b5a7ac51f980a33768d757cd75f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::DebugPipeline::~DebugPipeline</definition>
+        <argsstring>()</argsstring>
+        <name>~DebugPipeline</name>
+        <briefdescription>
+<para>Destruct this <ref refid="classn_tiled_1_1pipeline_1_1_debug_pipeline" kindref="compound">DebugPipeline</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="37" column="1" bodyfile="nTiled/src/pipeline/debug-view/DebugPipeline.cpp" bodystart="124" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_debug_pipeline_1ab43bd4c4c9f7c90586245bb56ee0414c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::DebugPipeline::render</definition>
+        <argsstring>() override</argsstring>
+        <name>render</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_pipeline_1a3d1eac3756c298d3061df472a3fb08e0">render</reimplements>
+        <briefdescription>
+<para>Render the state of this <ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">Pipeline</ref> into the framebuffer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="39" column="1" bodyfile="nTiled/src/pipeline/debug-view/DebugPipeline.cpp" bodystart="130" bodyend="160"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1_debug_pipeline" kindref="compound">DebugPipeline</ref> is responsible for rendering any debug information. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="97">
+        <label>nTiled::pipeline::DebugPipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_debug_pipeline"/>
+        <childnode refid="98" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="98">
+        <label>nTiled::pipeline::Pipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_pipeline"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="111">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="105">
+        <label>nTiled::state::TextureCatalog</label>
+        <link refid="classn_tiled_1_1state_1_1_texture_catalog"/>
+      </node>
+      <node id="102">
+        <label>nTiled::state::Log</label>
+        <link refid="structn_tiled_1_1state_1_1_log"/>
+      </node>
+      <node id="112">
+        <label>nTiled::pipeline::PipelineObject</label>
+        <link refid="structn_tiled_1_1pipeline_1_1_pipeline_object"/>
+      </node>
+      <node id="107">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="101">
+        <label>nTiled::state::State</label>
+        <link refid="structn_tiled_1_1state_1_1_state"/>
+        <childnode refid="102" relation="usage">
+          <edgelabel>log</edgelabel>
+        </childnode>
+        <childnode refid="103" relation="usage">
+          <edgelabel>p_world</edgelabel>
+        </childnode>
+        <childnode refid="104" relation="usage">
+          <edgelabel>shading</edgelabel>
+        </childnode>
+        <childnode refid="105" relation="usage">
+          <edgelabel>texture_catalog</edgelabel>
+        </childnode>
+        <childnode refid="106" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+      </node>
+      <node id="108">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="109" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="107" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="110" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="99">
+        <label>nTiled::pipeline::DebugPipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_debug_pipeline"/>
+        <childnode refid="100" relation="public-inheritance">
+        </childnode>
+        <childnode refid="100" relation="usage">
+          <edgelabel>frame_pipeline</edgelabel>
+        </childnode>
+        <childnode refid="112" relation="usage">
+          <edgelabel>display_quad</edgelabel>
+        </childnode>
+      </node>
+      <node id="109">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="106">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="107" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="108" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="111" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="103">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+      <node id="110">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+      <node id="104">
+        <label>nTiled::state::Shading</label>
+        <link refid="structn_tiled_1_1state_1_1_shading"/>
+      </node>
+      <node id="100">
+        <label>nTiled::pipeline::Pipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_pipeline"/>
+        <childnode refid="101" relation="usage">
+          <edgelabel>state</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/debug-view/DebugPipeline.h" line="25" column="1" bodyfile="nTiled/include/pipeline/debug-view/DebugPipeline.h" bodystart="25" bodyend="61"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a83faa191328be81c7d87bb865b0c9424" prot="private" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>debug_shaders</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_debug_pipeline_1ab1dcd90953ca02d054da5f0f73808d24" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>DebugPipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_debug_pipeline_1ae16e151bef6ddb909ec618bf8a1a1493" prot="private" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>display_pipeline_sp</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a2af33a35332775e0b252fe7efbda9457" prot="private" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>display_quad</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_debug_pipeline_1aea7829015cce8e2693e86dc533faa78c" prot="private" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>frame_pipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1a3bd91d1ee7b43c62e7cc3a93a421b79f" prot="public" virt="virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>initialiseShaders</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1ac040cb57123ba44a0dda955aa18f26aa" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>output_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a3ee78b534e9af7df726af7de3c2a3a43" prot="private" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>p_fbo</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a5fba9278a9190e9ed87f40bf8812a28a" prot="private" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>p_pass_result</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1af388a427797bbfffdc34d9f518be180d" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>Pipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_debug_pipeline_1ab43bd4c4c9f7c90586245bb56ee0414c" prot="public" virt="virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>render</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1a95ba94528a72ca8826e19923ff76c282" prot="public" virt="virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>setOutputBuffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1a86747875a6495abc36cbac1d1a50ad8d" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>state</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_debug_pipeline_1a84b42b5a7ac51f980a33768d757cd75f" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>~DebugPipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1a703bd7614a2b5f68145d9e18906d727d" prot="public" virt="virtual"><scope>nTiled::pipeline::DebugPipeline</scope><name>~Pipeline</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

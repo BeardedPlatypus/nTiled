@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="_deferred_tiled_shader_logged_8h" kind="file" language="C++">
+    <compoundname>DeferredTiledShaderLogged.h</compoundname>
+    <includes refid="_deferred_tiled_shader_8h" local="yes">pipeline\deferred\shaders\DeferredTiledShader.h</includes>
+    <includes refid="_logger_8h" local="yes">log\Logger.h</includes>
+    <includedby refid="_deferred_pipeline_logged_8cpp" local="yes">nTiled/src/pipeline/deferred/DeferredPipelineLogged.cpp</includedby>
+    <includedby refid="_deferred_tiled_shader_logged_8cpp" local="yes">nTiled/src/pipeline/deferred/shaders/Logged/DeferredTiledShaderLogged.cpp</includedby>
+    <incdepgraph>
+      <node id="760">
+        <label>pipeline\light-management\tiled\BoxProjector.h</label>
+        <link refid="_box_projector_8h"/>
+        <childnode refid="759" relation="include">
+        </childnode>
+      </node>
+      <node id="743">
+        <label>pipeline\ShaderKey.h</label>
+        <link refid="_shader_key_8h"/>
+        <childnode refid="735" relation="include">
+        </childnode>
+        <childnode refid="744" relation="include">
+        </childnode>
+        <childnode refid="736" relation="include">
+        </childnode>
+        <childnode refid="745" relation="include">
+        </childnode>
+      </node>
+      <node id="736">
+        <label>pipeline\deferred\shaders\DeferredShaderId.h</label>
+        <link refid="_deferred_shader_id_8h"/>
+      </node>
+      <node id="752">
+        <label>camera\CameraConstructionData.h</label>
+        <link refid="_camera_construction_data_8h"/>
+        <childnode refid="742" relation="include">
+        </childnode>
+      </node>
+      <node id="746">
+        <label>world\PointLight.h</label>
+        <link refid="_point_light_8h"/>
+        <childnode refid="742" relation="include">
+        </childnode>
+        <childnode refid="738" relation="include">
+        </childnode>
+      </node>
+      <node id="734">
+        <label>DeferredShader.h</label>
+        <link refid="_deferred_shader_8h"/>
+        <childnode refid="735" relation="include">
+        </childnode>
+        <childnode refid="736" relation="include">
+        </childnode>
+        <childnode refid="737" relation="include">
+        </childnode>
+        <childnode refid="747" relation="include">
+        </childnode>
+        <childnode refid="753" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="756" relation="include">
+        </childnode>
+      </node>
+      <node id="762">
+        <label>Windows.h</label>
+      </node>
+      <node id="754">
+        <label>glad\glad.h</label>
+      </node>
+      <node id="748">
+        <label>camera\Camera.h</label>
+        <link refid="_camera_8h"/>
+        <childnode refid="742" relation="include">
+        </childnode>
+        <childnode refid="749" relation="include">
+        </childnode>
+        <childnode refid="751" relation="include">
+        </childnode>
+        <childnode refid="752" relation="include">
+        </childnode>
+      </node>
+      <node id="735">
+        <label>string</label>
+      </node>
+      <node id="761">
+        <label>log\Logger.h</label>
+        <link refid="_logger_8h"/>
+        <childnode refid="735" relation="include">
+        </childnode>
+        <childnode refid="739" relation="include">
+        </childnode>
+        <childnode refid="741" relation="include">
+        </childnode>
+        <childnode refid="762" relation="include">
+        </childnode>
+        <childnode refid="763" relation="include">
+        </childnode>
+      </node>
+      <node id="742">
+        <label>glm\glm.hpp</label>
+      </node>
+      <node id="739">
+        <label>map</label>
+      </node>
+      <node id="759">
+        <label>pipeline\light-management\Tiled\LightProjector.h</label>
+        <link refid="_light_projector_8h"/>
+        <childnode refid="741" relation="include">
+        </childnode>
+        <childnode refid="746" relation="include">
+        </childnode>
+        <childnode refid="748" relation="include">
+        </childnode>
+      </node>
+      <node id="745">
+        <label>pipeline\PipelineType.h</label>
+        <link refid="_pipeline_type_8h"/>
+      </node>
+      <node id="747">
+        <label>state\StateView.h</label>
+        <link refid="_state_view_8h"/>
+        <childnode refid="748" relation="include">
+        </childnode>
+      </node>
+      <node id="733">
+        <label>pipeline\deferred\shaders\DeferredTiledShader.h</label>
+        <link refid="_deferred_tiled_shader_8h"/>
+        <childnode refid="734" relation="include">
+        </childnode>
+        <childnode refid="757" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+      </node>
+      <node id="749">
+        <label>camera\CameraControl.h</label>
+        <link refid="_camera_control_8h"/>
+        <childnode refid="750" relation="include">
+        </childnode>
+        <childnode refid="741" relation="include">
+        </childnode>
+        <childnode refid="742" relation="include">
+        </childnode>
+        <childnode refid="751" relation="include">
+        </childnode>
+      </node>
+      <node id="737">
+        <label>world\World.h</label>
+        <link refid="_world_8h"/>
+        <childnode refid="735" relation="include">
+        </childnode>
+        <childnode refid="738" relation="include">
+        </childnode>
+        <childnode refid="746" relation="include">
+        </childnode>
+      </node>
+      <node id="756">
+        <label>pipeline\deferred\GBuffer.h</label>
+        <link refid="_g_buffer_8h"/>
+        <childnode refid="754" relation="include">
+        </childnode>
+      </node>
+      <node id="744">
+        <label>pipeline\forward\shaders\ForwardShaderId.h</label>
+        <link refid="_forward_shader_id_8h"/>
+      </node>
+      <node id="758">
+        <label>pipeline\light-management\Tiled\LightGrid.h</label>
+        <link refid="_light_grid_8h"/>
+        <childnode refid="754" relation="include">
+        </childnode>
+        <childnode refid="742" relation="include">
+        </childnode>
+        <childnode refid="741" relation="include">
+        </childnode>
+      </node>
+      <node id="741">
+        <label>vector</label>
+      </node>
+      <node id="732">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredTiledShaderLogged.h</label>
+        <link refid="_deferred_tiled_shader_logged_8h"/>
+        <childnode refid="733" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+      </node>
+      <node id="763">
+        <label>main/Clock.h</label>
+        <link refid="_clock_8h"/>
+      </node>
+      <node id="757">
+        <label>pipeline\light-management\tiled\TiledLightManager.h</label>
+        <link refid="_tiled_light_manager_8h"/>
+        <childnode refid="758" relation="include">
+        </childnode>
+        <childnode refid="759" relation="include">
+        </childnode>
+        <childnode refid="747" relation="include">
+        </childnode>
+        <childnode refid="737" relation="include">
+        </childnode>
+      </node>
+      <node id="750">
+        <label>imgui.h</label>
+      </node>
+      <node id="753">
+        <label>pipeline\PipelineObject.h</label>
+        <link refid="_pipeline_object_8h"/>
+        <childnode refid="754" relation="include">
+        </childnode>
+        <childnode refid="742" relation="include">
+        </childnode>
+      </node>
+      <node id="755">
+        <label>pipeline\PipelineLight.h</label>
+        <link refid="_pipeline_light_8h"/>
+        <childnode refid="754" relation="include">
+        </childnode>
+        <childnode refid="742" relation="include">
+        </childnode>
+      </node>
+      <node id="751">
+        <label>camera\CameraData.h</label>
+        <link refid="_camera_data_8h"/>
+        <childnode refid="742" relation="include">
+        </childnode>
+      </node>
+      <node id="740">
+        <label>world\Mesh.h</label>
+        <link refid="_mesh_8h"/>
+        <childnode refid="741" relation="include">
+        </childnode>
+        <childnode refid="742" relation="include">
+        </childnode>
+      </node>
+      <node id="738">
+        <label>world\Object.h</label>
+        <link refid="_object_8h"/>
+        <childnode refid="739" relation="include">
+        </childnode>
+        <childnode refid="740" relation="include">
+        </childnode>
+        <childnode refid="743" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classn_tiled_1_1pipeline_1_1_deferred_tiled_shader_logged" prot="public">nTiled::pipeline::DeferredTiledShaderLogged</innerclass>
+    <innernamespace refid="namespacen_tiled">nTiled</innernamespace>
+    <innernamespace refid="namespacen_tiled_1_1pipeline">nTiled::pipeline</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_deferred_tiled_shader_8h" kindref="compound">pipeline\deferred\shaders\DeferredTiledShader.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_logger_8h" kindref="compound">log\Logger.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacen_tiled" kindref="compound">nTiled</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">pipeline<sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="classn_tiled_1_1pipeline_1_1_deferred_tiled_shader_logged" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classn_tiled_1_1pipeline_1_1_deferred_tiled_shader_logged" kindref="compound">DeferredTiledShaderLogged</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_deferred_tiled_shader" kindref="compound">DeferredTiledShader</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><ref refid="classn_tiled_1_1pipeline_1_1_deferred_tiled_shader_logged" kindref="compound">DeferredTiledShaderLogged</ref>(</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_deferred_shader_id_8h_1a225c1f7d638c4978ae7c69c9a3de8cf3" kindref="member">DeferredShaderId</ref><sp/>shader_id,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path_geometry_pass_vertex_shader,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path_geometry_pass_fragment_shader,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path_light_pass_vertex_shader,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path_light_pass_fragment_shader,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref>&amp;<sp/><ref refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ab88875b524d735162b7042c9060b4649" kindref="member">world</ref>,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref>&amp;<sp/><ref refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1aad9da90249705d4bf45475ed9315f150" kindref="member">view</ref>,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/><ref refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a06144b56505f3daad43056f084d3d77c" kindref="member">p_output_buffer</ref>,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::uvec2<sp/>tile_size,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_builder" kindref="compound">TiledLightManagerBuilder</ref>&amp;<sp/>light_manager_builder,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref>&amp;<sp/>logger);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_deferred_tiled_shader_logged_1a87671c3b49c054e128c21e4417077e39" kindref="member">renderGeometryPassObjects</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_deferred_tiled_shader_logged_1a337d9632c101979db950843b523fafbf" kindref="member">renderLightPassObjects</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_deferred_tiled_shader_logged_1a1bb2a63408aeef086f57f824e5e9325f" kindref="member">loadLightGrid</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref>&amp;<sp/>logger;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredTiledShaderLogged.h"/>
+  </compounddef>
+</doxygen>

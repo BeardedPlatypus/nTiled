@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="structn_tiled_1_1state_1_1_view" kind="struct" language="C++" prot="public">
+    <compoundname>nTiled::state::View</compoundname>
+    <includes refid="_state_view_8h" local="no">StateView.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_view_1a7c8d4e2a4a2cba6250450d8d1b08d7f2" prot="public" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">camera::Camera</ref></type>
+        <definition>camera::Camera nTiled::state::View::camera</definition>
+        <argsstring></argsstring>
+        <name>camera</name>
+        <briefdescription>
+<para>Camera of this <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateView.h" line="92" column="1" bodyfile="nTiled/include/state/StateView.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_view_1abbc1d3e04c7570090f59402863d9c708" prot="public" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1camera_1_1_camera_control" kindref="compound">camera::CameraControl</ref> *</type>
+        <definition>camera::CameraControl* nTiled::state::View::camera_control</definition>
+        <argsstring></argsstring>
+        <name>camera_control</name>
+        <briefdescription>
+<para>Pointer to the CameraControl of this <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateView.h" line="94" column="1" bodyfile="nTiled/include/state/StateView.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_view_1a4b7dc3352376a9a049f5bd65d4cf0434" prot="public" static="no" mutable="no">
+        <type>glm::uvec2</type>
+        <definition>glm::uvec2 nTiled::state::View::viewport</definition>
+        <argsstring></argsstring>
+        <name>viewport</name>
+        <briefdescription>
+<para>dimensions of the viewport of this <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref> in pixels. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateView.h" line="96" column="1" bodyfile="nTiled/include/state/StateView.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_view_1a2d6d02830435e7c7db74d7cf423ddd67" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structn_tiled_1_1state_1_1_view_output" kindref="compound">ViewOutput</ref> *</type>
+        <definition>const ViewOutput* nTiled::state::View::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <briefdescription>
+<para>Pointer to the <ref refid="structn_tiled_1_1state_1_1_view_output" kindref="compound">ViewOutput</ref> of this <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateView.h" line="99" column="1" bodyfile="nTiled/include/state/StateView.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structn_tiled_1_1state_1_1_view_1a41a6eb97531bfd8da234f8279468bc20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::state::View::View</definition>
+        <argsstring>(camera::Camera camera, camera::CameraControl *camera_control, glm::uvec2 viewport, ViewOutput *output)</argsstring>
+        <name>View</name>
+        <param>
+          <type><ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">camera::Camera</ref></type>
+          <declname>camera</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1camera_1_1_camera_control" kindref="compound">camera::CameraControl</ref> *</type>
+          <declname>camera_control</declname>
+        </param>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>viewport</declname>
+        </param>
+        <param>
+          <type><ref refid="structn_tiled_1_1state_1_1_view_output" kindref="compound">ViewOutput</ref> *</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref> with the given parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>camera</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The camera of this new <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>camera_control</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the CameraControl of this new <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>viewport</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dimensions of this new <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref> in pixels </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the <ref refid="structn_tiled_1_1state_1_1_view_output" kindref="compound">ViewOutput</ref> of this new view </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateView.h" line="79" column="1" bodyfile="nTiled/src/state/StateView.cpp" bodystart="8" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="structn_tiled_1_1state_1_1_view_1a8a94d39ca49c0cb2b5112487efe762f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::state::View::~View</definition>
+        <argsstring>()</argsstring>
+        <name>~View</name>
+        <briefdescription>
+<para>Destructor of this <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateView.h" line="86" column="1" bodyfile="nTiled/src/state/StateView.cpp" bodystart="18" bodyend="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">View</ref> contains all attributes related to the view of the <ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">State</ref>. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="655">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="651">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="652">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="653" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="651" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="654" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="653">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="650">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="651" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="652" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="655" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="654">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/state/StateView.h" line="68" column="1" bodyfile="nTiled/include/state/StateView.h" bodystart="68" bodyend="100"/>
+    <listofallmembers>
+      <member refid="structn_tiled_1_1state_1_1_view_1a7c8d4e2a4a2cba6250450d8d1b08d7f2" prot="public" virt="non-virtual"><scope>nTiled::state::View</scope><name>camera</name></member>
+      <member refid="structn_tiled_1_1state_1_1_view_1abbc1d3e04c7570090f59402863d9c708" prot="public" virt="non-virtual"><scope>nTiled::state::View</scope><name>camera_control</name></member>
+      <member refid="structn_tiled_1_1state_1_1_view_1a2d6d02830435e7c7db74d7cf423ddd67" prot="public" virt="non-virtual"><scope>nTiled::state::View</scope><name>output</name></member>
+      <member refid="structn_tiled_1_1state_1_1_view_1a41a6eb97531bfd8da234f8279468bc20" prot="public" virt="non-virtual"><scope>nTiled::state::View</scope><name>View</name></member>
+      <member refid="structn_tiled_1_1state_1_1_view_1a4b7dc3352376a9a049f5bd65d4cf0434" prot="public" virt="non-virtual"><scope>nTiled::state::View</scope><name>viewport</name></member>
+      <member refid="structn_tiled_1_1state_1_1_view_1a8a94d39ca49c0cb2b5112487efe762f9" prot="public" virt="non-virtual"><scope>nTiled::state::View</scope><name>~View</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

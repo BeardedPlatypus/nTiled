@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::clustered::KeyComputeShader</compoundname>
+    <basecompoundref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_compute_shader" prot="public" virt="non-virtual">nTiled::pipeline::clustered::ComputeShader</basecompoundref>
+    <includes refid="_key_compute_shader_8h" local="no">KeyComputeShader.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a17aee94d5bd5911c451575a5d36a6423" prot="protected" static="no" mutable="no">
+        <type>glm::uvec2</type>
+        <definition>glm::uvec2 nTiled::pipeline::clustered::KeyComputeShader::n_tiles</definition>
+        <argsstring></argsstring>
+        <name>n_tiles</name>
+        <briefdescription>
+<para>Number of tiles. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="68" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a99bc996cf437891abd1ab724a476be5d" prot="protected" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint nTiled::pipeline::clustered::KeyComputeShader::key_compute_shader</definition>
+        <argsstring></argsstring>
+        <name>key_compute_shader</name>
+        <briefdescription>
+<para>openGL pointer to the <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref> in video memory. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="77" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a5c089b637b2dfd526cc3618000760b14" prot="protected" static="no" mutable="no">
+        <type>const GLuint</type>
+        <definition>const GLuint nTiled::pipeline::clustered::KeyComputeShader::depth_texture</definition>
+        <argsstring></argsstring>
+        <name>depth_texture</name>
+        <briefdescription>
+<para>Depth texture this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref> acts upon. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="82" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1adfa84ea524956345602f6147c7773750" prot="protected" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint nTiled::pipeline::clustered::KeyComputeShader::k_texture</definition>
+        <argsstring></argsstring>
+        <name>k_texture</name>
+        <briefdescription>
+<para>K texture this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref> writes too after each execute. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="84" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1af13ef6653f1d7fda9ed9cbe729995b08" prot="protected" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint nTiled::pipeline::clustered::KeyComputeShader::key_visualise_shader</definition>
+        <argsstring></argsstring>
+        <name>key_visualise_shader</name>
+        <briefdescription>
+<para>openGL pointer to the KeyVisualise shader of this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="93" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1ab17eb3e76f947245251364a80eb54605" prot="protected" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint nTiled::pipeline::clustered::KeyComputeShader::uniform_max_k</definition>
+        <argsstring></argsstring>
+        <name>uniform_max_k</name>
+        <briefdescription>
+<para>openGL pointer to the uniform value which holds the max k value </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="95" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1ad937af7b591a73645b8e1cbadc3a4245" prot="protected" static="no" mutable="no">
+        <type><ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref> *</type>
+        <definition>PipelineObject* nTiled::pipeline::clustered::KeyComputeShader::display_quad</definition>
+        <argsstring></argsstring>
+        <name>display_quad</name>
+        <briefdescription>
+<para>pointer to the <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref> holding a screenspace quad. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="98" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a4a236060ebc65aca4e0ef973c7948a68" prot="protected" static="no" mutable="no">
+        <type>glm::uvec2</type>
+        <definition>glm::uvec2 nTiled::pipeline::clustered::KeyComputeShader::tile_size</definition>
+        <argsstring></argsstring>
+        <name>tile_size</name>
+        <briefdescription>
+<para>The tile size in pixels of this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="101" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1ac4f731a392cd8bba09b3ad43605a313c" prot="protected" static="no" mutable="no">
+        <type>glm::uvec2</type>
+        <definition>glm::uvec2 nTiled::pipeline::clustered::KeyComputeShader::viewport</definition>
+        <argsstring></argsstring>
+        <name>viewport</name>
+        <briefdescription>
+<para>The size of the viewport in pixels of this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="103" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a13b53cdd19625d52956117803c94bdae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::clustered::KeyComputeShader::KeyComputeShader</definition>
+        <argsstring>(GLuint depth_texture, const state::View &amp;view, glm::uvec2 tile_size)</argsstring>
+        <name>KeyComputeShader</name>
+        <param>
+          <type>GLuint</type>
+          <declname>depth_texture</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>tile_size</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref> with the given parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>depth_texture</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The depth texture which is used to calculate the k value of each pixel </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>view</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the View this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref> observes. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The tile size in pixels that is used in this Clustered Shading algorithm. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="41" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/compute-client/KeyComputeShader.cpp" bodystart="43" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a0fb9e3c745b04d6d269891d015709b92" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::clustered::KeyComputeShader::~KeyComputeShader</definition>
+        <argsstring>()</argsstring>
+        <name>~KeyComputeShader</name>
+        <briefdescription>
+<para>Destruct this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="46" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/compute-client/KeyComputeShader.cpp" bodystart="134" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a679bf35974042f2f4b4358db8b5d1551" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::clustered::KeyComputeShader::execute</definition>
+        <argsstring>() override</argsstring>
+        <name>execute</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1clustered_1_1_compute_shader_1a406c216bfef0545c7c6d6b2b7771da7c">execute</reimplements>
+        <briefdescription>
+<para>Compute the Key texture, which subdivides depth space into a discrete set of bins per tile. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="51" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/compute-client/KeyComputeShader.cpp" bodystart="140" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a733a341b33347015be1dc567a6d6a37e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>GLuint</type>
+        <definition>virtual GLuint nTiled::pipeline::clustered::KeyComputeShader::getKTexture</definition>
+        <argsstring>() const</argsstring>
+        <name>getKTexture</name>
+        <briefdescription>
+<para>Get the opengl pointer to the k_texture to which this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_compute_shader" kindref="compound">ComputeShader</ref> outputs. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>openGL pointer to the k_texture of this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="58" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a72b8c2c26c661eaf8428010080d5d019" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::clustered::KeyComputeShader::debugVisualise</definition>
+        <argsstring>()</argsstring>
+        <name>debugVisualise</name>
+        <briefdescription>
+<para>Visualise the k texture of this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="62" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/compute-client/KeyComputeShader.cpp" bodystart="226" bodyend="270"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1adaaf553963f1b6b10d39d89d7dec0281" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::clustered::KeyComputeShader::loadComputeShader</definition>
+        <argsstring>()</argsstring>
+        <name>loadComputeShader</name>
+        <briefdescription>
+<para>Compile and load the compute shader of this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="74" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/compute-client/KeyComputeShader.cpp" bodystart="194" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a3bf0bdb9204fcf2db5827f39b242a253" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::clustered::KeyComputeShader::loadDebugVisualiseShaders</definition>
+        <argsstring>()</argsstring>
+        <name>loadDebugVisualiseShaders</name>
+        <briefdescription>
+<para>Debug <ref refid="classn_tiled_1_1pipeline_1_1_shader" kindref="compound">Shader</ref> for visualising k texture. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="89" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/compute-client/KeyComputeShader.cpp" bodystart="272" bodyend="321"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader" kindref="compound">KeyComputeShader</ref> is a <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_compute_shader" kindref="compound">ComputeShader</ref> responsible for calculating the k value per pixels and returning a texture containing all these values. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="507">
+        <label>nTiled::pipeline::clustered::ComputeShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_compute_shader"/>
+      </node>
+      <node id="506">
+        <label>nTiled::pipeline::clustered::KeyComputeShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader"/>
+        <childnode refid="507" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="509">
+        <label>nTiled::pipeline::clustered::ComputeShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_compute_shader"/>
+      </node>
+      <node id="510">
+        <label>nTiled::pipeline::PipelineObject</label>
+        <link refid="structn_tiled_1_1pipeline_1_1_pipeline_object"/>
+      </node>
+      <node id="508">
+        <label>nTiled::pipeline::clustered::KeyComputeShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader"/>
+        <childnode refid="509" relation="public-inheritance">
+        </childnode>
+        <childnode refid="510" relation="usage">
+          <edgelabel>display_quad</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" line="31" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/compute-client/KeyComputeShader.h" bodystart="31" bodyend="104"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a72b8c2c26c661eaf8428010080d5d019" prot="public" virt="virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>debugVisualise</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a5c089b637b2dfd526cc3618000760b14" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>depth_texture</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1ad937af7b591a73645b8e1cbadc3a4245" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>display_quad</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a679bf35974042f2f4b4358db8b5d1551" prot="public" virt="virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>execute</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a733a341b33347015be1dc567a6d6a37e" prot="public" virt="virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>getKTexture</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1adfa84ea524956345602f6147c7773750" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>k_texture</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a99bc996cf437891abd1ab724a476be5d" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>key_compute_shader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1af13ef6653f1d7fda9ed9cbe729995b08" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>key_visualise_shader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a13b53cdd19625d52956117803c94bdae" prot="public" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>KeyComputeShader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1adaaf553963f1b6b10d39d89d7dec0281" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>loadComputeShader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a3bf0bdb9204fcf2db5827f39b242a253" prot="protected" virt="virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>loadDebugVisualiseShaders</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a17aee94d5bd5911c451575a5d36a6423" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>n_tiles</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a4a236060ebc65aca4e0ef973c7948a68" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>tile_size</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1ab17eb3e76f947245251364a80eb54605" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>uniform_max_k</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1ac4f731a392cd8bba09b3ad43605a313c" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>viewport</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader_1a0fb9e3c745b04d6d269891d015709b92" prot="public" virt="non-virtual"><scope>nTiled::pipeline::clustered::KeyComputeShader</scope><name>~KeyComputeShader</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

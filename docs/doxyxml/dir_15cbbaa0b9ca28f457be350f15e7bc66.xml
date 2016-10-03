@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_15cbbaa0b9ca28f457be350f15e7bc66" kind="dir">
+    <compoundname>nTiled/src/pipeline/deferred</compoundname>
+    <innerdir refid="dir_f2d5aa2254138db082a4cb0232d112d7">nTiled/src/pipeline/deferred/shaders</innerdir>
+    <innerfile refid="_deferred_pipeline_8cpp">DeferredPipeline.cpp</innerfile>
+    <innerfile refid="_deferred_pipeline_logged_8cpp">DeferredPipelineLogged.cpp</innerfile>
+    <innerfile refid="_g_buffer_8cpp">GBuffer.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/src/pipeline/deferred/"/>
+  </compounddef>
+</doxygen>

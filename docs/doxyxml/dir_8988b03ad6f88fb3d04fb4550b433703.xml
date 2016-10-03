@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_8988b03ad6f88fb3d04fb4550b433703" kind="dir">
+    <compoundname>nTiled/include/pipeline/light-management/tiled</compoundname>
+    <innerfile refid="_box_projector_8h">BoxProjector.h</innerfile>
+    <innerfile refid="_light_grid_8h">LightGrid.h</innerfile>
+    <innerfile refid="_light_projector_8h">LightProjector.h</innerfile>
+    <innerfile refid="_tiled_light_manager_8h">TiledLightManager.h</innerfile>
+    <innerfile refid="_tiled_light_manager_logged_8h">TiledLightManagerLogged.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/pipeline/light-management/tiled/"/>
+  </compounddef>
+</doxygen>

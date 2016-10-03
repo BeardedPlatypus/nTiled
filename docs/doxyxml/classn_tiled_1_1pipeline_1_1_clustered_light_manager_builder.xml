@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_builder" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::ClusteredLightManagerBuilder</compoundname>
+    <derivedcompoundref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_builder" prot="public" virt="non-virtual">nTiled::pipeline::ClusteredLightManagerLoggedBuilder</derivedcompoundref>
+    <includes refid="_clustered_light_manager_8h" local="no">ClusteredLightManager.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_builder_1a667c12fce172ce980f97feb4ac606697" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::ClusteredLightManagerBuilder::ClusteredLightManagerBuilder</definition>
+        <argsstring>()</argsstring>
+        <name>ClusteredLightManagerBuilder</name>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_builder" kindref="compound">ClusteredLightManagerBuilder</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManager.h" line="145" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/ClusteredLightManager.cpp" bodystart="159" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_builder_1aaab423ac4eb31f6f64c9cc1891ef9e01" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager" kindref="compound">ClusteredLightManager</ref> *</type>
+        <definition>ClusteredLightManager * nTiled::pipeline::ClusteredLightManagerBuilder::constructNewClusteredLightManager</definition>
+        <argsstring>(const state::View &amp;view, const world::World &amp;world, glm::uvec2 tile_size, GLuint depth_texture) const</argsstring>
+        <name>constructNewClusteredLightManager</name>
+        <reimplementedby refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_builder_1a348e075734f08ab6d4452704aa63ac8d">constructNewClusteredLightManager</reimplementedby>
+        <param>
+          <type>const <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref> &amp;</type>
+          <declname>world</declname>
+        </param>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>tile_size</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>depth_texture</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager" kindref="compound">ClusteredLightManager</ref> with the given parameters and return a pointer to it. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>view</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The View the new <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager" kindref="compound">ClusteredLightManager</ref> will observe. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>world</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The World the new <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager" kindref="compound">ClusteredLightManager</ref> will observe. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The tile size in pixels used in this ClusteredShading algorithm. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>depth_texture</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>openGL pointer to the depth texture used in the clustered shading algoritm.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return a pointer to the newly constructed <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager" kindref="compound">ClusteredLightManager</ref>. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManager.h" line="159" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/ClusteredLightManager.cpp" bodystart="162" bodyend="166"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_builder" kindref="compound">ClusteredLightManagerBuilder</ref> is responsible for constructing ClusteredLightManagers. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="46">
+        <label>nTiled::pipeline::ClusteredLightManagerBuilder</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_builder"/>
+      </node>
+      <node id="47">
+        <label>nTiled::pipeline::ClusteredLightManagerLoggedBuilder</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_builder"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManager.h" line="141" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/ClusteredLightManager.h" bodystart="141" bodyend="164"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_builder_1a667c12fce172ce980f97feb4ac606697" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerBuilder</scope><name>ClusteredLightManagerBuilder</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_builder_1aaab423ac4eb31f6f64c9cc1891ef9e01" prot="public" virt="virtual"><scope>nTiled::pipeline::ClusteredLightManagerBuilder</scope><name>constructNewClusteredLightManager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

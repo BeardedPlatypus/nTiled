@@ -1,0 +1,334 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::DeferredClusteredShaderLogged</compoundname>
+    <basecompoundref refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader" prot="public" virt="non-virtual">nTiled::pipeline::DeferredClusteredShader</basecompoundref>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1a5a2bcba340c2d21fb850f2b4dc5ad66b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+        <definition>logged::ExecutionTimeLogger&amp; nTiled::pipeline::DeferredClusteredShaderLogged::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h" line="30" column="1" bodyfile="nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1ab1d527f7c89933eac881f4cf683d8b11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::DeferredClusteredShaderLogged::DeferredClusteredShaderLogged</definition>
+        <argsstring>(DeferredShaderId shader_id, const std::string &amp;path_geometry_pass_vertex_shader, const std::string &amp;path_geometry_pass_fragment_shader, const std::string &amp;path_light_pass_vertex_shader, const std::string &amp;path_light_pass_fragment_shader, const world::World &amp;world, const state::View &amp;view, GLint p_output_buffer, glm::uvec2 tile_size, const ClusteredLightManagerBuilder &amp;light_manager_builder, logged::ExecutionTimeLogger &amp;logger)</argsstring>
+        <name>DeferredClusteredShaderLogged</name>
+        <param>
+          <type><ref refid="_deferred_shader_id_8h_1a225c1f7d638c4978ae7c69c9a3de8cf3" kindref="member">DeferredShaderId</ref></type>
+          <declname>shader_id</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_geometry_pass_vertex_shader</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_geometry_pass_fragment_shader</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_light_pass_vertex_shader</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_light_pass_fragment_shader</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref> &amp;</type>
+          <declname>world</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>GLint</type>
+          <declname>p_output_buffer</declname>
+        </param>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>tile_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_builder" kindref="compound">ClusteredLightManagerBuilder</ref> &amp;</type>
+          <declname>light_manager_builder</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+          <declname>logger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h" line="12" column="1" bodyfile="nTiled/src/pipeline/deferred/shaders/Logged/DeferredClusteredShaderLogged.cpp" bodystart="7" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1a0fba243638d0eac7408f5668dbcd4f67" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::DeferredClusteredShaderLogged::renderGeometryPassObjects</definition>
+        <argsstring>() override</argsstring>
+        <name>renderGeometryPassObjects</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1abe1425901ff2a6017df74659ee3b44dd">renderGeometryPassObjects</reimplements>
+        <briefdescription>
+<para>Render all the objects for the Geometry pass of this <ref refid="classn_tiled_1_1pipeline_1_1_deferred_shader" kindref="compound">DeferredShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h" line="26" column="1" bodyfile="nTiled/src/pipeline/deferred/shaders/Logged/DeferredClusteredShaderLogged.cpp" bodystart="32" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1a8360d28e20f2a6c92f546207010ccf89" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::DeferredClusteredShaderLogged::renderLightPassObjects</definition>
+        <argsstring>() override</argsstring>
+        <name>renderLightPassObjects</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a5f2764094c367ceebc310a0fdf9d0953">renderLightPassObjects</reimplements>
+        <briefdescription>
+<para>Render all objects for the Light pass of this <ref refid="classn_tiled_1_1pipeline_1_1_deferred_shader" kindref="compound">DeferredShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h" line="27" column="1" bodyfile="nTiled/src/pipeline/deferred/shaders/Logged/DeferredClusteredShaderLogged.cpp" bodystart="38" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1ab8091ffacac7ada94d498ccf54f1d1e3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::DeferredClusteredShaderLogged::loadLightClustering</definition>
+        <argsstring>() override</argsstring>
+        <name>loadLightClustering</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_1a395792a8a90f0a9fd38dfe13249bc92f">loadLightClustering</reimplements>
+        <briefdescription>
+<para>Load the light clustering. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h" line="28" column="1" bodyfile="nTiled/src/pipeline/deferred/shaders/Logged/DeferredClusteredShaderLogged.cpp" bodystart="44" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="185">
+        <label>nTiled::pipeline::DeferredShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_shader"/>
+      </node>
+      <node id="184">
+        <label>nTiled::pipeline::DeferredClusteredShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader"/>
+        <childnode refid="185" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="183">
+        <label>nTiled::pipeline::DeferredClusteredShaderLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged"/>
+        <childnode refid="184" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="196">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="203">
+        <label>nTiled::pipeline::LightProjector</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_light_projector"/>
+      </node>
+      <node id="188">
+        <label>nTiled::pipeline::DeferredShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_shader"/>
+        <childnode refid="189" relation="usage">
+          <edgelabel>world</edgelabel>
+        </childnode>
+        <childnode refid="190" relation="usage">
+          <edgelabel>gBuffer</edgelabel>
+        </childnode>
+        <childnode refid="191" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+        <childnode refid="197" relation="usage">
+          <edgelabel>fullscreen_quad</edgelabel>
+        </childnode>
+      </node>
+      <node id="200">
+        <label>nTiled::pipeline::clustered::ComputeShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_compute_shader"/>
+      </node>
+      <node id="197">
+        <label>nTiled::pipeline::PipelineObject</label>
+        <link refid="structn_tiled_1_1pipeline_1_1_pipeline_object"/>
+      </node>
+      <node id="192">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="204">
+        <label>nTiled::logged::ExecutionTimeLogger</label>
+        <link refid="classn_tiled_1_1logged_1_1_execution_time_logger"/>
+        <childnode refid="205" relation="usage">
+          <edgelabel>clock</edgelabel>
+        </childnode>
+      </node>
+      <node id="205">
+        <label>nTiled::Clock</label>
+        <link refid="classn_tiled_1_1_clock"/>
+      </node>
+      <node id="193">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="194" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="192" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="195" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="187">
+        <label>nTiled::pipeline::DeferredClusteredShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader"/>
+        <childnode refid="188" relation="public-inheritance">
+        </childnode>
+        <childnode refid="198" relation="usage">
+          <edgelabel>p_clustered_light_manager</edgelabel>
+        </childnode>
+      </node>
+      <node id="194">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="186">
+        <label>nTiled::pipeline::DeferredClusteredShaderLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged"/>
+        <childnode refid="187" relation="public-inheritance">
+        </childnode>
+        <childnode refid="204" relation="usage">
+          <edgelabel>logger</edgelabel>
+        </childnode>
+      </node>
+      <node id="191">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="192" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="193" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="196" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="198">
+        <label>nTiled::pipeline::ClusteredLightManager</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager"/>
+        <childnode refid="189" relation="usage">
+          <edgelabel>world</edgelabel>
+        </childnode>
+        <childnode refid="199" relation="usage">
+          <edgelabel>key_sort_compact_shader</edgelabel>
+        </childnode>
+        <childnode refid="201" relation="usage">
+          <edgelabel>key_compute_shader</edgelabel>
+        </childnode>
+        <childnode refid="202" relation="usage">
+          <edgelabel>light_clustering</edgelabel>
+        </childnode>
+        <childnode refid="203" relation="usage">
+          <edgelabel>projector</edgelabel>
+        </childnode>
+        <childnode refid="191" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+      </node>
+      <node id="189">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+      <node id="199">
+        <label>nTiled::pipeline::clustered::KeySortAndCompactShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader"/>
+        <childnode refid="200" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="195">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+      <node id="201">
+        <label>nTiled::pipeline::clustered::KeyComputeShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader"/>
+        <childnode refid="200" relation="public-inheritance">
+        </childnode>
+        <childnode refid="197" relation="usage">
+          <edgelabel>display_quad</edgelabel>
+        </childnode>
+      </node>
+      <node id="202">
+        <label>nTiled::pipeline::clustered::LightClustering</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering"/>
+      </node>
+      <node id="190">
+        <label>nTiled::pipeline::GBuffer</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_g_buffer"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h" line="10" column="1" bodyfile="nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h" bodystart="10" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a6c14bcca74a34c711fefb72fc9d5c61f" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>constructPipelineLight</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a0ff9c1988a497c5b7715a7ce5193e8f6" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>constructPipelineObject</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_1a80dc53ea304db44152b58915d99504ac" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>DeferredClusteredShader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1ab1d527f7c89933eac881f4cf683d8b11" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>DeferredClusteredShaderLogged</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a33a22067d70757dd5e01160bb0f40904" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>DeferredShader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ab0e7169d233c6fc4d96de424c90707e3" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>fullscreen_quad</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ae6e7007e01ccc3ab1c015ec726d92ebf" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>gBuffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1adc50a57b01676adb2b6df0b184dc8e15" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>geometry_pass_sp</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a881eabd8fc91d6ab93be37c9df1f1383" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>getId</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a6974dbe74b09ff97ca94638bfe9f3883" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>id</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_1a9dc1c30341e8e6646f07b67d84e3460e" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>k_index_map</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_1adff13eaa3841b60ded6398a7bc1e2b6e" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>light_cluster_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_1ad1c382fe90b9d69bdd97947089a8f217" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>light_index_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a153e230ddb366f0e9425a4af84a95002" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>light_pass_sp</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ac71a63f32438e283bddbbeb7b7e2a929" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>light_ubo</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ade1d12ad4fd20fa3fd38d87a3519eee2" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>lights</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1ab8091ffacac7ada94d498ccf54f1d1e3" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>loadLightClustering</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a921189e8dabb0963b2934a63f9a392b7" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>loadLights</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1aa33b1ddf8af0970f2f9eda071fee6824" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>loadObjects</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1aaf145ca8dde05368db26e461d3cab100" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>loadShaders</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1a5a2bcba340c2d21fb850f2b4dc5ad66b" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>logger</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_1ab491ca8cbb321e5aba40e6dbefbf8c7c" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>p_clustered_light_manager</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a06144b56505f3daad43056f084d3d77c" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>p_output_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a3bdd1bccf82485785299662dae10eb3c" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>ps_obj</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a8854914116d74080c61e5212cacf1ccb" prot="public" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>render</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a590bfa905a6036b89da91ee18fec39d7" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>renderBuffers</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_1a175cfa35499cdd7cba69f7edc883f4ba" prot="public" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>renderGeometryPass</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1a0fba243638d0eac7408f5668dbcd4f67" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>renderGeometryPassObjects</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_1a8228fdbf8129b98714fca42e4e0a5396" prot="public" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>renderLightPass</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_logged_1a8360d28e20f2a6c92f546207010ccf89" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>renderLightPassObjects</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1aa10c508364afb8b8a440fa244b2ea334" prot="public" virt="virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>setOutputBuffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_clustered_shader_1a484cee4e0e4d86a9b3e03845a91172ac" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>summed_indices_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1aad9da90249705d4bf45475ed9315f150" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>view</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ab88875b524d735162b7042c9060b4649" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredClusteredShaderLogged</scope><name>world</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

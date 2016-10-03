@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="_light_clustering_8h" kind="file" language="C++">
+    <compoundname>LightClustering.h</compoundname>
+    <includes local="no">glad\glad.h</includes>
+    <includes local="no">glm\glm.hpp</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="_clustered_light_manager_8h" local="yes">nTiled/include/pipeline/light-management/clustered/ClusteredLightManager.h</includedby>
+    <includedby refid="_light_clustering_8cpp" local="yes">nTiled/src/pipeline/light-management/clustered/LightClustering.cpp</includedby>
+    <incdepgraph>
+      <node id="1213">
+        <label>glad\glad.h</label>
+      </node>
+      <node id="1214">
+        <label>glm\glm.hpp</label>
+      </node>
+      <node id="1215">
+        <label>vector</label>
+      </node>
+      <node id="1212">
+        <label>nTiled/include/pipeline/light-management/clustered/LightClustering.h</label>
+        <link refid="_light_clustering_8h"/>
+        <childnode refid="1213" relation="include">
+        </childnode>
+        <childnode refid="1214" relation="include">
+        </childnode>
+        <childnode refid="1215" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1217">
+        <label>nTiled/include/pipeline/light-management/clustered/ClusteredLightManager.h</label>
+        <link refid="_clustered_light_manager_8h"/>
+        <childnode refid="1218" relation="include">
+        </childnode>
+        <childnode refid="1220" relation="include">
+        </childnode>
+        <childnode refid="1222" relation="include">
+        </childnode>
+      </node>
+      <node id="1219">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h</label>
+        <link refid="_deferred_clustered_shader_logged_8h_source"/>
+      </node>
+      <node id="1221">
+        <label>nTiled/include/pipeline/forward/shaders/logged/ForwardClusteredShaderLogged.h</label>
+        <link refid="_forward_clustered_shader_logged_8h"/>
+      </node>
+      <node id="1220">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardClusteredShader.h</label>
+        <link refid="_forward_clustered_shader_8h"/>
+        <childnode refid="1221" relation="include">
+        </childnode>
+      </node>
+      <node id="1222">
+        <label>nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h</label>
+        <link refid="_clustered_light_manager_logged_8h"/>
+      </node>
+      <node id="1218">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredClusteredShader.h</label>
+        <link refid="_deferred_clustered_shader_8h"/>
+        <childnode refid="1219" relation="include">
+        </childnode>
+      </node>
+      <node id="1216">
+        <label>nTiled/include/pipeline/light-management/clustered/LightClustering.h</label>
+        <link refid="_light_clustering_8h"/>
+        <childnode refid="1217" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" prot="public">nTiled::pipeline::clustered::LightClustering</innerclass>
+    <innernamespace refid="namespacen_tiled">nTiled</innernamespace>
+    <innernamespace refid="namespacen_tiled_1_1pipeline">nTiled::pipeline</innernamespace>
+    <innernamespace refid="namespacen_tiled_1_1pipeline_1_1clustered">nTiled::pipeline::clustered</innernamespace>
+    <briefdescription>
+<para><ref refid="_light_clustering_8h" kindref="compound">LightClustering.h</ref> contains the definition of LightClustering class which serves as datastructure for the Clustered Shading algorithm. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="5"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Libraries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glad\glad.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm\glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacen_tiled" kindref="compound">nTiled</ref><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">pipeline<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">clustered<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructor<sp/>|<sp/>Destructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a9d82fddbcec976d5b62a461f38f5722d" kindref="member">LightClustering</ref>(glm::uvec2<sp/>dimensions,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::uvec2<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a050ed37c59db183c1cc944b8da0a36de" kindref="member">tile_size</ref>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Frame<sp/>construction<sp/>steps</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a4a0e618077bb55fdf99a9e3b22a480b7" kindref="member">initFrame</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;GLushort&gt;&amp;<sp/>unique_clusters,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;GLushort&gt;&amp;<sp/>n_clusters_tile);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a7a944ff4b671b1e85d836841f421db72" kindref="member">incrementLight</ref>(glm::uvec3<sp/>frustrum_begin,</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::uvec3<sp/>frustrum_end,</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GLuint<sp/>light_index);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a5ca1519593078deba5ed83e22954f490" kindref="member">finaliseClusters</ref>();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Access<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="83" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1aee3160b4a56b8fb00f1ce6eab10bf42e" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/>std::vector&lt;glm::uvec2&gt;<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1aee3160b4a56b8fb00f1ce6eab10bf42e" kindref="member">cluster_to_light_index_map</ref>;</highlight></codeline>
+<codeline lineno="85" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a0b77a0715b0eed2a602877f28c8b8545" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;GLuint&gt;<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a0b77a0715b0eed2a602877f28c8b8545" kindref="member">light_index_list</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="95" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a8d4dcb49fbd1d907270c8486202b8a65" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::vector&lt;std::pair&lt;GLushort,<sp/>std::vector&lt;GLuint&gt;&gt;&gt;&gt;<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a8d4dcb49fbd1d907270c8486202b8a65" kindref="member">cluster_map_raw</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a3432dd105166ec20d6a2d06dedb68cff" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::uvec2<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a3432dd105166ec20d6a2d06dedb68cff" kindref="member">image_dimensions</ref>;</highlight></codeline>
+<codeline lineno="100" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a050ed37c59db183c1cc944b8da0a36de" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>glm::uvec2<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a050ed37c59db183c1cc944b8da0a36de" kindref="member">tile_size</ref>;</highlight></codeline>
+<codeline lineno="102" refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1ad8f1d63a24260687105ea07609b9e443" refkind="member"><highlight class="normal"><sp/><sp/>glm::uvec2<sp/><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1ad8f1d63a24260687105ea07609b9e443" kindref="member">n_tiles</ref>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Clustered</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Pipeline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>nTiled</highlight></codeline>
+    </programlisting>
+    <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="_clustered_light_manager_logged_8cpp" kind="file" language="C++">
+    <compoundname>ClusteredLightManagerLogged.cpp</compoundname>
+    <includes refid="_clustered_light_manager_logged_8h" local="yes">pipeline\light-management\clustered\ClusteredLightManagerLogged.h</includes>
+    <incdepgraph>
+      <node id="2968">
+        <label>nTiled/src/pipeline/light-management/clustered/ClusteredLightManagerLogged.cpp</label>
+        <link refid="_clustered_light_manager_logged_8cpp"/>
+        <childnode refid="2969" relation="include">
+        </childnode>
+      </node>
+      <node id="2970">
+        <label>pipeline\light-management\clustered\ClusteredLightManager.h</label>
+        <link refid="_clustered_light_manager_8h"/>
+        <childnode refid="2971" relation="include">
+        </childnode>
+        <childnode refid="2972" relation="include">
+        </childnode>
+        <childnode refid="2980" relation="include">
+        </childnode>
+        <childnode refid="2990" relation="include">
+        </childnode>
+        <childnode refid="2992" relation="include">
+        </childnode>
+        <childnode refid="2995" relation="include">
+        </childnode>
+        <childnode refid="2996" relation="include">
+        </childnode>
+      </node>
+      <node id="2990">
+        <label>pipeline\light-management\tiled\BoxProjector.h</label>
+        <link refid="_box_projector_8h"/>
+        <childnode refid="2991" relation="include">
+        </childnode>
+      </node>
+      <node id="2985">
+        <label>pipeline\ShaderKey.h</label>
+        <link refid="_shader_key_8h"/>
+        <childnode refid="2981" relation="include">
+        </childnode>
+        <childnode refid="2986" relation="include">
+        </childnode>
+        <childnode refid="2987" relation="include">
+        </childnode>
+        <childnode refid="2988" relation="include">
+        </childnode>
+      </node>
+      <node id="2987">
+        <label>pipeline\deferred\shaders\DeferredShaderId.h</label>
+        <link refid="_deferred_shader_id_8h"/>
+      </node>
+      <node id="2992">
+        <label>compute-client\KeyComputeShader.h</label>
+        <link refid="_key_compute_shader_8h"/>
+        <childnode refid="2971" relation="include">
+        </childnode>
+        <childnode refid="2974" relation="include">
+        </childnode>
+        <childnode refid="2993" relation="include">
+        </childnode>
+        <childnode refid="2972" relation="include">
+        </childnode>
+        <childnode refid="2994" relation="include">
+        </childnode>
+      </node>
+      <node id="2979">
+        <label>camera\CameraConstructionData.h</label>
+        <link refid="_camera_construction_data_8h"/>
+        <childnode refid="2974" relation="include">
+        </childnode>
+      </node>
+      <node id="2989">
+        <label>world\PointLight.h</label>
+        <link refid="_point_light_8h"/>
+        <childnode refid="2974" relation="include">
+        </childnode>
+        <childnode refid="2982" relation="include">
+        </childnode>
+      </node>
+      <node id="2998">
+        <label>Windows.h</label>
+      </node>
+      <node id="2995">
+        <label>compute-client\KeySortAndCompactShader.h</label>
+        <link refid="_key_sort_and_compact_shader_8h"/>
+        <childnode refid="2971" relation="include">
+        </childnode>
+        <childnode refid="2974" relation="include">
+        </childnode>
+        <childnode refid="2977" relation="include">
+        </childnode>
+        <childnode refid="2993" relation="include">
+        </childnode>
+        <childnode refid="2972" relation="include">
+        </childnode>
+      </node>
+      <node id="2993">
+        <label>pipeline\light-management\clustered\compute-client\ComputeShader.h</label>
+        <link refid="_compute_shader_8h"/>
+      </node>
+      <node id="2971">
+        <label>glad\glad.h</label>
+      </node>
+      <node id="2973">
+        <label>camera\Camera.h</label>
+        <link refid="_camera_8h"/>
+        <childnode refid="2974" relation="include">
+        </childnode>
+        <childnode refid="2975" relation="include">
+        </childnode>
+        <childnode refid="2978" relation="include">
+        </childnode>
+        <childnode refid="2979" relation="include">
+        </childnode>
+      </node>
+      <node id="2981">
+        <label>string</label>
+      </node>
+      <node id="2997">
+        <label>log\Logger.h</label>
+        <link refid="_logger_8h"/>
+        <childnode refid="2981" relation="include">
+        </childnode>
+        <childnode refid="2983" relation="include">
+        </childnode>
+        <childnode refid="2977" relation="include">
+        </childnode>
+        <childnode refid="2998" relation="include">
+        </childnode>
+        <childnode refid="2999" relation="include">
+        </childnode>
+      </node>
+      <node id="2974">
+        <label>glm\glm.hpp</label>
+      </node>
+      <node id="2983">
+        <label>map</label>
+      </node>
+      <node id="2991">
+        <label>pipeline\light-management\tiled\LightProjector.h</label>
+        <link refid="_light_projector_8h"/>
+        <childnode refid="2977" relation="include">
+        </childnode>
+        <childnode refid="2989" relation="include">
+        </childnode>
+        <childnode refid="2973" relation="include">
+        </childnode>
+      </node>
+      <node id="2988">
+        <label>pipeline\PipelineType.h</label>
+        <link refid="_pipeline_type_8h"/>
+      </node>
+      <node id="2972">
+        <label>state\StateView.h</label>
+        <link refid="_state_view_8h"/>
+        <childnode refid="2973" relation="include">
+        </childnode>
+      </node>
+      <node id="2975">
+        <label>camera\CameraControl.h</label>
+        <link refid="_camera_control_8h"/>
+        <childnode refid="2976" relation="include">
+        </childnode>
+        <childnode refid="2977" relation="include">
+        </childnode>
+        <childnode refid="2974" relation="include">
+        </childnode>
+        <childnode refid="2978" relation="include">
+        </childnode>
+      </node>
+      <node id="2980">
+        <label>world\World.h</label>
+        <link refid="_world_8h"/>
+        <childnode refid="2981" relation="include">
+        </childnode>
+        <childnode refid="2982" relation="include">
+        </childnode>
+        <childnode refid="2989" relation="include">
+        </childnode>
+      </node>
+      <node id="2986">
+        <label>pipeline\forward\shaders\ForwardShaderId.h</label>
+        <link refid="_forward_shader_id_8h"/>
+      </node>
+      <node id="2977">
+        <label>vector</label>
+      </node>
+      <node id="2999">
+        <label>main/Clock.h</label>
+        <link refid="_clock_8h"/>
+      </node>
+      <node id="2976">
+        <label>imgui.h</label>
+      </node>
+      <node id="2994">
+        <label>pipeline\PipelineObject.h</label>
+        <link refid="_pipeline_object_8h"/>
+        <childnode refid="2971" relation="include">
+        </childnode>
+        <childnode refid="2974" relation="include">
+        </childnode>
+      </node>
+      <node id="2969">
+        <label>pipeline\light-management\clustered\ClusteredLightManagerLogged.h</label>
+        <link refid="_clustered_light_manager_logged_8h"/>
+        <childnode refid="2970" relation="include">
+        </childnode>
+        <childnode refid="2997" relation="include">
+        </childnode>
+      </node>
+      <node id="2996">
+        <label>LightClustering.h</label>
+        <link refid="_light_clustering_8h"/>
+        <childnode refid="2971" relation="include">
+        </childnode>
+        <childnode refid="2974" relation="include">
+        </childnode>
+        <childnode refid="2977" relation="include">
+        </childnode>
+      </node>
+      <node id="2978">
+        <label>camera\CameraData.h</label>
+        <link refid="_camera_data_8h"/>
+        <childnode refid="2974" relation="include">
+        </childnode>
+      </node>
+      <node id="2984">
+        <label>world\Mesh.h</label>
+        <link refid="_mesh_8h"/>
+        <childnode refid="2977" relation="include">
+        </childnode>
+        <childnode refid="2974" relation="include">
+        </childnode>
+      </node>
+      <node id="2982">
+        <label>world\Object.h</label>
+        <link refid="_object_8h"/>
+        <childnode refid="2983" relation="include">
+        </childnode>
+        <childnode refid="2984" relation="include">
+        </childnode>
+        <childnode refid="2985" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacen_tiled">nTiled</innernamespace>
+    <innernamespace refid="namespacen_tiled_1_1pipeline">nTiled::pipeline</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_clustered_light_manager_logged_8h" kindref="compound">pipeline\light-management\clustered\ClusteredLightManagerLogged.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacen_tiled" kindref="compound">nTiled</ref><sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">pipeline<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>ClusteredLightManagerLogged</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">ClusteredLightManagerLogged::ClusteredLightManagerLogged(</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>state::View&amp;<sp/>view,</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>world::World&amp;<sp/>world,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::uvec2<sp/>tile_size,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>GLuint<sp/>depth_texture,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>logged::ExecutionTimeLogger&amp;<sp/>logger)<sp/>:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>ClusteredLightManager(view,<sp/>world,<sp/>tile_size,<sp/>depth_texture),</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>logger(logger)<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ClusteredLightManagerLogged::computeKeys()<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>this-&gt;logger.startLog(std::string(</highlight><highlight class="stringliteral">&quot;ClusteredLightManager::computeKeys&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>ClusteredLightManager::computeKeys();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>this-&gt;logger.endLog();</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ClusteredLightManagerLogged::sortAndCompactKeys()<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>this-&gt;logger.startLog(std::string(</highlight><highlight class="stringliteral">&quot;ClusteredLightManager::sortAndCompactKeys&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>ClusteredLightManager::sortAndCompactKeys();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>this-&gt;logger.endLog();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ClusteredLightManagerLogged::clearClustering()<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>this-&gt;logger.startLog(std::string(</highlight><highlight class="stringliteral">&quot;ClusteredLightManager::clearClustering&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>ClusteredLightManager::clearClustering();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>this-&gt;logger.endLog();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ClusteredLightManagerLogged::buildClustering()<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>this-&gt;logger.startLog(std::string(</highlight><highlight class="stringliteral">&quot;ClusteredLightManager::buildClustering&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>ClusteredLightManager::buildClustering();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/>this-&gt;logger.endLog();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ClusteredLightManagerLogged::finaliseClustering()<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/>this-&gt;logger.startLog(std::string(</highlight><highlight class="stringliteral">&quot;ClusteredLightManager::finaliseClustering&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/>ClusteredLightManager::finaliseClustering();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/>this-&gt;logger.endLog();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>ClusteredLightManagerLoggedBuilder</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">ClusteredLightManagerLoggedBuilder::ClusteredLightManagerLoggedBuilder(</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>logged::ExecutionTimeLogger&amp;<sp/>logger)<sp/>:<sp/>logger(logger)<sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">ClusteredLightManager*<sp/>ClusteredLightManagerLoggedBuilder::constructNewClusteredLightManager(</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>state::View&amp;<sp/>view,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>world::World&amp;<sp/>world,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>glm::uvec2<sp/>tile_size,<sp/>GLuint<sp/>depth_texture)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ClusteredLightManagerLogged(</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>view,<sp/>world,<sp/>tile_size,<sp/>depth_texture,<sp/>this-&gt;logger);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>pipeline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>nTiled</highlight></codeline>
+    </programlisting>
+    <location file="nTiled/src/pipeline/light-management/clustered/ClusteredLightManagerLogged.cpp"/>
+  </compounddef>
+</doxygen>

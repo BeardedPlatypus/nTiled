@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="namespacen_tiled_1_1world" kind="namespace" language="C++">
+    <compoundname>nTiled::world</compoundname>
+    <innerclass refid="classn_tiled_1_1world_1_1_ass_imp_constructor" prot="public">nTiled::world::AssImpConstructor</innerclass>
+    <innerclass refid="classn_tiled_1_1world_1_1_light_constructor" prot="public">nTiled::world::LightConstructor</innerclass>
+    <innerclass refid="structn_tiled_1_1world_1_1_mesh" prot="public">nTiled::world::Mesh</innerclass>
+    <innerclass refid="structn_tiled_1_1world_1_1_object" prot="public">nTiled::world::Object</innerclass>
+    <innerclass refid="structn_tiled_1_1world_1_1_point_light" prot="public">nTiled::world::PointLight</innerclass>
+    <innerclass refid="classn_tiled_1_1world_1_1_point_light_constructor" prot="public">nTiled::world::PointLightConstructor</innerclass>
+    <innerclass refid="classn_tiled_1_1world_1_1_primitive_constructor" prot="public">nTiled::world::PrimitiveConstructor</innerclass>
+    <innerclass refid="classn_tiled_1_1world_1_1_world" prot="public">nTiled::world::World</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/world/light-constructor/LightConstructor.h" line="21" column="1"/>
+  </compounddef>
+</doxygen>

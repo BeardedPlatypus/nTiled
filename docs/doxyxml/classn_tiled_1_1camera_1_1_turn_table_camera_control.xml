@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1camera_1_1_turn_table_camera_control" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::camera::TurnTableCameraControl</compoundname>
+    <basecompoundref refid="classn_tiled_1_1camera_1_1_camera_control" prot="public" virt="non-virtual">nTiled::camera::CameraControl</basecompoundref>
+    <includes refid="_camera_control_8h" local="no">CameraControl.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1camera_1_1_turn_table_camera_control_1ab3079c57341007a5bf1d2602f119ab62" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double nTiled::camera::TurnTableCameraControl::sensitivity</definition>
+        <argsstring></argsstring>
+        <name>sensitivity</name>
+        <briefdescription>
+<para>The sensitivity of this <ref refid="classn_tiled_1_1camera_1_1_turn_table_camera_control" kindref="compound">TurnTableCameraControl</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraControl.h" line="84" column="1" bodyfile="nTiled/include/camera/CameraControl.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1camera_1_1_turn_table_camera_control_1a1254bc4810cb15c6a3712506d6fc7554" prot="private" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 nTiled::camera::TurnTableCameraControl::pos_prev</definition>
+        <argsstring></argsstring>
+        <name>pos_prev</name>
+        <briefdescription>
+<para>The previous position of the mouse in x and y pixel coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraControl.h" line="86" column="1" bodyfile="nTiled/include/camera/CameraControl.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1camera_1_1_turn_table_camera_control_1af3ff24a690c71ea46c4be3675e3d5b47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::camera::TurnTableCameraControl::TurnTableCameraControl</definition>
+        <argsstring>(double sensitivity)</argsstring>
+        <name>TurnTableCameraControl</name>
+        <param>
+          <type>double</type>
+          <declname>sensitivity</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1camera_1_1_turn_table_camera_control" kindref="compound">TurnTableCameraControl</ref> with the given sensitivity. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sensitivity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sensitivity of this new <ref refid="classn_tiled_1_1camera_1_1_turn_table_camera_control" kindref="compound">TurnTableCameraControl</ref>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="par"><title>Post Conditions:</title><para>(new this).sensitivity == sensitivity </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraControl.h" line="67" column="1" bodyfile="nTiled/src/camera/CameraControl.cpp" bodystart="16" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1camera_1_1_turn_table_camera_control_1a150fd17efdafa45e3d0d83b6db9f2457" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::camera::TurnTableCameraControl::TurnTableCameraControl</definition>
+        <argsstring>()</argsstring>
+        <name>TurnTableCameraControl</name>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1camera_1_1_turn_table_camera_control" kindref="compound">TurnTableCameraControl</ref> with default sensitivity. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraControl.h" line="71" column="1" bodyfile="nTiled/src/camera/CameraControl.cpp" bodystart="21" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1camera_1_1_turn_table_camera_control_1a801244241681fd7897fc72a6ef64efc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::camera::TurnTableCameraControl::update</definition>
+        <argsstring>(const ImGuiIO &amp;io, CameraData &amp;data)</argsstring>
+        <name>update</name>
+        <reimplements refid="classn_tiled_1_1camera_1_1_camera_control_1ae42c2cb7e80f058ae47a457fbf77849f">update</reimplements>
+        <param>
+          <type>const ImGuiIO &amp;</type>
+          <declname>io</declname>
+        </param>
+        <param>
+          <type><ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Update the given <ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref> based on the collected input. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraControl.h" line="76" column="1" bodyfile="nTiled/src/camera/CameraControl.cpp" bodystart="27" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1camera_1_1_turn_table_camera_control_1ad9d8f60cbd029251b4c9e0316c26bc1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::camera::TurnTableCameraControl::activate</definition>
+        <argsstring>(const ImGuiIO &amp;io)</argsstring>
+        <name>activate</name>
+        <reimplements refid="classn_tiled_1_1camera_1_1_camera_control_1af75286c63baf022d4440738ad9ccc278">activate</reimplements>
+        <param>
+          <type>const ImGuiIO &amp;</type>
+          <declname>io</declname>
+        </param>
+        <briefdescription>
+<para>Activate this <ref refid="classn_tiled_1_1camera_1_1_camera_control" kindref="compound">CameraControl</ref> given the current input. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraControl.h" line="78" column="1" bodyfile="nTiled/src/camera/CameraControl.cpp" bodystart="50" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1camera_1_1_turn_table_camera_control_1acbcc7786ba7f9709f16cb44ece5101b8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool nTiled::camera::TurnTableCameraControl::isUserControlled</definition>
+        <argsstring>()</argsstring>
+        <name>isUserControlled</name>
+        <reimplements refid="classn_tiled_1_1camera_1_1_camera_control_1a4bab1eeadd870dd623e7456aaa8c26f2">isUserControlled</reimplements>
+        <briefdescription>
+<para>Whether this <ref refid="classn_tiled_1_1camera_1_1_camera_control" kindref="compound">CameraControl</ref> is user controlled or not. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraControl.h" line="80" column="1" bodyfile="nTiled/include/camera/CameraControl.h" bodystart="80" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1camera_1_1_turn_table_camera_control" kindref="compound">TurnTableCameraControl</ref> implements a TurnTable camera similar to which is available in Blender. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="646">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="645">
+        <label>nTiled::camera::TurnTableCameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_turn_table_camera_control"/>
+        <childnode refid="646" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="648">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="647">
+        <label>nTiled::camera::TurnTableCameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_turn_table_camera_control"/>
+        <childnode refid="648" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/camera/CameraControl.h" line="55" column="1" bodyfile="nTiled/include/camera/CameraControl.h" bodystart="55" bodyend="87"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1camera_1_1_turn_table_camera_control_1ad9d8f60cbd029251b4c9e0316c26bc1b" prot="public" virt="virtual"><scope>nTiled::camera::TurnTableCameraControl</scope><name>activate</name></member>
+      <member refid="classn_tiled_1_1camera_1_1_turn_table_camera_control_1acbcc7786ba7f9709f16cb44ece5101b8" prot="public" virt="virtual"><scope>nTiled::camera::TurnTableCameraControl</scope><name>isUserControlled</name></member>
+      <member refid="classn_tiled_1_1camera_1_1_turn_table_camera_control_1a1254bc4810cb15c6a3712506d6fc7554" prot="private" virt="non-virtual"><scope>nTiled::camera::TurnTableCameraControl</scope><name>pos_prev</name></member>
+      <member refid="classn_tiled_1_1camera_1_1_turn_table_camera_control_1ab3079c57341007a5bf1d2602f119ab62" prot="private" virt="non-virtual"><scope>nTiled::camera::TurnTableCameraControl</scope><name>sensitivity</name></member>
+      <member refid="classn_tiled_1_1camera_1_1_turn_table_camera_control_1af3ff24a690c71ea46c4be3675e3d5b47" prot="public" virt="non-virtual"><scope>nTiled::camera::TurnTableCameraControl</scope><name>TurnTableCameraControl</name></member>
+      <member refid="classn_tiled_1_1camera_1_1_turn_table_camera_control_1a150fd17efdafa45e3d0d83b6db9f2457" prot="public" virt="non-virtual"><scope>nTiled::camera::TurnTableCameraControl</scope><name>TurnTableCameraControl</name></member>
+      <member refid="classn_tiled_1_1camera_1_1_turn_table_camera_control_1a801244241681fd7897fc72a6ef64efc3" prot="public" virt="virtual"><scope>nTiled::camera::TurnTableCameraControl</scope><name>update</name></member>
+      <member refid="classn_tiled_1_1camera_1_1_camera_control_1a743933b918710918b7f8b75b6d0a9be8" prot="public" virt="virtual"><scope>nTiled::camera::TurnTableCameraControl</scope><name>~CameraControl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

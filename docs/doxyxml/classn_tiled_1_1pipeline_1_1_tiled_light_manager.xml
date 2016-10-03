@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::TiledLightManager</compoundname>
+    <derivedcompoundref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged" prot="public" virt="non-virtual">nTiled::pipeline::TiledLightManagerLogged</derivedcompoundref>
+    <includes refid="_tiled_light_manager_8h" local="no">TiledLightManager.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1a108049cfe0d137112bae98c21ad61c27" prot="public" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref></type>
+        <definition>LightGrid nTiled::pipeline::TiledLightManager::light_grid</definition>
+        <argsstring></argsstring>
+        <name>light_grid</name>
+        <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref> datastructure to which this lightmanager writes. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="57" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1a9c586aab7c6b46b3f0461346e4cce9ee" prot="protected" static="no" mutable="no">
+        <type>const <ref refid="classn_tiled_1_1pipeline_1_1_light_projector" kindref="compound">LightProjector</ref> &amp;</type>
+        <definition>const LightProjector&amp; nTiled::pipeline::TiledLightManager::projector</definition>
+        <argsstring></argsstring>
+        <name>projector</name>
+        <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1_light_projector" kindref="compound">LightProjector</ref> to be used to calculate the affected lights. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="80" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1a377542ce85b880d2438e9ab00bc2af09" prot="protected" static="no" mutable="no">
+        <type>const <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref> &amp;</type>
+        <definition>const world::World&amp; nTiled::pipeline::TiledLightManager::world</definition>
+        <argsstring></argsstring>
+        <name>world</name>
+        <briefdescription>
+<para>World Reference of this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="83" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ad0ea64c91b36c5578a9c52876b900c59" prot="protected" static="no" mutable="no">
+        <type>const <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+        <definition>const state::View&amp; nTiled::pipeline::TiledLightManager::view</definition>
+        <argsstring></argsstring>
+        <name>view</name>
+        <briefdescription>
+<para>View Reference of this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="85" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ac76a568255e265a626e5baf5b4c8fca3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::TiledLightManager::TiledLightManager</definition>
+        <argsstring>(const world::World &amp;world, const state::View &amp;view, GLuint tile_width, GLuint tile_height, const LightProjector &amp;projector)</argsstring>
+        <name>TiledLightManager</name>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref> &amp;</type>
+          <declname>world</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>tile_width</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>tile_height</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1pipeline_1_1_light_projector" kindref="compound">LightProjector</ref> &amp;</type>
+          <declname>projector</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> with the given World and View, tile dimensions and light projector</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>world</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the world which this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> observes. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>view</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the view which this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> observes. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Width of a tile of this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Height of a tile of this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>projector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the <ref refid="classn_tiled_1_1pipeline_1_1_light_projector" kindref="compound">LightProjector</ref> this new TiledLightmanager uses to project lights on clipspace coordinates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="45" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/TiledLightManager.cpp" bodystart="11" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ae6de246ae2d3b7f649b41d478198f350" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::TiledLightManager::constructGridFrame</definition>
+        <argsstring>()</argsstring>
+        <name>constructGridFrame</name>
+        <briefdescription>
+<para>Construct the light grid frame based on the current View and World. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="54" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/TiledLightManager.cpp" bodystart="26" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ac9e36866017f02dd0a5628d4f90caf43" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::TiledLightManager::clearGrid</definition>
+        <argsstring>()</argsstring>
+        <name>clearGrid</name>
+        <reimplementedby refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_1ac0479e7ab24c62494f27437dbe655ff0">clearGrid</reimplementedby>
+        <briefdescription>
+<para>Clear the current light_grid of this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="65" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/TiledLightManager.cpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1a42daf280a0d41e25772b3a52c8359452" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::TiledLightManager::buildGrid</definition>
+        <argsstring>()</argsstring>
+        <name>buildGrid</name>
+        <reimplementedby refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_1a72c22243207e528c482d3db4ed5ff4af">buildGrid</reimplementedby>
+        <briefdescription>
+<para>Build the light_grid of this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="69" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/TiledLightManager.cpp" bodystart="37" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ac1ba41062de1f1c1760870579d2698ca" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::TiledLightManager::finaliseGrid</definition>
+        <argsstring>()</argsstring>
+        <name>finaliseGrid</name>
+        <reimplementedby refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged_1a5043a51767a716d4b4e6d34f8f5494f5">finaliseGrid</reimplementedby>
+        <briefdescription>
+<para>Finalise the light_grid of this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="73" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/TiledLightManager.cpp" bodystart="54" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> is responsible for managing the <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref> and obtaining the LightData and projections in order to construct <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref> frames. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="605">
+        <label>nTiled::pipeline::TiledLightManager</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager"/>
+      </node>
+      <node id="606">
+        <label>nTiled::pipeline::TiledLightManagerLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_logged"/>
+        <childnode refid="605" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="616">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="610">
+        <label>nTiled::pipeline::LightProjector</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_light_projector"/>
+      </node>
+      <node id="612">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="609">
+        <label>nTiled::pipeline::LightGrid</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_light_grid"/>
+      </node>
+      <node id="613">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="614" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="612" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="615" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="607">
+        <label>nTiled::pipeline::TiledLightManager</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager"/>
+        <childnode refid="608" relation="usage">
+          <edgelabel>world</edgelabel>
+        </childnode>
+        <childnode refid="609" relation="usage">
+          <edgelabel>light_grid</edgelabel>
+        </childnode>
+        <childnode refid="610" relation="usage">
+          <edgelabel>projector</edgelabel>
+        </childnode>
+        <childnode refid="611" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+      </node>
+      <node id="614">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="611">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="612" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="613" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="616" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="608">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+      <node id="615">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" line="28" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/TiledLightManager.h" bodystart="28" bodyend="86"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1a42daf280a0d41e25772b3a52c8359452" prot="protected" virt="virtual"><scope>nTiled::pipeline::TiledLightManager</scope><name>buildGrid</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ac9e36866017f02dd0a5628d4f90caf43" prot="protected" virt="virtual"><scope>nTiled::pipeline::TiledLightManager</scope><name>clearGrid</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ae6de246ae2d3b7f649b41d478198f350" prot="public" virt="non-virtual"><scope>nTiled::pipeline::TiledLightManager</scope><name>constructGridFrame</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ac1ba41062de1f1c1760870579d2698ca" prot="protected" virt="virtual"><scope>nTiled::pipeline::TiledLightManager</scope><name>finaliseGrid</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1a108049cfe0d137112bae98c21ad61c27" prot="public" virt="non-virtual"><scope>nTiled::pipeline::TiledLightManager</scope><name>light_grid</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1a9c586aab7c6b46b3f0461346e4cce9ee" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::TiledLightManager</scope><name>projector</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ac76a568255e265a626e5baf5b4c8fca3" prot="public" virt="non-virtual"><scope>nTiled::pipeline::TiledLightManager</scope><name>TiledLightManager</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1ad0ea64c91b36c5578a9c52876b900c59" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::TiledLightManager</scope><name>view</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_1a377542ce85b880d2438e9ab00bc2af09" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::TiledLightManager</scope><name>world</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

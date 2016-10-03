@@ -1,0 +1,305 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_light_grid" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::LightGrid</compoundname>
+    <includes refid="_light_grid_8h" local="no">LightGrid.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1a964c95a53aa52d70c4bad5a0ab397e6b" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int nTiled::pipeline::LightGrid::total_width</definition>
+        <argsstring></argsstring>
+        <name>total_width</name>
+        <briefdescription>
+<para>Total width in pixels of the viewport. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="44" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1ab3f029821a12d8c116f7f387b016c92b" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int nTiled::pipeline::LightGrid::total_height</definition>
+        <argsstring></argsstring>
+        <name>total_height</name>
+        <briefdescription>
+<para>Total height in pixels of the viewport. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="46" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1ab38dd8a633e9afaca09d56f0cb2d55a3" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int nTiled::pipeline::LightGrid::tile_width</definition>
+        <argsstring></argsstring>
+        <name>tile_width</name>
+        <briefdescription>
+<para>width in pixels of a single tile in this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="48" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1a4304464f15763c57b2afb5412b76d0c5" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int nTiled::pipeline::LightGrid::tile_height</definition>
+        <argsstring></argsstring>
+        <name>tile_height</name>
+        <briefdescription>
+<para>height in pixels of a single in this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="50" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1aea63cc7db6778db05cb8d1c254b87c44" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int nTiled::pipeline::LightGrid::n_x</definition>
+        <argsstring></argsstring>
+        <name>n_x</name>
+        <briefdescription>
+<para>Number of tiles this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref> is wide. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="53" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1ace220229850bbb2db7ff5d7b8681241a" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int nTiled::pipeline::LightGrid::n_y</definition>
+        <argsstring></argsstring>
+        <name>n_y</name>
+        <briefdescription>
+<para>Number of tiles this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref> is high. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="55" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1a0645cfbdbe892b9284c91373ec3ee720" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int nTiled::pipeline::LightGrid::n_tiles</definition>
+        <argsstring></argsstring>
+        <name>n_tiles</name>
+        <briefdescription>
+<para>Total number of tiles in this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="57" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1a8a08fa1b866aba6ea8a9f64919d2184e" prot="public" static="no" mutable="no">
+        <type>glm::uvec2 *</type>
+        <definition>glm::uvec2* nTiled::pipeline::LightGrid::grid</definition>
+        <argsstring></argsstring>
+        <name>grid</name>
+        <briefdescription>
+<para>Array of uvec2 objects representing the grid in this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="80" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1a8d80ce20c6e7ab178a20c414063dab5d" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; GLuint &gt;</type>
+        <definition>std::vector&lt;GLuint&gt; nTiled::pipeline::LightGrid::light_index_list</definition>
+        <argsstring></argsstring>
+        <name>light_index_list</name>
+        <briefdescription>
+<para>Light index list of this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="82" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1ac7089fce727a6841dc4785eb4723bfc0" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; GLuint &gt; *</type>
+        <definition>std::vector&lt;GLuint&gt;* nTiled::pipeline::LightGrid::light_index_list_raw</definition>
+        <argsstring></argsstring>
+        <name>light_index_list_raw</name>
+        <briefdescription>
+<para>Raw representation of the Light Index List of this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="86" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_light_grid_1af93979ed022db9fc97b8738c15a7d78f" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int nTiled::pipeline::LightGrid::total_light_indices</definition>
+        <argsstring></argsstring>
+        <name>total_light_indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Total number of light indices stored in this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref>. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="88" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_light_grid_1a39154d2c21deeeb8dc15e8db5145665b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::LightGrid::LightGrid</definition>
+        <argsstring>(unsigned int total_width, unsigned int total_height, unsigned int tile_width, unsigned int tile_height)</argsstring>
+        <name>LightGrid</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>total_width</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>total_height</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>tile_width</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>tile_height</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref> with the given parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>total_width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total width in pixels of the viewport </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>total_height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total height in pixels of the viewport  tile_width width in pixels of a single tile in this new <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>height in pixels of a single tile in this new <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref> </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="32" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/LightGrid..cpp" bodystart="16" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_light_grid_1a4d5612f6e29c3c2418206af116e9f8eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::LightGrid::~LightGrid</definition>
+        <argsstring>()</argsstring>
+        <name>~LightGrid</name>
+        <briefdescription>
+<para>Default destructor for this <ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="38" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/LightGrid..cpp" bodystart="46" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_light_grid_1a7f52db0b6a7604ed4a1a84fc83a54b80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::LightGrid::incrementTiles</definition>
+        <argsstring>(glm::uvec4 tiles, unsigned int light_index)</argsstring>
+        <name>incrementTiles</name>
+        <param>
+          <type>glm::uvec4</type>
+          <declname>tiles</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>light_index</declname>
+        </param>
+        <briefdescription>
+<para>Increment tiles running from x to z and y to with light_index. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tiles</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Set of tiles to updated, where tiles.xy corresponds with the lower left corner and tiles.zw corresponds with the upper left corner. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>light_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Light index with which the tiles should be incremented. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="68" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/LightGrid..cpp" bodystart="61" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_light_grid_1a5d5c05c68984d89df615c6fe27650111" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::LightGrid::clearGrid</definition>
+        <argsstring>()</argsstring>
+        <name>clearGrid</name>
+        <briefdescription>
+<para>Set all grid entries to uvec2(0, 0) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="73" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/LightGrid..cpp" bodystart="53" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_light_grid_1a5ad3a3de28f8f6b0bbc2acb5aabf2664" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::LightGrid::finaliseGrid</definition>
+        <argsstring>()</argsstring>
+        <name>finaliseGrid</name>
+        <briefdescription>
+<para>Set grid to values represented internally. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="77" column="1" bodyfile="nTiled/src/pipeline/light-management/tiled/LightGrid..cpp" bodystart="83" bodyend="101"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1_light_grid" kindref="compound">LightGrid</ref> stores both the light index list and light grid which are constructed by the LightManager. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/pipeline/light-management/tiled/LightGrid.h" line="20" column="1" bodyfile="nTiled/include/pipeline/light-management/tiled/LightGrid.h" bodystart="20" bodyend="89"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a5d5c05c68984d89df615c6fe27650111" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>clearGrid</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a5ad3a3de28f8f6b0bbc2acb5aabf2664" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>finaliseGrid</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a8a08fa1b866aba6ea8a9f64919d2184e" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>grid</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a7f52db0b6a7604ed4a1a84fc83a54b80" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>incrementTiles</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a8d80ce20c6e7ab178a20c414063dab5d" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>light_index_list</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1ac7089fce727a6841dc4785eb4723bfc0" prot="private" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>light_index_list_raw</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a39154d2c21deeeb8dc15e8db5145665b" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>LightGrid</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a0645cfbdbe892b9284c91373ec3ee720" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>n_tiles</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1aea63cc7db6778db05cb8d1c254b87c44" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>n_x</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1ace220229850bbb2db7ff5d7b8681241a" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>n_y</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a4304464f15763c57b2afb5412b76d0c5" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>tile_height</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1ab38dd8a633e9afaca09d56f0cb2d55a3" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>tile_width</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1ab3f029821a12d8c116f7f387b016c92b" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>total_height</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1af93979ed022db9fc97b8738c15a7d78f" prot="private" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>total_light_indices</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a964c95a53aa52d70c4bad5a0ab397e6b" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>total_width</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_light_grid_1a4d5612f6e29c3c2418206af116e9f8eb" prot="public" virt="non-virtual"><scope>nTiled::pipeline::LightGrid</scope><name>~LightGrid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

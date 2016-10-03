@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="structucvector" kind="struct" language="C++" prot="public">
+    <compoundname>ucvector</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structucvector_1ace794c5713208c5a20f21762cd87c919" prot="public" static="no" mutable="no">
+        <type>unsigned char *</type>
+        <definition>unsigned char* ucvector::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/src/lodepng.cpp" line="210" column="1" bodyfile="nTiled/src/lodepng.cpp" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structucvector_1a27c99c34de0c5b3ca0c242d402c69499" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t ucvector::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/src/lodepng.cpp" line="211" column="1" bodyfile="nTiled/src/lodepng.cpp" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structucvector_1a235168baac13f0c78bd3e309dc170f90" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t ucvector::allocsize</definition>
+        <argsstring></argsstring>
+        <name>allocsize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/src/lodepng.cpp" line="212" column="1" bodyfile="nTiled/src/lodepng.cpp" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/src/lodepng.cpp" line="209" column="1" bodyfile="nTiled/src/lodepng.cpp" bodystart="208" bodyend="213"/>
+    <listofallmembers>
+      <member refid="structucvector_1a235168baac13f0c78bd3e309dc170f90" prot="public" virt="non-virtual"><scope>ucvector</scope><name>allocsize</name></member>
+      <member refid="structucvector_1ace794c5713208c5a20f21762cd87c919" prot="public" virt="non-virtual"><scope>ucvector</scope><name>data</name></member>
+      <member refid="structucvector_1a27c99c34de0c5b3ca0c242d402c69499" prot="public" virt="non-virtual"><scope>ucvector</scope><name>size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_f2d5aa2254138db082a4cb0232d112d7" kind="dir">
+    <compoundname>nTiled/src/pipeline/deferred/shaders</compoundname>
+    <innerdir refid="dir_f945985ed0ccfab57427ea9aa187682d">nTiled/src/pipeline/deferred/shaders/Logged</innerdir>
+    <innerfile refid="_deferred_attenuated_shader_8cpp">DeferredAttenuatedShader.cpp</innerfile>
+    <innerfile refid="_deferred_clustered_shader_8cpp">DeferredClusteredShader.cpp</innerfile>
+    <innerfile refid="_deferred_shader_8cpp">DeferredShader.cpp</innerfile>
+    <innerfile refid="_deferred_tiled_shader_8cpp">DeferredTiledShader.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/src/pipeline/deferred/shaders/"/>
+  </compounddef>
+</doxygen>

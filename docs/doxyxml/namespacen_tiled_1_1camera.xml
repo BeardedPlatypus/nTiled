@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="namespacen_tiled_1_1camera" kind="namespace" language="C++">
+    <compoundname>nTiled::camera</compoundname>
+    <innerclass refid="classn_tiled_1_1camera_1_1_automatic_rotate_camera_control" prot="public">nTiled::camera::AutomaticRotateCameraControl</innerclass>
+    <innerclass refid="classn_tiled_1_1camera_1_1_camera" prot="public">nTiled::camera::Camera</innerclass>
+    <innerclass refid="structn_tiled_1_1camera_1_1_camera_construction_data" prot="public">nTiled::camera::CameraConstructionData</innerclass>
+    <innerclass refid="classn_tiled_1_1camera_1_1_camera_control" prot="public">nTiled::camera::CameraControl</innerclass>
+    <innerclass refid="structn_tiled_1_1camera_1_1_camera_data" prot="public">nTiled::camera::CameraData</innerclass>
+    <innerclass refid="classn_tiled_1_1camera_1_1_path_camera_control" prot="public">nTiled::camera::PathCameraControl</innerclass>
+    <innerclass refid="classn_tiled_1_1camera_1_1_turn_table_camera_control" prot="public">nTiled::camera::TurnTableCameraControl</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/camera/Camera.h" line="19" column="1"/>
+  </compounddef>
+</doxygen>

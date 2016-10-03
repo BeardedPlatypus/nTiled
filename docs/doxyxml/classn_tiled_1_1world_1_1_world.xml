@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1world_1_1_world" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::world::World</compoundname>
+    <includes refid="_world_8h" local="no">World.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1world_1_1_world_1a4b1b768ab29c63f37c7868bb11a20130" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> * &gt;</type>
+        <definition>std::vector&lt;Mesh*&gt; nTiled::world::World::p_mesh_catalog</definition>
+        <argsstring></argsstring>
+        <name>p_mesh_catalog</name>
+        <briefdescription>
+<para>std::vector of pointers to every mesh of this <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/World.h" line="98" column="1" bodyfile="nTiled/include/world/World.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1world_1_1_world_1a2c3cc55cefea2ea37b8c043b7c58c3ab" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> * &gt;</type>
+        <definition>std::vector&lt;Object*&gt; nTiled::world::World::p_objects</definition>
+        <argsstring></argsstring>
+        <name>p_objects</name>
+        <briefdescription>
+<para>std::vector of pointers to every object of this <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/World.h" line="100" column="1" bodyfile="nTiled/include/world/World.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1world_1_1_world_1a746580ce06b548f37b769b8d852d0b41" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> * &gt;</type>
+        <definition>std::vector&lt;PointLight*&gt; nTiled::world::World::p_lights</definition>
+        <argsstring></argsstring>
+        <name>p_lights</name>
+        <briefdescription>
+<para>std::vector of pointers to every <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> of this <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/World.h" line="102" column="1" bodyfile="nTiled/include/world/World.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1world_1_1_world_1a92a17892965c70f6b99628131effa0af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::world::World::World</definition>
+        <argsstring>()</argsstring>
+        <name>World</name>
+        <briefdescription>
+<para>Construct a new empty <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a new empty world. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/World.h" line="33" column="1" bodyfile="nTiled/src/world/World.cpp" bodystart="9" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1world_1_1_world_1aa95baff5690642edf8c2ded60de37ace" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::world::World::~World</definition>
+        <argsstring>()</argsstring>
+        <name>~World</name>
+        <briefdescription>
+<para>Destruct this world. Remove all allocated meshes and objects. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/World.h" line="40" column="1" bodyfile="nTiled/src/world/World.cpp" bodystart="15" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1world_1_1_world_1ae539467a42acd93c46e43ada0b5e60a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> *</type>
+        <definition>Mesh * nTiled::world::World::constructMesh</definition>
+        <argsstring>(const std::vector&lt; glm::vec4 &gt; &amp;vertices, const std::vector&lt; glm::vec3 &gt; &amp;normals, const std::vector&lt; glm::vec3 &gt; &amp;uvs, const std::vector&lt; glm::tvec3&lt; glm::u32 &gt;&gt; elements)</argsstring>
+        <name>constructMesh</name>
+        <param>
+          <type>const std::vector&lt; glm::vec4 &gt; &amp;</type>
+          <declname>vertices</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; glm::vec3 &gt; &amp;</type>
+          <declname>normals</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; glm::vec3 &gt; &amp;</type>
+          <declname>uvs</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; glm::tvec3&lt; glm::u32 &gt;&gt;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> with the given parameters and add it to this <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vertices of this new <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>normals</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The normals of this new <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uvs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The uv coordinates of this new <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>elements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the primitives of this new <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/World.h" line="53" column="1" bodyfile="nTiled/src/world/World.cpp" bodystart="32" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1world_1_1_world_1a652299fb4bf65671c61fb994712967d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> *</type>
+        <definition>Object * nTiled::world::World::constructObject</definition>
+        <argsstring>(const std::string &amp;name, Mesh *p_mesh, glm::mat4 transformation_matrix, pipeline::ShaderKey shader, std::map&lt; std::string, std::string &gt; texture_map, bool is_rendered)</argsstring>
+        <name>constructObject</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type><ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> *</type>
+          <declname>p_mesh</declname>
+        </param>
+        <param>
+          <type>glm::mat4</type>
+          <declname>transformation_matrix</declname>
+        </param>
+        <param>
+          <type><ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">pipeline::ShaderKey</ref></type>
+          <declname>shader</declname>
+        </param>
+        <param>
+          <type>std::map&lt; std::string, std::string &gt;</type>
+          <declname>texture_map</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_rendered</declname>
+        </param>
+        <briefdescription>
+<para>Construct A new <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> with the given parameters and add it to this <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of this new <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_mesh</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a pointer to the <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> of this new <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transformation_matrix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation matrix of this new object. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The shader with which this new <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> should be rendered. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>texture_map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The textures used to render this new <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>is_rendered</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether this new <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> should be rendered. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/World.h" line="69" column="1" bodyfile="nTiled/src/world/World.cpp" bodystart="44" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1world_1_1_world_1ae49abf990461cb8c5e48376bb32ccea7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> *</type>
+        <definition>PointLight * nTiled::world::World::constructPointLight</definition>
+        <argsstring>(const std::string &amp;name, glm::vec4 position, glm::vec3 intensity, float radius, bool is_emitting, std::map&lt; std::string, Object *&gt; debug_light_objects)</argsstring>
+        <name>constructPointLight</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>glm::vec4</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>intensity</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_emitting</declname>
+        </param>
+        <param>
+          <type>std::map&lt; std::string, <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> *&gt;</type>
+          <declname>debug_light_objects</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> with the given parameters and add it to this <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position in world coordinates of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intensity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The intensity of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The radius of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>is_emitting</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> is emitting light </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>debug_light_objects</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The debug_light_objects with which this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> is rendered in debug mode </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/World.h" line="87" column="1" bodyfile="nTiled/src/world/World.cpp" bodystart="60" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref> contains all objects, meshes and lights of a single run of nTiled. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/world/World.h" line="24" column="1" bodyfile="nTiled/include/world/World.h" bodystart="24" bodyend="103"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1world_1_1_world_1ae539467a42acd93c46e43ada0b5e60a7" prot="public" virt="non-virtual"><scope>nTiled::world::World</scope><name>constructMesh</name></member>
+      <member refid="classn_tiled_1_1world_1_1_world_1a652299fb4bf65671c61fb994712967d0" prot="public" virt="non-virtual"><scope>nTiled::world::World</scope><name>constructObject</name></member>
+      <member refid="classn_tiled_1_1world_1_1_world_1ae49abf990461cb8c5e48376bb32ccea7" prot="public" virt="non-virtual"><scope>nTiled::world::World</scope><name>constructPointLight</name></member>
+      <member refid="classn_tiled_1_1world_1_1_world_1a746580ce06b548f37b769b8d852d0b41" prot="public" virt="non-virtual"><scope>nTiled::world::World</scope><name>p_lights</name></member>
+      <member refid="classn_tiled_1_1world_1_1_world_1a4b1b768ab29c63f37c7868bb11a20130" prot="public" virt="non-virtual"><scope>nTiled::world::World</scope><name>p_mesh_catalog</name></member>
+      <member refid="classn_tiled_1_1world_1_1_world_1a2c3cc55cefea2ea37b8c043b7c58c3ab" prot="public" virt="non-virtual"><scope>nTiled::world::World</scope><name>p_objects</name></member>
+      <member refid="classn_tiled_1_1world_1_1_world_1a92a17892965c70f6b99628131effa0af" prot="public" virt="non-virtual"><scope>nTiled::world::World</scope><name>World</name></member>
+      <member refid="classn_tiled_1_1world_1_1_world_1aa95baff5690642edf8c2ded60de37ace" prot="public" virt="non-virtual"><scope>nTiled::world::World</scope><name>~World</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

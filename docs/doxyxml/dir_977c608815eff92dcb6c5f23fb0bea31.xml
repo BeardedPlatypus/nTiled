@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_977c608815eff92dcb6c5f23fb0bea31" kind="dir">
+    <compoundname>nTiled/src/pipeline/pipeline-util</compoundname>
+    <innerfile refid="_construct_quad_8cpp">ConstructQuad.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/src/pipeline/pipeline-util/"/>
+  </compounddef>
+</doxygen>

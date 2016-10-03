@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_58b326f7fa1a07dd7f95b1f67b86f205" kind="dir">
+    <compoundname>nTiled/include/world/object-constructor</compoundname>
+    <innerfile refid="_ass_imp_constructor_8h">AssImpConstructor.h</innerfile>
+    <innerfile refid="_object_constructor_8h">ObjectConstructor.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/world/object-constructor/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::ClusteredLightManagerLogged</compoundname>
+    <basecompoundref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager" prot="public" virt="non-virtual">nTiled::pipeline::ClusteredLightManager</basecompoundref>
+    <includes refid="_clustered_light_manager_logged_8h" local="no">ClusteredLightManagerLogged.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a32b6d12632d94fc39193cc3398782958" prot="protected" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+        <definition>logged::ExecutionTimeLogger&amp; nTiled::pipeline::ClusteredLightManagerLogged::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+<para>Reference to the ExecutionTimeLogger object which logs the execution time of this <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" line="39" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a08b0d7fc811dbc06ab469907b93b7d66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::ClusteredLightManagerLogged::ClusteredLightManagerLogged</definition>
+        <argsstring>(const state::View &amp;view, const world::World &amp;world, glm::uvec2 tile_size, GLuint depth_texture, logged::ExecutionTimeLogger &amp;logger)</argsstring>
+        <name>ClusteredLightManagerLogged</name>
+        <param>
+          <type>const <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref> &amp;</type>
+          <declname>world</declname>
+        </param>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>tile_size</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>depth_texture</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+          <declname>logger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" line="23" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/ClusteredLightManagerLogged.cpp" bodystart="10" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1aaa1c6220ee670904f26fd429fee5a2ee" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ClusteredLightManagerLogged::computeKeys</definition>
+        <argsstring>() override</argsstring>
+        <name>computeKeys</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a54d1fbc2ef88aec1f6f1ed50751c2880">computeKeys</reimplements>
+        <briefdescription>
+<para>Compute the keys with the KeyComputeShader of this ClusteredLightmanager. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" line="30" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/ClusteredLightManagerLogged.cpp" bodystart="21" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a224aa5d4a93b2abe791b4af6fcf2a747" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ClusteredLightManagerLogged::sortAndCompactKeys</definition>
+        <argsstring>() override</argsstring>
+        <name>sortAndCompactKeys</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a1fa99e8aa0eebc67279a5ca9a15a7903">sortAndCompactKeys</reimplements>
+        <briefdescription>
+<para>Sort and compact the keys with the SortAndCompactShader of this <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager" kindref="compound">ClusteredLightManager</ref> which were computed with KeyComputeShader. </para>        </briefdescription>
+        <detaileddescription>
+<para>This should be called after <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1aaa1c6220ee670904f26fd429fee5a2ee" kindref="member">computeKeys()</ref> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" line="31" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/ClusteredLightManagerLogged.cpp" bodystart="27" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a1fdad9119a006aca04900bffd4c24a5d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ClusteredLightManagerLogged::clearClustering</definition>
+        <argsstring>() override</argsstring>
+        <name>clearClustering</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1ada139f743cdcdf6d6f63d7d34a6cc81c">clearClustering</reimplements>
+        <briefdescription>
+<para>Clear the previous clustering stored in the LightClustering of this <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager" kindref="compound">ClusteredLightManager</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" line="32" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/ClusteredLightManagerLogged.cpp" bodystart="33" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a79312c9100b6d099c4fa1d9bf8c0c2dc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ClusteredLightManagerLogged::buildClustering</definition>
+        <argsstring>() override</argsstring>
+        <name>buildClustering</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a1a10b162cad6030c19302bcb30c019a4">buildClustering</reimplements>
+        <briefdescription>
+<para>Build the clustering of this frame, based on the sorted and compacted keys computed in <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1aaa1c6220ee670904f26fd429fee5a2ee" kindref="member">computeKeys()</ref> and <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a224aa5d4a93b2abe791b4af6fcf2a747" kindref="member">sortAndCompactKeys()</ref> </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" line="33" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/ClusteredLightManagerLogged.cpp" bodystart="39" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a7cea0f22e6f993c9581b6b0111287878" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ClusteredLightManagerLogged::finaliseClustering</definition>
+        <argsstring>() override</argsstring>
+        <name>finaliseClustering</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a755e52e8a1a477994f2ee431cde90ad1">finaliseClustering</reimplements>
+        <briefdescription>
+<para>Finalise clustering such that it can be loaded into video memory and used for rendering. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" line="34" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/ClusteredLightManagerLogged.cpp" bodystart="45" bodyend="49"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged" kindref="compound">ClusteredLightManagerLogged</ref> acts exactly like the <ref refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager" kindref="compound">ClusteredLightManager</ref> however it tracks the execution time of each defined function. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="50">
+        <label>nTiled::pipeline::ClusteredLightManager</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager"/>
+      </node>
+      <node id="49">
+        <label>nTiled::pipeline::ClusteredLightManagerLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged"/>
+        <childnode refid="50" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="65">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="59">
+        <label>nTiled::pipeline::LightProjector</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_light_projector"/>
+      </node>
+      <node id="55">
+        <label>nTiled::pipeline::clustered::ComputeShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_compute_shader"/>
+      </node>
+      <node id="57">
+        <label>nTiled::pipeline::PipelineObject</label>
+        <link refid="structn_tiled_1_1pipeline_1_1_pipeline_object"/>
+      </node>
+      <node id="61">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="66">
+        <label>nTiled::logged::ExecutionTimeLogger</label>
+        <link refid="classn_tiled_1_1logged_1_1_execution_time_logger"/>
+        <childnode refid="67" relation="usage">
+          <edgelabel>clock</edgelabel>
+        </childnode>
+      </node>
+      <node id="67">
+        <label>nTiled::Clock</label>
+        <link refid="classn_tiled_1_1_clock"/>
+      </node>
+      <node id="62">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="63" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="61" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="64" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="63">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="60">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="61" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="62" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="65" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="52">
+        <label>nTiled::pipeline::ClusteredLightManager</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager"/>
+        <childnode refid="53" relation="usage">
+          <edgelabel>world</edgelabel>
+        </childnode>
+        <childnode refid="54" relation="usage">
+          <edgelabel>key_sort_compact_shader</edgelabel>
+        </childnode>
+        <childnode refid="56" relation="usage">
+          <edgelabel>key_compute_shader</edgelabel>
+        </childnode>
+        <childnode refid="58" relation="usage">
+          <edgelabel>light_clustering</edgelabel>
+        </childnode>
+        <childnode refid="59" relation="usage">
+          <edgelabel>projector</edgelabel>
+        </childnode>
+        <childnode refid="60" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+      </node>
+      <node id="53">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+      <node id="54">
+        <label>nTiled::pipeline::clustered::KeySortAndCompactShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_sort_and_compact_shader"/>
+        <childnode refid="55" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+      <node id="56">
+        <label>nTiled::pipeline::clustered::KeyComputeShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_key_compute_shader"/>
+        <childnode refid="55" relation="public-inheritance">
+        </childnode>
+        <childnode refid="57" relation="usage">
+          <edgelabel>display_quad</edgelabel>
+        </childnode>
+      </node>
+      <node id="51">
+        <label>nTiled::pipeline::ClusteredLightManagerLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged"/>
+        <childnode refid="52" relation="public-inheritance">
+        </childnode>
+        <childnode refid="66" relation="usage">
+          <edgelabel>logger</edgelabel>
+        </childnode>
+      </node>
+      <node id="58">
+        <label>nTiled::pipeline::clustered::LightClustering</label>
+        <link refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" line="21" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h" bodystart="21" bodyend="40"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a79312c9100b6d099c4fa1d9bf8c0c2dc" prot="protected" virt="virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>buildClustering</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a1fdad9119a006aca04900bffd4c24a5d" prot="protected" virt="virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>clearClustering</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a913267a2e340ef93fe7922f19bd75a90" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>ClusteredLightManager</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a08b0d7fc811dbc06ab469907b93b7d66" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>ClusteredLightManagerLogged</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1aaa1c6220ee670904f26fd429fee5a2ee" prot="protected" virt="virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>computeKeys</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a7163a7385c0a82320013cb0877bd54ec" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>constructClusteringFrame</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a7cea0f22e6f993c9581b6b0111287878" prot="protected" virt="virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>finaliseClustering</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a74eb7bc2694b52e95236c04492fa6734" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>getKIndexMapPointer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a90fbf9fd576afec8e14ed02f0245e51e" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>getLightClusterData</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1aa82371eb461df65c379314dfe73dd591" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>getLightIndexData</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1ae760d013e0517407b86a1c9c6c073b15" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>getSummedIndicesData</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1abdfd2c46012c880fcc939c1fc0ac1b5e" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>k_inv_denominator</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1abda801d74f316f13bc6785361e425f36" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>key_compute_shader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1af4ba972e97376fa4ecec6acbb4321723" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>key_sort_compact_shader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1ac5cb09e64e20fdcbfbcae66244b165f8" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>light_clustering</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a32b6d12632d94fc39193cc3398782958" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>logger</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1adb2f7b09bc743c09da33e66277ead0d5" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>projector</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_logged_1a224aa5d4a93b2abe791b4af6fcf2a747" prot="protected" virt="virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>sortAndCompactKeys</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a6de156d1b5928db8fb91a3416c20481b" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>summed_indices</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1aae34a4bf9905bb5c6c9676eeaa2be462" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>tile_size</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a4b989d5162fa8dd3972ef3f43aba4619" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>view</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1aaec4f993eb56c9c64a54cb3374a6c68c" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>world</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_clustered_light_manager_1a2cd25ce107ac2e3dca49bf2fb778ac45" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ClusteredLightManagerLogged</scope><name>~ClusteredLightManager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

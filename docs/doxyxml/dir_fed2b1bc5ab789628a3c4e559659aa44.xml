@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_fed2b1bc5ab789628a3c4e559659aa44" kind="dir">
+    <compoundname>nTiled/include/pipeline/light-management</compoundname>
+    <innerdir refid="dir_b29c4349211367087052b401a09109c8">nTiled/include/pipeline/light-management/clustered</innerdir>
+    <innerdir refid="dir_8988b03ad6f88fb3d04fb4550b433703">nTiled/include/pipeline/light-management/tiled</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/pipeline/light-management/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_d33ca349fcbf6a2b3746c790dff7f303" kind="dir">
+    <compoundname>nTiled/src/pipeline/forward</compoundname>
+    <innerdir refid="dir_f6afe8f73e97507f5f7d2c2531cbc2f8">nTiled/src/pipeline/forward/shaders</innerdir>
+    <innerfile refid="_depth_buffer_8cpp">DepthBuffer.cpp</innerfile>
+    <innerfile refid="_forward_pipeline_8cpp">ForwardPipeline.cpp</innerfile>
+    <innerfile refid="_forward_pipeline_logged_8cpp">ForwardPipelineLogged.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/src/pipeline/forward/"/>
+  </compounddef>
+</doxygen>

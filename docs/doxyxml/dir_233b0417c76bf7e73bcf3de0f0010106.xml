@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_233b0417c76bf7e73bcf3de0f0010106" kind="dir">
+    <compoundname>nTiled/src/gui</compoundname>
+    <innerfile refid="_gui_manager_8cpp">GuiManager.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/src/gui/"/>
+  </compounddef>
+</doxygen>

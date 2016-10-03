@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1_frame_event_compare" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::FrameEventCompare</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1_frame_event_compare_1a3470351bfea68e9a297f6eee158f71b1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool nTiled::FrameEventCompare::operator()</definition>
+        <argsstring>(FrameEvent *lhs, FrameEvent *rhs) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type><ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> *</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> *</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/FrameEvent.h" line="25" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="25" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/main/FrameEvent.h" line="23" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="23" bodyend="29"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1_frame_event_compare_1a3470351bfea68e9a297f6eee158f71b1" prot="public" virt="non-virtual"><scope>nTiled::FrameEventCompare</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

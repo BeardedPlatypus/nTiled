@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1_frame_event" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::FrameEvent</compoundname>
+    <derivedcompoundref refid="classn_tiled_1_1_exit_event" prot="public" virt="non-virtual">nTiled::ExitEvent</derivedcompoundref>
+    <derivedcompoundref refid="classn_tiled_1_1_export_logging_data_event" prot="public" virt="non-virtual">nTiled::ExportLoggingDataEvent</derivedcompoundref>
+    <derivedcompoundref refid="classn_tiled_1_1_set_draw_method_event" prot="public" virt="non-virtual">nTiled::SetDrawMethodEvent</derivedcompoundref>
+    <derivedcompoundref refid="classn_tiled_1_1_toggle_logging_data_event" prot="public" virt="non-virtual">nTiled::ToggleLoggingDataEvent</derivedcompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1_frame_event_1a7979f73a10266e0e64bbd4e4dedcfac8" prot="public" static="no" mutable="no">
+        <type>const unsigned long</type>
+        <definition>const unsigned long nTiled::FrameEvent::frame</definition>
+        <argsstring></argsstring>
+        <name>frame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Frame at which this Event should start taking place </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/FrameEvent.h" line="18" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1_frame_event_1aaf119a62f2a229b2ac56b29f0b8bd5ac" prot="public" static="no" mutable="no">
+        <type>const unsigned long</type>
+        <definition>const unsigned long nTiled::FrameEvent::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/FrameEvent.h" line="19" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1_frame_event_1a26f02a72d01825da1d869d244632826b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::FrameEvent::FrameEvent</definition>
+        <argsstring>(unsigned long frame, unsigned long index)</argsstring>
+        <name>FrameEvent</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>frame</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/FrameEvent.h" line="12" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="8" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1_frame_event_1a21b8957ef3b2f5e77e7bcb175e696193" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::FrameEvent::~FrameEvent</definition>
+        <argsstring>()</argsstring>
+        <name>~FrameEvent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/FrameEvent.h" line="14" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1_frame_event_1a70f7dfbfd368855394fb7c89e7f587c7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void nTiled::FrameEvent::execute</definition>
+        <argsstring>(Controller *controller)</argsstring>
+        <name>execute</name>
+        <reimplementedby refid="classn_tiled_1_1_set_draw_method_event_1a5f0eb38f6fd405f90b6346037f7c4702">execute</reimplementedby>
+        <reimplementedby refid="classn_tiled_1_1_toggle_logging_data_event_1a73cc1ba2ca0e49bf94738c0ce13e78fd">execute</reimplementedby>
+        <reimplementedby refid="classn_tiled_1_1_export_logging_data_event_1aa11ca5544ff324b6b95755e627d5fea5">execute</reimplementedby>
+        <reimplementedby refid="classn_tiled_1_1_exit_event_1a920ba906eefa21fc5891cb971467347c">execute</reimplementedby>
+        <param>
+          <type><ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> *</type>
+          <declname>controller</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/FrameEvent.h" line="16" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="16" bodyend="16"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="485">
+        <label>nTiled::ExportLoggingDataEvent</label>
+        <link refid="classn_tiled_1_1_export_logging_data_event"/>
+        <childnode refid="483" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="483">
+        <label>nTiled::FrameEvent</label>
+        <link refid="classn_tiled_1_1_frame_event"/>
+      </node>
+      <node id="484">
+        <label>nTiled::ExitEvent</label>
+        <link refid="classn_tiled_1_1_exit_event"/>
+        <childnode refid="483" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="486">
+        <label>nTiled::SetDrawMethodEvent</label>
+        <link refid="classn_tiled_1_1_set_draw_method_event"/>
+        <childnode refid="483" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="487">
+        <label>nTiled::ToggleLoggingDataEvent</label>
+        <link refid="classn_tiled_1_1_toggle_logging_data_event"/>
+        <childnode refid="483" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="nTiled/include/main/FrameEvent.h" line="10" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="10" bodyend="20"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1_frame_event_1a70f7dfbfd368855394fb7c89e7f587c7" prot="public" virt="virtual"><scope>nTiled::FrameEvent</scope><name>execute</name></member>
+      <member refid="classn_tiled_1_1_frame_event_1a7979f73a10266e0e64bbd4e4dedcfac8" prot="public" virt="non-virtual"><scope>nTiled::FrameEvent</scope><name>frame</name></member>
+      <member refid="classn_tiled_1_1_frame_event_1a26f02a72d01825da1d869d244632826b" prot="public" virt="non-virtual"><scope>nTiled::FrameEvent</scope><name>FrameEvent</name></member>
+      <member refid="classn_tiled_1_1_frame_event_1aaf119a62f2a229b2ac56b29f0b8bd5ac" prot="public" virt="non-virtual"><scope>nTiled::FrameEvent</scope><name>index</name></member>
+      <member refid="classn_tiled_1_1_frame_event_1a21b8957ef3b2f5e77e7bcb175e696193" prot="public" virt="non-virtual"><scope>nTiled::FrameEvent</scope><name>~FrameEvent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

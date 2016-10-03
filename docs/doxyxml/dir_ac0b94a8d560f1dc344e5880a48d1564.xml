@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_ac0b94a8d560f1dc344e5880a48d1564" kind="dir">
+    <compoundname>nTiled/src/camera</compoundname>
+    <innerfile refid="_camera_8cpp">Camera.cpp</innerfile>
+    <innerfile refid="_camera_construction_data_8cpp">CameraConstructionData.cpp</innerfile>
+    <innerfile refid="_camera_control_8cpp">CameraControl.cpp</innerfile>
+    <innerfile refid="_camera_data_8cpp">CameraData.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/src/camera/"/>
+  </compounddef>
+</doxygen>

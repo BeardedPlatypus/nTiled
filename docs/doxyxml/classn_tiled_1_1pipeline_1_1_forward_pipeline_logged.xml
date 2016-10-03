@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::ForwardPipelineLogged</compoundname>
+    <basecompoundref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" prot="public" virt="non-virtual">nTiled::pipeline::ForwardPipeline</basecompoundref>
+    <includes refid="_forward_pipeline_logged_8h" local="no">ForwardPipelineLogged.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged_1ab37cc90793b2905de9d56fa35b264682" prot="protected" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+        <definition>logged::ExecutionTimeLogger&amp; nTiled::pipeline::ForwardPipelineLogged::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+<para>Reference to ExecutionTimeLogger of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged" kindref="compound">ForwardPipelineLogged</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipelineLogged.h" line="39" column="1" bodyfile="nTiled/include/pipeline/forward/ForwardPipelineLogged.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged_1a72f48e5173b360c59e7fdaa8b64345d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::ForwardPipelineLogged::ForwardPipelineLogged</definition>
+        <argsstring>(state::State &amp;state, logged::ExecutionTimeLogger &amp;logger)</argsstring>
+        <name>ForwardPipelineLogged</name>
+        <param>
+          <type><ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">state::State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+          <declname>logger</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged" kindref="compound">ForwardPipelineLogged</ref> with the specified State and ExecutionTimeLogger. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the State this <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged" kindref="compound">ForwardPipelineLogged</ref> will observe. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>logger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ExecutionTimeLogger used to track the execution time of functions of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged" kindref="compound">ForwardPipelineLogged</ref> </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipelineLogged.h" line="32" column="1" bodyfile="nTiled/src/pipeline/forward/ForwardPipelineLogged.cpp" bodystart="24" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged_1a96fd0d8cb841d1984a02b61db4594260" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ForwardPipelineLogged::constructShaderCatalog</definition>
+        <argsstring>() override</argsstring>
+        <name>constructShaderCatalog</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a85cb5e9988d80681589bf4527ab6dad5">constructShaderCatalog</reimplements>
+        <briefdescription>
+<para>Construct the <ref refid="classn_tiled_1_1pipeline_1_1_shader" kindref="compound">Shader</ref> catalog of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" kindref="compound">ForwardPipeline</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipelineLogged.h" line="36" column="1" bodyfile="nTiled/src/pipeline/forward/ForwardPipelineLogged.cpp" bodystart="30" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged" kindref="compound">ForwardPipelineLogged</ref> is the logged version of the <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" kindref="compound">ForwardPipeline</ref>. It acts completely similar to <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" kindref="compound">ForwardPipeline</ref> but will log the execution time with a ExecutionTimeLogger. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="415">
+        <label>nTiled::pipeline::ForwardPipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_pipeline"/>
+        <childnode refid="416" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="414">
+        <label>nTiled::pipeline::ForwardPipelineLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged"/>
+        <childnode refid="415" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="416">
+        <label>nTiled::pipeline::Pipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_pipeline"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="430">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="424">
+        <label>nTiled::state::TextureCatalog</label>
+        <link refid="classn_tiled_1_1state_1_1_texture_catalog"/>
+      </node>
+      <node id="421">
+        <label>nTiled::state::Log</label>
+        <link refid="structn_tiled_1_1state_1_1_log"/>
+      </node>
+      <node id="426">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="431">
+        <label>nTiled::logged::ExecutionTimeLogger</label>
+        <link refid="classn_tiled_1_1logged_1_1_execution_time_logger"/>
+        <childnode refid="432" relation="usage">
+          <edgelabel>clock</edgelabel>
+        </childnode>
+      </node>
+      <node id="420">
+        <label>nTiled::state::State</label>
+        <link refid="structn_tiled_1_1state_1_1_state"/>
+        <childnode refid="421" relation="usage">
+          <edgelabel>log</edgelabel>
+        </childnode>
+        <childnode refid="422" relation="usage">
+          <edgelabel>p_world</edgelabel>
+        </childnode>
+        <childnode refid="423" relation="usage">
+          <edgelabel>shading</edgelabel>
+        </childnode>
+        <childnode refid="424" relation="usage">
+          <edgelabel>texture_catalog</edgelabel>
+        </childnode>
+        <childnode refid="425" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+      </node>
+      <node id="432">
+        <label>nTiled::Clock</label>
+        <link refid="classn_tiled_1_1_clock"/>
+      </node>
+      <node id="427">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="428" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="426" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="429" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="418">
+        <label>nTiled::pipeline::ForwardPipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_pipeline"/>
+        <childnode refid="419" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="417">
+        <label>nTiled::pipeline::ForwardPipelineLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged"/>
+        <childnode refid="418" relation="public-inheritance">
+        </childnode>
+        <childnode refid="431" relation="usage">
+          <edgelabel>logger</edgelabel>
+        </childnode>
+      </node>
+      <node id="428">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="425">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="426" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="427" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="430" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="422">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+      <node id="429">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+      <node id="423">
+        <label>nTiled::state::Shading</label>
+        <link refid="structn_tiled_1_1state_1_1_shading"/>
+      </node>
+      <node id="419">
+        <label>nTiled::pipeline::Pipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_pipeline"/>
+        <childnode refid="420" relation="usage">
+          <edgelabel>state</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/forward/ForwardPipelineLogged.h" line="22" column="1" bodyfile="nTiled/include/pipeline/forward/ForwardPipelineLogged.h" bodystart="22" bodyend="40"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged_1a96fd0d8cb841d1984a02b61db4594260" prot="protected" virt="virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>constructShaderCatalog</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a7a5f48f03e43380d3175d0ff3afa3f46" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>ForwardPipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged_1a72f48e5173b360c59e7fdaa8b64345d0" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>ForwardPipelineLogged</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a94cfacd758077c9034bf7045cd691ac1" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>initialiseShaders</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged_1ab37cc90793b2905de9d56fa35b264682" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>logger</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1ac040cb57123ba44a0dda955aa18f26aa" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>output_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1af388a427797bbfffdc34d9f518be180d" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>Pipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a7e4e60da1a781c4981752eb83ee6199d" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>render</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a7926a6c36147af64fc152e6dbc6ccfce" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>setOutputBuffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1af2f8763dfd8f0003079434545545ef6b" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>shader_catalog</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1a86747875a6495abc36cbac1d1a50ad8d" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>state</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a0cacec36241078ab606b797c2c575368" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>~ForwardPipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1a703bd7614a2b5f68145d9e18906d727d" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardPipelineLogged</scope><name>~Pipeline</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

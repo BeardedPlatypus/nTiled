@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="structn_tiled_1_1camera_1_1_camera_data" kind="struct" language="C++" prot="public">
+    <compoundname>nTiled::camera::CameraData</compoundname>
+    <includes refid="_camera_data_8h" local="no">CameraData.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_data_1a11b7cff71ba435c0ffac2db5cc80fe74" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 nTiled::camera::CameraData::lookAt</definition>
+        <argsstring></argsstring>
+        <name>lookAt</name>
+        <briefdescription>
+<para>The look at matrix of this <ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraData.h" line="31" column="1" bodyfile="nTiled/include/camera/CameraData.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_data_1ae3dc3051f179c94b66c3fc03651c4572" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 nTiled::camera::CameraData::perspective_matrix</definition>
+        <argsstring></argsstring>
+        <name>perspective_matrix</name>
+        <briefdescription>
+<para>The perpsective matrix of this <ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraData.h" line="33" column="1" bodyfile="nTiled/include/camera/CameraData.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_data_1a6283c214b03bda5f4b0d37a9f1d7d37d" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 nTiled::camera::CameraData::depthrange</definition>
+        <argsstring></argsstring>
+        <name>depthrange</name>
+        <briefdescription>
+<para>The depth range of this <ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraData.h" line="35" column="1" bodyfile="nTiled/include/camera/CameraData.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structn_tiled_1_1camera_1_1_camera_data_1a728ee0bc2369eecddcb41715b0945283" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::camera::CameraData::CameraData</definition>
+        <argsstring>(glm::mat4 lookAt, glm::mat4 perspective_matrix, glm::vec2 depthrange)</argsstring>
+        <name>CameraData</name>
+        <param>
+          <type>glm::mat4</type>
+          <declname>lookAt</declname>
+        </param>
+        <param>
+          <type>glm::mat4</type>
+          <declname>perspective_matrix</declname>
+        </param>
+        <param>
+          <type>glm::vec2</type>
+          <declname>depthrange</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref> with the given parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lookAt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The look-at matrix of this new <ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>perspective_matrix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The perspective matrix of this new <ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>depthrange</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The depth range of this new <ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref>. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraData.h" line="25" column="1" bodyfile="nTiled/src/camera/CameraData.cpp" bodystart="8" bodyend="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="structn_tiled_1_1camera_1_1_camera_data" kindref="compound">CameraData</ref> contains all data needed to store a single view of a single camera. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/camera/CameraData.h" line="17" column="1" bodyfile="nTiled/include/camera/CameraData.h" bodystart="17" bodyend="36"/>
+    <listofallmembers>
+      <member refid="structn_tiled_1_1camera_1_1_camera_data_1a728ee0bc2369eecddcb41715b0945283" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraData</scope><name>CameraData</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_data_1a6283c214b03bda5f4b0d37a9f1d7d37d" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraData</scope><name>depthrange</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_data_1a11b7cff71ba435c0ffac2db5cc80fe74" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraData</scope><name>lookAt</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_data_1ae3dc3051f179c94b66c3fc03651c4572" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraData</scope><name>perspective_matrix</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

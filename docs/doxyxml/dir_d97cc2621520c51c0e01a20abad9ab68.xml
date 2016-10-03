@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_d97cc2621520c51c0e01a20abad9ab68" kind="dir">
+    <compoundname>nTiled/src/pipeline</compoundname>
+    <innerdir refid="dir_6e388229991c3314e5912736a6d47014">nTiled/src/pipeline/debug-view</innerdir>
+    <innerdir refid="dir_15cbbaa0b9ca28f457be350f15e7bc66">nTiled/src/pipeline/deferred</innerdir>
+    <innerdir refid="dir_d33ca349fcbf6a2b3746c790dff7f303">nTiled/src/pipeline/forward</innerdir>
+    <innerdir refid="dir_f711fa8073f579769a3f2084701b0956">nTiled/src/pipeline/light-management</innerdir>
+    <innerdir refid="dir_977c608815eff92dcb6c5f23fb0bea31">nTiled/src/pipeline/pipeline-util</innerdir>
+    <innerdir refid="dir_b4a7b63035eb1becc486b300a8415d00">nTiled/src/pipeline/shader-util</innerdir>
+    <innerfile refid="_pipeline_8cpp">Pipeline.cpp</innerfile>
+    <innerfile refid="_pipeline_object_8cpp">PipelineObject.cpp</innerfile>
+    <innerfile refid="_shader_8cpp">Shader.cpp</innerfile>
+    <innerfile refid="_shader_key_8cpp">ShaderKey.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/src/pipeline/"/>
+  </compounddef>
+</doxygen>

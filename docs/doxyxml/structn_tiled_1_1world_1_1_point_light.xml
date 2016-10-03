@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="structn_tiled_1_1world_1_1_point_light" kind="struct" language="C++" prot="public">
+    <compoundname>nTiled::world::PointLight</compoundname>
+    <includes refid="_point_light_8h" local="no">PointLight.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_point_light_1a9c4caf095b3c1c9f471b0b85492dca83" prot="public" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string nTiled::world::PointLight::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+<para>The name of this <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/PointLight.h" line="49" column="1" bodyfile="nTiled/include/world/PointLight.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_point_light_1a3a08b3f364aca57dd85599d9efcfac78" prot="public" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 nTiled::world::PointLight::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+<para>The position of this <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> in world coordinates. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/PointLight.h" line="51" column="1" bodyfile="nTiled/include/world/PointLight.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_point_light_1ad8b728733ad44484b942439427651fa9" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 nTiled::world::PointLight::intensity</definition>
+        <argsstring></argsstring>
+        <name>intensity</name>
+        <briefdescription>
+<para>The colour intensity of this <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> in rgb values. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/PointLight.h" line="53" column="1" bodyfile="nTiled/include/world/PointLight.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_point_light_1a4dacaadb9253c9e43699403e060124ee" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float nTiled::world::PointLight::radius</definition>
+        <argsstring></argsstring>
+        <name>radius</name>
+        <briefdescription>
+<para>The radius of the light sphere of this point light. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/PointLight.h" line="55" column="1" bodyfile="nTiled/include/world/PointLight.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_point_light_1a55bd99e84611c5c5d4e84bf49f4acf67" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nTiled::world::PointLight::is_emitting</definition>
+        <argsstring></argsstring>
+        <name>is_emitting</name>
+        <briefdescription>
+<para>Whether this light is emitting. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/PointLight.h" line="57" column="1" bodyfile="nTiled/include/world/PointLight.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_point_light_1a1e1716028b7a248a2a6d20aff989b12f" prot="public" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> * &gt;</type>
+        <definition>std::map&lt;std::string, Object*&gt; nTiled::world::PointLight::debug_light_objects</definition>
+        <argsstring></argsstring>
+        <name>debug_light_objects</name>
+        <briefdescription>
+<para>Map of objects to visualise this <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> in debug mode. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/PointLight.h" line="63" column="1" bodyfile="nTiled/include/world/PointLight.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structn_tiled_1_1world_1_1_point_light_1a4fbb8c5840c0a4414d3ff34741245a4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::world::PointLight::PointLight</definition>
+        <argsstring>(const std::string &amp;name, glm::vec4 position, glm::vec3 intensity, float radius, bool is_emitting, std::map&lt; std::string, Object *&gt; debug_light_objects)</argsstring>
+        <name>PointLight</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>glm::vec4</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>intensity</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_emitting</declname>
+        </param>
+        <param>
+          <type>std::map&lt; std::string, <ref refid="structn_tiled_1_1world_1_1_object" kindref="compound">Object</ref> *&gt;</type>
+          <declname>debug_light_objects</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> with the given parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position in world coordinates of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intensity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The intensity of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> in rgb values between [0..1] </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The influence radius of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>is_emitting</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> is emitting light. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>debug_light_objects</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The objects used to display the light when in debug mode. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/PointLight.h" line="38" column="1" bodyfile="nTiled/src/world/PointLight.cpp" bodystart="6" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> defines a single point light, with a given colour intensity, position and radius. </para>    </detaileddescription>
+    <location file="nTiled/include/world/PointLight.h" line="22" column="1" bodyfile="nTiled/include/world/PointLight.h" bodystart="22" bodyend="64"/>
+    <listofallmembers>
+      <member refid="structn_tiled_1_1world_1_1_point_light_1a1e1716028b7a248a2a6d20aff989b12f" prot="public" virt="non-virtual"><scope>nTiled::world::PointLight</scope><name>debug_light_objects</name></member>
+      <member refid="structn_tiled_1_1world_1_1_point_light_1ad8b728733ad44484b942439427651fa9" prot="public" virt="non-virtual"><scope>nTiled::world::PointLight</scope><name>intensity</name></member>
+      <member refid="structn_tiled_1_1world_1_1_point_light_1a55bd99e84611c5c5d4e84bf49f4acf67" prot="public" virt="non-virtual"><scope>nTiled::world::PointLight</scope><name>is_emitting</name></member>
+      <member refid="structn_tiled_1_1world_1_1_point_light_1a9c4caf095b3c1c9f471b0b85492dca83" prot="public" virt="non-virtual"><scope>nTiled::world::PointLight</scope><name>name</name></member>
+      <member refid="structn_tiled_1_1world_1_1_point_light_1a4fbb8c5840c0a4414d3ff34741245a4e" prot="public" virt="non-virtual"><scope>nTiled::world::PointLight</scope><name>PointLight</name></member>
+      <member refid="structn_tiled_1_1world_1_1_point_light_1a3a08b3f364aca57dd85599d9efcfac78" prot="public" virt="non-virtual"><scope>nTiled::world::PointLight</scope><name>position</name></member>
+      <member refid="structn_tiled_1_1world_1_1_point_light_1a4dacaadb9253c9e43699403e060124ee" prot="public" virt="non-virtual"><scope>nTiled::world::PointLight</scope><name>radius</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

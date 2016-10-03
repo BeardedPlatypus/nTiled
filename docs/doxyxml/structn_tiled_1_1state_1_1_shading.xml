@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="structn_tiled_1_1state_1_1_shading" kind="struct" language="C++" prot="public">
+    <compoundname>nTiled::state::Shading</compoundname>
+    <includes refid="_state_shading_8h" local="no">StateShading.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_shading_1a2c61c895b3f5661fdb54071d502e3849" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="_forward_shader_id_8h_1aadb9da564d0f546c336faf3a4903ff93" kindref="member">pipeline::ForwardShaderId</ref> &gt;</type>
+        <definition>std::vector&lt;pipeline::ForwardShaderId&gt; nTiled::state::Shading::forward_shader_ids</definition>
+        <argsstring></argsstring>
+        <name>forward_shader_ids</name>
+        <briefdescription>
+<para>The set of ForwardShaderIds that are active in this run of nTiled if pipeline_type = Forward. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateShading.h" line="62" column="1" bodyfile="nTiled/include/state/StateShading.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_shading_1a32ff01d66505dcd1031a1c138be1ac17" prot="public" static="no" mutable="no">
+        <type><ref refid="_deferred_shader_id_8h_1a225c1f7d638c4978ae7c69c9a3de8cf3" kindref="member">pipeline::DeferredShaderId</ref></type>
+        <definition>pipeline::DeferredShaderId nTiled::state::Shading::deferred_shader_id</definition>
+        <argsstring></argsstring>
+        <name>deferred_shader_id</name>
+        <briefdescription>
+<para>The DeferredShaderId that is active in this run if pipeline_type = Deferred. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateShading.h" line="67" column="1" bodyfile="nTiled/include/state/StateShading.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_shading_1ad5fa1d9f5abf4a1d5aa40cce37b8b1ce" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="_debug_shader_id_8h_1a0eaa36721ab4600e8cd5eafdb4a81c2c" kindref="member">pipeline::DebugShaderId</ref> &gt;</type>
+        <definition>std::vector&lt;pipeline::DebugShaderId&gt; nTiled::state::Shading::debug_shader_ids</definition>
+        <argsstring></argsstring>
+        <name>debug_shader_ids</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateShading.h" line="68" column="1" bodyfile="nTiled/include/state/StateShading.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_shading_1ae716e8ea1efa424d38cc0c88de4d4893" prot="public" static="no" mutable="no">
+        <type><ref refid="_pipeline_type_8h_1acf63cf30672a6b7f2bc37487b3bf4049" kindref="member">pipeline::PipelineType</ref></type>
+        <definition>pipeline::PipelineType nTiled::state::Shading::pipeline_type</definition>
+        <argsstring></argsstring>
+        <name>pipeline_type</name>
+        <briefdescription>
+<para>The PipelineType of this nTiled execution. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateShading.h" line="72" column="1" bodyfile="nTiled/include/state/StateShading.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_shading_1a24e9b55bda43a41f29b2713482fad6f4" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool nTiled::state::Shading::is_debug</definition>
+        <argsstring></argsstring>
+        <name>is_debug</name>
+        <briefdescription>
+<para>Whether this run is executed in DebugMode. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateShading.h" line="75" column="1" bodyfile="nTiled/include/state/StateShading.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1state_1_1_shading_1aa7ddc305dd6d076e6d378cbdec8afd4b" prot="public" static="no" mutable="no">
+        <type>const glm::uvec2</type>
+        <definition>const glm::uvec2 nTiled::state::Shading::tile_size</definition>
+        <argsstring></argsstring>
+        <name>tile_size</name>
+        <briefdescription>
+<para>The tile_size in pixels used in Tiled and Clustered shading. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateShading.h" line="78" column="1" bodyfile="nTiled/include/state/StateShading.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structn_tiled_1_1state_1_1_shading_1a061d5eec2b7f6851802d5c68ceacff9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::state::Shading::Shading</definition>
+        <argsstring>(std::vector&lt; pipeline::ForwardShaderId &gt; forward_shader_ids, glm::uvec2 tile_size, bool is_debug)</argsstring>
+        <name>Shading</name>
+        <param>
+          <type>std::vector&lt; <ref refid="_forward_shader_id_8h_1aadb9da564d0f546c336faf3a4903ff93" kindref="member">pipeline::ForwardShaderId</ref> &gt;</type>
+          <declname>forward_shader_ids</declname>
+        </param>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>tile_size</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_debug</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1state_1_1_shading" kindref="compound">Shading</ref> object with a ForwardShader pipeline. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>forward_shader_ids</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The set of ForwardShaderId that are active in this run of nTiled. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the tiles in pixels in Tiled and Clustered shading. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>is_debug</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether this run is in debug mode or not. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateShading.h" line="42" column="1" bodyfile="nTiled/src/state/StateShading.cpp" bodystart="6" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="structn_tiled_1_1state_1_1_shading_1a64c7ce285d185c1e199570a641637d48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::state::Shading::Shading</definition>
+        <argsstring>(pipeline::DeferredShaderId deferred_shader_id, glm::uvec2 tile_size, bool is_debug)</argsstring>
+        <name>Shading</name>
+        <param>
+          <type><ref refid="_deferred_shader_id_8h_1a225c1f7d638c4978ae7c69c9a3de8cf3" kindref="member">pipeline::DeferredShaderId</ref></type>
+          <declname>deferred_shader_id</declname>
+        </param>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>tile_size</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_debug</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1state_1_1_shading" kindref="compound">Shading</ref> object with a DeferredShader pipeline. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>deferred_shader_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The DeferredShaderId that is active in this run of nTiled. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size of the tiles in pixels in Tiled and Clustered shading. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>is_debug</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether this run is in debug mode or not. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateShading.h" line="54" column="1" bodyfile="nTiled/src/state/StateShading.cpp" bodystart="14" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="structn_tiled_1_1state_1_1_shading" kindref="compound">Shading</ref> contains all attributes related to the shading of the <ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">State</ref>. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/state/StateShading.h" line="30" column="1" bodyfile="nTiled/include/state/StateShading.h" bodystart="30" bodyend="79"/>
+    <listofallmembers>
+      <member refid="structn_tiled_1_1state_1_1_shading_1ad5fa1d9f5abf4a1d5aa40cce37b8b1ce" prot="public" virt="non-virtual"><scope>nTiled::state::Shading</scope><name>debug_shader_ids</name></member>
+      <member refid="structn_tiled_1_1state_1_1_shading_1a32ff01d66505dcd1031a1c138be1ac17" prot="public" virt="non-virtual"><scope>nTiled::state::Shading</scope><name>deferred_shader_id</name></member>
+      <member refid="structn_tiled_1_1state_1_1_shading_1a2c61c895b3f5661fdb54071d502e3849" prot="public" virt="non-virtual"><scope>nTiled::state::Shading</scope><name>forward_shader_ids</name></member>
+      <member refid="structn_tiled_1_1state_1_1_shading_1a24e9b55bda43a41f29b2713482fad6f4" prot="public" virt="non-virtual"><scope>nTiled::state::Shading</scope><name>is_debug</name></member>
+      <member refid="structn_tiled_1_1state_1_1_shading_1ae716e8ea1efa424d38cc0c88de4d4893" prot="public" virt="non-virtual"><scope>nTiled::state::Shading</scope><name>pipeline_type</name></member>
+      <member refid="structn_tiled_1_1state_1_1_shading_1a061d5eec2b7f6851802d5c68ceacff9b" prot="public" virt="non-virtual"><scope>nTiled::state::Shading</scope><name>Shading</name></member>
+      <member refid="structn_tiled_1_1state_1_1_shading_1a64c7ce285d185c1e199570a641637d48" prot="public" virt="non-virtual"><scope>nTiled::state::Shading</scope><name>Shading</name></member>
+      <member refid="structn_tiled_1_1state_1_1_shading_1aa7ddc305dd6d076e6d378cbdec8afd4b" prot="public" virt="non-virtual"><scope>nTiled::state::Shading</scope><name>tile_size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

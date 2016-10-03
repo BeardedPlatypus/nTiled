@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="_pipeline_light_8h" kind="file" language="C++">
+    <compoundname>PipelineLight.h</compoundname>
+    <includes local="no">glad\glad.h</includes>
+    <includes local="no">glm\glm.hpp</includes>
+    <includedby refid="_deferred_shader_8h" local="yes">nTiled/include/pipeline/deferred/shaders/DeferredShader.h</includedby>
+    <includedby refid="_forward_shader_8h" local="yes">nTiled/include/pipeline/forward/shaders/ForwardShader.h</includedby>
+    <includedby refid="_shader_8h" local="yes">nTiled/include/pipeline/Shader.h</includedby>
+    <incdepgraph>
+      <node id="1398">
+        <label>glad\glad.h</label>
+      </node>
+      <node id="1399">
+        <label>glm\glm.hpp</label>
+      </node>
+      <node id="1397">
+        <label>nTiled/include/pipeline/PipelineLight.h</label>
+        <link refid="_pipeline_light_8h"/>
+        <childnode refid="1398" relation="include">
+        </childnode>
+        <childnode refid="1399" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1411">
+        <label>nTiled/include/pipeline/forward/ForwardPipeline.h</label>
+        <link refid="_forward_pipeline_8h"/>
+        <childnode refid="1412" relation="include">
+        </childnode>
+      </node>
+      <node id="1413">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardAttenuatedShader.h</label>
+        <link refid="_forward_attenuated_shader_8h"/>
+        <childnode refid="1414" relation="include">
+        </childnode>
+      </node>
+      <node id="1401">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredShader.h</label>
+        <link refid="_deferred_shader_8h"/>
+        <childnode refid="1402" relation="include">
+        </childnode>
+        <childnode refid="1404" relation="include">
+        </childnode>
+        <childnode refid="1406" relation="include">
+        </childnode>
+        <childnode refid="1408" relation="include">
+        </childnode>
+      </node>
+      <node id="1417">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h</label>
+        <link refid="_forward_tiled_shader_8h"/>
+        <childnode refid="1418" relation="include">
+        </childnode>
+      </node>
+      <node id="1408">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredTiledShader.h</label>
+        <link refid="_deferred_tiled_shader_8h"/>
+        <childnode refid="1409" relation="include">
+        </childnode>
+      </node>
+      <node id="1405">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h</label>
+        <link refid="_deferred_attenuated_shader_logged_8h_source"/>
+      </node>
+      <node id="1407">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h</label>
+        <link refid="_deferred_clustered_shader_logged_8h_source"/>
+      </node>
+      <node id="1404">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredAttenuatedShader.h</label>
+        <link refid="_deferred_attenuated_shader_8h"/>
+        <childnode refid="1405" relation="include">
+        </childnode>
+      </node>
+      <node id="1409">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredTiledShaderLogged.h</label>
+        <link refid="_deferred_tiled_shader_logged_8h_source"/>
+      </node>
+      <node id="1412">
+        <label>nTiled/include/pipeline/forward/ForwardPipelineLogged.h</label>
+        <link refid="_forward_pipeline_logged_8h"/>
+      </node>
+      <node id="1416">
+        <label>nTiled/include/pipeline/forward/shaders/logged/ForwardClusteredShaderLogged.h</label>
+        <link refid="_forward_clustered_shader_logged_8h"/>
+      </node>
+      <node id="1402">
+        <label>nTiled/include/pipeline/deferred/DeferredPipeline.h</label>
+        <link refid="_deferred_pipeline_8h"/>
+        <childnode refid="1403" relation="include">
+        </childnode>
+      </node>
+      <node id="1418">
+        <label>nTiled/include/pipeline/forward/shaders/logged/ForwardTiledShaderLogged.h</label>
+        <link refid="_forward_tiled_shader_logged_8h"/>
+      </node>
+      <node id="1415">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardClusteredShader.h</label>
+        <link refid="_forward_clustered_shader_8h"/>
+        <childnode refid="1416" relation="include">
+        </childnode>
+      </node>
+      <node id="1414">
+        <label>nTiled/include/pipeline/forward/shaders/logged/ForwardAttenuatedShaderLogged.h</label>
+        <link refid="_forward_attenuated_shader_logged_8h"/>
+      </node>
+      <node id="1400">
+        <label>nTiled/include/pipeline/PipelineLight.h</label>
+        <link refid="_pipeline_light_8h"/>
+        <childnode refid="1401" relation="include">
+        </childnode>
+        <childnode refid="1410" relation="include">
+        </childnode>
+        <childnode refid="1419" relation="include">
+        </childnode>
+      </node>
+      <node id="1403">
+        <label>nTiled/include/pipeline/deferred/DeferredPipelineLogged.h</label>
+        <link refid="_deferred_pipeline_logged_8h"/>
+      </node>
+      <node id="1410">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardShader.h</label>
+        <link refid="_forward_shader_8h"/>
+        <childnode refid="1411" relation="include">
+        </childnode>
+        <childnode refid="1413" relation="include">
+        </childnode>
+        <childnode refid="1415" relation="include">
+        </childnode>
+        <childnode refid="1417" relation="include">
+        </childnode>
+      </node>
+      <node id="1406">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredClusteredShader.h</label>
+        <link refid="_deferred_clustered_shader_8h"/>
+        <childnode refid="1407" relation="include">
+        </childnode>
+      </node>
+      <node id="1419">
+        <label>nTiled/include/pipeline/Shader.h</label>
+        <link refid="_shader_8h"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structn_tiled_1_1pipeline_1_1_pipeline_light" prot="public">nTiled::pipeline::PipelineLight</innerclass>
+    <innernamespace refid="namespacen_tiled">nTiled</innernamespace>
+    <innernamespace refid="namespacen_tiled_1_1pipeline">nTiled::pipeline</innernamespace>
+    <briefdescription>
+<para><ref refid="_pipeline_light_8h" kindref="compound">PipelineLight.h</ref> contains the definition of the PipelineLight struct. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="5"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Libraries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glad\glad.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm\glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacen_tiled" kindref="compound">nTiled</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">pipeline<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="structn_tiled_1_1pipeline_1_1_pipeline_light" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structn_tiled_1_1pipeline_1_1_pipeline_light" kindref="compound">PipelineLight</ref><sp/>{</highlight></codeline>
+<codeline lineno="23" refid="structn_tiled_1_1pipeline_1_1_pipeline_light_1a86b4ccbe6959cc409998dbc82852b6ab" refkind="member"><highlight class="normal"><sp/><sp/>glm::vec4<sp/><ref refid="structn_tiled_1_1pipeline_1_1_pipeline_light_1a86b4ccbe6959cc409998dbc82852b6ab" kindref="member">positionCoordinates</ref>;</highlight></codeline>
+<codeline lineno="25" refid="structn_tiled_1_1pipeline_1_1_pipeline_light_1aede45b17ab2433cb267cd1e201ba9d80" refkind="member"><highlight class="normal"><sp/><sp/>glm::vec3<sp/><ref refid="structn_tiled_1_1pipeline_1_1_pipeline_light_1aede45b17ab2433cb267cd1e201ba9d80" kindref="member">intensity</ref>;</highlight></codeline>
+<codeline lineno="27" refid="structn_tiled_1_1pipeline_1_1_pipeline_light_1ad73e0519a6a809e2e4a461ba47a42a06" refkind="member"><highlight class="normal"><sp/><sp/>GLfloat<sp/><ref refid="structn_tiled_1_1pipeline_1_1_pipeline_light_1ad73e0519a6a809e2e4a461ba47a42a06" kindref="member">radius</ref>;</highlight></codeline>
+<codeline lineno="29" refid="structn_tiled_1_1pipeline_1_1_pipeline_light_1ac137ae8b8965bf2b1a79571cab9eb6e1" refkind="member"><highlight class="normal"><sp/><sp/>GLint<sp/><ref refid="structn_tiled_1_1pipeline_1_1_pipeline_light_1ac137ae8b8965bf2b1a79571cab9eb6e1" kindref="member">is_emitting</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>GLint<sp/>_pad[3];<sp/></highlight><highlight class="comment">//<sp/>Add<sp/>3<sp/>padding<sp/>to<sp/>align<sp/>PipeLineLightData<sp/>for<sp/>gpu</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>pipeline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>nTiled</highlight></codeline>
+    </programlisting>
+    <location file="nTiled/include/pipeline/PipelineLight.h"/>
+  </compounddef>
+</doxygen>

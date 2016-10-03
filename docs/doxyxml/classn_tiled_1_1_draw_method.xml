@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1_draw_method" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>nTiled::DrawMethod</compoundname>
+    <derivedcompoundref refid="classn_tiled_1_1_draw_to_memory" prot="public" virt="non-virtual">nTiled::DrawToMemory</derivedcompoundref>
+    <derivedcompoundref refid="classn_tiled_1_1_draw_to_view" prot="public" virt="non-virtual">nTiled::DrawToView</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1_draw_method_1aa0b13b056dda7522b4f0855453b0fb33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::DrawMethod::~DrawMethod</definition>
+        <argsstring>()</argsstring>
+        <name>~DrawMethod</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/DrawMethod.h" line="15" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1_draw_method_1ab78d59a615070095e255eba46a963187" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void nTiled::DrawMethod::draw</definition>
+        <argsstring>(GLFWwindow *window, pipeline::Pipeline *p_pipeline, gui::GuiManager *gui_manager, state::View &amp;view, const Clock &amp;clock) const =0</argsstring>
+        <name>draw</name>
+        <reimplementedby refid="classn_tiled_1_1_draw_to_memory_1a6b4da45fb5ae7d2f702ba3bcaf21725f">draw</reimplementedby>
+        <reimplementedby refid="classn_tiled_1_1_draw_to_view_1a1b19e83d5de878e8acb3b4e55ea0a2de">draw</reimplementedby>
+        <param>
+          <type>GLFWwindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">pipeline::Pipeline</ref> *</type>
+          <declname>p_pipeline</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">gui::GuiManager</ref> *</type>
+          <declname>gui_manager</declname>
+        </param>
+        <param>
+          <type><ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1_clock" kindref="compound">Clock</ref> &amp;</type>
+          <declname>clock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/DrawMethod.h" line="16" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="306">
+        <label>nTiled::DrawToMemory</label>
+        <link refid="classn_tiled_1_1_draw_to_memory"/>
+        <childnode refid="305" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="305">
+        <label>nTiled::DrawMethod</label>
+        <link refid="classn_tiled_1_1_draw_method"/>
+      </node>
+      <node id="307">
+        <label>nTiled::DrawToView</label>
+        <link refid="classn_tiled_1_1_draw_to_view"/>
+        <childnode refid="305" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="nTiled/include/main/DrawMethod.h" line="13" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="13" bodyend="21"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1_draw_method_1ab78d59a615070095e255eba46a963187" prot="public" virt="pure-virtual"><scope>nTiled::DrawMethod</scope><name>draw</name></member>
+      <member refid="classn_tiled_1_1_draw_method_1aa0b13b056dda7522b4f0855453b0fb33" prot="public" virt="non-virtual"><scope>nTiled::DrawMethod</scope><name>~DrawMethod</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

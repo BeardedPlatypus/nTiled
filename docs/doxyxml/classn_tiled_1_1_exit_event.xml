@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1_exit_event" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::ExitEvent</compoundname>
+    <basecompoundref refid="classn_tiled_1_1_frame_event" prot="public" virt="non-virtual">nTiled::FrameEvent</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1_exit_event_1aefd0d11c0af97d81f363c8d99ba17bf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::ExitEvent::ExitEvent</definition>
+        <argsstring>(unsigned long frame, unsigned long index)</argsstring>
+        <name>ExitEvent</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>frame</declname>
+        </param>
+        <param>
+          <type>unsigned long</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/FrameEvent.h" line="66" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="57" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1_exit_event_1a920ba906eefa21fc5891cb971467347c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::ExitEvent::execute</definition>
+        <argsstring>(Controller *controller)</argsstring>
+        <name>execute</name>
+        <reimplements refid="classn_tiled_1_1_frame_event_1a70f7dfbfd368855394fb7c89e7f587c7">execute</reimplements>
+        <param>
+          <type><ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> *</type>
+          <declname>controller</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/FrameEvent.h" line="68" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="60" bodyend="62"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="321">
+        <label>nTiled::FrameEvent</label>
+        <link refid="classn_tiled_1_1_frame_event"/>
+      </node>
+      <node id="320">
+        <label>nTiled::ExitEvent</label>
+        <link refid="classn_tiled_1_1_exit_event"/>
+        <childnode refid="321" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="323">
+        <label>nTiled::FrameEvent</label>
+        <link refid="classn_tiled_1_1_frame_event"/>
+      </node>
+      <node id="322">
+        <label>nTiled::ExitEvent</label>
+        <link refid="classn_tiled_1_1_exit_event"/>
+        <childnode refid="323" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/main/FrameEvent.h" line="64" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="64" bodyend="69"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1_exit_event_1a920ba906eefa21fc5891cb971467347c" prot="public" virt="virtual"><scope>nTiled::ExitEvent</scope><name>execute</name></member>
+      <member refid="classn_tiled_1_1_exit_event_1aefd0d11c0af97d81f363c8d99ba17bf5" prot="public" virt="non-virtual"><scope>nTiled::ExitEvent</scope><name>ExitEvent</name></member>
+      <member refid="classn_tiled_1_1_frame_event_1a7979f73a10266e0e64bbd4e4dedcfac8" prot="public" virt="non-virtual"><scope>nTiled::ExitEvent</scope><name>frame</name></member>
+      <member refid="classn_tiled_1_1_frame_event_1a26f02a72d01825da1d869d244632826b" prot="public" virt="non-virtual"><scope>nTiled::ExitEvent</scope><name>FrameEvent</name></member>
+      <member refid="classn_tiled_1_1_frame_event_1aaf119a62f2a229b2ac56b29f0b8bd5ac" prot="public" virt="non-virtual"><scope>nTiled::ExitEvent</scope><name>index</name></member>
+      <member refid="classn_tiled_1_1_frame_event_1a21b8957ef3b2f5e77e7bcb175e696193" prot="public" virt="non-virtual"><scope>nTiled::ExitEvent</scope><name>~FrameEvent</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

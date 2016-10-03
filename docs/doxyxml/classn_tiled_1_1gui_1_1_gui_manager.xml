@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1gui_1_1_gui_manager" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::gui::GuiManager</compoundname>
+    <includes refid="_gui_manager_8h" local="no">GuiManager.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1gui_1_1_gui_manager_1abb490b954ad2481621bfa18ca8fdf27a" prot="private" static="no" mutable="no">
+        <type><ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">state::State</ref> &amp;</type>
+        <definition>state::State&amp; nTiled::gui::GuiManager::state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <briefdescription>
+<para>The state this <ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">GuiManager</ref> interacts with. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/gui/GuiManager.h" line="59" column="1" bodyfile="nTiled/include/gui/GuiManager.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1gui_1_1_gui_manager_1ad5a15cbea7ead429cbaee4b7cdab4ee7" prot="private" static="no" mutable="no">
+        <type><ref refid="_gui_manager_8h_1a32288459515f6785482d69268941a6b7" kindref="member">GuiFocus</ref></type>
+        <definition>GuiFocus nTiled::gui::GuiManager::focus</definition>
+        <argsstring></argsstring>
+        <name>focus</name>
+        <briefdescription>
+<para>Whether camera has focus or the GUI manager. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/gui/GuiManager.h" line="70" column="1" bodyfile="nTiled/include/gui/GuiManager.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1gui_1_1_gui_manager_1a3aff6d11a16d3cbdbfaa652f0d4d3bc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::gui::GuiManager::GuiManager</definition>
+        <argsstring>(state::State &amp;state)</argsstring>
+        <name>GuiManager</name>
+        <param>
+          <type><ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">state::State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">GuiManager</ref> with the given State. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state of a nTiled execution </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/gui/GuiManager.h" line="37" column="1" bodyfile="nTiled/src/gui/GuiManager.cpp" bodystart="15" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1gui_1_1_gui_manager_1a76fd3f58b9ad39113fb5762c873946cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::gui::GuiManager::init</definition>
+        <argsstring>(GLFWwindow &amp;window)</argsstring>
+        <name>init</name>
+        <param>
+          <type>GLFWwindow &amp;</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+<para>Initialise this <ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">GuiManager</ref> with the given openGL context. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>window</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The openGL window created with GLFW </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/gui/GuiManager.h" line="46" column="1" bodyfile="nTiled/src/gui/GuiManager.cpp" bodystart="22" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1gui_1_1_gui_manager_1a1b91964f16bd8b720fb9ac4ab91d5edf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::gui::GuiManager::update</definition>
+        <argsstring>()</argsstring>
+        <name>update</name>
+        <briefdescription>
+<para>Update the state of this nTiled application through this <ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">GuiManager</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/gui/GuiManager.h" line="51" column="1" bodyfile="nTiled/src/gui/GuiManager.cpp" bodystart="26" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1gui_1_1_gui_manager_1a7d1a1ce381faf79b73a42c94d3c91a2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::gui::GuiManager::render</definition>
+        <argsstring>()</argsstring>
+        <name>render</name>
+        <briefdescription>
+<para>Render the gui managed by this <ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">GuiManager</ref> to the screen. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/gui/GuiManager.h" line="55" column="1" bodyfile="nTiled/src/gui/GuiManager.cpp" bodystart="40" bodyend="42"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classn_tiled_1_1gui_1_1_gui_manager_1ac1eccd819bf82f6a270491f1fe5ea36d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::gui::GuiManager::updateCamera</definition>
+        <argsstring>(const ImGuiIO &amp;io)</argsstring>
+        <name>updateCamera</name>
+        <param>
+          <type>const ImGuiIO &amp;</type>
+          <declname>io</declname>
+        </param>
+        <briefdescription>
+<para>Update the Camera of this nTiled execution with collected user input. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>io</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data collected by dear, ImGui library. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/gui/GuiManager.h" line="67" column="1" bodyfile="nTiled/src/gui/GuiManager.cpp" bodystart="46" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1gui_1_1_gui_manager_1a3b6b494e5e903aa4161176f8108eb2d6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::gui::GuiManager::drawTopMenu</definition>
+        <argsstring>()</argsstring>
+        <name>drawTopMenu</name>
+        <briefdescription>
+<para>Draw the TopMenu bar. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/gui/GuiManager.h" line="74" column="1" bodyfile="nTiled/src/gui/GuiManager.cpp" bodystart="65" bodyend="78"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">GuiManager</ref> manages the dear, Imgui user interface of nTiled. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="505">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="499">
+        <label>nTiled::state::TextureCatalog</label>
+        <link refid="classn_tiled_1_1state_1_1_texture_catalog"/>
+      </node>
+      <node id="496">
+        <label>nTiled::state::Log</label>
+        <link refid="structn_tiled_1_1state_1_1_log"/>
+      </node>
+      <node id="501">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="495">
+        <label>nTiled::state::State</label>
+        <link refid="structn_tiled_1_1state_1_1_state"/>
+        <childnode refid="496" relation="usage">
+          <edgelabel>log</edgelabel>
+        </childnode>
+        <childnode refid="497" relation="usage">
+          <edgelabel>p_world</edgelabel>
+        </childnode>
+        <childnode refid="498" relation="usage">
+          <edgelabel>shading</edgelabel>
+        </childnode>
+        <childnode refid="499" relation="usage">
+          <edgelabel>texture_catalog</edgelabel>
+        </childnode>
+        <childnode refid="500" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+      </node>
+      <node id="502">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="503" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="501" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="504" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="503">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="500">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="501" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="502" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="505" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="494">
+        <label>nTiled::gui::GuiManager</label>
+        <link refid="classn_tiled_1_1gui_1_1_gui_manager"/>
+        <childnode refid="495" relation="usage">
+          <edgelabel>state</edgelabel>
+        </childnode>
+      </node>
+      <node id="497">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+      <node id="504">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+      <node id="498">
+        <label>nTiled::state::Shading</label>
+        <link refid="structn_tiled_1_1state_1_1_shading"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/gui/GuiManager.h" line="28" column="1" bodyfile="nTiled/include/gui/GuiManager.h" bodystart="28" bodyend="75"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1gui_1_1_gui_manager_1a3b6b494e5e903aa4161176f8108eb2d6" prot="private" virt="non-virtual"><scope>nTiled::gui::GuiManager</scope><name>drawTopMenu</name></member>
+      <member refid="classn_tiled_1_1gui_1_1_gui_manager_1ad5a15cbea7ead429cbaee4b7cdab4ee7" prot="private" virt="non-virtual"><scope>nTiled::gui::GuiManager</scope><name>focus</name></member>
+      <member refid="classn_tiled_1_1gui_1_1_gui_manager_1a3aff6d11a16d3cbdbfaa652f0d4d3bc6" prot="public" virt="non-virtual"><scope>nTiled::gui::GuiManager</scope><name>GuiManager</name></member>
+      <member refid="classn_tiled_1_1gui_1_1_gui_manager_1a76fd3f58b9ad39113fb5762c873946cf" prot="public" virt="non-virtual"><scope>nTiled::gui::GuiManager</scope><name>init</name></member>
+      <member refid="classn_tiled_1_1gui_1_1_gui_manager_1a7d1a1ce381faf79b73a42c94d3c91a2a" prot="public" virt="non-virtual"><scope>nTiled::gui::GuiManager</scope><name>render</name></member>
+      <member refid="classn_tiled_1_1gui_1_1_gui_manager_1abb490b954ad2481621bfa18ca8fdf27a" prot="private" virt="non-virtual"><scope>nTiled::gui::GuiManager</scope><name>state</name></member>
+      <member refid="classn_tiled_1_1gui_1_1_gui_manager_1a1b91964f16bd8b720fb9ac4ab91d5edf" prot="public" virt="non-virtual"><scope>nTiled::gui::GuiManager</scope><name>update</name></member>
+      <member refid="classn_tiled_1_1gui_1_1_gui_manager_1ac1eccd819bf82f6a270491f1fe5ea36d" prot="private" virt="non-virtual"><scope>nTiled::gui::GuiManager</scope><name>updateCamera</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

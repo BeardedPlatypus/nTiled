@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="structn_tiled_1_1pipeline_1_1_pipeline_object" kind="struct" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::PipelineObject</compoundname>
+    <includes refid="_pipeline_object_8h" local="no">PipelineObject.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structn_tiled_1_1pipeline_1_1_pipeline_object_1acd3aae6ec178f3964edecbdfe7aa4a8a" prot="public" static="no" mutable="no">
+        <type>const GLuint</type>
+        <definition>const GLuint nTiled::pipeline::PipelineObject::vao</definition>
+        <argsstring></argsstring>
+        <name>vao</name>
+        <briefdescription>
+<para>openGL pointer to the Vertex Array Object (vao) of this <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/PipelineObject.h" line="50" column="1" bodyfile="nTiled/include/pipeline/PipelineObject.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1pipeline_1_1_pipeline_object_1a3ec7a009dfb5a80ae3bf997c19218f0b" prot="public" static="no" mutable="no">
+        <type>const GLuint</type>
+        <definition>const GLuint nTiled::pipeline::PipelineObject::element_buffer</definition>
+        <argsstring></argsstring>
+        <name>element_buffer</name>
+        <briefdescription>
+<para>openGL pointer to the element buffer in video memory of this <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/PipelineObject.h" line="54" column="1" bodyfile="nTiled/include/pipeline/PipelineObject.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1pipeline_1_1_pipeline_object_1aee170bbe094e27bba89d5f7077fb9010" prot="public" static="no" mutable="no">
+        <type>const GLuint</type>
+        <definition>const GLuint nTiled::pipeline::PipelineObject::n_elements</definition>
+        <argsstring></argsstring>
+        <name>n_elements</name>
+        <briefdescription>
+<para>number of elements in this <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/PipelineObject.h" line="56" column="1" bodyfile="nTiled/include/pipeline/PipelineObject.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1pipeline_1_1_pipeline_object_1a369a25872ce074e827ff8acdf574b552" prot="public" static="no" mutable="no">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 nTiled::pipeline::PipelineObject::transformation_matrix</definition>
+        <argsstring></argsstring>
+        <name>transformation_matrix</name>
+        <briefdescription>
+<para>transformation matrix of this <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/PipelineObject.h" line="58" column="1" bodyfile="nTiled/include/pipeline/PipelineObject.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structn_tiled_1_1pipeline_1_1_pipeline_object_1af77cd60e222fe883665f318895cb5431" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::PipelineObject::PipelineObject</definition>
+        <argsstring>(const GLuint vao, const GLuint element_buffer, const GLuint n_elements, glm::mat4 transformation_matrix)</argsstring>
+        <name>PipelineObject</name>
+        <param>
+          <type>const GLuint</type>
+          <declname>vao</declname>
+        </param>
+        <param>
+          <type>const GLuint</type>
+          <declname>element_buffer</declname>
+        </param>
+        <param>
+          <type>const GLuint</type>
+          <declname>n_elements</declname>
+        </param>
+        <param>
+          <type>glm::mat4</type>
+          <declname>transformation_matrix</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref> with the given parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vao</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>openGL pointer to the Vertex Array Object (vao) of this new new <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>element_buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>openGL pointer to the element buffer of this new <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n_elements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of elements in the element_buffer of this new <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transformation_matrix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The transformation matrix of this new <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref>. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/PipelineObject.h" line="39" column="1" bodyfile="nTiled/src/pipeline/PipelineObject.cpp" bodystart="6" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="structn_tiled_1_1pipeline_1_1_pipeline_object" kindref="compound">PipelineObject</ref> is the datastructure which holds all relevant data for a <ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">Pipeline</ref> to render an object with the <ref refid="classn_tiled_1_1pipeline_1_1_shader" kindref="compound">Shader</ref> associated with it. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/pipeline/PipelineObject.h" line="23" column="1" bodyfile="nTiled/include/pipeline/PipelineObject.h" bodystart="23" bodyend="59"/>
+    <listofallmembers>
+      <member refid="structn_tiled_1_1pipeline_1_1_pipeline_object_1a3ec7a009dfb5a80ae3bf997c19218f0b" prot="public" virt="non-virtual"><scope>nTiled::pipeline::PipelineObject</scope><name>element_buffer</name></member>
+      <member refid="structn_tiled_1_1pipeline_1_1_pipeline_object_1aee170bbe094e27bba89d5f7077fb9010" prot="public" virt="non-virtual"><scope>nTiled::pipeline::PipelineObject</scope><name>n_elements</name></member>
+      <member refid="structn_tiled_1_1pipeline_1_1_pipeline_object_1af77cd60e222fe883665f318895cb5431" prot="public" virt="non-virtual"><scope>nTiled::pipeline::PipelineObject</scope><name>PipelineObject</name></member>
+      <member refid="structn_tiled_1_1pipeline_1_1_pipeline_object_1a369a25872ce074e827ff8acdf574b552" prot="public" virt="non-virtual"><scope>nTiled::pipeline::PipelineObject</scope><name>transformation_matrix</name></member>
+      <member refid="structn_tiled_1_1pipeline_1_1_pipeline_object_1acd3aae6ec178f3964edecbdfe7aa4a8a" prot="public" virt="non-virtual"><scope>nTiled::pipeline::PipelineObject</scope><name>vao</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

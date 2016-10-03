@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::ForwardTiledShader</compoundname>
+    <basecompoundref refid="classn_tiled_1_1pipeline_1_1_forward_shader" prot="public" virt="non-virtual">nTiled::pipeline::ForwardShader</basecompoundref>
+    <derivedcompoundref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_logged" prot="public" virt="non-virtual">nTiled::pipeline::ForwardTiledShaderLogged</derivedcompoundref>
+    <includes refid="_forward_tiled_shader_8h" local="no">ForwardTiledShader.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a23e2673abcb32e6984ad7bbc70968485" prot="protected" static="no" mutable="no">
+        <type>const <ref refid="classn_tiled_1_1pipeline_1_1_box_projector" kindref="compound">BoxProjector</ref></type>
+        <definition>const BoxProjector nTiled::pipeline::ForwardTiledShader::projector</definition>
+        <argsstring></argsstring>
+        <name>projector</name>
+        <briefdescription>
+<para>Sphere projector of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" line="63" column="1" bodyfile="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a0242105f06f2dc429ca9934b0219eef1" prot="protected" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> *</type>
+        <definition>TiledLightManager* nTiled::pipeline::ForwardTiledShader::p_light_manager</definition>
+        <argsstring></argsstring>
+        <name>p_light_manager</name>
+        <briefdescription>
+<para>Pointer to <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref> of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" line="65" column="1" bodyfile="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a1c90f52b5033ecc1ed30832aa5a8bfc3" prot="protected" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint nTiled::pipeline::ForwardTiledShader::light_grid_buffer</definition>
+        <argsstring></argsstring>
+        <name>light_grid_buffer</name>
+        <briefdescription>
+<para>GLuint pointer to the <ref refid="classn_tiled_1_1pipeline_1_1_shader" kindref="compound">Shader</ref> Storage Buffer Object storing the light grid of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" line="73" column="1" bodyfile="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a0cafe8925779b98f28edce0040b44239" prot="protected" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint nTiled::pipeline::ForwardTiledShader::light_index_buffer</definition>
+        <argsstring></argsstring>
+        <name>light_index_buffer</name>
+        <briefdescription>
+<para>GLuint pointer to the <ref refid="classn_tiled_1_1pipeline_1_1_shader" kindref="compound">Shader</ref> Storage Buffer Object storing the light index of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" line="77" column="1" bodyfile="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1ad578dc9c00be5cba9e3cf0ae9708ef09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::ForwardTiledShader::ForwardTiledShader</definition>
+        <argsstring>(ForwardShaderId shader_id, const std::string &amp;path_vertex_shader, const std::string &amp;path_fragment_shader, const world::World &amp;world, const state::View &amp;view, GLint p_output_buffer, glm::uvec2 tile_size, const TiledLightManagerBuilder &amp;light_manager_builder)</argsstring>
+        <name>ForwardTiledShader</name>
+        <param>
+          <type><ref refid="_forward_shader_id_8h_1aadb9da564d0f546c336faf3a4903ff93" kindref="member">ForwardShaderId</ref></type>
+          <declname>shader_id</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_vertex_shader</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_fragment_shader</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref> &amp;</type>
+          <declname>world</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>GLint</type>
+          <declname>p_output_buffer</declname>
+        </param>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>tile_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_builder" kindref="compound">TiledLightManagerBuilder</ref> &amp;</type>
+          <declname>light_manager_builder</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref> with the given parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shader_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ForwardShaderId of this new <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>path_vertex_shader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the vertex shader of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>path_fragment_shader</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the fragment shader of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>world</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the World this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref> observes </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>view</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the View this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref> observes </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_output_buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>openGL reference to the output buffer this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref> should render to. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The tilesize in pixels the Tiled Shading algorithm will use. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>light_manager_builder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager_builder" kindref="compound">TiledLightManagerBuilder</ref> this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref> will use to obtain a <ref refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager" kindref="compound">TiledLightManager</ref>. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" line="41" column="1" bodyfile="nTiled/src/pipeline/forward/shaders/ForwardTiledShader.cpp" bodystart="11" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a1101177f8893be7422be9fee5447b300" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ForwardTiledShader::render</definition>
+        <argsstring>() override</argsstring>
+        <name>render</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_forward_shader_1ad5bf910c7a33f4f3c1d038a1d44598c0">render</reimplements>
+        <briefdescription>
+<para>Render all objects in the world this <ref refid="classn_tiled_1_1pipeline_1_1_shader" kindref="compound">Shader</ref> observes that indicate they are rendered with this shader. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" line="50" column="1" bodyfile="nTiled/src/pipeline/forward/shaders/ForwardTiledShader.cpp" bodystart="81" bodyend="87"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1af97f770bcb6ea09b6088a10e745a24ae" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ForwardTiledShader::loadLightGrid</definition>
+        <argsstring>()</argsstring>
+        <name>loadLightGrid</name>
+        <reimplementedby refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_logged_1a1ba673a088edc0cf8657a6f84945f943">loadLightGrid</reimplementedby>
+        <briefdescription>
+<para>Load the light grid for this <ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" line="57" column="1" bodyfile="nTiled/src/pipeline/forward/shaders/ForwardTiledShader.cpp" bodystart="90" bodyend="104"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader" kindref="compound">ForwardTiledShader</ref> implements the Tiled Shading algorithm within a Forward pipeline. It inherits from the <ref refid="classn_tiled_1_1pipeline_1_1_forward_shader" kindref="compound">ForwardShader</ref>. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="448">
+        <label>nTiled::pipeline::ForwardTiledShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader"/>
+        <childnode refid="449" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="449">
+        <label>nTiled::pipeline::ForwardShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_shader"/>
+      </node>
+      <node id="450">
+        <label>nTiled::pipeline::ForwardTiledShaderLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_logged"/>
+        <childnode refid="448" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="459">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="461">
+        <label>nTiled::pipeline::LightProjector</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_light_projector"/>
+      </node>
+      <node id="451">
+        <label>nTiled::pipeline::ForwardTiledShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader"/>
+        <childnode refid="452" relation="public-inheritance">
+        </childnode>
+        <childnode refid="460" relation="usage">
+          <edgelabel>projector</edgelabel>
+        </childnode>
+        <childnode refid="462" relation="usage">
+          <edgelabel>p_light_manager</edgelabel>
+        </childnode>
+      </node>
+      <node id="455">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="463">
+        <label>nTiled::pipeline::LightGrid</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_light_grid"/>
+      </node>
+      <node id="456">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="457" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="455" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="458" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="462">
+        <label>nTiled::pipeline::TiledLightManager</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_tiled_light_manager"/>
+        <childnode refid="453" relation="usage">
+          <edgelabel>world</edgelabel>
+        </childnode>
+        <childnode refid="463" relation="usage">
+          <edgelabel>light_grid</edgelabel>
+        </childnode>
+        <childnode refid="461" relation="usage">
+          <edgelabel>projector</edgelabel>
+        </childnode>
+        <childnode refid="454" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+      </node>
+      <node id="457">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="452">
+        <label>nTiled::pipeline::ForwardShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_shader"/>
+        <childnode refid="453" relation="usage">
+          <edgelabel>world</edgelabel>
+        </childnode>
+        <childnode refid="454" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+      </node>
+      <node id="454">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="455" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="456" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="459" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="453">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+      <node id="460">
+        <label>nTiled::pipeline::BoxProjector</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_box_projector"/>
+        <childnode refid="461" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="458">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" line="22" column="1" bodyfile="nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h" bodystart="22" bodyend="78"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a15d2457bb1d3728363b9bbd58bf30e4b" prot="protected" virt="virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>constructPipelineLight</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a11995aea49a3012a7b968580716a1e65" prot="protected" virt="virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>constructPipelineObject</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a1f38f66ce76c251df29c0316f95ab0ed" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>ForwardShader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1ad578dc9c00be5cba9e3cf0ae9708ef09" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>ForwardTiledShader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a5610f53cf88934c018dc3906033f04c9" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>getId</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a7a4963a26eec977e46e312a60db5bf36" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>id</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a1c90f52b5033ecc1ed30832aa5a8bfc3" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>light_grid_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a0cafe8925779b98f28edce0040b44239" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>light_index_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1adbff5b4d589fbe60d065a95af09500f2" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>light_ubo</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a3a7b76a8f62d48d336af478c5be985a6" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>lights</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1af97f770bcb6ea09b6088a10e745a24ae" prot="protected" virt="virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>loadLightGrid</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1aa94a34efcad37d8137cc5ef52c22164b" prot="protected" virt="virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>loadLights</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1af3b387e722406f8ebcb4ca137102bab4" prot="protected" virt="virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>loadObjects</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a8d8eb1663251aca7660505dd381edfe8" prot="protected" virt="virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>loadShaders</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a0242105f06f2dc429ca9934b0219eef1" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>p_light_manager</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a2dd55f7353c76e312a3670b2699622c0" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>p_output_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a23e2673abcb32e6984ad7bbc70968485" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>projector</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a0c4e0bc2125636f51dcc8304189a8ca4" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>ps_obj</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_tiled_shader_1a1101177f8893be7422be9fee5447b300" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>render</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a4871d4998ebbe457dbc88fc014660afc" prot="protected" virt="virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>renderObjects</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1ad2cba8781a82f8f2769ff371ce8e8938" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>setOutputBuffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1aa46bb847f884a91a1de423295e7a8b9d" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>shader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1abb6f5ef36d4c21bde1db9e3829f93d7e" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>view</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_shader_1a9919af849a5783c0db79121a3aa8dd56" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardTiledShader</scope><name>world</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

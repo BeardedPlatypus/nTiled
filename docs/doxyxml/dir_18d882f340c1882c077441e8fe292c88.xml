@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_18d882f340c1882c077441e8fe292c88" kind="dir">
+    <compoundname>nTiled/include/log</compoundname>
+    <innerfile refid="_logger_8h">Logger.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/log/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="_g_buffer_8h" kind="file" language="C++">
+    <compoundname>GBuffer.h</compoundname>
+    <includes local="no">glad\glad.h</includes>
+    <includedby refid="_deferred_shader_8h" local="yes">nTiled/include/pipeline/deferred/shaders/DeferredShader.h</includedby>
+    <includedby refid="_g_buffer_8cpp" local="yes">nTiled/src/pipeline/deferred/GBuffer.cpp</includedby>
+    <incdepgraph>
+      <node id="491">
+        <label>glad\glad.h</label>
+      </node>
+      <node id="490">
+        <label>nTiled/include/pipeline/deferred/GBuffer.h</label>
+        <link refid="_g_buffer_8h"/>
+        <childnode refid="491" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="493">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredShader.h</label>
+        <link refid="_deferred_shader_8h"/>
+        <childnode refid="494" relation="include">
+        </childnode>
+        <childnode refid="496" relation="include">
+        </childnode>
+        <childnode refid="498" relation="include">
+        </childnode>
+        <childnode refid="500" relation="include">
+        </childnode>
+      </node>
+      <node id="500">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredTiledShader.h</label>
+        <link refid="_deferred_tiled_shader_8h"/>
+        <childnode refid="501" relation="include">
+        </childnode>
+      </node>
+      <node id="497">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h</label>
+        <link refid="_deferred_attenuated_shader_logged_8h_source"/>
+      </node>
+      <node id="499">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h</label>
+        <link refid="_deferred_clustered_shader_logged_8h_source"/>
+      </node>
+      <node id="496">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredAttenuatedShader.h</label>
+        <link refid="_deferred_attenuated_shader_8h"/>
+        <childnode refid="497" relation="include">
+        </childnode>
+      </node>
+      <node id="492">
+        <label>nTiled/include/pipeline/deferred/GBuffer.h</label>
+        <link refid="_g_buffer_8h"/>
+        <childnode refid="493" relation="include">
+        </childnode>
+      </node>
+      <node id="501">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredTiledShaderLogged.h</label>
+        <link refid="_deferred_tiled_shader_logged_8h_source"/>
+      </node>
+      <node id="494">
+        <label>nTiled/include/pipeline/deferred/DeferredPipeline.h</label>
+        <link refid="_deferred_pipeline_8h"/>
+        <childnode refid="495" relation="include">
+        </childnode>
+      </node>
+      <node id="495">
+        <label>nTiled/include/pipeline/deferred/DeferredPipelineLogged.h</label>
+        <link refid="_deferred_pipeline_logged_8h"/>
+      </node>
+      <node id="498">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredClusteredShader.h</label>
+        <link refid="_deferred_clustered_shader_8h"/>
+        <childnode refid="499" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classn_tiled_1_1pipeline_1_1_g_buffer" prot="public">nTiled::pipeline::GBuffer</innerclass>
+    <innernamespace refid="namespacen_tiled">nTiled</innernamespace>
+    <innernamespace refid="namespacen_tiled_1_1pipeline">nTiled::pipeline</innernamespace>
+    <briefdescription>
+<para><ref refid="_g_buffer_8h" kindref="compound">GBuffer.h</ref> contains the definition of the GBuffer used in nTiled for deferred shading. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="5"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Libraries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glad\glad.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacen_tiled" kindref="compound">nTiled</ref><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">pipeline<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="classn_tiled_1_1pipeline_1_1_g_buffer" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer" kindref="compound">GBuffer</ref><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23" refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a17e8214011f8b612a1f5a7513b6d78a4" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a17e8214011f8b612a1f5a7513b6d78a4" kindref="member">GBUFFER_TEXTURE_TYPE</ref><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>GBUFFER_TEXTURE_TYPE_DIFFUSE,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>GBUFFER_TEXTURE_TYPE_NORMAL,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>GBUFFER_NUM_TEXTURES</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1ad484feb3613d3c62470cb1d54a74df1e" kindref="member">GBuffer</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1adf3d26feb25559906c96aa91944adeec" kindref="member">width</ref>,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a6ffb62c3285f081a8a5c34fbc03c1de0" kindref="member">height</ref>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Render<sp/>related<sp/>functions</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1ae744aa70fed1acee9155719e4c66b570" kindref="member">bindForWriting</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a92cf5b61a493b3bd716b0c2a1fa98d86" kindref="member">unbindForWriting</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a3662204fcc01708ec7d5fc0255f75627" kindref="member">bindForReading</ref>();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1abf50e7cdfb44d8a3d7c113c725e62897" kindref="member">setReadBuffer</ref>(<ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a17e8214011f8b612a1f5a7513b6d78a4" kindref="member">GBUFFER_TEXTURE_TYPE</ref><sp/>TextureType);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="classn_tiled_1_1pipeline_1_1_g_buffer_1af5aee125b452ead7d6d1b6d8553c63bf" refkind="member"><highlight class="normal"><sp/><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1af5aee125b452ead7d6d1b6d8553c63bf" kindref="member">getPointerFBO</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1ab3286f4731c9bbb1e3f541fdcce549d2" kindref="member">p_fbo</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a10aa101bd0ec5e4cafb709f461d6a3d9" refkind="member"><highlight class="normal"><sp/><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a10aa101bd0ec5e4cafb709f461d6a3d9" kindref="member">getPointerDepthTexture</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1aba0c01d92e855061cc37d2e7334d75c1" kindref="member">p_depth_texture</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>GBuffer<sp/>attributes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="71" refid="classn_tiled_1_1pipeline_1_1_g_buffer_1adf3d26feb25559906c96aa91944adeec" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1adf3d26feb25559906c96aa91944adeec" kindref="member">width</ref>;</highlight></codeline>
+<codeline lineno="73" refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a6ffb62c3285f081a8a5c34fbc03c1de0" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a6ffb62c3285f081a8a5c34fbc03c1de0" kindref="member">height</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>openGL<sp/>pointers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>--------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="78" refid="classn_tiled_1_1pipeline_1_1_g_buffer_1ab3286f4731c9bbb1e3f541fdcce549d2" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1ab3286f4731c9bbb1e3f541fdcce549d2" kindref="member">p_fbo</ref>;</highlight></codeline>
+<codeline lineno="80" refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a8145b5d08a696d57519dfc7ca7eab4e9" refkind="member"><highlight class="normal"><sp/><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1a8145b5d08a696d57519dfc7ca7eab4e9" kindref="member">p_textures</ref>[GBUFFER_NUM_TEXTURES];</highlight></codeline>
+<codeline lineno="82" refid="classn_tiled_1_1pipeline_1_1_g_buffer_1aba0c01d92e855061cc37d2e7334d75c1" refkind="member"><highlight class="normal"><sp/><sp/>GLuint<sp/><ref refid="classn_tiled_1_1pipeline_1_1_g_buffer_1aba0c01d92e855061cc37d2e7334d75c1" kindref="member">p_depth_texture</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>pipeline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>nTiled</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="nTiled/include/pipeline/deferred/GBuffer.h"/>
+  </compounddef>
+</doxygen>

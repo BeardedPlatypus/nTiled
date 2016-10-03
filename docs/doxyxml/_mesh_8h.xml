@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="_mesh_8h" kind="file" language="C++">
+    <compoundname>Mesh.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">glm\glm.hpp</includes>
+    <includedby refid="_object_8h" local="yes">nTiled/include/world/Object.h</includedby>
+    <includedby refid="_mesh_8cpp" local="yes">nTiled/src/world/Mesh.cpp</includedby>
+    <incdepgraph>
+      <node id="1740">
+        <label>glm\glm.hpp</label>
+      </node>
+      <node id="1739">
+        <label>vector</label>
+      </node>
+      <node id="1738">
+        <label>nTiled/include/world/Mesh.h</label>
+        <link refid="_mesh_8h"/>
+        <childnode refid="1739" relation="include">
+        </childnode>
+        <childnode refid="1740" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1769">
+        <label>nTiled/include/pipeline/forward/ForwardPipeline.h</label>
+        <link refid="_forward_pipeline_8h"/>
+        <childnode refid="1770" relation="include">
+        </childnode>
+      </node>
+      <node id="1752">
+        <label>nTiled/include/pipeline/light-management/clustered/ClusteredLightManager.h</label>
+        <link refid="_clustered_light_manager_8h"/>
+        <childnode refid="1753" relation="include">
+        </childnode>
+        <childnode refid="1755" relation="include">
+        </childnode>
+        <childnode refid="1757" relation="include">
+        </childnode>
+      </node>
+      <node id="1745">
+        <label>nTiled/include/pipeline/light-management/tiled/BoxProjector.h</label>
+        <link refid="_box_projector_8h"/>
+        <childnode refid="1746" relation="include">
+        </childnode>
+        <childnode refid="1748" relation="include">
+        </childnode>
+        <childnode refid="1750" relation="include">
+        </childnode>
+        <childnode refid="1752" relation="include">
+        </childnode>
+      </node>
+      <node id="1781">
+        <label>nTiled/include/world/object-constructor/AssImpConstructor.h</label>
+        <link refid="_ass_imp_constructor_8h_source"/>
+      </node>
+      <node id="1777">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardAttenuatedShader.h</label>
+        <link refid="_forward_attenuated_shader_8h"/>
+        <childnode refid="1778" relation="include">
+        </childnode>
+      </node>
+      <node id="1763">
+        <label>nTiled/include/main/Controller.h</label>
+        <link refid="_controller_8h_source"/>
+      </node>
+      <node id="1743">
+        <label>nTiled/include/world/PointLight.h</label>
+        <link refid="_point_light_8h"/>
+        <childnode refid="1744" relation="include">
+        </childnode>
+        <childnode refid="1760" relation="include">
+        </childnode>
+        <childnode refid="1772" relation="include">
+        </childnode>
+      </node>
+      <node id="1773">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredShader.h</label>
+        <link refid="_deferred_shader_8h"/>
+        <childnode refid="1767" relation="include">
+        </childnode>
+        <childnode refid="1774" relation="include">
+        </childnode>
+        <childnode refid="1753" relation="include">
+        </childnode>
+        <childnode refid="1748" relation="include">
+        </childnode>
+      </node>
+      <node id="1771">
+        <label>nTiled/include/world/light-constructor/PointLightConstructor.h</label>
+        <link refid="_point_light_constructor_8h"/>
+      </node>
+      <node id="1764">
+        <label>nTiled/include/main/DrawMethod.h</label>
+        <link refid="_draw_method_8h_source"/>
+        <childnode refid="1765" relation="include">
+        </childnode>
+        <childnode refid="1763" relation="include">
+        </childnode>
+      </node>
+      <node id="1744">
+        <label>nTiled/include/pipeline/light-management/tiled/LightProjector.h</label>
+        <link refid="_light_projector_8h"/>
+        <childnode refid="1745" relation="include">
+        </childnode>
+        <childnode refid="1758" relation="include">
+        </childnode>
+      </node>
+      <node id="1765">
+        <label>nTiled/include/main/FrameEvent.h</label>
+        <link refid="_frame_event_8h_source"/>
+        <childnode refid="1763" relation="include">
+        </childnode>
+      </node>
+      <node id="1750">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardTiledShader.h</label>
+        <link refid="_forward_tiled_shader_8h"/>
+        <childnode refid="1751" relation="include">
+        </childnode>
+      </node>
+      <node id="1748">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredTiledShader.h</label>
+        <link refid="_deferred_tiled_shader_8h"/>
+        <childnode refid="1749" relation="include">
+        </childnode>
+      </node>
+      <node id="1775">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h</label>
+        <link refid="_deferred_attenuated_shader_logged_8h_source"/>
+      </node>
+      <node id="1754">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredClusteredShaderLogged.h</label>
+        <link refid="_deferred_clustered_shader_logged_8h_source"/>
+      </node>
+      <node id="1762">
+        <label>nTiled/include/gui/GuiManager.h</label>
+        <link refid="_gui_manager_8h"/>
+        <childnode refid="1763" relation="include">
+        </childnode>
+        <childnode refid="1764" relation="include">
+        </childnode>
+      </node>
+      <node id="1774">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredAttenuatedShader.h</label>
+        <link refid="_deferred_attenuated_shader_8h"/>
+        <childnode refid="1775" relation="include">
+        </childnode>
+      </node>
+      <node id="1780">
+        <label>nTiled/include/world/object-constructor/ObjectConstructor.h</label>
+        <link refid="_object_constructor_8h"/>
+        <childnode refid="1781" relation="include">
+        </childnode>
+      </node>
+      <node id="1772">
+        <label>nTiled/include/world/World.h</label>
+        <link refid="_world_8h"/>
+        <childnode refid="1763" relation="include">
+        </childnode>
+        <childnode refid="1773" relation="include">
+        </childnode>
+        <childnode refid="1776" relation="include">
+        </childnode>
+        <childnode refid="1752" relation="include">
+        </childnode>
+        <childnode refid="1758" relation="include">
+        </childnode>
+        <childnode refid="1779" relation="include">
+        </childnode>
+        <childnode refid="1761" relation="include">
+        </childnode>
+        <childnode refid="1771" relation="include">
+        </childnode>
+        <childnode refid="1780" relation="include">
+        </childnode>
+      </node>
+      <node id="1759">
+        <label>nTiled/include/pipeline/light-management/tiled/TiledLightManagerLogged.h</label>
+        <link refid="_tiled_light_manager_logged_8h"/>
+      </node>
+      <node id="1749">
+        <label>nTiled/include/pipeline/deferred/shaders/logged/DeferredTiledShaderLogged.h</label>
+        <link refid="_deferred_tiled_shader_logged_8h_source"/>
+      </node>
+      <node id="1770">
+        <label>nTiled/include/pipeline/forward/ForwardPipelineLogged.h</label>
+        <link refid="_forward_pipeline_logged_8h"/>
+      </node>
+      <node id="1756">
+        <label>nTiled/include/pipeline/forward/shaders/logged/ForwardClusteredShaderLogged.h</label>
+        <link refid="_forward_clustered_shader_logged_8h"/>
+      </node>
+      <node id="1747">
+        <label>nTiled/include/pipeline/debug-view/DebugPipeline.h</label>
+        <link refid="_debug_pipeline_8h"/>
+      </node>
+      <node id="1767">
+        <label>nTiled/include/pipeline/deferred/DeferredPipeline.h</label>
+        <link refid="_deferred_pipeline_8h"/>
+        <childnode refid="1768" relation="include">
+        </childnode>
+      </node>
+      <node id="1758">
+        <label>nTiled/include/pipeline/light-management/tiled/TiledLightManager.h</label>
+        <link refid="_tiled_light_manager_8h"/>
+        <childnode refid="1746" relation="include">
+        </childnode>
+        <childnode refid="1748" relation="include">
+        </childnode>
+        <childnode refid="1750" relation="include">
+        </childnode>
+        <childnode refid="1759" relation="include">
+        </childnode>
+      </node>
+      <node id="1751">
+        <label>nTiled/include/pipeline/forward/shaders/logged/ForwardTiledShaderLogged.h</label>
+        <link refid="_forward_tiled_shader_logged_8h"/>
+      </node>
+      <node id="1755">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardClusteredShader.h</label>
+        <link refid="_forward_clustered_shader_8h"/>
+        <childnode refid="1756" relation="include">
+        </childnode>
+      </node>
+      <node id="1778">
+        <label>nTiled/include/pipeline/forward/shaders/logged/ForwardAttenuatedShaderLogged.h</label>
+        <link refid="_forward_attenuated_shader_logged_8h"/>
+      </node>
+      <node id="1757">
+        <label>nTiled/include/pipeline/light-management/clustered/ClusteredLightManagerLogged.h</label>
+        <link refid="_clustered_light_manager_logged_8h"/>
+      </node>
+      <node id="1768">
+        <label>nTiled/include/pipeline/deferred/DeferredPipelineLogged.h</label>
+        <link refid="_deferred_pipeline_logged_8h"/>
+      </node>
+      <node id="1776">
+        <label>nTiled/include/pipeline/forward/shaders/ForwardShader.h</label>
+        <link refid="_forward_shader_8h"/>
+        <childnode refid="1769" relation="include">
+        </childnode>
+        <childnode refid="1777" relation="include">
+        </childnode>
+        <childnode refid="1755" relation="include">
+        </childnode>
+        <childnode refid="1750" relation="include">
+        </childnode>
+      </node>
+      <node id="1746">
+        <label>nTiled/include/pipeline/debug-view/shaders/DebugTileDisplayShader.h</label>
+        <link refid="_debug_tile_display_shader_8h"/>
+        <childnode refid="1747" relation="include">
+        </childnode>
+      </node>
+      <node id="1753">
+        <label>nTiled/include/pipeline/deferred/shaders/DeferredClusteredShader.h</label>
+        <link refid="_deferred_clustered_shader_8h"/>
+        <childnode refid="1754" relation="include">
+        </childnode>
+      </node>
+      <node id="1741">
+        <label>nTiled/include/world/Mesh.h</label>
+        <link refid="_mesh_8h"/>
+        <childnode refid="1742" relation="include">
+        </childnode>
+      </node>
+      <node id="1766">
+        <label>nTiled/include/pipeline/Pipeline.h</label>
+        <link refid="_pipeline_8h"/>
+        <childnode refid="1763" relation="include">
+        </childnode>
+        <childnode refid="1764" relation="include">
+        </childnode>
+        <childnode refid="1747" relation="include">
+        </childnode>
+        <childnode refid="1767" relation="include">
+        </childnode>
+        <childnode refid="1769" relation="include">
+        </childnode>
+      </node>
+      <node id="1760">
+        <label>nTiled/include/world/light-constructor/LightConstructor.h</label>
+        <link refid="_light_constructor_8h"/>
+        <childnode refid="1761" relation="include">
+        </childnode>
+        <childnode refid="1771" relation="include">
+        </childnode>
+      </node>
+      <node id="1779">
+        <label>nTiled/include/pipeline/Shader.h</label>
+        <link refid="_shader_8h"/>
+      </node>
+      <node id="1742">
+        <label>nTiled/include/world/Object.h</label>
+        <link refid="_object_8h"/>
+        <childnode refid="1743" relation="include">
+        </childnode>
+        <childnode refid="1772" relation="include">
+        </childnode>
+      </node>
+      <node id="1761">
+        <label>nTiled/include/state/State.h</label>
+        <link refid="_state_8h"/>
+        <childnode refid="1762" relation="include">
+        </childnode>
+        <childnode refid="1763" relation="include">
+        </childnode>
+        <childnode refid="1766" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structn_tiled_1_1world_1_1_mesh" prot="public">nTiled::world::Mesh</innerclass>
+    <innernamespace refid="namespacen_tiled">nTiled</innernamespace>
+    <innernamespace refid="namespacen_tiled_1_1world">nTiled::world</innernamespace>
+    <briefdescription>
+<para><ref refid="_mesh_8h" kindref="compound">Mesh.h</ref> contains the definition of the Mesh struct. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="4"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Libraries</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm\glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacen_tiled" kindref="compound">nTiled</ref><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">world<sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="structn_tiled_1_1world_1_1_mesh" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1af1dc6c72d929e86b4e6f032959795ada" kindref="member">Mesh</ref>(std::vector&lt;glm::vec4&gt;<sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1a9ff34800022f1cba94af044bc6b617d9" kindref="member">vertices</ref>,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;glm::vec3&gt;<sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1adff399a7ff25d29d5a664cfa547d3cd5" kindref="member">normals</ref>,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;glm::vec3&gt;<sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1af8d57ba0dfe9d727b1253d8fa5411f63" kindref="member">uvs</ref>,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;glm::tvec3&lt;glm::u32&gt;&gt;<sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1a8e4097a62b90aa02c13e4b01016e0b9f" kindref="member">elements</ref>);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1af1dc6c72d929e86b4e6f032959795ada" kindref="member">Mesh</ref>();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structn_tiled_1_1world_1_1_mesh_1a9ff34800022f1cba94af044bc6b617d9" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;glm::vec4&gt;<sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1a9ff34800022f1cba94af044bc6b617d9" kindref="member">vertices</ref>;</highlight></codeline>
+<codeline lineno="38" refid="structn_tiled_1_1world_1_1_mesh_1adff399a7ff25d29d5a664cfa547d3cd5" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;glm::vec3&gt;<sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1adff399a7ff25d29d5a664cfa547d3cd5" kindref="member">normals</ref>;</highlight></codeline>
+<codeline lineno="40" refid="structn_tiled_1_1world_1_1_mesh_1af8d57ba0dfe9d727b1253d8fa5411f63" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;glm::vec3&gt;<sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1af8d57ba0dfe9d727b1253d8fa5411f63" kindref="member">uvs</ref>;</highlight></codeline>
+<codeline lineno="42" refid="structn_tiled_1_1world_1_1_mesh_1a8e4097a62b90aa02c13e4b01016e0b9f" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;glm::tvec3&lt;glm::u32&gt;&gt;<sp/><ref refid="structn_tiled_1_1world_1_1_mesh_1a8e4097a62b90aa02c13e4b01016e0b9f" kindref="member">elements</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>world</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>nTiled</highlight></codeline>
+    </programlisting>
+    <location file="nTiled/include/world/Mesh.h"/>
+  </compounddef>
+</doxygen>

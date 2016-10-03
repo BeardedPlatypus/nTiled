@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_807e90b8025181915a0a1bd8df3f00e7" kind="dir">
+    <compoundname>nTiled/include/pipeline</compoundname>
+    <innerdir refid="dir_9351eaede927699dd8103508320e9e5c">nTiled/include/pipeline/debug-view</innerdir>
+    <innerdir refid="dir_70f9e6fdbd72b164ccf617945674a9cb">nTiled/include/pipeline/deferred</innerdir>
+    <innerdir refid="dir_89bcc354a9301ad589d518054f5e5569">nTiled/include/pipeline/forward</innerdir>
+    <innerdir refid="dir_fed2b1bc5ab789628a3c4e559659aa44">nTiled/include/pipeline/light-management</innerdir>
+    <innerdir refid="dir_2e8d7e8c99af5547d689c546affd6475">nTiled/include/pipeline/pipeline-util</innerdir>
+    <innerdir refid="dir_05c0307430a8f9dbccdff9c9c6e2712c">nTiled/include/pipeline/shader-util</innerdir>
+    <innerfile refid="_pipeline_8h">Pipeline.h</innerfile>
+    <innerfile refid="_pipeline_light_8h">PipelineLight.h</innerfile>
+    <innerfile refid="_pipeline_object_8h">PipelineObject.h</innerfile>
+    <innerfile refid="_pipeline_type_8h">PipelineType.h</innerfile>
+    <innerfile refid="_shader_8h">Shader.h</innerfile>
+    <innerfile refid="_shader_key_8h">ShaderKey.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/pipeline/"/>
+  </compounddef>
+</doxygen>

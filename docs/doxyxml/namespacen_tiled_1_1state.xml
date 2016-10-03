@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="namespacen_tiled_1_1state" kind="namespace" language="C++">
+    <compoundname>nTiled::state</compoundname>
+    <innerclass refid="structn_tiled_1_1state_1_1_log" prot="public">nTiled::state::Log</innerclass>
+    <innerclass refid="structn_tiled_1_1state_1_1_shading" prot="public">nTiled::state::Shading</innerclass>
+    <innerclass refid="structn_tiled_1_1state_1_1_state" prot="public">nTiled::state::State</innerclass>
+    <innerclass refid="classn_tiled_1_1state_1_1_texture_catalog" prot="public">nTiled::state::TextureCatalog</innerclass>
+    <innerclass refid="structn_tiled_1_1state_1_1_view" prot="public">nTiled::state::View</innerclass>
+    <innerclass refid="structn_tiled_1_1state_1_1_view_output" prot="public">nTiled::state::ViewOutput</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="_state_view_8h_1ac446d4ebcdec4d1a57732037ff301eb2" prot="public" static="no">
+        <name>OutputType</name>
+        <enumvalue id="dummy_1ac446d4ebcdec4d1a57732037ff301eb2ab9987a246a537f4fe86f1f2e3d10dbdb" prot="public">
+          <name>Display</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="dummy_1ac446d4ebcdec4d1a57732037ff301eb2a4789f23283b3a61f858b641a1bef19a3" prot="public">
+          <name>Memory</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>The OutputType of this nTiled execution. </para>        </briefdescription>
+        <detaileddescription>
+<para>Display corresponds with displaying the frames on the display only.</para><para>Memory writes each frame to memory as well as displaying it on the display. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/StateView.h" line="24" column="1" bodyfile="nTiled/include/state/StateView.h" bodystart="24" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_state_8h_1ab2ebd22a2242c2dbefea8c40a9b6f711" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">State</ref> *</type>
+        <definition>State * nTiled::state::constructStateFromJson</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>constructStateFromJson</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Construct a <ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">State</ref> from the specified scene.json file. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the scene.json file  A state corresponding with the provided scene.json file </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/State.h" line="137" column="1" bodyfile="nTiled/src/state/State.cpp" bodystart="91" bodyend="320"/>
+      </memberdef>
+      <memberdef kind="function" id="_state_8h_1af31c47a1c71e1be2231955c28e7c34ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::state::parseLights</definition>
+        <argsstring>(const std::string &amp;path, world::LightConstructor &amp;constructor)</argsstring>
+        <name>parseLights</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1world_1_1_light_constructor" kindref="compound">world::LightConstructor</ref> &amp;</type>
+          <declname>constructor</declname>
+        </param>
+        <briefdescription>
+<para>Parse the lights from a specified lights.json file. </para>        </briefdescription>
+        <detaileddescription>
+<para>Parse the lights from a specified lights.json file, these will be added to the world with the provided LightConstructor object</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the lights.json file </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>constructor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>LightConstructor used to add the specified lights to the world the LightConstructor belongs to </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/State.h" line="150" column="1" bodyfile="nTiled/src/state/LightParser.cpp" bodystart="22" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="_state_8h_1a7245e5ab34a169f73ade979d539fcbcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::state::parseGeometry</definition>
+        <argsstring>(const std::string &amp;path, world::World &amp;world, std::vector&lt; pipeline::ForwardShaderId &gt; &amp;forward_shader_ids, pipeline::DeferredShaderId &amp;deferred_shader_id, std::map&lt; std::string, std::string &gt; &amp;texture_map_file)</argsstring>
+        <name>parseGeometry</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref> &amp;</type>
+          <declname>world</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="_forward_shader_id_8h_1aadb9da564d0f546c336faf3a4903ff93" kindref="member">pipeline::ForwardShaderId</ref> &gt; &amp;</type>
+          <declname>forward_shader_ids</declname>
+        </param>
+        <param>
+          <type><ref refid="_deferred_shader_id_8h_1a225c1f7d638c4978ae7c69c9a3de8cf3" kindref="member">pipeline::DeferredShaderId</ref> &amp;</type>
+          <declname>deferred_shader_id</declname>
+        </param>
+        <param>
+          <type>std::map&lt; std::string, std::string &gt; &amp;</type>
+          <declname>texture_map_file</declname>
+        </param>
+        <briefdescription>
+<para>Parse the geometry from a specified geometry.json file. </para>        </briefdescription>
+        <detaileddescription>
+<para>Parse the geometry from a specified geometry.json file, these objects will be added to the referenced world.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the geometry.json file </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>world</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>world to which this geometry should be added </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>forward_shader_ids</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference to the all forward_shader_ids </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>deferred_shader_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference to the deferred_shader_id </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>texture_map_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference to the map of texture files </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/State.h" line="164" column="1" bodyfile="nTiled/src/state/GeometryParser.cpp" bodystart="30" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="_state_8h_1adc2daaba8b2c514e061a2357277d8a01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; glm::mat4 &gt;</type>
+        <definition>std::vector&lt; glm::mat4 &gt; nTiled::state::readCameraFrames</definition>
+        <argsstring>(const std::string &amp;path)</argsstring>
+        <name>readCameraFrames</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Parse the camera lookAt matrix per frame for the PathCamera. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the camera_path.json file </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/state/State.h" line="175" column="1" bodyfile="nTiled/src/state/State.cpp" bodystart="323" bodyend="368"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/state/State.h" line="24" column="1"/>
+  </compounddef>
+</doxygen>

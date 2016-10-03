@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_1bd9fbbd86570344959e2d042fd97c1d" kind="dir">
+    <compoundname>nTiled/include/main</compoundname>
+    <innerfile refid="_clock_8h">Clock.h</innerfile>
+    <innerfile refid="_controller_8h">Controller.h</innerfile>
+    <innerfile refid="_draw_method_8h">DrawMethod.h</innerfile>
+    <innerfile refid="_frame_event_8h">FrameEvent.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/main/"/>
+  </compounddef>
+</doxygen>

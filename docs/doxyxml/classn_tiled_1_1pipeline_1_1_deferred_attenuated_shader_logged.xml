@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::DeferredAttenuatedShaderLogged</compoundname>
+    <basecompoundref refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader" prot="public" virt="non-virtual">nTiled::pipeline::DeferredAttenuatedShader</basecompoundref>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged_1aa6e062916af34eed33d0155579ae4837" prot="protected" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+        <definition>logged::ExecutionTimeLogger&amp; nTiled::pipeline::DeferredAttenuatedShaderLogged::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h" line="27" column="1" bodyfile="nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged_1a0cf9cdd8ccb8b290cf7cdfb40ee99150" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::DeferredAttenuatedShaderLogged::DeferredAttenuatedShaderLogged</definition>
+        <argsstring>(DeferredShaderId shader_id, const std::string &amp;path_geometry_pass_vertex_shader, const std::string &amp;path_geometry_pass_fragment_shader, const std::string &amp;path_light_pass_vertex_shader, const std::string &amp;path_light_pass_fragment_shader, const world::World &amp;world, const state::View &amp;view, GLint p_output_buffer, logged::ExecutionTimeLogger &amp;logger)</argsstring>
+        <name>DeferredAttenuatedShaderLogged</name>
+        <param>
+          <type><ref refid="_deferred_shader_id_8h_1a225c1f7d638c4978ae7c69c9a3de8cf3" kindref="member">DeferredShaderId</ref></type>
+          <declname>shader_id</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_geometry_pass_vertex_shader</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_geometry_pass_fragment_shader</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_light_pass_vertex_shader</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path_light_pass_fragment_shader</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">world::World</ref> &amp;</type>
+          <declname>world</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>GLint</type>
+          <declname>p_output_buffer</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> &amp;</type>
+          <declname>logger</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h" line="12" column="1" bodyfile="nTiled/src/pipeline/deferred/shaders/Logged/DeferredAttenuatedShaderLogged.cpp" bodystart="6" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged_1a45cacf4940addbf1321b478ee8948fe1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::DeferredAttenuatedShaderLogged::renderGeometryPassObjects</definition>
+        <argsstring>() override</argsstring>
+        <name>renderGeometryPassObjects</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1abe1425901ff2a6017df74659ee3b44dd">renderGeometryPassObjects</reimplements>
+        <briefdescription>
+<para>Render all the objects for the Geometry pass of this <ref refid="classn_tiled_1_1pipeline_1_1_deferred_shader" kindref="compound">DeferredShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h" line="24" column="1" bodyfile="nTiled/src/pipeline/deferred/shaders/Logged/DeferredAttenuatedShaderLogged.cpp" bodystart="27" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged_1ae427f6b94c12460b711aba79f48aacee" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::DeferredAttenuatedShaderLogged::renderLightPassObjects</definition>
+        <argsstring>() override</argsstring>
+        <name>renderLightPassObjects</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a5f2764094c367ceebc310a0fdf9d0953">renderLightPassObjects</reimplements>
+        <briefdescription>
+<para>Render all objects for the Light pass of this <ref refid="classn_tiled_1_1pipeline_1_1_deferred_shader" kindref="compound">DeferredShader</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h" line="25" column="1" bodyfile="nTiled/src/pipeline/deferred/shaders/Logged/DeferredAttenuatedShaderLogged.cpp" bodystart="33" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="148">
+        <label>nTiled::pipeline::DeferredShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_shader"/>
+      </node>
+      <node id="147">
+        <label>nTiled::pipeline::DeferredAttenuatedShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader"/>
+        <childnode refid="148" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="146">
+        <label>nTiled::pipeline::DeferredAttenuatedShaderLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged"/>
+        <childnode refid="147" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="159">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="151">
+        <label>nTiled::pipeline::DeferredShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_shader"/>
+        <childnode refid="152" relation="usage">
+          <edgelabel>world</edgelabel>
+        </childnode>
+        <childnode refid="153" relation="usage">
+          <edgelabel>gBuffer</edgelabel>
+        </childnode>
+        <childnode refid="154" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+        <childnode refid="160" relation="usage">
+          <edgelabel>fullscreen_quad</edgelabel>
+        </childnode>
+      </node>
+      <node id="150">
+        <label>nTiled::pipeline::DeferredAttenuatedShader</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader"/>
+        <childnode refid="151" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="160">
+        <label>nTiled::pipeline::PipelineObject</label>
+        <link refid="structn_tiled_1_1pipeline_1_1_pipeline_object"/>
+      </node>
+      <node id="155">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="161">
+        <label>nTiled::logged::ExecutionTimeLogger</label>
+        <link refid="classn_tiled_1_1logged_1_1_execution_time_logger"/>
+        <childnode refid="162" relation="usage">
+          <edgelabel>clock</edgelabel>
+        </childnode>
+      </node>
+      <node id="162">
+        <label>nTiled::Clock</label>
+        <link refid="classn_tiled_1_1_clock"/>
+      </node>
+      <node id="156">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="157" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="155" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="158" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="157">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="154">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="155" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="156" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="159" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="152">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+      <node id="158">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+      <node id="149">
+        <label>nTiled::pipeline::DeferredAttenuatedShaderLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged"/>
+        <childnode refid="150" relation="public-inheritance">
+        </childnode>
+        <childnode refid="161" relation="usage">
+          <edgelabel>logger</edgelabel>
+        </childnode>
+      </node>
+      <node id="153">
+        <label>nTiled::pipeline::GBuffer</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_g_buffer"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h" line="10" column="1" bodyfile="nTiled/include/pipeline/deferred/shaders/logged/DeferredAttenuatedShaderLogged.h" bodystart="10" bodyend="28"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a6c14bcca74a34c711fefb72fc9d5c61f" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>constructPipelineLight</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a0ff9c1988a497c5b7715a7ce5193e8f6" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>constructPipelineObject</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_1afb115f1769095cc55c7305071f78dcd9" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>DeferredAttenuatedShader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged_1a0cf9cdd8ccb8b290cf7cdfb40ee99150" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>DeferredAttenuatedShaderLogged</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a33a22067d70757dd5e01160bb0f40904" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>DeferredShader</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ab0e7169d233c6fc4d96de424c90707e3" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>fullscreen_quad</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ae6e7007e01ccc3ab1c015ec726d92ebf" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>gBuffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1adc50a57b01676adb2b6df0b184dc8e15" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>geometry_pass_sp</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a881eabd8fc91d6ab93be37c9df1f1383" prot="public" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>getId</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a6974dbe74b09ff97ca94638bfe9f3883" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>id</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a153e230ddb366f0e9425a4af84a95002" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>light_pass_sp</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ac71a63f32438e283bddbbeb7b7e2a929" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>light_ubo</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ade1d12ad4fd20fa3fd38d87a3519eee2" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>lights</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a921189e8dabb0963b2934a63f9a392b7" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>loadLights</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1aa33b1ddf8af0970f2f9eda071fee6824" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>loadObjects</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1aaf145ca8dde05368db26e461d3cab100" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>loadShaders</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged_1aa6e062916af34eed33d0155579ae4837" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>logger</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a06144b56505f3daad43056f084d3d77c" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>p_output_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a3bdd1bccf82485785299662dae10eb3c" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>ps_obj</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a8854914116d74080c61e5212cacf1ccb" prot="public" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>render</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1a590bfa905a6036b89da91ee18fec39d7" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>renderBuffers</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_1a13f9057b6e67146e45e32a503f6ede41" prot="public" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>renderGeometryPass</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged_1a45cacf4940addbf1321b478ee8948fe1" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>renderGeometryPassObjects</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_1acf9c8e6a24e39b0df3b5e1f100637d99" prot="public" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>renderLightPass</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_attenuated_shader_logged_1ae427f6b94c12460b711aba79f48aacee" prot="protected" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>renderLightPassObjects</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1aa10c508364afb8b8a440fa244b2ea334" prot="public" virt="virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>setOutputBuffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1aad9da90249705d4bf45475ed9315f150" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>view</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_deferred_shader_1ab88875b524d735162b7042c9060b4649" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::DeferredAttenuatedShaderLogged</scope><name>world</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

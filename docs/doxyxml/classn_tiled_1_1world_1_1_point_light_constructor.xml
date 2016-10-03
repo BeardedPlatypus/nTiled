@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1world_1_1_point_light_constructor" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::world::PointLightConstructor</compoundname>
+    <basecompoundref refid="classn_tiled_1_1world_1_1_light_constructor" prot="public" virt="non-virtual">nTiled::world::LightConstructor</basecompoundref>
+    <includes refid="_point_light_constructor_8h" local="no">PointLightConstructor.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1world_1_1_point_light_constructor_1a4c88c8ac20697fff8185317ca8a78dcc" prot="private" static="no" mutable="no">
+        <type><ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref> &amp;</type>
+        <definition>World&amp; nTiled::world::PointLightConstructor::world</definition>
+        <argsstring></argsstring>
+        <name>world</name>
+        <briefdescription>
+<para>the <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref> to which this <ref refid="classn_tiled_1_1world_1_1_point_light_constructor" kindref="compound">PointLightConstructor</ref> adds lights. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/light-constructor/PointLightConstructor.h" line="47" column="1" bodyfile="nTiled/include/world/light-constructor/PointLightConstructor.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1world_1_1_point_light_constructor_1ab7ce1abc8c8534e48465280569b86188" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::world::PointLightConstructor::PointLightConstructor</definition>
+        <argsstring>(World &amp;world)</argsstring>
+        <name>PointLightConstructor</name>
+        <param>
+          <type><ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref> &amp;</type>
+          <declname>world</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new PointLightConstruct which will add lights to the given world. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>world</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="classn_tiled_1_1world_1_1_world" kindref="compound">World</ref> to which this <ref refid="classn_tiled_1_1world_1_1_point_light_constructor" kindref="compound">PointLightConstructor</ref> adds lights. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/light-constructor/PointLightConstructor.h" line="27" column="1" bodyfile="nTiled/src/world/light-constructor/PointLightConstructor.cpp" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1world_1_1_point_light_constructor_1ac6f7d6b33573c340019f58a1f79ea0ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> *</type>
+        <definition>PointLight * nTiled::world::PointLightConstructor::add</definition>
+        <argsstring>(const std::string &amp;name, glm::vec4 position, glm::vec3 intensity, float radius, bool is_emitting)</argsstring>
+        <name>add</name>
+        <reimplements refid="classn_tiled_1_1world_1_1_light_constructor_1a0dfecd9beaef750d3457bf9fa35e384f">add</reimplements>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>glm::vec4</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>intensity</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_emitting</declname>
+        </param>
+        <briefdescription>
+<para>Construct a pointer to a new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> with the given parameters and add it to the world of this <ref refid="classn_tiled_1_1world_1_1_point_light_constructor" kindref="compound">PointLightConstructor</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The position in world-coordinates of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>intensity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The colour intensity of the light emitted by this new new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> in rgb values between 0 and 1 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The influence radius of this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>is_emitting</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether this new <ref refid="structn_tiled_1_1world_1_1_point_light" kindref="compound">PointLight</ref> is emitting light </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/light-constructor/PointLightConstructor.h" line="39" column="1" bodyfile="nTiled/src/world/light-constructor/PointLightConstructor.cpp" bodystart="12" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="classn_tiled_1_1world_1_1_point_light_constructor" kindref="compound">PointLightConstructor</ref> is responsible for adding lights to the world it is constructed with. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="562">
+        <label>nTiled::world::LightConstructor</label>
+        <link refid="classn_tiled_1_1world_1_1_light_constructor"/>
+      </node>
+      <node id="561">
+        <label>nTiled::world::PointLightConstructor</label>
+        <link refid="classn_tiled_1_1world_1_1_point_light_constructor"/>
+        <childnode refid="562" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="564">
+        <label>nTiled::world::LightConstructor</label>
+        <link refid="classn_tiled_1_1world_1_1_light_constructor"/>
+      </node>
+      <node id="563">
+        <label>nTiled::world::PointLightConstructor</label>
+        <link refid="classn_tiled_1_1world_1_1_point_light_constructor"/>
+        <childnode refid="564" relation="public-inheritance">
+        </childnode>
+        <childnode refid="565" relation="usage">
+          <edgelabel>world</edgelabel>
+        </childnode>
+      </node>
+      <node id="565">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/world/light-constructor/PointLightConstructor.h" line="19" column="1" bodyfile="nTiled/include/world/light-constructor/PointLightConstructor.h" bodystart="19" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1world_1_1_point_light_constructor_1ac6f7d6b33573c340019f58a1f79ea0ab" prot="public" virt="virtual"><scope>nTiled::world::PointLightConstructor</scope><name>add</name></member>
+      <member refid="classn_tiled_1_1world_1_1_point_light_constructor_1ab7ce1abc8c8534e48465280569b86188" prot="public" virt="non-virtual"><scope>nTiled::world::PointLightConstructor</scope><name>PointLightConstructor</name></member>
+      <member refid="classn_tiled_1_1world_1_1_point_light_constructor_1a4c88c8ac20697fff8185317ca8a78dcc" prot="private" virt="non-virtual"><scope>nTiled::world::PointLightConstructor</scope><name>world</name></member>
+      <member refid="classn_tiled_1_1world_1_1_light_constructor_1ab81333754703ed0cbb678a01b840cb0a" prot="public" virt="virtual"><scope>nTiled::world::PointLightConstructor</scope><name>~LightConstructor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

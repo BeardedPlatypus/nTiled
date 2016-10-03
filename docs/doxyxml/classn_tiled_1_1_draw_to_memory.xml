@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1_draw_to_memory" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::DrawToMemory</compoundname>
+    <basecompoundref refid="classn_tiled_1_1_draw_method" prot="public" virt="non-virtual">nTiled::DrawMethod</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1_draw_to_memory_1ae4f2a5114117793edf462ff926c756ac" prot="private" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string nTiled::DrawToMemory::path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/DrawMethod.h" line="46" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1_draw_to_memory_1a4f4c02edaf8c80e70664ebab4fa5b619" prot="private" static="no" mutable="no">
+        <type>GLubyte *</type>
+        <definition>GLubyte* nTiled::DrawToMemory::p_raw_pixel_buffer</definition>
+        <argsstring></argsstring>
+        <name>p_raw_pixel_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/DrawMethod.h" line="48" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1_draw_to_memory_1a04e14a6816102367b629f0436c6cca54" prot="private" static="no" mutable="no">
+        <type>GLubyte *</type>
+        <definition>GLubyte* nTiled::DrawToMemory::p_output_buffer</definition>
+        <argsstring></argsstring>
+        <name>p_output_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/DrawMethod.h" line="49" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1_draw_to_memory_1a023a4745a7daaac70ac6d047392c75c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::DrawToMemory::DrawToMemory</definition>
+        <argsstring>(std::string path, state::View &amp;view)</argsstring>
+        <name>DrawToMemory</name>
+        <param>
+          <type>std::string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type><ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/DrawMethod.h" line="26" column="1" bodyfile="nTiled/src/main/DrawMethod.cpp" bodystart="12" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1_draw_to_memory_1a612252ab53c00d6e1532d7d572785d8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::DrawToMemory::~DrawToMemory</definition>
+        <argsstring>()</argsstring>
+        <name>~DrawToMemory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/DrawMethod.h" line="28" column="1" bodyfile="nTiled/src/main/DrawMethod.cpp" bodystart="19" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1_draw_to_memory_1a6b4da45fb5ae7d2f702ba3bcaf21725f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::DrawToMemory::draw</definition>
+        <argsstring>(GLFWwindow *window, pipeline::Pipeline *p_pipeline, gui::GuiManager *gui_manager, state::View &amp;view, const Clock &amp;clock) const override</argsstring>
+        <name>draw</name>
+        <reimplements refid="classn_tiled_1_1_draw_method_1ab78d59a615070095e255eba46a963187">draw</reimplements>
+        <param>
+          <type>GLFWwindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">pipeline::Pipeline</ref> *</type>
+          <declname>p_pipeline</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">gui::GuiManager</ref> *</type>
+          <declname>gui_manager</declname>
+        </param>
+        <param>
+          <type><ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1_clock" kindref="compound">Clock</ref> &amp;</type>
+          <declname>clock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Draw the current frame on the screen and write the result to memory.</para><para>Param: window (GLFWwindow*): pointer to the openGL window p_pipeline (Pipeline*): pointer to the pipeline gui_manager (GuiManager&amp;): the gui </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/DrawMethod.h" line="39" column="1" bodyfile="nTiled/src/main/DrawMethod.cpp" bodystart="24" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="309">
+        <label>nTiled::DrawToMemory</label>
+        <link refid="classn_tiled_1_1_draw_to_memory"/>
+        <childnode refid="310" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="310">
+        <label>nTiled::DrawMethod</label>
+        <link refid="classn_tiled_1_1_draw_method"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="311">
+        <label>nTiled::DrawToMemory</label>
+        <link refid="classn_tiled_1_1_draw_to_memory"/>
+        <childnode refid="312" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="312">
+        <label>nTiled::DrawMethod</label>
+        <link refid="classn_tiled_1_1_draw_method"/>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/main/DrawMethod.h" line="24" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="24" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1_draw_to_memory_1a6b4da45fb5ae7d2f702ba3bcaf21725f" prot="public" virt="virtual"><scope>nTiled::DrawToMemory</scope><name>draw</name></member>
+      <member refid="classn_tiled_1_1_draw_to_memory_1a023a4745a7daaac70ac6d047392c75c6" prot="public" virt="non-virtual"><scope>nTiled::DrawToMemory</scope><name>DrawToMemory</name></member>
+      <member refid="classn_tiled_1_1_draw_to_memory_1a04e14a6816102367b629f0436c6cca54" prot="private" virt="non-virtual"><scope>nTiled::DrawToMemory</scope><name>p_output_buffer</name></member>
+      <member refid="classn_tiled_1_1_draw_to_memory_1a4f4c02edaf8c80e70664ebab4fa5b619" prot="private" virt="non-virtual"><scope>nTiled::DrawToMemory</scope><name>p_raw_pixel_buffer</name></member>
+      <member refid="classn_tiled_1_1_draw_to_memory_1ae4f2a5114117793edf462ff926c756ac" prot="private" virt="non-virtual"><scope>nTiled::DrawToMemory</scope><name>path</name></member>
+      <member refid="classn_tiled_1_1_draw_method_1aa0b13b056dda7522b4f0855453b0fb33" prot="public" virt="non-virtual"><scope>nTiled::DrawToMemory</scope><name>~DrawMethod</name></member>
+      <member refid="classn_tiled_1_1_draw_to_memory_1a612252ab53c00d6e1532d7d572785d8e" prot="public" virt="non-virtual"><scope>nTiled::DrawToMemory</scope><name>~DrawToMemory</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

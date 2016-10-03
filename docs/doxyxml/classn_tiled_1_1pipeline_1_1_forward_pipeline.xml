@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1_forward_pipeline" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::ForwardPipeline</compoundname>
+    <basecompoundref refid="classn_tiled_1_1pipeline_1_1_pipeline" prot="public" virt="non-virtual">nTiled::pipeline::Pipeline</basecompoundref>
+    <derivedcompoundref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged" prot="public" virt="non-virtual">nTiled::pipeline::ForwardPipelineLogged</derivedcompoundref>
+    <includes refid="_forward_pipeline_8h" local="no">ForwardPipeline.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_1af2f8763dfd8f0003079434545545ef6b" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classn_tiled_1_1pipeline_1_1_forward_shader" kindref="compound">ForwardShader</ref> * &gt;</type>
+        <definition>std::vector&lt;ForwardShader*&gt; nTiled::pipeline::ForwardPipeline::shader_catalog</definition>
+        <argsstring></argsstring>
+        <name>shader_catalog</name>
+        <briefdescription>
+<para>Vector containing pointers to all ForwardShaders in this <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" kindref="compound">ForwardPipeline</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipeline.h" line="44" column="1" bodyfile="nTiled/include/pipeline/forward/ForwardPipeline.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a7a5f48f03e43380d3175d0ff3afa3f46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::ForwardPipeline::ForwardPipeline</definition>
+        <argsstring>(state::State &amp;state)</argsstring>
+        <name>ForwardPipeline</name>
+        <param>
+          <type><ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">state::State</ref> &amp;</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" kindref="compound">ForwardPipeline</ref> with the specified State. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the State this <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" kindref="compound">ForwardPipeline</ref> observes. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipeline.h" line="26" column="1" bodyfile="nTiled/src/pipeline/forward/ForwardPipeline.cpp" bodystart="21" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a0cacec36241078ab606b797c2c575368" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::ForwardPipeline::~ForwardPipeline</definition>
+        <argsstring>()</argsstring>
+        <name>~ForwardPipeline</name>
+        <briefdescription>
+<para>Destruct this <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" kindref="compound">ForwardPipeline</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipeline.h" line="30" column="1" bodyfile="nTiled/src/pipeline/forward/ForwardPipeline.cpp" bodystart="28" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a94cfacd758077c9034bf7045cd691ac1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ForwardPipeline::initialiseShaders</definition>
+        <argsstring>() override</argsstring>
+        <name>initialiseShaders</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_pipeline_1a3bd91d1ee7b43c62e7cc3a93a421b79f">initialiseShaders</reimplements>
+        <briefdescription>
+<para>Initialise the shaders of this <ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">Pipeline</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipeline.h" line="32" column="1" bodyfile="nTiled/src/pipeline/forward/ForwardPipeline.cpp" bodystart="24" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a7e4e60da1a781c4981752eb83ee6199d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ForwardPipeline::render</definition>
+        <argsstring>() override</argsstring>
+        <name>render</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_pipeline_1a3d1eac3756c298d3061df472a3fb08e0">render</reimplements>
+        <briefdescription>
+<para>Render the state of this <ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">Pipeline</ref> into the framebuffer. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipeline.h" line="34" column="1" bodyfile="nTiled/src/pipeline/forward/ForwardPipeline.cpp" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a7926a6c36147af64fc152e6dbc6ccfce" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ForwardPipeline::setOutputBuffer</definition>
+        <argsstring>(GLint p_output_buffer) override</argsstring>
+        <name>setOutputBuffer</name>
+        <reimplements refid="classn_tiled_1_1pipeline_1_1_pipeline_1a95ba94528a72ca8826e19923ff76c282">setOutputBuffer</reimplements>
+        <param>
+          <type>GLint</type>
+          <declname>p_fbo</declname>
+        </param>
+        <briefdescription>
+<para>Set the output buffer of this <ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">Pipeline</ref> to p_fbo. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_fbo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>openGL Pointer to the new output buffer of this <ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">Pipeline</ref>. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipeline.h" line="36" column="1" bodyfile="nTiled/src/pipeline/forward/ForwardPipeline.cpp" bodystart="40" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a85cb5e9988d80681589bf4527ab6dad5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::ForwardPipeline::constructShaderCatalog</definition>
+        <argsstring>()</argsstring>
+        <name>constructShaderCatalog</name>
+        <reimplementedby refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged_1a96fd0d8cb841d1984a02b61db4594260">constructShaderCatalog</reimplementedby>
+        <briefdescription>
+<para>Construct the <ref refid="classn_tiled_1_1pipeline_1_1_shader" kindref="compound">Shader</ref> catalog of this <ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" kindref="compound">ForwardPipeline</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/forward/ForwardPipeline.h" line="40" column="1" bodyfile="nTiled/src/pipeline/forward/ForwardPipeline.cpp" bodystart="48" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1_forward_pipeline" kindref="compound">ForwardPipeline</ref> handles the rendering of all Forward shading It inherits from <ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">Pipeline</ref> to offer a consistent interface. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="398">
+        <label>nTiled::pipeline::ForwardPipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_pipeline"/>
+        <childnode refid="399" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="400">
+        <label>nTiled::pipeline::ForwardPipelineLogged</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_logged"/>
+        <childnode refid="398" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="399">
+        <label>nTiled::pipeline::Pipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_pipeline"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="413">
+        <label>nTiled::state::ViewOutput</label>
+        <link refid="structn_tiled_1_1state_1_1_view_output"/>
+      </node>
+      <node id="407">
+        <label>nTiled::state::TextureCatalog</label>
+        <link refid="classn_tiled_1_1state_1_1_texture_catalog"/>
+      </node>
+      <node id="404">
+        <label>nTiled::state::Log</label>
+        <link refid="structn_tiled_1_1state_1_1_log"/>
+      </node>
+      <node id="409">
+        <label>nTiled::camera::CameraControl</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera_control"/>
+      </node>
+      <node id="403">
+        <label>nTiled::state::State</label>
+        <link refid="structn_tiled_1_1state_1_1_state"/>
+        <childnode refid="404" relation="usage">
+          <edgelabel>log</edgelabel>
+        </childnode>
+        <childnode refid="405" relation="usage">
+          <edgelabel>p_world</edgelabel>
+        </childnode>
+        <childnode refid="406" relation="usage">
+          <edgelabel>shading</edgelabel>
+        </childnode>
+        <childnode refid="407" relation="usage">
+          <edgelabel>texture_catalog</edgelabel>
+        </childnode>
+        <childnode refid="408" relation="usage">
+          <edgelabel>view</edgelabel>
+        </childnode>
+      </node>
+      <node id="410">
+        <label>nTiled::camera::Camera</label>
+        <link refid="classn_tiled_1_1camera_1_1_camera"/>
+        <childnode refid="411" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="409" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="412" relation="usage">
+          <edgelabel>construction_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="401">
+        <label>nTiled::pipeline::ForwardPipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_forward_pipeline"/>
+        <childnode refid="402" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="411">
+        <label>nTiled::camera::CameraData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_data"/>
+      </node>
+      <node id="408">
+        <label>nTiled::state::View</label>
+        <link refid="structn_tiled_1_1state_1_1_view"/>
+        <childnode refid="409" relation="usage">
+          <edgelabel>camera_control</edgelabel>
+        </childnode>
+        <childnode refid="410" relation="usage">
+          <edgelabel>camera</edgelabel>
+        </childnode>
+        <childnode refid="413" relation="usage">
+          <edgelabel>output</edgelabel>
+        </childnode>
+      </node>
+      <node id="405">
+        <label>nTiled::world::World</label>
+        <link refid="classn_tiled_1_1world_1_1_world"/>
+      </node>
+      <node id="412">
+        <label>nTiled::camera::CameraConstructionData</label>
+        <link refid="structn_tiled_1_1camera_1_1_camera_construction_data"/>
+      </node>
+      <node id="406">
+        <label>nTiled::state::Shading</label>
+        <link refid="structn_tiled_1_1state_1_1_shading"/>
+      </node>
+      <node id="402">
+        <label>nTiled::pipeline::Pipeline</label>
+        <link refid="classn_tiled_1_1pipeline_1_1_pipeline"/>
+        <childnode refid="403" relation="usage">
+          <edgelabel>state</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/pipeline/forward/ForwardPipeline.h" line="20" column="1" bodyfile="nTiled/include/pipeline/forward/ForwardPipeline.h" bodystart="20" bodyend="45"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a85cb5e9988d80681589bf4527ab6dad5" prot="protected" virt="virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>constructShaderCatalog</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a7a5f48f03e43380d3175d0ff3afa3f46" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>ForwardPipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a94cfacd758077c9034bf7045cd691ac1" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>initialiseShaders</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1ac040cb57123ba44a0dda955aa18f26aa" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>output_buffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1af388a427797bbfffdc34d9f518be180d" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>Pipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a7e4e60da1a781c4981752eb83ee6199d" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>render</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a7926a6c36147af64fc152e6dbc6ccfce" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>setOutputBuffer</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1af2f8763dfd8f0003079434545545ef6b" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>shader_catalog</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1a86747875a6495abc36cbac1d1a50ad8d" prot="protected" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>state</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_forward_pipeline_1a0cacec36241078ab606b797c2c575368" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>~ForwardPipeline</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1_pipeline_1a703bd7614a2b5f68145d9e18906d727d" prot="public" virt="virtual"><scope>nTiled::pipeline::ForwardPipeline</scope><name>~Pipeline</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

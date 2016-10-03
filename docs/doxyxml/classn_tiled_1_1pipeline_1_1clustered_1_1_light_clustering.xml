@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::clustered::LightClustering</compoundname>
+    <includes refid="_light_clustering_8h" local="no">LightClustering.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1aee3160b4a56b8fb00f1ce6eab10bf42e" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; glm::uvec2 &gt;</type>
+        <definition>std::vector&lt;glm::uvec2&gt; nTiled::pipeline::clustered::LightClustering::cluster_to_light_index_map</definition>
+        <argsstring></argsstring>
+        <name>cluster_to_light_index_map</name>
+        <briefdescription>
+<para>The mapping of light clusters to light indices. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="83" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/LightClustering.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a0b77a0715b0eed2a602877f28c8b8545" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; GLuint &gt;</type>
+        <definition>std::vector&lt;GLuint&gt; nTiled::pipeline::clustered::LightClustering::light_index_list</definition>
+        <argsstring></argsstring>
+        <name>light_index_list</name>
+        <briefdescription>
+<para>The list of light indices. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="85" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/LightClustering.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a8d4dcb49fbd1d907270c8486202b8a65" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; std::pair&lt; GLushort, std::vector&lt; GLuint &gt; &gt; &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;std::pair&lt;GLushort, std::vector&lt;GLuint&gt; &gt; &gt; &gt; nTiled::pipeline::clustered::LightClustering::cluster_map_raw</definition>
+        <argsstring></argsstring>
+        <name>cluster_map_raw</name>
+        <briefdescription>
+<para>Internal array for constructing light clusters. </para>        </briefdescription>
+        <detaileddescription>
+<para>{ [ (GLushort, [GLuint ...])...], [ (GLushort, [GLuint ...])...], ... } </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="95" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/LightClustering.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a3432dd105166ec20d6a2d06dedb68cff" prot="private" static="no" mutable="no">
+        <type>const glm::uvec2</type>
+        <definition>const glm::uvec2 nTiled::pipeline::clustered::LightClustering::image_dimensions</definition>
+        <argsstring></argsstring>
+        <name>image_dimensions</name>
+        <briefdescription>
+<para>Image dimensions in pixels of the screen of this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="98" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/LightClustering.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a050ed37c59db183c1cc944b8da0a36de" prot="private" static="no" mutable="no">
+        <type>const glm::uvec2</type>
+        <definition>const glm::uvec2 nTiled::pipeline::clustered::LightClustering::tile_size</definition>
+        <argsstring></argsstring>
+        <name>tile_size</name>
+        <briefdescription>
+<para>Tile size dimensions in pixels of this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="100" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/LightClustering.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1ad8f1d63a24260687105ea07609b9e443" prot="private" static="no" mutable="no">
+        <type>glm::uvec2</type>
+        <definition>glm::uvec2 nTiled::pipeline::clustered::LightClustering::n_tiles</definition>
+        <argsstring></argsstring>
+        <name>n_tiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The number of tiles in this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref>. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="102" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/LightClustering.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a9d82fddbcec976d5b62a461f38f5722d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::clustered::LightClustering::LightClustering</definition>
+        <argsstring>(glm::uvec2 dimensions, glm::uvec2 tile_size)</argsstring>
+        <name>LightClustering</name>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>dimensions</declname>
+        </param>
+        <param>
+          <type>glm::uvec2</type>
+          <declname>tile_size</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref> with the specified image dimensions and tile_size. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dimensions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The screen dimensions in pixels </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tile_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The tile size in pixels used in this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref>. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="34" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/LightClustering.cpp" bodystart="10" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a4a0e618077bb55fdf99a9e3b22a480b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::clustered::LightClustering::initFrame</definition>
+        <argsstring>(const std::vector&lt; GLushort &gt; &amp;unique_clusters, const std::vector&lt; GLushort &gt; &amp;n_clusters_tile)</argsstring>
+        <name>initFrame</name>
+        <param>
+          <type>const std::vector&lt; GLushort &gt; &amp;</type>
+          <declname>unique_clusters</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; GLushort &gt; &amp;</type>
+          <declname>n_clusters_tile</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new frame of this <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref> with the specified unique clusters and number of clusters per tile. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function should be called only once per frame, and starts the process of constructing a new <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref> for this frame.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>unique_clusters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique clusters used in the initialisation of this frame </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n_clusters_tile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of clusters per tile. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="50" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/LightClustering.cpp" bodystart="38" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a7a944ff4b671b1e85d836841f421db72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::clustered::LightClustering::incrementLight</definition>
+        <argsstring>(glm::uvec3 frustrum_begin, glm::uvec3 frustrum_end, GLuint light_index)</argsstring>
+        <name>incrementLight</name>
+        <param>
+          <type>glm::uvec3</type>
+          <declname>frustrum_begin</declname>
+        </param>
+        <param>
+          <type>glm::uvec3</type>
+          <declname>frustrum_end</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>light_index</declname>
+        </param>
+        <briefdescription>
+<para>Increment all clusters affected by the light with the specified light index. </para>        </briefdescription>
+        <detaileddescription>
+<para>The clusters are specified by a (sub)frustrum where frustrum_begin corresponds with the lower left closest point of the frustrum and frustrum_end corresponds with the upper right deepest point of the frustrum.</para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frustum_begin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The closest lower left corner of the (sub) frustum. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frustum_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The deepest upper right corner of the (sub) frustum. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>light_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the light that affects the specified frustum. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="67" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/LightClustering.cpp" bodystart="55" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a5ca1519593078deba5ed83e22954f490" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void nTiled::pipeline::clustered::LightClustering::finaliseClusters</definition>
+        <argsstring>()</argsstring>
+        <name>finaliseClusters</name>
+        <briefdescription>
+<para>Construct the light_mapping and light_indices of this frame given the internally constructed data. </para>        </briefdescription>
+        <detaileddescription>
+<para>This function should be called only once per frame, and ends the process of constructing a new <ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref> for this frame. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="77" column="1" bodyfile="nTiled/src/pipeline/light-management/clustered/LightClustering.cpp" bodystart="84" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering" kindref="compound">LightClustering</ref> is the core datastructure used in the Clustered Shading algorithm. It is responsible for calculating the light clustering once and load it into video memory. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/pipeline/light-management/clustered/LightClustering.h" line="23" column="1" bodyfile="nTiled/include/pipeline/light-management/clustered/LightClustering.h" bodystart="23" bodyend="103"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a8d4dcb49fbd1d907270c8486202b8a65" prot="private" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>cluster_map_raw</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1aee3160b4a56b8fb00f1ce6eab10bf42e" prot="public" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>cluster_to_light_index_map</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a5ca1519593078deba5ed83e22954f490" prot="public" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>finaliseClusters</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a3432dd105166ec20d6a2d06dedb68cff" prot="private" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>image_dimensions</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a7a944ff4b671b1e85d836841f421db72" prot="public" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>incrementLight</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a4a0e618077bb55fdf99a9e3b22a480b7" prot="public" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>initFrame</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a0b77a0715b0eed2a602877f28c8b8545" prot="public" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>light_index_list</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a9d82fddbcec976d5b62a461f38f5722d" prot="public" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>LightClustering</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1ad8f1d63a24260687105ea07609b9e443" prot="private" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>n_tiles</name></member>
+      <member refid="classn_tiled_1_1pipeline_1_1clustered_1_1_light_clustering_1a050ed37c59db183c1cc944b8da0a36de" prot="private" virt="non-virtual"><scope>nTiled::pipeline::clustered::LightClustering</scope><name>tile_size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

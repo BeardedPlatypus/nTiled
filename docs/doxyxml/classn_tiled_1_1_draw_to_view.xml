@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="classn_tiled_1_1_draw_to_view" kind="class" language="C++" prot="public">
+    <compoundname>nTiled::DrawToView</compoundname>
+    <basecompoundref refid="classn_tiled_1_1_draw_method" prot="public" virt="non-virtual">nTiled::DrawMethod</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classn_tiled_1_1_draw_to_view_1a1b19e83d5de878e8acb3b4e55ea0a2de" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void nTiled::DrawToView::draw</definition>
+        <argsstring>(GLFWwindow *window, pipeline::Pipeline *p_pipeline, gui::GuiManager *gui_manager, state::View &amp;view, const Clock &amp;clock) const override</argsstring>
+        <name>draw</name>
+        <reimplements refid="classn_tiled_1_1_draw_method_1ab78d59a615070095e255eba46a963187">draw</reimplements>
+        <param>
+          <type>GLFWwindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">pipeline::Pipeline</ref> *</type>
+          <declname>p_pipeline</declname>
+        </param>
+        <param>
+          <type><ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">gui::GuiManager</ref> *</type>
+          <declname>gui_manager</declname>
+        </param>
+        <param>
+          <type><ref refid="structn_tiled_1_1state_1_1_view" kindref="compound">state::View</ref> &amp;</type>
+          <declname>view</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classn_tiled_1_1_clock" kindref="compound">Clock</ref> &amp;</type>
+          <declname>clock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Draw the current frame on the screen</para><para>Param: window (GLFWwindow*): pointer to the openGL window p_pipeline (Pipeline*): pointer to the pipeline gui_manager (GuiManager&amp;): the gui </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/main/DrawMethod.h" line="63" column="1" bodyfile="nTiled/src/main/DrawMethod.cpp" bodystart="81" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="314">
+        <label>nTiled::DrawMethod</label>
+        <link refid="classn_tiled_1_1_draw_method"/>
+      </node>
+      <node id="313">
+        <label>nTiled::DrawToView</label>
+        <link refid="classn_tiled_1_1_draw_to_view"/>
+        <childnode refid="314" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="316">
+        <label>nTiled::DrawMethod</label>
+        <link refid="classn_tiled_1_1_draw_method"/>
+      </node>
+      <node id="315">
+        <label>nTiled::DrawToView</label>
+        <link refid="classn_tiled_1_1_draw_to_view"/>
+        <childnode refid="316" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="nTiled/include/main/DrawMethod.h" line="53" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="53" bodyend="68"/>
+    <listofallmembers>
+      <member refid="classn_tiled_1_1_draw_to_view_1a1b19e83d5de878e8acb3b4e55ea0a2de" prot="public" virt="virtual"><scope>nTiled::DrawToView</scope><name>draw</name></member>
+      <member refid="classn_tiled_1_1_draw_method_1aa0b13b056dda7522b4f0855453b0fb33" prot="public" virt="non-virtual"><scope>nTiled::DrawToView</scope><name>~DrawMethod</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

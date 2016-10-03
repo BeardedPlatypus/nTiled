@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_aecc6b431d9e7f57fb815fdb0095cd6a" kind="dir">
+    <compoundname>nTiled/include/pipeline/forward/shaders/logged</compoundname>
+    <innerfile refid="_forward_attenuated_shader_logged_8h">ForwardAttenuatedShaderLogged.h</innerfile>
+    <innerfile refid="_forward_clustered_shader_logged_8h">ForwardClusteredShaderLogged.h</innerfile>
+    <innerfile refid="_forward_tiled_shader_logged_8h">ForwardTiledShaderLogged.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/pipeline/forward/shaders/logged/"/>
+  </compounddef>
+</doxygen>

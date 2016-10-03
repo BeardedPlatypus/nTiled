@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="structn_tiled_1_1camera_1_1_camera_construction_data" kind="struct" language="C++" prot="public">
+    <compoundname>nTiled::camera::CameraConstructionData</compoundname>
+    <includes refid="_camera_construction_data_8h" local="no">CameraConstructionData.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_construction_data_1a8252e4be1fb1bee0ab80c331326b759a" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 nTiled::camera::CameraConstructionData::camera_eye</definition>
+        <argsstring></argsstring>
+        <name>camera_eye</name>
+        <briefdescription>
+<para>The place from which the new <ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">Camera</ref> will look. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraConstructionData.h" line="41" column="1" bodyfile="nTiled/include/camera/CameraConstructionData.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_construction_data_1ae67d25559ff54a097b6db52e9b2a1dde" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 nTiled::camera::CameraConstructionData::camera_center</definition>
+        <argsstring></argsstring>
+        <name>camera_center</name>
+        <briefdescription>
+<para>The center to which the new <ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">Camera</ref> will look. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraConstructionData.h" line="43" column="1" bodyfile="nTiled/include/camera/CameraConstructionData.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_construction_data_1ab9377a97c09814c350b3ddc17e8fb4fb" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 nTiled::camera::CameraConstructionData::camera_up</definition>
+        <argsstring></argsstring>
+        <name>camera_up</name>
+        <briefdescription>
+<para>The up vectior of the new <ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">Camera</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraConstructionData.h" line="45" column="1" bodyfile="nTiled/include/camera/CameraConstructionData.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_construction_data_1a5c59c7e04a9497ffd7d4df40fed20f56" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float nTiled::camera::CameraConstructionData::fovy</definition>
+        <argsstring></argsstring>
+        <name>fovy</name>
+        <briefdescription>
+<para>The field of view in the y direction in degrees. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraConstructionData.h" line="49" column="1" bodyfile="nTiled/include/camera/CameraConstructionData.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_construction_data_1a905b0be22c9c5a754f3f69e7ec030ff2" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float nTiled::camera::CameraConstructionData::aspect</definition>
+        <argsstring></argsstring>
+        <name>aspect</name>
+        <briefdescription>
+<para>the ascept ration of the new <ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">Camera</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraConstructionData.h" line="51" column="1" bodyfile="nTiled/include/camera/CameraConstructionData.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_construction_data_1a98c34f44a054142138631967e0f600fa" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float nTiled::camera::CameraConstructionData::z_near</definition>
+        <argsstring></argsstring>
+        <name>z_near</name>
+        <briefdescription>
+<para>The distance of the near clipping field. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraConstructionData.h" line="55" column="1" bodyfile="nTiled/include/camera/CameraConstructionData.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1camera_1_1_camera_construction_data_1a0b8c6f8545fb836988444ed8c51199af" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float nTiled::camera::CameraConstructionData::z_far</definition>
+        <argsstring></argsstring>
+        <name>z_far</name>
+        <briefdescription>
+<para>The distance of the far clipping field. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraConstructionData.h" line="57" column="1" bodyfile="nTiled/include/camera/CameraConstructionData.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structn_tiled_1_1camera_1_1_camera_construction_data_1a2f3df73111f01ee5fbccc93767585195" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::camera::CameraConstructionData::CameraConstructionData</definition>
+        <argsstring>(glm::vec3 camera_eye, glm::vec3 camera_center, glm::vec3 camera_up, float fovy, float aspect, float z_near, float z_far)</argsstring>
+        <name>CameraConstructionData</name>
+        <param>
+          <type>glm::vec3</type>
+          <declname>camera_eye</declname>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>camera_center</declname>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>camera_up</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>fovy</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>aspect</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>z_near</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>z_far</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1camera_1_1_camera_construction_data" kindref="compound">CameraConstructionData</ref> struct with the given parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>camera_eye</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The place from which the new <ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">Camera</ref> will look. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>camera_center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The center to which the new <ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">Camera</ref> will look. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>camera_up</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The up-vector of the new <ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">Camera</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fovy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field of view (in degrees) in the y direction. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>aspect</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The aspect ratio of the new <ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">Camera</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z_near</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The distance of the near clipping field. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z_far</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The distance of the far clipping field. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/camera/CameraConstructionData.h" line="31" column="1" bodyfile="nTiled/src/camera/CameraConstructionData.cpp" bodystart="6" bodyend="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>The <ref refid="structn_tiled_1_1camera_1_1_camera_construction_data" kindref="compound">CameraConstructionData</ref> contains all data needed for a <ref refid="classn_tiled_1_1camera_1_1_camera" kindref="compound">Camera</ref> to construct its internal data. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/camera/CameraConstructionData.h" line="19" column="1" bodyfile="nTiled/include/camera/CameraConstructionData.h" bodystart="19" bodyend="58"/>
+    <listofallmembers>
+      <member refid="structn_tiled_1_1camera_1_1_camera_construction_data_1a905b0be22c9c5a754f3f69e7ec030ff2" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraConstructionData</scope><name>aspect</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_construction_data_1ae67d25559ff54a097b6db52e9b2a1dde" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraConstructionData</scope><name>camera_center</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_construction_data_1a8252e4be1fb1bee0ab80c331326b759a" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraConstructionData</scope><name>camera_eye</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_construction_data_1ab9377a97c09814c350b3ddc17e8fb4fb" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraConstructionData</scope><name>camera_up</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_construction_data_1a2f3df73111f01ee5fbccc93767585195" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraConstructionData</scope><name>CameraConstructionData</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_construction_data_1a5c59c7e04a9497ffd7d4df40fed20f56" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraConstructionData</scope><name>fovy</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_construction_data_1a0b8c6f8545fb836988444ed8c51199af" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraConstructionData</scope><name>z_far</name></member>
+      <member refid="structn_tiled_1_1camera_1_1_camera_construction_data_1a98c34f44a054142138631967e0f600fa" prot="public" virt="non-virtual"><scope>nTiled::camera::CameraConstructionData</scope><name>z_near</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

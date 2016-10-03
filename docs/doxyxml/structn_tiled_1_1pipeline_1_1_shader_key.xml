@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="structn_tiled_1_1pipeline_1_1_shader_key" kind="struct" language="C++" prot="public">
+    <compoundname>nTiled::pipeline::ShaderKey</compoundname>
+    <includes refid="_shader_key_8h" local="no">ShaderKey.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structn_tiled_1_1pipeline_1_1_shader_key_1a621dcdcc7de78f32989fdec16a2f2aca" prot="public" static="no" mutable="no">
+        <type><ref refid="_pipeline_type_8h_1acf63cf30672a6b7f2bc37487b3bf4049" kindref="member">PipelineType</ref></type>
+        <definition>PipelineType nTiled::pipeline::ShaderKey::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+<para>The PipelineType of this <ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/ShaderKey.h" line="57" column="1" bodyfile="nTiled/include/pipeline/ShaderKey.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1pipeline_1_1_shader_key_1afcfcabe690211846f0954955f6074874" prot="public" static="no" mutable="no">
+        <type><ref refid="_forward_shader_id_8h_1aadb9da564d0f546c336faf3a4903ff93" kindref="member">ForwardShaderId</ref></type>
+        <definition>ForwardShaderId nTiled::pipeline::ShaderKey::forward_id</definition>
+        <argsstring></argsstring>
+        <name>forward_id</name>
+        <briefdescription>
+<para>The ForwardShaderId of this <ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref> if type==Forward. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/ShaderKey.h" line="59" column="1" bodyfile="nTiled/include/pipeline/ShaderKey.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1pipeline_1_1_shader_key_1a9863f129b69dfdc1dc8033d942137d75" prot="public" static="no" mutable="no">
+        <type><ref refid="_deferred_shader_id_8h_1a225c1f7d638c4978ae7c69c9a3de8cf3" kindref="member">DeferredShaderId</ref></type>
+        <definition>DeferredShaderId nTiled::pipeline::ShaderKey::deferred_id</definition>
+        <argsstring></argsstring>
+        <name>deferred_id</name>
+        <briefdescription>
+<para>The DeferredShaderId of this <ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref> if type==Deferred. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/ShaderKey.h" line="61" column="1" bodyfile="nTiled/include/pipeline/ShaderKey.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structn_tiled_1_1pipeline_1_1_shader_key_1a7f7b73161cd7d8d60c834ecdbc00b4d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::ShaderKey::ShaderKey</definition>
+        <argsstring>()</argsstring>
+        <name>ShaderKey</name>
+        <briefdescription>
+<para>Default <ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref> constructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/ShaderKey.h" line="37" column="1" bodyfile="nTiled/src/pipeline/ShaderKey.cpp" bodystart="6" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="structn_tiled_1_1pipeline_1_1_shader_key_1a292238dedf1f033d112b6cc077c831b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::ShaderKey::ShaderKey</definition>
+        <argsstring>(ForwardShaderId id)</argsstring>
+        <name>ShaderKey</name>
+        <param>
+          <type><ref refid="_forward_shader_id_8h_1aadb9da564d0f546c336faf3a4903ff93" kindref="member">ForwardShaderId</ref></type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref> with a Forward type and the specified ForwardShaderId. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ForwardShaderId of this new <ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref> </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/ShaderKey.h" line="44" column="1" bodyfile="nTiled/src/pipeline/ShaderKey.cpp" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="structn_tiled_1_1pipeline_1_1_shader_key_1a0e932cd76bf51e3dc0339fa3c0b53a34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::pipeline::ShaderKey::ShaderKey</definition>
+        <argsstring>(DeferredShaderId id)</argsstring>
+        <name>ShaderKey</name>
+        <param>
+          <type><ref refid="_deferred_shader_id_8h_1a225c1f7d638c4978ae7c69c9a3de8cf3" kindref="member">DeferredShaderId</ref></type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref> with a Deferred type and the specified DeferredShaderId. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The DeferredShaderId of this new <ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref> </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/pipeline/ShaderKey.h" line="51" column="1" bodyfile="nTiled/src/pipeline/ShaderKey.cpp" bodystart="13" bodyend="16"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref> specifies a ShaderId and corresponding PipelineType. </para>    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="structn_tiled_1_1pipeline_1_1_shader_key" kindref="compound">ShaderKey</ref> is responsible for determining which shader is to be used when rendering an object. </para>    </detaileddescription>
+    <location file="nTiled/include/pipeline/ShaderKey.h" line="31" column="1" bodyfile="nTiled/include/pipeline/ShaderKey.h" bodystart="31" bodyend="62"/>
+    <listofallmembers>
+      <member refid="structn_tiled_1_1pipeline_1_1_shader_key_1a9863f129b69dfdc1dc8033d942137d75" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ShaderKey</scope><name>deferred_id</name></member>
+      <member refid="structn_tiled_1_1pipeline_1_1_shader_key_1afcfcabe690211846f0954955f6074874" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ShaderKey</scope><name>forward_id</name></member>
+      <member refid="structn_tiled_1_1pipeline_1_1_shader_key_1a7f7b73161cd7d8d60c834ecdbc00b4d2" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ShaderKey</scope><name>ShaderKey</name></member>
+      <member refid="structn_tiled_1_1pipeline_1_1_shader_key_1a292238dedf1f033d112b6cc077c831b7" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ShaderKey</scope><name>ShaderKey</name></member>
+      <member refid="structn_tiled_1_1pipeline_1_1_shader_key_1a0e932cd76bf51e3dc0339fa3c0b53a34" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ShaderKey</scope><name>ShaderKey</name></member>
+      <member refid="structn_tiled_1_1pipeline_1_1_shader_key_1a621dcdcc7de78f32989fdec16a2f2aca" prot="public" virt="non-virtual"><scope>nTiled::pipeline::ShaderKey</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

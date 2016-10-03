@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="dir_e373db3614b5a78405df02581ad0dbed" kind="dir">
+    <compoundname>nTiled/include/pipeline/light-management/clustered/compute-client</compoundname>
+    <innerfile refid="_compute_shader_8h">ComputeShader.h</innerfile>
+    <innerfile refid="_key_compute_shader_8h">KeyComputeShader.h</innerfile>
+    <innerfile refid="_key_sort_and_compact_shader_8h">KeySortAndCompactShader.h</innerfile>
+    <innerfile refid="_test_compute_shader_8h">TestComputeShader.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/pipeline/light-management/clustered/compute-client/"/>
+  </compounddef>
+</doxygen>

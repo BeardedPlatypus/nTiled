@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
+  <compounddef id="structn_tiled_1_1world_1_1_mesh" kind="struct" language="C++" prot="public">
+    <compoundname>nTiled::world::Mesh</compoundname>
+    <includes refid="_mesh_8h" local="no">Mesh.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_mesh_1a9ff34800022f1cba94af044bc6b617d9" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; glm::vec4 &gt;</type>
+        <definition>std::vector&lt;glm::vec4&gt; nTiled::world::Mesh::vertices</definition>
+        <argsstring></argsstring>
+        <name>vertices</name>
+        <briefdescription>
+<para>Vertex locations of this <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> in modelspace. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/Mesh.h" line="36" column="1" bodyfile="nTiled/include/world/Mesh.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_mesh_1adff399a7ff25d29d5a664cfa547d3cd5" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; glm::vec3 &gt;</type>
+        <definition>std::vector&lt;glm::vec3&gt; nTiled::world::Mesh::normals</definition>
+        <argsstring></argsstring>
+        <name>normals</name>
+        <briefdescription>
+<para>Normal directions of this <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> in modelspace. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/Mesh.h" line="38" column="1" bodyfile="nTiled/include/world/Mesh.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_mesh_1af8d57ba0dfe9d727b1253d8fa5411f63" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; glm::vec3 &gt;</type>
+        <definition>std::vector&lt;glm::vec3&gt; nTiled::world::Mesh::uvs</definition>
+        <argsstring></argsstring>
+        <name>uvs</name>
+        <briefdescription>
+<para>UVW coordinates of this <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/Mesh.h" line="40" column="1" bodyfile="nTiled/include/world/Mesh.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structn_tiled_1_1world_1_1_mesh_1a8e4097a62b90aa02c13e4b01016e0b9f" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; glm::tvec3&lt; glm::u32 &gt; &gt;</type>
+        <definition>std::vector&lt;glm::tvec3&lt;glm::u32&gt; &gt; nTiled::world::Mesh::elements</definition>
+        <argsstring></argsstring>
+        <name>elements</name>
+        <briefdescription>
+<para>Primitive elements of this <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/Mesh.h" line="42" column="1" bodyfile="nTiled/include/world/Mesh.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structn_tiled_1_1world_1_1_mesh_1a7591db9527ecc5ffd828e22979567768" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::world::Mesh::Mesh</definition>
+        <argsstring>(std::vector&lt; glm::vec4 &gt; vertices, std::vector&lt; glm::vec3 &gt; normals, std::vector&lt; glm::vec3 &gt; uvs, std::vector&lt; glm::tvec3&lt; glm::u32 &gt;&gt; elements)</argsstring>
+        <name>Mesh</name>
+        <param>
+          <type>std::vector&lt; glm::vec4 &gt;</type>
+          <declname>vertices</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; glm::vec3 &gt;</type>
+          <declname>normals</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; glm::vec3 &gt;</type>
+          <declname>uvs</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; glm::tvec3&lt; glm::u32 &gt;&gt;</type>
+          <declname>elements</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> object with the given parameters. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vertex positions in homogeneous coordinates, belonging to this <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>normals</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Normal directions of this <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>uvs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>UVW coordinates of this <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref>. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>elements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the elements making up the triangles of this mesh. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/Mesh.h" line="27" column="1" bodyfile="nTiled/src/world/Mesh.cpp" bodystart="9" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="structn_tiled_1_1world_1_1_mesh_1af1dc6c72d929e86b4e6f032959795ada" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>nTiled::world::Mesh::Mesh</definition>
+        <argsstring>()</argsstring>
+        <name>Mesh</name>
+        <briefdescription>
+<para>Construct a new empty <ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> object. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="nTiled/include/world/Mesh.h" line="33" column="1" bodyfile="nTiled/src/world/Mesh.cpp" bodystart="19" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="structn_tiled_1_1world_1_1_mesh" kindref="compound">Mesh</ref> struct holds all relevant data of a single mesh. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="nTiled/include/world/Mesh.h" line="17" column="1" bodyfile="nTiled/include/world/Mesh.h" bodystart="17" bodyend="43"/>
+    <listofallmembers>
+      <member refid="structn_tiled_1_1world_1_1_mesh_1a8e4097a62b90aa02c13e4b01016e0b9f" prot="public" virt="non-virtual"><scope>nTiled::world::Mesh</scope><name>elements</name></member>
+      <member refid="structn_tiled_1_1world_1_1_mesh_1a7591db9527ecc5ffd828e22979567768" prot="public" virt="non-virtual"><scope>nTiled::world::Mesh</scope><name>Mesh</name></member>
+      <member refid="structn_tiled_1_1world_1_1_mesh_1af1dc6c72d929e86b4e6f032959795ada" prot="public" virt="non-virtual"><scope>nTiled::world::Mesh</scope><name>Mesh</name></member>
+      <member refid="structn_tiled_1_1world_1_1_mesh_1adff399a7ff25d29d5a664cfa547d3cd5" prot="public" virt="non-virtual"><scope>nTiled::world::Mesh</scope><name>normals</name></member>
+      <member refid="structn_tiled_1_1world_1_1_mesh_1af8d57ba0dfe9d727b1253d8fa5411f63" prot="public" virt="non-virtual"><scope>nTiled::world::Mesh</scope><name>uvs</name></member>
+      <member refid="structn_tiled_1_1world_1_1_mesh_1a9ff34800022f1cba94af044bc6b617d9" prot="public" virt="non-virtual"><scope>nTiled::world::Mesh</scope><name>vertices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
