@@ -1,0 +1,20 @@
+{ "meshes": [{ "id": "Monkey",
+               "path": "../example/monkey.obj"
+             }
+            ]
+  , "objects": [{ "mesh_id": "Monkey",
+                  "name": "Monkey.0",
+                  "rotation": {
+                      "x": 0.0,
+                      "y": 0.0,
+                      "z": 0.0
+                  },
+                  "shader_id": "forward_attenuated",
+                  "translation": {
+                      "x": 0.0,
+                      "y": 0.0,
+                      "z": 0.0
+                  }
+                }]
+}
+

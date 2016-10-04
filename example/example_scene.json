@@ -1,0 +1,28 @@
+{ "pipeline": "FORWARD"
+, "viewport": { "width": 1200
+              , "height": 1200
+              }
+, "camera": { "eye": { "x": 0.0
+                     , "y": 2.0
+                     , "z": 5.0
+                   }
+            , "center": { "x": 0.0
+                        , "y": 0.0
+                        , "z": 0.0
+                        }
+            , "up": { "x": 0.0
+                    , "y": 1.0
+                    , "z": 0.0
+                    }
+            , "fovy": 45.0
+            , "aspect": 1.0
+            , "clip": { "near": 2.0
+                      , "far": 50.0
+                      }
+            , "control": "TURNTABLE"
+           }
+, "geometry": [ { "path": "../example/example_geo.json" }
+              ]
+, "lights": [ { "path": "../example/example_lights.json" }
+            ]
+}
