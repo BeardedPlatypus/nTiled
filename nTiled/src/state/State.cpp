@@ -29,6 +29,7 @@ State::State(camera::Camera camera,                  // view
              world::World* p_world,                     // world
              std::map<std::string, std::string> texture_file_map,
              std::vector<pipeline::ForwardShaderId> forward_shader_ids,
+             glm::uvec2 tile_size,
              bool is_debug,
              bool is_logging_data,
              std::string log_output_path,
@@ -43,6 +44,7 @@ State::State(camera::Camera camera,                  // view
     p_world(p_world),
     texture_catalog(TextureCatalog(texture_file_map)),
     shading(Shading(forward_shader_ids, 
+                    tile_size,
                     is_debug)),
     log(is_logging_data,
         log_output_path,
@@ -58,6 +60,7 @@ State::State(camera::Camera camera,                  // view
              world::World* p_world,                     // world
              std::map<std::string, std::string> texture_file_map,
              pipeline::DeferredShaderId deferred_shader_id,
+             glm::uvec2 tile_size,
              bool is_debug,
              bool is_logging_data,
              std::string log_output_path,
@@ -72,6 +75,7 @@ State::State(camera::Camera camera,                  // view
     p_world(p_world),
     texture_catalog(TextureCatalog(texture_file_map)),
     shading(Shading(deferred_shader_id, 
+                    tile_size,
                     is_debug)),
     log(is_logging_data,
         log_output_path,
@@ -106,6 +110,16 @@ State* constructStateFromJson(const std::string& path) {
     pipeline_type = pipeline::PipelineType::Forward;
   } else {
     throw std::runtime_error(std::string("Unspecified pipeline type: ") + pipeline_type_str);
+  }
+
+  unsigned int tile_size_x = 32;
+  unsigned int tile_size_y = 32;
+
+  rapidjson::Value::ConstMemberIterator tile_size_itr = config.FindMember("tile_size");
+  if (tile_size_itr != config.MemberEnd()) {
+    auto& tile_size_json = tile_size_itr->value;
+    tile_size_x = tile_size_json["x"].GetUint();
+    tile_size_y = tile_size_json["y"].GetUint();
   }
 
   // is debug
@@ -278,6 +292,7 @@ State* constructStateFromJson(const std::string& path) {
                      p_world,
                      texture_file_map,
                      forward_shader_ids,
+                     glm::uvec2(tile_size_x, tile_size_y),
                      is_debug,
                      is_logging_data,
                      log_output_path,
@@ -293,6 +308,7 @@ State* constructStateFromJson(const std::string& path) {
                      p_world,
                      texture_file_map,
                      deferred_shader_id,
+                     glm::uvec2(tile_size_x, tile_size_y),
                      is_debug,
                      is_logging_data,
                      log_output_path,

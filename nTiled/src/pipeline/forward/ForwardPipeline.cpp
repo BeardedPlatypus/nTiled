@@ -13,6 +13,8 @@
 #define FRAG_PATH_BASIC_TILED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_tiled.frag")
 #define FRAG_PATH_BASIC_CLUSTERED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/forward/shaders-glsl/lambert_clustered.frag")
 
+#define FRAG_PATH_BASIC_ATTENUATED_TEST std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_attenuated_test.frag")
+
 namespace nTiled {
 namespace pipeline {
 
@@ -61,16 +63,17 @@ void ForwardPipeline::constructShaderCatalog() {
                                         *(this->state.p_world),
                                         this->state.view,
                                         this->output_buffer,
-                                        glm::uvec2(32, 32),
+                                        this->state.shading.tile_size,
                                         TiledLightManagerBuilder());
     } else if (id == ForwardShaderId::ForwardClustered) {
       p_shader = new ForwardClusteredShader(id,
                                             VERT_PATH_BASIC,
+                                            //FRAG_PATH_BASIC_ATTENUATED_TEST,
                                             FRAG_PATH_BASIC_CLUSTERED,
                                             *(this->state.p_world),
                                             this->state.view,
                                             this->output_buffer,
-                                            glm::uvec2(32, 32),
+                                            this->state.shading.tile_size,
                                             ClusteredLightManagerBuilder());
     } else {
       throw std::runtime_error(std::string("Unsupported shader"));

@@ -400,7 +400,8 @@ void DeferredShader::loadShaders(const std::string& path_geometry_vert_shader,
   // Fragment Shader
   // -----------------------------------------------------------------
   std::stringstream light_frag_shader_buffer = 
-    readShader(path_light_frag_shader);
+    readShaderWithLights(path_light_frag_shader,
+                         this->world.p_lights.size());
 
   GLuint light_frag_shader = compileShader(GL_FRAGMENT_SHADER,
                                            light_frag_shader_buffer.str());

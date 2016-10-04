@@ -8,8 +8,7 @@
 // ----------------------------------------------------------------------------
 //  Defines
 // ----------------------------------------------------------------------------
-#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/indoor-spaceship/scene-def/CorridorSmall3.json")
-
+#define SCENE_PATH std::string("../example/example_scene.json")
 
 // ----------------------------------------------------------------------------
 //  Main

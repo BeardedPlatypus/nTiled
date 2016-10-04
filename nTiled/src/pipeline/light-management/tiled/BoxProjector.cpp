@@ -52,6 +52,7 @@ bool BoxProjector::computeNDCProjection(const world::PointLight& light,
 
   // cull on z-axis
   // FIXME quick fix to fix signs of axis this really should be fixed across my application
+  // test with inverted +/-
   if ((light_position.z - light.radius > -camera.getDepthrange().x) ||
       (light_position.z + light.radius < -camera.getDepthrange().y))
     return false;

@@ -13,12 +13,17 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "pipeline\shader-util\LoadShaders.h"
+#include "pipeline\pipeline-util\ConstructQuad.h"
 
 // ----------------------------------------------------------------------------
 // Defines
 // ----------------------------------------------------------------------------
-#define VERT_PATH_DEPTH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic.vert")
-#define FRAG_PATH_DEPTH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_attenuated.frag")
+#define VERT_PATH_DEPTH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/forward/shaders-glsl/depth_clustered.vert")
+#define FRAG_PATH_DEPTH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/forward/shaders-glsl/depth_clustered.frag")
+
+#define VERT_PATH_COPY std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/forward/shaders-glsl/copy_depth.vert")
+#define FRAG_PATH_COPY std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/forward/shaders-glsl/copy_depth.frag")
+
 
 
 namespace nTiled {
@@ -39,10 +44,11 @@ ForwardClusteredShader::ForwardClusteredShader(
                 world,
                 view,
                 p_output_buffer),
+  depth_buffer(DepthBuffer(view.viewport.x, view.viewport.y)),
   p_clustered_light_manager(
     light_manager_builder.constructNewClusteredLightManager(
       view, world, tile_size,
-      attachDepthTexture(view.viewport.x, view.viewport.y))) {
+      this->depth_buffer.getPointerDepthTexture())) {
   glUseProgram(this->shader);
 
   // set uniform variables
@@ -83,10 +89,12 @@ ForwardClusteredShader::ForwardClusteredShader(
               GL_TEXTURE0);
   glUseProgram(0);
 
+
+  this->fullscreen_quad = constructQuad();
   // Construct depth pass shader
   // ---------------------------
   // Vertex Shader
-  std::stringstream vert_shader_buffer =     readShader(VERT_PATH_DEPTH);
+  std::stringstream vert_shader_buffer = readShader(VERT_PATH_DEPTH);
   GLuint vert_shader = compileShader(GL_VERTEX_SHADER,
                                      vert_shader_buffer.str());
 
@@ -109,7 +117,27 @@ ForwardClusteredShader::ForwardClusteredShader(
                      glm::value_ptr(perspective_matrix));
   glUseProgram(0);
 
+  // Construct depth copy shader
+  // ---------------------------
+  std::stringstream vert_copy_shader_buffer = readShader(VERT_PATH_COPY);
+  GLuint vert_copy_shader = compileShader(GL_VERTEX_SHADER,
+                                          vert_copy_shader_buffer.str());
 
+  std::stringstream frag_copy_shader_buffer = readShader(FRAG_PATH_COPY);
+  GLuint frag_copy_shader = compileShader(GL_FRAGMENT_SHADER,
+                                          frag_copy_shader_buffer.str());
+  this->depth_copy_shader = createProgram(vert_copy_shader, frag_copy_shader);
+
+  GLint p_viewport = glGetUniformLocation(this->depth_copy_shader, "viewport");
+  glm::vec4 viewport = glm::vec4(0.0f, 0.0f, 
+                                 this->view.viewport.x,
+                                 this->view.viewport.y);
+  GLint p_colour_texture = glGetUniformLocation(this->depth_copy_shader, "colour_tex");
+
+  glUseProgram(this->depth_copy_shader);
+  glUniform4fv(p_viewport, 1, glm::value_ptr(viewport));
+  glUniform1i(p_colour_texture, GL_TEXTURE0);
+  glUseProgram(0);
 }
 
 void ForwardClusteredShader::render() {
@@ -120,18 +148,33 @@ void ForwardClusteredShader::render() {
   this->loadLightClustering();
   this->renderObjects();
   glUseProgram(0);
+  this->copyResult();
+  glDepthMask(GL_TRUE);  
 }
 
 
 void ForwardClusteredShader::depthPass() {
   glUseProgram(this->depth_pass_shader);
-  // TODO make sure this can be written as a default, and is restored upon finishing
-  glEnable(GL_DEPTH_TEST);  
-  glDepthFunc(GL_LESS);    
-  glColorMask(0.0, 0.0, 0.0, 0.0); // Disable color, it's useless, we only want depth.
-  glDepthMask(GL_TRUE);  
-  glm::mat4 lookAt = this->view.camera.getLookAt();
+  this->depth_buffer.bindForWriting();
 
+  // Clean the FBO
+  // -----------------------
+  glDepthMask(GL_TRUE);
+  glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+  glClearColor(0, 0, 0, 1);
+  glClearDepth(1.0f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+  // Set depth openGL flags
+  // ----------------------
+  glEnable(GL_DEPTH_TEST);
+  glDepthMask(GL_TRUE);
+  glDepthFunc(GL_LESS);
+  glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+
+  // Render depth to texture FBO
+  // ---------------------------
+  glm::mat4 lookAt = this->view.camera.getLookAt();
   GLint p_modelToCamera = glGetUniformLocation(this->shader,
                                                "model_to_camera");
 
@@ -157,6 +200,12 @@ void ForwardClusteredShader::depthPass() {
   }
   glBindVertexArray(0);
   glUseProgram(0);
+
+  // Set openGL flags for further execution
+  // --------------------------------------
+  glDepthMask(GL_FALSE);
+  glDepthFunc(GL_EQUAL);
+  glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
 }
 
 
@@ -189,14 +238,28 @@ void ForwardClusteredShader::loadLightClustering() {
 
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, this->k_index_map);
+}
 
-  glEnable(GL_DEPTH_TEST);  // We still want depth test
-  glDepthFunc(GL_LEQUAL);   // EQUAL should work, too. (Only draw pixels if they are the closest ones)
-  glColorMask(1.0, 1.0, 1.0, 1.0);
-  glDepthMask(GL_FALSE);
+void ForwardClusteredShader::copyResult() {
+  glUseProgram(this->depth_copy_shader);
+
+  glDisable(GL_DEPTH_TEST);
+
+  glBindFramebuffer(GL_DRAW_FRAMEBUFFER, this->p_output_buffer);
+  this->depth_buffer.bindForReading();
+
+  glBindVertexArray(this->fullscreen_quad->vao);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,
+               this->fullscreen_quad->element_buffer);
+  glDrawElements(GL_TRIANGLES,
+                 this->fullscreen_quad->n_elements,
+                 GL_UNSIGNED_SHORT,
+                 0);
+  glUseProgram(0);
 }
 
 // ----------------------------------------------------------------------------
+/*
 GLuint attachDepthTexture(GLuint width,
                           GLuint height) {
   glBindFramebuffer(GL_DRAW_BUFFER, 0);
@@ -226,6 +289,7 @@ GLuint attachDepthTexture(GLuint width,
   glBindTexture(GL_TEXTURE_2D, 0);
   return p_depth_texture;
 }
+*/
 
 } // pipeline
 } // nTiled

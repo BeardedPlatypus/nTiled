@@ -242,7 +242,8 @@ void ForwardShader::loadShaders(const std::string& path_vert_shader,
 
   // Fragment Shader
   // -----------------------------------------------------------------
-  std::stringstream frag_shader_buffer = readShader(path_frag_shader);
+  std::stringstream frag_shader_buffer = readShaderWithLights(path_frag_shader,
+                                                              this->world.p_lights.size());
 
   GLuint frag_shader = compileShader(GL_FRAGMENT_SHADER,
                                      frag_shader_buffer.str());

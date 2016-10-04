@@ -62,7 +62,7 @@ void DeferredPipeline::constructShader() {
       *(this->state.p_world),
       this->state.view,
       this->output_buffer,
-      glm::uvec2(32, 32),
+      this->state.shading.tile_size,
       TiledLightManagerBuilder());
   } else if (id == DeferredShaderId::DeferredClustered) {
     this->p_deferred_shader = new DeferredClusteredShader(
@@ -74,7 +74,7 @@ void DeferredPipeline::constructShader() {
       *(this->state.p_world),
       this->state.view,
       this->output_buffer,
-      glm::uvec2(32, 32),
+      this->state.shading.tile_size,
       ClusteredLightManagerBuilder());
   } else {
     throw std::runtime_error(std::string("Unsupported shader"));

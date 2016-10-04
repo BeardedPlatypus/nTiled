@@ -12,7 +12,7 @@ ClusteredLightManagerLogged::ClusteredLightManagerLogged(
     const world::World& world,
     glm::uvec2 tile_size,
     GLuint depth_texture,
-    logged::ExecutionTimeLogger logger) :
+    logged::ExecutionTimeLogger& logger) :
   ClusteredLightManager(view, world, tile_size, depth_texture),
   logger(logger) {
 }

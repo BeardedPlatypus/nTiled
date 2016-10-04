@@ -9,7 +9,8 @@ in vec3 fragment_normal;
 
 // Fragment Output Buffers
 // -----------------------------------------------------------------------------
-out vec4 fragment_colour;
+//out vec4 fragment_colour;
+layout (location=0) out vec3 fragment_colour;
 
 // Variable Definitions
 // -----------------------------------------------------------------------------
@@ -149,5 +150,5 @@ void main() {
     }
 
     // output result
-    fragment_colour = vec4((vec3(0.1f) + (light_acc * 0.9)), 1.0f);
+    fragment_colour = vec3((vec3(0.1f) + (light_acc * 0.9)));
 }

@@ -27,6 +27,32 @@ std::stringstream readShader(const std::string& path) {
   return buffer;
 }
 
+// TODO cleanup
+std::stringstream readShaderWithLights(const std::string& path,
+                                       int n_lights) {
+  // open shader
+  std::ifstream f;
+  f.open(path.c_str(), std::ios::in | std::ios::binary);
+
+  if (!f.is_open()) {
+    throw std::runtime_error(std::string("Can't open shader file: ") + path);
+  }
+
+  std::stringstream buffer;
+
+  std::string replaceLine = "#define NUM_LIGHTS ";
+
+  for (std::string line; std::getline(f, line);) {
+    if (line.compare(0, replaceLine.size(), replaceLine) == 0) {
+      buffer << replaceLine << std::to_string(n_lights) << std::endl;
+    } else {
+      buffer << line << std::endl;
+    }
+  }
+
+  return buffer;
+}
+
 GLuint compileShader(GLenum shaderType, const std::string& shaderRaw) {
   GLuint shader = glCreateShader(shaderType);
   if (!shader) {
