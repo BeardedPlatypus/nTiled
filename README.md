@@ -80,5 +80,4 @@ For a complete overview of the configuration options see :ref: conf_spec
 
 # Documentation
 
-The documentation of `nTiled` is hosted at readthedocs.io which can be found 
-[here](www.readthedocs.io).
+The documentation of `nTiled` is hosted at [readthedocs.io](www.readthedocs.io) and can be found at [nTiled.readthedocs.io](http://ntiled.readthedocs.io/en/latest/index.html).
