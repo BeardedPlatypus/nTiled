@@ -10,12 +10,12 @@
         <argsstring></argsstring>
         <name>p_window</name>
         <briefdescription>
-        </briefdescription>
+<para>Pointer to the GLFWwindow of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="90" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="90" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="122" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="122" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1acde6a06111cc600899855b2397c823a4" prot="private" static="no" mutable="no">
         <type><ref refid="structn_tiled_1_1state_1_1_state" kindref="compound">state::State</ref> *</type>
@@ -23,12 +23,12 @@
         <argsstring></argsstring>
         <name>p_state</name>
         <briefdescription>
-        </briefdescription>
+<para>Pointer to the state of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="92" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="92" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="125" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="125" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1ac15b371b3388940ab304fd252d628c7b" prot="private" static="no" mutable="no">
         <type><ref refid="classn_tiled_1_1pipeline_1_1_pipeline" kindref="compound">pipeline::Pipeline</ref> *</type>
@@ -36,12 +36,12 @@
         <argsstring></argsstring>
         <name>p_pipeline</name>
         <briefdescription>
-        </briefdescription>
+<para>Pointer to the Pipeline of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="93" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="93" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="128" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="128" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1a09122fab72a37cfc5c23e348393d37cb" prot="private" static="no" mutable="no">
         <type><ref refid="classn_tiled_1_1gui_1_1_gui_manager" kindref="compound">gui::GuiManager</ref> *</type>
@@ -49,12 +49,12 @@
         <argsstring></argsstring>
         <name>p_gui_manager</name>
         <briefdescription>
-        </briefdescription>
+<para>Pointer to the GuiManager of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="94" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="94" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="131" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="131" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1a6280f8d08d123e813fd38f4d9d1e4650" prot="private" static="no" mutable="no">
         <type><ref refid="classn_tiled_1_1_clock" kindref="compound">Clock</ref></type>
@@ -62,12 +62,12 @@
         <argsstring></argsstring>
         <name>clock</name>
         <briefdescription>
-        </briefdescription>
+<para><ref refid="classn_tiled_1_1_clock" kindref="compound">Clock</ref> object of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="96" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="96" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="134" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="134" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1ac7c2d108f2200b80c37e5b1420eb11a9" prot="private" static="no" mutable="no">
         <type><ref refid="classn_tiled_1_1logged_1_1_execution_time_logger" kindref="compound">logged::ExecutionTimeLogger</ref> *</type>
@@ -75,12 +75,12 @@
         <argsstring></argsstring>
         <name>p_logger</name>
         <briefdescription>
-        </briefdescription>
+<para>Pointer to the ExecutiontimeLogger of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="97" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="97" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="137" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="137" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1af9291e11bdc77d1e01ee4bb56600b81c" prot="private" static="no" mutable="no">
         <type>std::priority_queue&lt; <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> *, std::vector&lt; <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> * &gt;, <ref refid="classn_tiled_1_1_frame_event_compare" kindref="compound">FrameEventCompare</ref> &gt;</type>
@@ -88,12 +88,12 @@
         <argsstring></argsstring>
         <name>event_queue</name>
         <briefdescription>
-        </briefdescription>
+<para>priority queue managing all execution events. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="103" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="103" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="144" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="144" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1a6813ebe4f7427dcaff3efd3b5d91cfe3" prot="private" static="no" mutable="no">
         <type>const std::string</type>
@@ -101,12 +101,12 @@
         <argsstring></argsstring>
         <name>scene_path</name>
         <briefdescription>
-        </briefdescription>
+<para>Scene path of this controller. </para>        </briefdescription>
         <detaileddescription>
-<para>Scene path of this controller </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="107" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="107" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="148" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="148" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1a16f0fac94428d576c1fa1724151d8d64" prot="private" static="no" mutable="no">
         <type><ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> *</type>
@@ -114,12 +114,12 @@
         <argsstring></argsstring>
         <name>current_draw_method</name>
         <briefdescription>
-        </briefdescription>
+<para>Pointer to the current <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> of this controller. </para>        </briefdescription>
         <detaileddescription>
-<para><ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> of this controller. </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="110" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="110" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="151" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="151" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1a1cc4c9057129d184a3987f96983bc692" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> * &gt;</type>
@@ -127,12 +127,12 @@
         <argsstring></argsstring>
         <name>draw_methods</name>
         <briefdescription>
-        </briefdescription>
+<para>DrawMethods used during the execution of this nTiled. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="112" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="112" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="154" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="154" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_controller_1ae80dfc9d60e7397d453e4044dbaf65a9" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -140,12 +140,12 @@
         <argsstring></argsstring>
         <name>should_close</name>
         <briefdescription>
-        </briefdescription>
+<para>Whether this nTiled execution should close after finishing executing. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="114" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="114" bodyend="-1"/>
+        <location file="nTiled/include/main/Controller.h" line="159" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="159" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -159,12 +159,20 @@
           <declname>scene_path</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> with the given scene path. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scene_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the scene configuration json this nTiled execution should run. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="42" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="23" bodyend="32"/>
+        <location file="nTiled/include/main/Controller.h" line="51" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="23" bodyend="32"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1a2131f214ad774800584adb92f0244d48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -172,12 +180,12 @@
         <argsstring>()</argsstring>
         <name>~Controller</name>
         <briefdescription>
-        </briefdescription>
+<para>Destruct this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="43" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="35" bodyend="44"/>
+        <location file="nTiled/include/main/Controller.h" line="54" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="35" bodyend="44"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1adf1528ec5ca18ba00462daf30218052e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -185,12 +193,12 @@
         <argsstring>()</argsstring>
         <name>initialise</name>
         <briefdescription>
-        </briefdescription>
+<para>Initialse this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
-<para>Initialse this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="51" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="49" bodyend="54"/>
+        <location file="nTiled/include/main/Controller.h" line="61" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="49" bodyend="54"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1a51196944e5914433598f9d0466a1cf0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -198,12 +206,12 @@
         <argsstring>()</argsstring>
         <name>render</name>
         <briefdescription>
-        </briefdescription>
+<para>Render a frame with this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="52" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="188" bodyend="191"/>
+        <location file="nTiled/include/main/Controller.h" line="64" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="188" bodyend="191"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1a32ad7f52f283848e26d5cc1554f4be59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -215,12 +223,20 @@
           <declname>draw_method</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Set the <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to the specified draw_method. </para>        </briefdescription>
         <detaileddescription>
-<para>Set the <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to the specified draw_method</para><para>:param const <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref>&amp; draw_method: the new draw method of this controller. </para>        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>draw_method</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new draw method of this controller. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="63" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="242" bodyend="244"/>
+        <location file="nTiled/include/main/Controller.h" line="73" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="242" bodyend="244"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1ad86e53a04be437853f8abe140f2d16bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -232,12 +248,20 @@
           <declname>activate</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Set logging data of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to activate. </para>        </briefdescription>
         <detaileddescription>
-<para>Set logging data of this <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to activate </para>        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>activate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bool to which logging data should be set. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="68" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="247" bodyend="253"/>
+        <location file="nTiled/include/main/Controller.h" line="79" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="247" bodyend="253"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1ae962117921adad04601ba4d4cbd2d910" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -245,12 +269,12 @@
         <argsstring>()</argsstring>
         <name>exportLogData</name>
         <briefdescription>
-        </briefdescription>
+<para>Export the logged data. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="69" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="256" bodyend="258"/>
+        <location file="nTiled/include/main/Controller.h" line="83" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="256" bodyend="258"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1a25c7e05d1ad8c94dd5c27d52dea2ebf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -258,12 +282,12 @@
         <argsstring>()</argsstring>
         <name>exit</name>
         <briefdescription>
-        </briefdescription>
+<para>Stop executing nTiled. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="70" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="261" bodyend="263"/>
+        <location file="nTiled/include/main/Controller.h" line="87" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="261" bodyend="263"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -273,12 +297,12 @@
         <argsstring>()</argsstring>
         <name>initialiseState</name>
         <briefdescription>
-        </briefdescription>
+<para>Initialise the state. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="76" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="57" bodyend="59"/>
+        <location file="nTiled/include/main/Controller.h" line="95" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="57" bodyend="59"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1a9f70f3033291b391ae836bef0d97629d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -286,12 +310,12 @@
         <argsstring>()</argsstring>
         <name>initialiseOpenGL</name>
         <briefdescription>
-        </briefdescription>
+<para>Initialise the openGL context. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="77" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="62" bodyend="95"/>
+        <location file="nTiled/include/main/Controller.h" line="99" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="62" bodyend="95"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1ace25feed179486cb8720b127c8310568" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -299,12 +323,12 @@
         <argsstring>()</argsstring>
         <name>initialiseNTiledComponents</name>
         <briefdescription>
-        </briefdescription>
+<para>Initialise all components of nTiled. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="78" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="99" bodyend="136"/>
+        <location file="nTiled/include/main/Controller.h" line="103" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="99" bodyend="136"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1ab6425d73526272f925288ebb50d2256d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -312,12 +336,12 @@
         <argsstring>()</argsstring>
         <name>initialiseFrameEvents</name>
         <briefdescription>
-        </briefdescription>
+<para>Initialise all frame events specified in the scene configuration. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="79" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="139" bodyend="183"/>
+        <location file="nTiled/include/main/Controller.h" line="107" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="139" bodyend="183"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1ab65b9cb82ea866f514f342475ccbeb76" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -325,12 +349,12 @@
         <argsstring>()</argsstring>
         <name>renderLoopDefault</name>
         <briefdescription>
-        </briefdescription>
+<para>Render. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="84" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="194" bodyend="206"/>
+        <location file="nTiled/include/main/Controller.h" line="113" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="194" bodyend="206"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_controller_1a5a0ee7cc6e276f8f9d2c619e1c2a02aa" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -338,18 +362,18 @@
         <argsstring>()</argsstring>
         <name>renderLoopEventQueue</name>
         <briefdescription>
-        </briefdescription>
+<para>Render and update queued events. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/Controller.h" line="85" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="209" bodyend="236"/>
+        <location file="nTiled/include/main/Controller.h" line="116" column="1" bodyfile="nTiled/src/main/Controller.cpp" bodystart="209" bodyend="236"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>The <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> class takes care of the main execution of the program. </para>    </briefdescription>
     <detaileddescription>
-<para>The <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> class takes care of the main execution of the program. </para>    </detaileddescription>
+    </detaileddescription>
     <collaborationgraph>
       <node id="93">
         <label>nTiled::state::ViewOutput</label>
@@ -480,7 +504,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="nTiled/include/main/Controller.h" line="40" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="40" bodyend="115"/>
+    <location file="nTiled/include/main/Controller.h" line="44" column="1" bodyfile="nTiled/include/main/Controller.h" bodystart="44" bodyend="160"/>
     <listofallmembers>
       <member refid="classn_tiled_1_1_controller_1a6280f8d08d123e813fd38f4d9d1e4650" prot="private" virt="non-virtual"><scope>nTiled::Controller</scope><name>clock</name></member>
       <member refid="classn_tiled_1_1_controller_1a2dd350fee97b48528517f4dfb71e3eae" prot="public" virt="non-virtual"><scope>nTiled::Controller</scope><name>Controller</name></member>

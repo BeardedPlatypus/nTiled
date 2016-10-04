@@ -4,6 +4,7 @@
     <compoundname>nTiled::DrawMethod</compoundname>
     <derivedcompoundref refid="classn_tiled_1_1_draw_to_memory" prot="public" virt="non-virtual">nTiled::DrawToMemory</derivedcompoundref>
     <derivedcompoundref refid="classn_tiled_1_1_draw_to_view" prot="public" virt="non-virtual">nTiled::DrawToView</derivedcompoundref>
+    <includes refid="_draw_method_8h" local="no">DrawMethod.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classn_tiled_1_1_draw_method_1aa0b13b056dda7522b4f0855453b0fb33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -11,12 +12,12 @@
         <argsstring>()</argsstring>
         <name>~DrawMethod</name>
         <briefdescription>
-        </briefdescription>
+<para>Destruct this <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/DrawMethod.h" line="15" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="15" bodyend="15"/>
+        <location file="nTiled/include/main/DrawMethod.h" line="23" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="23" bodyend="23"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_draw_method_1ab78d59a615070095e255eba46a963187" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -46,16 +47,16 @@
           <declname>clock</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Draw the current frame with the given parameters. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/DrawMethod.h" line="16" column="1"/>
+        <location file="nTiled/include/main/DrawMethod.h" line="26" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Base <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref>, any <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> functionality needs to be derived from this base class. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
@@ -76,7 +77,7 @@
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="nTiled/include/main/DrawMethod.h" line="13" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="13" bodyend="21"/>
+    <location file="nTiled/include/main/DrawMethod.h" line="20" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="20" bodyend="31"/>
     <listofallmembers>
       <member refid="classn_tiled_1_1_draw_method_1ab78d59a615070095e255eba46a963187" prot="public" virt="pure-virtual"><scope>nTiled::DrawMethod</scope><name>draw</name></member>
       <member refid="classn_tiled_1_1_draw_method_1aa0b13b056dda7522b4f0855453b0fb33" prot="public" virt="non-virtual"><scope>nTiled::DrawMethod</scope><name>~DrawMethod</name></member>

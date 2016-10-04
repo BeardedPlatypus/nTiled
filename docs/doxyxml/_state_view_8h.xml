@@ -96,7 +96,7 @@
       </node>
       <node id="1694">
         <label>nTiled/include/main/Controller.h</label>
-        <link refid="_controller_8h_source"/>
+        <link refid="_controller_8h"/>
       </node>
       <node id="1665">
         <label>nTiled/include/pipeline/deferred/shaders/DeferredShader.h</label>
@@ -118,7 +118,7 @@
       </node>
       <node id="1695">
         <label>nTiled/include/main/DrawMethod.h</label>
-        <link refid="_draw_method_8h_source"/>
+        <link refid="_draw_method_8h"/>
         <childnode refid="1696" relation="include">
         </childnode>
         <childnode refid="1694" relation="include">
@@ -126,7 +126,7 @@
       </node>
       <node id="1696">
         <label>nTiled/include/main/FrameEvent.h</label>
-        <link refid="_frame_event_8h_source"/>
+        <link refid="_frame_event_8h"/>
         <childnode refid="1694" relation="include">
         </childnode>
       </node>

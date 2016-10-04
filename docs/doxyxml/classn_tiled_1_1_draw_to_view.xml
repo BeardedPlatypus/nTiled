@@ -3,6 +3,7 @@
   <compounddef id="classn_tiled_1_1_draw_to_view" kind="class" language="C++" prot="public">
     <compoundname>nTiled::DrawToView</compoundname>
     <basecompoundref refid="classn_tiled_1_1_draw_method" prot="public" virt="non-virtual">nTiled::DrawMethod</basecompoundref>
+    <includes refid="_draw_method_8h" local="no">DrawMethod.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classn_tiled_1_1_draw_to_view_1a1b19e83d5de878e8acb3b4e55ea0a2de" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -31,16 +32,52 @@
           <declname>clock</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Draw the current frame on the screen. </para>        </briefdescription>
         <detaileddescription>
-<para>Draw the current frame on the screen</para><para>Param: window (GLFWwindow*): pointer to the openGL window p_pipeline (Pipeline*): pointer to the pipeline gui_manager (GuiManager&amp;): the gui </para>        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>window</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the openGL window </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_pipeline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the pipeline </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gui_manager</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the gui </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>view</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the View </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classn_tiled_1_1_clock" kindref="compound">Clock</ref> object this <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> observes. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/DrawMethod.h" line="63" column="1" bodyfile="nTiled/src/main/DrawMethod.cpp" bodystart="81" bodyend="100"/>
+        <location file="nTiled/include/main/DrawMethod.h" line="87" column="1" bodyfile="nTiled/src/main/DrawMethod.cpp" bodystart="81" bodyend="100"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para><ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> to only draw the frame to the display. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
@@ -67,7 +104,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="nTiled/include/main/DrawMethod.h" line="53" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="53" bodyend="68"/>
+    <location file="nTiled/include/main/DrawMethod.h" line="77" column="1" bodyfile="nTiled/include/main/DrawMethod.h" bodystart="77" bodyend="92"/>
     <listofallmembers>
       <member refid="classn_tiled_1_1_draw_to_view_1a1b19e83d5de878e8acb3b4e55ea0a2de" prot="public" virt="virtual"><scope>nTiled::DrawToView</scope><name>draw</name></member>
       <member refid="classn_tiled_1_1_draw_method_1aa0b13b056dda7522b4f0855453b0fb33" prot="public" virt="non-virtual"><scope>nTiled::DrawToView</scope><name>~DrawMethod</name></member>

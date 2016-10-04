@@ -105,7 +105,7 @@
       </node>
       <node id="1843">
         <label>nTiled/include/main/Controller.h</label>
-        <link refid="_controller_8h_source"/>
+        <link refid="_controller_8h"/>
       </node>
       <node id="1823">
         <label>nTiled/include/world/PointLight.h</label>
@@ -135,7 +135,7 @@
       </node>
       <node id="1844">
         <label>nTiled/include/main/DrawMethod.h</label>
-        <link refid="_draw_method_8h_source"/>
+        <link refid="_draw_method_8h"/>
         <childnode refid="1845" relation="include">
         </childnode>
         <childnode refid="1843" relation="include">
@@ -151,7 +151,7 @@
       </node>
       <node id="1845">
         <label>nTiled/include/main/FrameEvent.h</label>
-        <link refid="_frame_event_8h_source"/>
+        <link refid="_frame_event_8h"/>
         <childnode refid="1843" relation="include">
         </childnode>
       </node>

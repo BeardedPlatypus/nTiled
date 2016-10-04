@@ -48,7 +48,7 @@
       </node>
       <node id="2088">
         <label>main\DrawMethod.h</label>
-        <link refid="_draw_method_8h_source"/>
+        <link refid="_draw_method_8h"/>
         <childnode refid="2089" relation="include">
         </childnode>
         <childnode refid="2115" relation="include">
@@ -254,7 +254,7 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;main\DrawMethod.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_draw_method_8h" kindref="compound">main\DrawMethod.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;GLFW\glfw3.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -265,7 +265,7 @@
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>DrawToMemory</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal">DrawToMemory::DrawToMemory(std::string<sp/>path,</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><ref refid="classn_tiled_1_1_draw_to_memory_1a023a4745a7daaac70ac6d047392c75c6" kindref="member">DrawToMemory::DrawToMemory</ref>(std::string<sp/>path,</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>state::View&amp;<sp/>view)<sp/>:<sp/></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>path(path),</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>p_raw_pixel_buffer(new<sp/>GLubyte[view.viewport.x<sp/>*<sp/>view.viewport.y<sp/>*<sp/>4]),</highlight></codeline>

@@ -3,6 +3,7 @@
   <compounddef id="classn_tiled_1_1_toggle_logging_data_event" kind="class" language="C++" prot="public">
     <compoundname>nTiled::ToggleLoggingDataEvent</compoundname>
     <basecompoundref refid="classn_tiled_1_1_frame_event" prot="public" virt="non-virtual">nTiled::FrameEvent</basecompoundref>
+    <includes refid="_frame_event_8h" local="no">FrameEvent.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classn_tiled_1_1_toggle_logging_data_event_1a5ab21f501a9b5cc3b4dd602276120db8" prot="private" static="no" mutable="no">
         <type>const bool</type>
@@ -10,12 +11,12 @@
         <argsstring></argsstring>
         <name>activate</name>
         <briefdescription>
-        </briefdescription>
+<para>Whether this <ref refid="classn_tiled_1_1_toggle_logging_data_event" kindref="compound">ToggleLoggingDataEvent</ref> should turn logging on or off. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="52" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="52" bodyend="-1"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="117" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="117" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -37,12 +38,34 @@
           <declname>activate</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1_toggle_logging_data_event" kindref="compound">ToggleLoggingDataEvent</ref> with the specified parameters. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame at which this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> should be executed </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of this FrameEVent </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>activate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether this <ref refid="classn_tiled_1_1_toggle_logging_data_event" kindref="compound">ToggleLoggingDataEvent</ref> should turn logging on or off. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="46" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="31" bodyend="36"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="103" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="31" bodyend="36"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_toggle_logging_data_event_1a73cc1ba2ca0e49bf94738c0ce13e78fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -55,16 +78,24 @@
           <declname>controller</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Execute this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> by setting the tracking of data of the specified <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to activate. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>controller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the controller on which this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> operates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="49" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="39" bodyend="41"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="113" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="39" bodyend="41"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para><ref refid="classn_tiled_1_1_toggle_logging_data_event" kindref="compound">ToggleLoggingDataEvent</ref> is responsible for turning the tracking of execution time within the <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> on and off. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
@@ -91,7 +122,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="nTiled/include/main/FrameEvent.h" line="44" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="44" bodyend="53"/>
+    <location file="nTiled/include/main/FrameEvent.h" line="93" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="93" bodyend="118"/>
     <listofallmembers>
       <member refid="classn_tiled_1_1_toggle_logging_data_event_1a5ab21f501a9b5cc3b4dd602276120db8" prot="private" virt="non-virtual"><scope>nTiled::ToggleLoggingDataEvent</scope><name>activate</name></member>
       <member refid="classn_tiled_1_1_toggle_logging_data_event_1a73cc1ba2ca0e49bf94738c0ce13e78fd" prot="public" virt="virtual"><scope>nTiled::ToggleLoggingDataEvent</scope><name>execute</name></member>

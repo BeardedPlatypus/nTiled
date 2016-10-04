@@ -3,6 +3,7 @@
   <compounddef id="classn_tiled_1_1_export_logging_data_event" kind="class" language="C++" prot="public">
     <compoundname>nTiled::ExportLoggingDataEvent</compoundname>
     <basecompoundref refid="classn_tiled_1_1_frame_event" prot="public" virt="non-virtual">nTiled::FrameEvent</basecompoundref>
+    <includes refid="_frame_event_8h" local="no">FrameEvent.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classn_tiled_1_1_export_logging_data_event_1aeeb73a0349f986f5db085ab2bfa87731" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -23,7 +24,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="58" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="46" bodyend="48"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="127" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="46" bodyend="48"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_export_logging_data_event_1aa11ca5544ff324b6b95755e627d5fea5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -36,16 +37,24 @@
           <declname>controller</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Execute this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> by signalling the <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to export all tracked data. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>controller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the controller on which this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> operates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="60" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="50" bodyend="52"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="136" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="50" bodyend="52"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para><ref refid="classn_tiled_1_1_export_logging_data_event" kindref="compound">ExportLoggingDataEvent</ref> is responsible for signalling the <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> at the specified frame to export all the tracked data within an execution. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
@@ -72,7 +81,7 @@
         <link refid="classn_tiled_1_1_frame_event"/>
       </node>
     </collaborationgraph>
-    <location file="nTiled/include/main/FrameEvent.h" line="56" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="56" bodyend="61"/>
+    <location file="nTiled/include/main/FrameEvent.h" line="125" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="125" bodyend="137"/>
     <listofallmembers>
       <member refid="classn_tiled_1_1_export_logging_data_event_1aa11ca5544ff324b6b95755e627d5fea5" prot="public" virt="virtual"><scope>nTiled::ExportLoggingDataEvent</scope><name>execute</name></member>
       <member refid="classn_tiled_1_1_export_logging_data_event_1aeeb73a0349f986f5db085ab2bfa87731" prot="public" virt="non-virtual"><scope>nTiled::ExportLoggingDataEvent</scope><name>ExportLoggingDataEvent</name></member>

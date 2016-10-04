@@ -6,6 +6,7 @@
     <derivedcompoundref refid="classn_tiled_1_1_export_logging_data_event" prot="public" virt="non-virtual">nTiled::ExportLoggingDataEvent</derivedcompoundref>
     <derivedcompoundref refid="classn_tiled_1_1_set_draw_method_event" prot="public" virt="non-virtual">nTiled::SetDrawMethodEvent</derivedcompoundref>
     <derivedcompoundref refid="classn_tiled_1_1_toggle_logging_data_event" prot="public" virt="non-virtual">nTiled::ToggleLoggingDataEvent</derivedcompoundref>
+    <includes refid="_frame_event_8h" local="no">FrameEvent.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="classn_tiled_1_1_frame_event_1a7979f73a10266e0e64bbd4e4dedcfac8" prot="public" static="no" mutable="no">
         <type>const unsigned long</type>
@@ -13,12 +14,12 @@
         <argsstring></argsstring>
         <name>frame</name>
         <briefdescription>
-        </briefdescription>
+<para>Frame at which this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> should start taking place. </para>        </briefdescription>
         <detaileddescription>
-<para>Frame at which this Event should start taking place </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="18" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="18" bodyend="-1"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="40" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classn_tiled_1_1_frame_event_1aaf119a62f2a229b2ac56b29f0b8bd5ac" prot="public" static="no" mutable="no">
         <type>const unsigned long</type>
@@ -26,12 +27,12 @@
         <argsstring></argsstring>
         <name>index</name>
         <briefdescription>
-        </briefdescription>
+<para>Index of this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="19" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="19" bodyend="-1"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="42" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="42" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -49,12 +50,27 @@
           <declname>index</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> with the given frame and index. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame at which this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> should be executed </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of this FrameEVent </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="12" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="8" bodyend="12"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="25" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="8" bodyend="12"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_frame_event_1a21b8957ef3b2f5e77e7bcb175e696193" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -62,12 +78,12 @@
         <argsstring>()</argsstring>
         <name>~FrameEvent</name>
         <briefdescription>
-        </briefdescription>
+<para>Destruct this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="14" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="14" bodyend="14"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="30" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="30" bodyend="30"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_frame_event_1a70f7dfbfd368855394fb7c89e7f587c7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -83,16 +99,24 @@
           <declname>controller</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Execute this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> by modifying the specified <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref>. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>controller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the controller on which this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> operates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="16" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="16" bodyend="16"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="37" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="37" bodyend="37"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Base class for all FrameEvents, it contains a frame at which the frame event should be executed as well as an index in case frames are executed in the same frame. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
@@ -125,7 +149,7 @@
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="nTiled/include/main/FrameEvent.h" line="10" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="10" bodyend="20"/>
+    <location file="nTiled/include/main/FrameEvent.h" line="18" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="18" bodyend="43"/>
     <listofallmembers>
       <member refid="classn_tiled_1_1_frame_event_1a70f7dfbfd368855394fb7c89e7f587c7" prot="public" virt="virtual"><scope>nTiled::FrameEvent</scope><name>execute</name></member>
       <member refid="classn_tiled_1_1_frame_event_1a7979f73a10266e0e64bbd4e4dedcfac8" prot="public" virt="non-virtual"><scope>nTiled::FrameEvent</scope><name>frame</name></member>

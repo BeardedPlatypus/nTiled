@@ -3,6 +3,7 @@
   <compounddef id="classn_tiled_1_1_exit_event" kind="class" language="C++" prot="public">
     <compoundname>nTiled::ExitEvent</compoundname>
     <basecompoundref refid="classn_tiled_1_1_frame_event" prot="public" virt="non-virtual">nTiled::FrameEvent</basecompoundref>
+    <includes refid="_frame_event_8h" local="no">FrameEvent.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classn_tiled_1_1_exit_event_1aefd0d11c0af97d81f363c8d99ba17bf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -23,7 +24,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="66" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="57" bodyend="58"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="145" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="57" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_exit_event_1a920ba906eefa21fc5891cb971467347c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -36,16 +37,24 @@
           <declname>controller</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Execute this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> by signalling the <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to end the execution of nTiled. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>controller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the controller on which this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> operates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="68" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="60" bodyend="62"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="154" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="60" bodyend="62"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para><ref refid="classn_tiled_1_1_exit_event" kindref="compound">ExitEvent</ref> is responsible for signalling the <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to end the execution of nTiled at the specified frame. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
@@ -72,7 +81,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="nTiled/include/main/FrameEvent.h" line="64" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="64" bodyend="69"/>
+    <location file="nTiled/include/main/FrameEvent.h" line="143" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="143" bodyend="155"/>
     <listofallmembers>
       <member refid="classn_tiled_1_1_exit_event_1a920ba906eefa21fc5891cb971467347c" prot="public" virt="virtual"><scope>nTiled::ExitEvent</scope><name>execute</name></member>
       <member refid="classn_tiled_1_1_exit_event_1aefd0d11c0af97d81f363c8d99ba17bf5" prot="public" virt="non-virtual"><scope>nTiled::ExitEvent</scope><name>ExitEvent</name></member>

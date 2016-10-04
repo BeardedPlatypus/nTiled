@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.12">
   <compounddef id="classn_tiled_1_1_frame_event_compare" kind="class" language="C++" prot="public">
     <compoundname>nTiled::FrameEventCompare</compoundname>
+    <includes refid="_frame_event_8h" local="no">FrameEvent.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classn_tiled_1_1_frame_event_compare_1a3470351bfea68e9a297f6eee158f71b1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>constexpr bool</type>
@@ -22,14 +23,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="25" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="25" bodyend="28"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="51" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="51" bodyend="54"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para><ref refid="classn_tiled_1_1_frame_event_compare" kindref="compound">FrameEventCompare</ref> is the Comparator responsible for comparing which <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> should occur first. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="nTiled/include/main/FrameEvent.h" line="23" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="23" bodyend="29"/>
+    <location file="nTiled/include/main/FrameEvent.h" line="49" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="49" bodyend="55"/>
     <listofallmembers>
       <member refid="classn_tiled_1_1_frame_event_compare_1a3470351bfea68e9a297f6eee158f71b1" prot="public" virt="non-virtual"><scope>nTiled::FrameEventCompare</scope><name>operator()</name></member>
     </listofallmembers>

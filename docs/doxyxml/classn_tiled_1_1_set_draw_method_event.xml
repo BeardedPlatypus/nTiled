@@ -3,6 +3,7 @@
   <compounddef id="classn_tiled_1_1_set_draw_method_event" kind="class" language="C++" prot="public">
     <compoundname>nTiled::SetDrawMethodEvent</compoundname>
     <basecompoundref refid="classn_tiled_1_1_frame_event" prot="public" virt="non-virtual">nTiled::FrameEvent</basecompoundref>
+    <includes refid="_frame_event_8h" local="no">FrameEvent.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classn_tiled_1_1_set_draw_method_event_1a9771682365813f6a40f5a6aa523e7175" prot="private" static="no" mutable="no">
         <type><ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> *</type>
@@ -10,12 +11,12 @@
         <argsstring></argsstring>
         <name>draw_method</name>
         <briefdescription>
-        </briefdescription>
+<para>Pointer to the <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> that this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> sets the <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="40" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="40" bodyend="-1"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="86" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="86" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -37,12 +38,34 @@
           <declname>draw_method</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Construct a new <ref refid="classn_tiled_1_1_set_draw_method_event" kindref="compound">SetDrawMethodEvent</ref> with the given parameters. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame at which this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> should be executed </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of this FrameEVent </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>draw_method</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> should set the <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> in the <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="34" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="17" bodyend="22"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="71" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="17" bodyend="22"/>
       </memberdef>
       <memberdef kind="function" id="classn_tiled_1_1_set_draw_method_event_1a5f0eb38f6fd405f90b6346037f7c4702" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -55,16 +78,24 @@
           <declname>controller</declname>
         </param>
         <briefdescription>
-        </briefdescription>
+<para>Execute this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> by setting the <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> of the specified <ref refid="classn_tiled_1_1_controller" kindref="compound">Controller</ref> to draw_method. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>controller</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the controller on which this <ref refid="classn_tiled_1_1_frame_event" kindref="compound">FrameEvent</ref> operates. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="nTiled/include/main/FrameEvent.h" line="37" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="24" bodyend="26"/>
+        <location file="nTiled/include/main/FrameEvent.h" line="81" column="1" bodyfile="nTiled/src/main/FrameEvent.cpp" bodystart="24" bodyend="26"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>The <ref refid="classn_tiled_1_1_set_draw_method_event" kindref="compound">SetDrawMethodEvent</ref> sets the <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> of the controller specified during execution to the <ref refid="classn_tiled_1_1_draw_method" kindref="compound">DrawMethod</ref> with which it was initiated. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
@@ -98,7 +129,7 @@
         <link refid="classn_tiled_1_1_draw_method"/>
       </node>
     </collaborationgraph>
-    <location file="nTiled/include/main/FrameEvent.h" line="32" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="32" bodyend="41"/>
+    <location file="nTiled/include/main/FrameEvent.h" line="62" column="1" bodyfile="nTiled/include/main/FrameEvent.h" bodystart="62" bodyend="87"/>
     <listofallmembers>
       <member refid="classn_tiled_1_1_set_draw_method_event_1a9771682365813f6a40f5a6aa523e7175" prot="private" virt="non-virtual"><scope>nTiled::SetDrawMethodEvent</scope><name>draw_method</name></member>
       <member refid="classn_tiled_1_1_set_draw_method_event_1a5f0eb38f6fd405f90b6346037f7c4702" prot="public" virt="virtual"><scope>nTiled::SetDrawMethodEvent</scope><name>execute</name></member>

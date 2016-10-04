@@ -54,7 +54,7 @@
     <invincdepgraph>
       <node id="206">
         <label>nTiled/include/main/Controller.h</label>
-        <link refid="_controller_8h_source"/>
+        <link refid="_controller_8h"/>
       </node>
       <node id="205">
         <label>nTiled/include/log/Logger.h</label>
