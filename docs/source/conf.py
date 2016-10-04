@@ -130,7 +130,7 @@ todo_include_todos = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'default'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -348,7 +348,7 @@ texinfo_documents = [
 #
 # texinfo_no_detailmenu = False
 
-breathe_projects = { "nTiled": "C:/Users/Monthy/Documents/projects/thesis/thesis-implementation/docs/doxyxml/" }
+breathe_projects = { "nTiled": "./docs/doxyxml/" }
 
 breathe_default_project = "nTiled"
 
