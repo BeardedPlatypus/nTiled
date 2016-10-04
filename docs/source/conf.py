@@ -20,6 +20,13 @@ import os
 import sys
 sys.path.append( "C:/Users/Monthy/Documents/projects/thesis/thesis-implementation/docs/ext/breathe/" )
 
+
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+if on_rtd:
+    from subprocess import call
+    call('doxygen')
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -346,10 +353,3 @@ breathe_projects = { "nTiled": "C:/Users/Monthy/Documents/projects/thesis/thesis
 breathe_default_project = "nTiled"
 
 
-import subprocess, os
-
-read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
-
-if read_the_docs_build:
-
-    subprocess.call('cd ../doxygen; doxygen', shell=True)
