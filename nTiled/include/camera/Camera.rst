@@ -43,8 +43,6 @@ In order to control the Camera the following classes are implemented:
 Camera API
 ----------
 
-
-
 .. toctree::
    :maxdepth: 1
 

@@ -8,7 +8,7 @@ functions.
 
 
 Logging API
--------
+-----------
 
 .. toctree::
    :maxdepth: 1

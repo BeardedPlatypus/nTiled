@@ -8,6 +8,7 @@ The gui module is written with the dear, imgui library,
 It determines whether user input is meant for the interface, or should be
 forwarded to the Camera of nTiled.
 
+
 GUI API
 -------
 
