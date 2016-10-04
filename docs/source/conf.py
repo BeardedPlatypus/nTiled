@@ -348,7 +348,7 @@ texinfo_documents = [
 #
 # texinfo_no_detailmenu = False
 
-breathe_projects = { "nTiled": "./docs/doxyxml/" }
+breathe_projects = { "nTiled": "doxyxml/" }
 
 breathe_default_project = "nTiled"
 
