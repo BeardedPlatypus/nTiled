@@ -25,7 +25,7 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
 if on_rtd:
     from subprocess import call
-    call('doxygen ../Doxyfile')
+    call('doxygen')
 
 # -- General configuration ------------------------------------------------
 
@@ -348,7 +348,7 @@ texinfo_documents = [
 #
 # texinfo_no_detailmenu = False
 
-breathe_projects = { "nTiled": "../doxyxml/" }
+breathe_projects = { "nTiled": "doxyxml/" }
 
 breathe_default_project = "nTiled"
 
