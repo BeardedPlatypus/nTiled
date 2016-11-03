@@ -6,12 +6,29 @@ namespace hierarchical {
 namespace slt {
 
 // ----------------------------------------------------------------------------
+Node::~Node() {}
+
+// ----------------------------------------------------------------------------
 FullLightNode::FullLightNode() {}
 FullLightNode::~FullLightNode() {}
+
+void FullLightNode::exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const {
+  writer.StartObject();
+  writer.Key("type");
+  writer.String("full");
+  writer.EndObject();
+}
 
 // ----------------------------------------------------------------------------
 NoLightNode::NoLightNode() {}
 NoLightNode::~NoLightNode() {}
+
+void NoLightNode::exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const {
+  writer.StartObject();
+  writer.Key("type");
+  writer.String("no");
+  writer.EndObject();
+}
 
 // ----------------------------------------------------------------------------
 PartialLightNode::PartialLightNode(const Node& child_000,
@@ -32,6 +49,8 @@ PartialLightNode::PartialLightNode(const Node& child_000,
   child_111(child_111) {
 }
 
+PartialLightNode::~PartialLightNode() {}
+
 
 PartialLightNode::PartialLightNode(Node const * const * children) :
   PartialLightNode(*(children[0]),
@@ -42,6 +61,31 @@ PartialLightNode::PartialLightNode(Node const * const * children) :
                    *(children[5]),
                    *(children[6]),
                    *(children[7])) {
+}
+
+void PartialLightNode::exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const {
+  writer.StartObject();
+  writer.Key("type");
+  writer.String("partial");
+
+  // sub nodes.
+  writer.Key("n000");
+  this->child_000.exportToJson(writer);
+  writer.Key("n100");
+  this->child_100.exportToJson(writer);
+  writer.Key("n010");
+  this->child_010.exportToJson(writer);
+  writer.Key("n110");
+  this->child_110.exportToJson(writer);
+  writer.Key("n001");
+  this->child_001.exportToJson(writer);
+  writer.Key("n101");
+  this->child_101.exportToJson(writer);
+  writer.Key("n011");
+  this->child_011.exportToJson(writer);
+  writer.Key("n111");
+  this->child_111.exportToJson(writer);
+  writer.EndObject();
 }
 
 } // slt

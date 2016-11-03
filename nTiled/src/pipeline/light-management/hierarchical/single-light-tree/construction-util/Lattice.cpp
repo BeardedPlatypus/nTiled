@@ -10,45 +10,48 @@ namespace slt {
 //  Constructors
 // ----------------------------------------------------------------------------
 Lattice::Lattice(const glm::ivec3 origin_in_grid,
-                       const unsigned int n_nodes,
-                       const float node_size) :
+                 const unsigned int n_nodes,
+                 const float node_size) :
   origin_in_grid(origin_in_grid),
   n_nodes(n_nodes),
   node_size(node_size),
-  lattice_nodes(new LatticeNode*[n_nodes * n_nodes * n_nodes]) { }
+  unique_nodes(std::vector<LatticeNode*>()),
+  lattice_nodes(std::vector<LatticeNode*>(n_nodes * n_nodes * n_nodes)) { }
+
+
+Lattice::Lattice(const glm::ivec3 origin_in_grid,
+                 const unsigned int n_nodes,
+                 const float node_size,
+                 LatticeNode* p_node) :
+  origin_in_grid(origin_in_grid),
+  n_nodes(n_nodes),
+  node_size(node_size),
+  unique_nodes(std::vector<LatticeNode*>({ p_node })),
+  lattice_nodes(std::vector<LatticeNode*>((n_nodes * n_nodes * n_nodes), p_node)) { }
+
 
 
 Lattice::Lattice(const glm::ivec3 origin_in_grid,
                  const unsigned int n_nodes,
                  const float node_size,
                  const NoLightNode& no_light) :
-    Lattice(origin_in_grid, n_nodes, node_size) {
-  for (int i = 0; i < (this->n_nodes * this->n_nodes * this->n_nodes); i++) {
-    this->lattice_nodes[i] = new LatticeNode(&no_light);
-  }
-}
+  Lattice(origin_in_grid, n_nodes, node_size, new LatticeNode(&no_light)) { }
 
 
 Lattice::Lattice(const glm::ivec3 origin_in_grid,
                  const unsigned int n_nodes,
                  const float node_size,
                  const FullLightNode& full_light) :
-  Lattice(origin_in_grid, n_nodes, node_size) {
-  for (int i = 0; i < (this->n_nodes * this->n_nodes * this->n_nodes); i++) {
-    this->lattice_nodes[i] = new LatticeNode(&full_light);
-  }
-}
+  Lattice(origin_in_grid, n_nodes, node_size, new LatticeNode(&full_light)) { }
 
 
 // ----------------------------------------------------------------------------
 //  Destructor
 // ----------------------------------------------------------------------------
 Lattice::~Lattice() {
-  for (int i = 0; i < (this->n_nodes * this->n_nodes * this->n_nodes); i++) {
-    delete this->lattice_nodes[i];
+  for (LatticeNode* p_node : this->unique_nodes) {
+    delete p_node;
   }
-
-  delete[] this->lattice_nodes;
 }
 
 
@@ -64,7 +67,7 @@ void Lattice::setLatticeNode(glm::uvec3 position,
                              LatticeNode* p_node) {
   int index = this->getIndexNode(position);
 
-  delete this->lattice_nodes[index];
+  this->unique_nodes.push_back(p_node);
   this->lattice_nodes[index] = p_node;
 }
 

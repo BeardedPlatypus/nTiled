@@ -12,9 +12,6 @@ namespace nTiled {
 namespace pipeline {
 namespace hierarchical {
 
-
-
-
 class SLTBuilder {
 public:
   SLTBuilder(const float minimum_leaf_node_size);
@@ -38,32 +35,32 @@ private:
   // Phase 2
   slt::Lattice* combineLatticeStep(const slt::Lattice& lattice,
                                    slt::NoLightNode const * const no_light,
-                                   std::vector<slt::PartialLightNode const * const>& partial_light_nodes);
+                                   std::vector<slt::PartialLightNode const *>& partial_light_nodes);
 
   slt::Offsets calculateOffsets(const slt::Lattice& lattice);
 
   void updateCoreLattice(const slt::Lattice& current_lattice,
                          const slt::Offsets& offsets,
                          slt::Lattice* next_lattice,
-                         std::vector<slt::PartialLightNode const * const>& partial_light_nodes);
+                         std::vector<slt::PartialLightNode const *>& partial_light_nodes);
 
   void updateSidesLattice(const slt::Lattice& current_lattice,
                           const slt::Offsets& offsets,
                           slt::NoLightNode const * const no_light,
                           slt::Lattice* next_lattice,
-                          std::vector<slt::PartialLightNode const * const>& partial_light_nodes);
+                          std::vector<slt::PartialLightNode const *>& partial_light_nodes);
 
   void updateEdgesLattice(const slt::Lattice& current_lattice,
                           const slt::Offsets& offsets,
                           slt::NoLightNode const * const no_light,
                           slt::Lattice* next_lattice,
-                          std::vector<slt::PartialLightNode const * const>& partial_light_nodes);
+                          std::vector<slt::PartialLightNode const *>& partial_light_nodes);
 
   void updateCornersLattice(const slt::Lattice& current_lattice,
                             const slt::Offsets& offsets,
                             slt::NoLightNode const * const no_light,
                             slt::Lattice* next_lattice,
-                            std::vector<slt::PartialLightNode const * const>& partial_light_nodes);
+                            std::vector<slt::PartialLightNode const *>& partial_light_nodes);
 
   // --------------------------------------------------------------------------
   const float minimum_leaf_node_size;

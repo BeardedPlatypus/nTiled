@@ -25,8 +25,8 @@ SingleLightTree* SLTBuilder::buildSingleLightTree(const world::PointLight& light
   slt::Lattice* current_lattice = this->lightToLattice(light, no_light, full_light);
   slt::Lattice* next_lattice;
   
-  std::vector<slt::PartialLightNode const * const> partial_light_nodes =
-    std::vector<slt::PartialLightNode const * const>();
+  std::vector<slt::PartialLightNode const *> partial_light_nodes =
+    std::vector<slt::PartialLightNode const *>();
 
   while (current_lattice->getNNodes() > 1) {
     next_lattice = combineLatticeStep(*current_lattice,

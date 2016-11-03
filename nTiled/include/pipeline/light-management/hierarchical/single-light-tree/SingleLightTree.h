@@ -34,7 +34,7 @@ public:
                   const float root_size,
                   slt::FullLightNode const * const p_full_light,
                   slt::NoLightNode const * const p_no_light,
-                  const std::vector<slt::PartialLightNode const * const> partial_light_nodes);
+                  const std::vector<slt::PartialLightNode const *> partial_light_nodes);
 
   /*! @brief Destruct this SingleLightTree
    */
@@ -66,6 +66,8 @@ public:
    */
   float getRootSize() const { return this->root_size; }
 
+  void exportToJson(const std::string& path);
+
 private:
   /*! @brief The PointLight of this SingleLightTree. */
   const world::PointLight& light;
@@ -87,7 +89,7 @@ private:
   /*! @brief Pointer to a NoLightNode*/
   slt::NoLightNode const * const p_no_light;
   /*! @brief Pointers to all PartialLightNodes */
-  const std::vector<slt::PartialLightNode const * const> partial_light_nodes;
+  const std::vector<slt::PartialLightNode const *> partial_light_nodes;
 };
 
 

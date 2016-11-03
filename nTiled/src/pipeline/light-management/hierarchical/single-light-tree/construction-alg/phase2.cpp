@@ -22,7 +22,7 @@ slt::Offsets SLTBuilder::calculateOffsets(const slt::Lattice& lattice) {
 void SLTBuilder::updateCoreLattice(const slt::Lattice& current_lattice,
                                    const slt::Offsets& offsets,
                                    slt::Lattice* next_lattice,
-                                   std::vector<slt::PartialLightNode const * const>& partial_light_nodes) {
+                                   std::vector<slt::PartialLightNode const *>& partial_light_nodes) {
   int next_n_tiles = next_lattice->getNNodes();
  
   glm::uvec2 x_offset = glm::uvec2(offsets.x);
@@ -72,7 +72,7 @@ void SLTBuilder::updateCoreLattice(const slt::Lattice& current_lattice,
           // if it is either no lights or full lights, any sub node will also be
           // of that type and we will recycle it.
           next_lattice->setLatticeNode(glm::uvec3(x_i, y_i, z_i),
-                                       *sub_nodes[0]);
+                                       *(sub_nodes[0]));
         } else {
           slt::PartialLightNode* p_partial_light_node =
             new slt::PartialLightNode(*(sub_nodes[0]->node),
@@ -98,7 +98,7 @@ void SLTBuilder::updateCornersLattice(const slt::Lattice& current_lattice,
                                       const slt::Offsets& offsets,
                                       slt::NoLightNode const * const no_light,
                                       slt::Lattice* next_lattice,
-                                      std::vector<slt::PartialLightNode const * const>& partial_light_nodes) {
+                                      std::vector<slt::PartialLightNode const *>& partial_light_nodes) {
   unsigned int last_current = current_lattice.getNNodes() - 1;
   unsigned int last_next = next_lattice->getNNodes() - 1;
 
@@ -138,7 +138,7 @@ void SLTBuilder::updateEdgesLattice(const slt::Lattice& current_lattice,
                                     const slt::Offsets& offsets,
                                     slt::NoLightNode const * const no_light,
                                     slt::Lattice* next_lattice,
-                                    std::vector<slt::PartialLightNode const * const>& partial_light_nodes) {
+                                    std::vector<slt::PartialLightNode const *>& partial_light_nodes) {
   unsigned int last_current = current_lattice.getNNodes() - 1;
   unsigned int last_next = next_lattice->getNNodes() - 1;
 
@@ -204,7 +204,7 @@ void SLTBuilder::updateSidesLattice(const slt::Lattice& current_lattice,
                                     const slt::Offsets& offsets,
                                     slt::NoLightNode const * const no_light,
                                     slt::Lattice* next_lattice,
-                                    std::vector<slt::PartialLightNode const * const>& partial_light_nodes) {
+                                    std::vector<slt::PartialLightNode const *>& partial_light_nodes) {
   unsigned int last_current = current_lattice.getNNodes() - 1;
   unsigned int last_next = next_lattice->getNNodes() - 1;
 
@@ -284,7 +284,7 @@ void SLTBuilder::updateSidesLattice(const slt::Lattice& current_lattice,
 slt::Lattice* SLTBuilder::combineLatticeStep(
     const slt::Lattice& current_lattice,
     slt::NoLightNode const * const no_light,
-    std::vector<slt::PartialLightNode const * const>& partial_light_nodes) {
+    std::vector<slt::PartialLightNode const *>& partial_light_nodes) {
 
   slt::Offsets offset = this->calculateOffsets(current_lattice);
 
@@ -294,7 +294,7 @@ slt::Lattice* SLTBuilder::combineLatticeStep(
                                                               offset.y.x,
                                                               offset.z.x)),
                                                   next_nodes,
-                                                  current_lattice.getNodeSize());
+                                                  current_lattice.getNodeSize() * 2);
 
   // Update middle section
   this->updateCoreLattice(current_lattice, offset, p_next_lattice, partial_light_nodes);

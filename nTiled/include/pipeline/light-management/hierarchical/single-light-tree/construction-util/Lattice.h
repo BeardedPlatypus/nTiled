@@ -8,6 +8,7 @@
 //  Libraries
 // ----------------------------------------------------------------------------
 #include <glm\glm.hpp>
+#include <vector>
 
 
 // ----------------------------------------------------------------------------
@@ -49,6 +50,22 @@ public:
   Lattice(const glm::ivec3 origin_in_lattice,
              const unsigned int n_nodes,
              const float node_size);
+
+  /*! @brief Construct a new slt::Lattice with the given parameters containing 
+   *         a vector of size n_nodes^3 initialised with p_node.
+   *
+   * @param origin_in_lattice The origin in regards to lattice coordinates of
+   *                          this new SLTLattice.
+   * @param n_nodes The number of nodes in each dimension of this new
+   *                 SLTLattice
+   * @param node_size The width of a single node in this new SLTLattice
+   * @param p_node pointer to the lattice node with which this lattice 
+   *               will be filled
+   */
+  Lattice(const glm::ivec3 origin_in_lattice,
+          const unsigned int n_nodes,
+          const float node_size,
+          LatticeNode* p_node);
 
   /*! @brief Construct a new slt::Lattice initialised with NoLight nodes
    */
@@ -171,7 +188,8 @@ private:
   /*! @brief An array of SLTLatticeNode pointers, representing
    *         the internal lattice
    */
-  LatticeNode** lattice_nodes;
+  std::vector<LatticeNode*> lattice_nodes;
+  std::vector<LatticeNode*> unique_nodes;
 };
 
 } // slt

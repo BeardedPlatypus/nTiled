@@ -1,5 +1,12 @@
 #pragma once
 
+// ---------------------------------------------------------------------------
+//  Libraries
+// ---------------------------------------------------------------------------
+#include <rapidjson\writer.h>
+#include <rapidjson\stringbuffer.h>
+
+
 namespace nTiled {
 namespace pipeline {
 namespace hierarchical {
@@ -12,20 +19,26 @@ public:
   //  Constructor
   // --------------------------------------------------------------------------
   virtual ~Node() = 0;
+
+  virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const = 0;
 };
 
 
 class FullLightNode : public Node {
 public:
   FullLightNode();
-  ~FullLightNode();
+  ~FullLightNode() override;
+
+  virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const override;
 };
 
 
 class NoLightNode : public Node {
 public:
   NoLightNode();
-  ~NoLightNode();
+  ~NoLightNode() override;
+
+  virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const override;
 };
 
 
@@ -42,6 +55,9 @@ public:
                    const Node& child_111);
 
   PartialLightNode(Node const * const * children);
+  ~PartialLightNode() override;
+
+  virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const override;
 
 private:
   //                xyz

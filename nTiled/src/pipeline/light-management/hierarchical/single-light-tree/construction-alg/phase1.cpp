@@ -4,11 +4,12 @@
 //  Libraries
 // ----------------------------------------------------------------------------
 #include <queue>
+#include <math.h>
 
 // ----------------------------------------------------------------------------
 //  nTiled headers
 // ----------------------------------------------------------------------------
-#include "math\util.h"
+#include "math\clamp.h"
 #include "pipeline\light-management\hierarchical\single-light-tree\construction-util\FillElement.h"
 
 
@@ -33,9 +34,9 @@ bool SLTBuilder::lightWithinNode(const world::PointLight& light,
                                  position.z + slt_node_edge);
 
   // calculate distance between the light and this closest point
-  double distance_x = position.x - closest_x;
-  double distance_y = position.y - closest_y;
-  double distance_z = position.z - closest_z;
+  double distance_x = light.position.x - closest_x;
+  double distance_y = light.position.y - closest_y;
+  double distance_z = light.position.z - closest_z;
 
   // calculate whether the closest points exceeds the radius
   return (( distance_x * distance_x
@@ -49,10 +50,11 @@ slt::Lattice* SLTBuilder::lightToLattice(
     slt::NoLightNode const * const no_light,
     slt::FullLightNode const * const full_light) {
   // Calculate size of the lattice
-  glm::ivec3 lower_bottom_left;
-  glm::ivec3 upper_top_right;
+  glm::ivec3 lower_bottom_left = glm::ivec3(int(floor((light.position.x - light.radius) / this->minimum_leaf_node_size)),
+                                            int(floor((light.position.y - light.radius) / this->minimum_leaf_node_size)),
+                                            int(floor((light.position.z - light.radius) / this->minimum_leaf_node_size)));
 
-  unsigned int n_tiles = abs(upper_top_right.x - lower_bottom_left.x);
+  unsigned int n_tiles = int(floor((light.position.x + light.radius) / this->minimum_leaf_node_size)) - lower_bottom_left.x + 1;
 
   // Construct Lattice with FullLights
   slt::Lattice* lattice = new slt::Lattice(lower_bottom_left,
@@ -61,7 +63,7 @@ slt::Lattice* SLTBuilder::lightToLattice(
                                            *full_light);
 
   // Construct Checked Lattice
-  bool* checked = new bool[n_tiles * n_tiles * n_tiles];
+  std::vector<bool> checked = std::vector<bool>(n_tiles * n_tiles * n_tiles, false);
 
   unsigned int last = n_tiles - 1;
   std::queue<slt::FillElement> to_check = std::queue<slt::FillElement>(
@@ -77,6 +79,8 @@ slt::Lattice* SLTBuilder::lightToLattice(
 
   slt::FillElement next_element;
   int element_index;
+
+  glm::vec3 orgin_in_world = glm::vec3(lattice->getOriginInWorld() / lattice->getOriginInWorld().w);
   while (!to_check.empty()) {
     // Get next element
     next_element = to_check.front();
@@ -89,8 +93,8 @@ slt::Lattice* SLTBuilder::lightToLattice(
     if (!checked[element_index]) {
       checked[element_index] = true;
 
-      glm::vec4 node_origin = lattice->getOriginInWorld() +
-        glm::vec4((glm::vec3(next_element.pos) * minimum_leaf_node_size), 0.0);
+
+      glm::vec4 node_origin = glm::vec4(((glm::vec3(next_element.pos) * minimum_leaf_node_size) + orgin_in_world), 1.0);
       if (!this->lightWithinNode(light, 
                                  node_origin, 
                                  this->minimum_leaf_node_size)) {
@@ -155,7 +159,7 @@ slt::Lattice* SLTBuilder::lightToLattice(
                                     next_element.direction));
           break;
         case slt::FillDirection::RightUpperFar:
-          to_check.push(slt::FillElement(next_element.pos + glm::uvec3(1, 0, 0),
+          to_check.push(slt::FillElement(next_element.pos + glm::uvec3(-1, 0, 0),
                                     next_element.direction));
           to_check.push(slt::FillElement(next_element.pos + glm::uvec3(0, -1, 0),
                                     next_element.direction));
