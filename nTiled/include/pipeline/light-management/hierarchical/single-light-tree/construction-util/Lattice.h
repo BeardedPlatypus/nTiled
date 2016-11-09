@@ -47,9 +47,10 @@ public:
    * @param node_size The width of a single node in this new SLTLattice
    *
    */
-  Lattice(const glm::ivec3 origin_in_lattice,
-             const unsigned int n_nodes,
-             const float node_size);
+  Lattice(const glm::vec3 octree_origin,
+          const glm::ivec3 origin_in_lattice,
+          const unsigned int n_nodes,
+          const float node_size);
 
   /*! @brief Construct a new slt::Lattice with the given parameters containing 
    *         a vector of size n_nodes^3 initialised with p_node.
@@ -62,24 +63,27 @@ public:
    * @param p_node pointer to the lattice node with which this lattice 
    *               will be filled
    */
-  Lattice(const glm::ivec3 origin_in_lattice,
+  Lattice(const glm::vec3 octree_origin,
+          const glm::ivec3 origin_in_lattice,
           const unsigned int n_nodes,
           const float node_size,
           LatticeNode* p_node);
 
   /*! @brief Construct a new slt::Lattice initialised with NoLight nodes
    */
-  Lattice(const glm::ivec3 origin_in_lattice,
-             const unsigned int n_nodes,
-             const float node_size,
-             const NoLightNode& no_light);
+  Lattice(const glm::vec3 octree_origin,
+          const glm::ivec3 origin_in_lattice,
+          const unsigned int n_nodes,
+          const float node_size,
+          const NoLightNode& no_light);
 
   /*! @brief Construct a new Lattice initialised with FullLight nodes
    */
-  Lattice(const glm::ivec3 origin_in_lattice,
-             const unsigned int n_nodes,
-             const float node_size,
-             const FullLightNode& full_light);
+  Lattice(const glm::vec3 octree_origin,
+          const glm::ivec3 origin_in_lattice,
+          const unsigned int n_nodes,
+          const float node_size,
+          const FullLightNode& full_light);
 
   // --------------------------------------------------------------------------
   /*! @brief Deconstruct this SLTLattice
@@ -156,7 +160,15 @@ public:
    * @return The origin of this SLTLattice in respect to World Coordinates.
    */
   glm::vec4 getOriginInWorld() const {
-    return (glm::vec4((glm::vec3(this->origin_in_grid) * node_size), 1.0));
+    return (glm::vec4(((glm::vec3(this->origin_in_grid) * node_size) + this->octree_origin), 1.0));
+  }
+
+  /*! @brief Get the origin of the parent octree of this Lattice. 
+   *
+   * @return The origin of the parent octree of this Lattice.
+   */
+  glm::vec3 getOctreeOrigin() const {
+    return this->octree_origin;
   }
 
   const float getNodeSize() const { return this->node_size; }
@@ -178,6 +190,9 @@ private:
 
   /*! @brief The position of this SLTLattice in Lattice Coordinates */
   const glm::ivec3 origin_in_grid;
+
+  /*! @brief The offset of the global octree in which this Lattice resides. */
+  const glm::vec3 octree_origin;
 
   /*! @brief The number of nodes in each dimension of this SLTLattice */
   const unsigned int n_nodes;

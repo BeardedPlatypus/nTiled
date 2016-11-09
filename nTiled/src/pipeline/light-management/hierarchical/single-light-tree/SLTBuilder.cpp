@@ -14,8 +14,10 @@ namespace nTiled {
 namespace pipeline {
 namespace hierarchical {
 
-SLTBuilder::SLTBuilder(const float minimum_leaf_node_size) : 
-  minimum_leaf_node_size(minimum_leaf_node_size) { }
+SLTBuilder::SLTBuilder(const float minimum_leaf_node_size,
+                       const glm::vec4 origin_lattice) : 
+  minimum_leaf_node_size(minimum_leaf_node_size),
+  origin_lattice(origin_lattice / origin_lattice.w) { }
 
 
 SingleLightTree* SLTBuilder::buildSingleLightTree(const world::PointLight& light) {
@@ -38,6 +40,7 @@ SingleLightTree* SLTBuilder::buildSingleLightTree(const world::PointLight& light
   }
 
   return new SingleLightTree(light,
+                             current_lattice->getOctreeOrigin(),
                              current_lattice->getOriginInLattice(),
                              *current_lattice->getLatticeNode(glm::uvec3(0)).node,
                              current_lattice->getNodeSize(),

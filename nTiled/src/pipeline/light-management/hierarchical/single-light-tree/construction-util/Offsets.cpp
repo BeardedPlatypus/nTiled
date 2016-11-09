@@ -9,7 +9,7 @@ namespace slt {
 // ----------------------------------------------------------------------------
 OffsetEdge::OffsetEdge(glm::bvec3 direction,
                        glm::bvec3 offset_position,
-                       glm::bvec2 offset_dimensions) : 
+                       glm::bvec2 offset_dimension) : 
   direction(direction), 
   offset_position(offset_position),
   offset_dimension(offset_dimension) { }
@@ -46,6 +46,49 @@ Offsets::Offsets(bool all_sides_have_offset) :
     corners.push_back(glm::uvec3(0, 1, 1));
     corners.push_back(glm::uvec3(1, 1, 1));
 
+    // Edges
+    // x direction
+    edges.push_back(OffsetEdge(glm::bvec3(true,  false, false),
+                               glm::bvec3(false, false, false),
+                               glm::bvec2(true, true)));
+    edges.push_back(OffsetEdge(glm::bvec3(true,  false, false),
+                               glm::bvec3(false, true,  false),
+                               glm::bvec2(true, true)));
+    edges.push_back(OffsetEdge(glm::bvec3(true,  false, false),
+                               glm::bvec3(false, false, true),
+                               glm::bvec2(true, true)));
+    edges.push_back(OffsetEdge(glm::bvec3(true,  false, false),
+                               glm::bvec3(false, true,  true),
+                               glm::bvec2(true, true)));
+
+    // y direction
+    edges.push_back(OffsetEdge(glm::bvec3(false, true, false),
+                               glm::bvec3(false, false, false),
+                               glm::bvec2(true, true)));
+    edges.push_back(OffsetEdge(glm::bvec3(false, true, false),
+                               glm::bvec3(true, false, false),
+                               glm::bvec2(true, true)));
+    edges.push_back(OffsetEdge(glm::bvec3(false, true, false),
+                               glm::bvec3(false, false, true),
+                               glm::bvec2(true, true)));
+    edges.push_back(OffsetEdge(glm::bvec3(false, true, false),
+                               glm::bvec3(true, false, true),
+                               glm::bvec2(true, true)));
+    // z direction
+    edges.push_back(OffsetEdge(glm::bvec3(false, false, true),
+                               glm::bvec3(false, false, false),
+                               glm::bvec2(true, true)));
+    edges.push_back(OffsetEdge(glm::bvec3(false, false, true),
+                               glm::bvec3(true, false, false),
+                               glm::bvec2(true, true)));
+    edges.push_back(OffsetEdge(glm::bvec3(false, false, true),
+                               glm::bvec3(false, true, false),
+                               glm::bvec2(true, true)));
+    edges.push_back(OffsetEdge(glm::bvec3(false, false, true),
+                               glm::bvec3(true, true, false),
+                               glm::bvec2(true, true)));
+
+    /*
     // Edges
     // x direction
     edges.push_back(OffsetEdge(glm::bvec3(1, 0, 0),
@@ -86,41 +129,79 @@ Offsets::Offsets(bool all_sides_have_offset) :
     edges.push_back(OffsetEdge(glm::bvec3(0, 0, 1),
                                glm::bvec3(1, 1, 0),
                                glm::bvec2(1, 1)));
+    */
 
+    // sides
+    // z
+    sides.push_back(OffsetSide(glm::bvec3(true,  false, false),
+                               glm::bvec3(false, true, false),
+                               glm::bvec3(false, false, false),
+                               glm::bvec2(true, true),
+                               glm::bvec2(true, true)));
+    sides.push_back(OffsetSide(glm::bvec3(true,  false, false),
+                               glm::bvec3(false, true, false),
+                               glm::bvec3(false, false, true),
+                               glm::bvec2(true, true),
+                               glm::bvec2(true, true)));
+    // y
+    sides.push_back(OffsetSide(glm::bvec3(true,  false, false),
+                               glm::bvec3(false, false, true),
+                               glm::bvec3(false, false, false),
+                               glm::bvec2(true, true),
+                               glm::bvec2(true, true)));
+    sides.push_back(OffsetSide(glm::bvec3(true,  false, false),
+                               glm::bvec3(false, false, true),
+                               glm::bvec3(false, true, false),
+                               glm::bvec2(true, true),
+                               glm::bvec2(true, true)));
+    // x
+    sides.push_back(OffsetSide(glm::bvec3(false, true, false),
+                               glm::bvec3(false, false, true),
+                               glm::bvec3(false, false, false),
+                               glm::bvec2(true, true),
+                               glm::bvec2(true, true)));
+    sides.push_back(OffsetSide(glm::bvec3(false, true, false),
+                               glm::bvec3(false, false, true),
+                               glm::bvec3(true, false, false),
+                               glm::bvec2(true, true),
+                               glm::bvec2(true, true)));
+
+    /*
     // sides
     // x
     sides.push_back(OffsetSide(glm::bvec3(1, 0, 0),
                                glm::bvec3(0, 1, 0),
                                glm::bvec3(0, 0, 0),
-                               glm::bvec2(0, 0),
-                               glm::bvec2(0, 0)));
+                               glm::bvec2(1, 1),
+                               glm::bvec2(1, 1)));
     sides.push_back(OffsetSide(glm::bvec3(1, 0, 0),
                                glm::bvec3(0, 1, 0),
                                glm::bvec3(0, 0, 1),
-                               glm::bvec2(0, 0),
-                               glm::bvec2(0, 0)));
+                               glm::bvec2(1, 1),
+                               glm::bvec2(1, 1)));
     // y
     sides.push_back(OffsetSide(glm::bvec3(1, 0, 0),
                                glm::bvec3(0, 0, 1),
                                glm::bvec3(0, 0, 0),
-                               glm::bvec2(0, 0),
-                               glm::bvec2(0, 0)));
+                               glm::bvec2(1, 1),
+                               glm::bvec2(1, 1)));
     sides.push_back(OffsetSide(glm::bvec3(1, 0, 0),
                                glm::bvec3(0, 0, 1),
                                glm::bvec3(0, 1, 0),
-                               glm::bvec2(0, 0),
-                               glm::bvec2(0, 0)));
+                               glm::bvec2(1, 1),
+                               glm::bvec2(1, 1)));
     // x
     sides.push_back(OffsetSide(glm::bvec3(0, 1, 0),
                                glm::bvec3(0, 0, 1),
                                glm::bvec3(0, 0, 0),
-                               glm::bvec2(0, 0),
-                               glm::bvec2(0, 0)));
+                               glm::bvec2(1, 1),
+                               glm::bvec2(1, 1)));
     sides.push_back(OffsetSide(glm::bvec3(0, 1, 0),
                                glm::bvec3(0, 0, 1),
                                glm::bvec3(1, 0, 0),
-                               glm::bvec2(0, 0),
-                               glm::bvec2(0, 0)));
+                               glm::bvec2(1, 1),
+                               glm::bvec2(1, 1)));
+                               */
   }
 }
 

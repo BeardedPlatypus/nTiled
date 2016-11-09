@@ -29,6 +29,7 @@ public:
    * @param root_tile_size The size of the root tile
    */
   SingleLightTree(const world::PointLight& light,
+                  const glm::vec3 octree_origin,
                   const glm::ivec3 position,
                   const slt::Node& root,
                   const float root_size,
@@ -60,6 +61,8 @@ public:
    */ 
   glm::ivec3 getPosition() const { return glm::ivec3(this->position); }
 
+  glm::vec3 getOctreeOrigin() const { return glm::vec3(this->octree_origin); }
+
   /*! @brief Get the size of the root node of this SingleLightTree
    *
    * @return The size of the root node of this SingleLightTree
@@ -76,6 +79,9 @@ private:
    *         of size of the root
    */
   const glm::ivec3 position;
+
+  // FIXME
+  const glm::vec3 octree_origin;
 
   /*! @brief The size of the root node of this SingleLightTree */
   float root_size;

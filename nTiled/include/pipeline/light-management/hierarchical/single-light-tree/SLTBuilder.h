@@ -14,7 +14,8 @@ namespace hierarchical {
 
 class SLTBuilder {
 public:
-  SLTBuilder(const float minimum_leaf_node_size);
+  SLTBuilder(const float minimum_leaf_node_size,
+             const glm::vec4 origin_lattice);
 
   SingleLightTree* buildSingleLightTree(const world::PointLight& light);
 
@@ -64,6 +65,7 @@ private:
 
   // --------------------------------------------------------------------------
   const float minimum_leaf_node_size;
+  const glm::vec4 origin_lattice;
 };
 
 } // hierarchical

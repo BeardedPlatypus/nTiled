@@ -12,6 +12,7 @@ namespace pipeline {
 namespace hierarchical {
 
 SingleLightTree::SingleLightTree(const world::PointLight& light,
+                                 const glm::vec3 octree_origin,
                                  const glm::ivec3 position,
                                  const slt::Node& root,
                                  const float root_size,
@@ -19,6 +20,7 @@ SingleLightTree::SingleLightTree(const world::PointLight& light,
                                  slt::NoLightNode const * const p_no_light,
                                  const std::vector<slt::PartialLightNode const *> partial_light_nodes) :
     light(light),
+    octree_origin(octree_origin),
     position(position),
     root(root),
     root_size(root_size),
@@ -45,6 +47,18 @@ void SingleLightTree::exportToJson(const std::string& path) {
   // write nodes
   writer.Key("nodes");
   this->getRoot().exportToJson(writer);
+
+  // write octree origin offset
+  glm::vec3 octree_origin = this->getOctreeOrigin();
+  writer.Key("octree_origin");
+  writer.StartObject();
+    writer.Key("x");
+    writer.Double(octree_origin.x);
+    writer.Key("y");
+    writer.Double(octree_origin.y);
+    writer.Key("z");
+    writer.Double(octree_origin.z);
+  writer.EndObject();
 
   // write position in lattice coordinates
   glm::ivec3 position = this->getPosition();

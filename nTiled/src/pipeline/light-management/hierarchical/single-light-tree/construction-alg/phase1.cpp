@@ -20,6 +20,7 @@ namespace hierarchical {
 bool SLTBuilder::lightWithinNode(const world::PointLight& light,
                                  glm::vec4 octree_node_origin,
                                  float slt_node_edge) {
+  // calculation happens in world coordinates.
   glm::vec3 position = glm::vec3(octree_node_origin / octree_node_origin.w);
 
   // calculate closest point to the light within the node in each dimension
@@ -50,14 +51,16 @@ slt::Lattice* SLTBuilder::lightToLattice(
     slt::NoLightNode const * const no_light,
     slt::FullLightNode const * const full_light) {
   // Calculate size of the lattice
-  glm::ivec3 lower_bottom_left = glm::ivec3(int(floor((light.position.x - light.radius) / this->minimum_leaf_node_size)),
-                                            int(floor((light.position.y - light.radius) / this->minimum_leaf_node_size)),
-                                            int(floor((light.position.z - light.radius) / this->minimum_leaf_node_size)));
+  // subtract the origin in lattice in order to have it relative to the origin of the lattice
+  glm::ivec3 lower_bottom_left = glm::ivec3(int(floor((light.position.x - light.radius - this->origin_lattice.x) / this->minimum_leaf_node_size)),
+                                            int(floor((light.position.y - light.radius - this->origin_lattice.y) / this->minimum_leaf_node_size)),
+                                            int(floor((light.position.z - light.radius - this->origin_lattice.z) / this->minimum_leaf_node_size)));
 
-  unsigned int n_tiles = int(floor((light.position.x + light.radius) / this->minimum_leaf_node_size)) - lower_bottom_left.x + 1;
+  unsigned int n_tiles = int(floor((light.position.x + light.radius - this->origin_lattice.x) / this->minimum_leaf_node_size)) - lower_bottom_left.x + 1;
 
   // Construct Lattice with FullLights
-  slt::Lattice* lattice = new slt::Lattice(lower_bottom_left,
+  slt::Lattice* lattice = new slt::Lattice(glm::vec3(this->origin_lattice),
+                                           lower_bottom_left,
                                            n_tiles,
                                            this->minimum_leaf_node_size,
                                            *full_light);
@@ -80,7 +83,7 @@ slt::Lattice* SLTBuilder::lightToLattice(
   slt::FillElement next_element;
   int element_index;
 
-  glm::vec3 orgin_in_world = glm::vec3(lattice->getOriginInWorld() / lattice->getOriginInWorld().w);
+  glm::vec3 origin_in_world = glm::vec3(lattice->getOriginInWorld() / lattice->getOriginInWorld().w);
   while (!to_check.empty()) {
     // Get next element
     next_element = to_check.front();
@@ -94,7 +97,7 @@ slt::Lattice* SLTBuilder::lightToLattice(
       checked[element_index] = true;
 
 
-      glm::vec4 node_origin = glm::vec4(((glm::vec3(next_element.pos) * minimum_leaf_node_size) + orgin_in_world), 1.0);
+      glm::vec4 node_origin = glm::vec4(((glm::vec3(next_element.pos) * minimum_leaf_node_size) + origin_in_world), 1.0);
       if (!this->lightWithinNode(light, 
                                  node_origin, 
                                  this->minimum_leaf_node_size)) {

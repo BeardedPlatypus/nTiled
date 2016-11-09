@@ -133,6 +133,14 @@ void SLTBuilder::updateCornersLattice(const slt::Lattice& current_lattice,
   }
 }
 
+//FIXME: DIRTY FIX
+unsigned int normalise(bool x) {
+  if (x > 0) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
 
 void SLTBuilder::updateEdgesLattice(const slt::Lattice& current_lattice,
                                     const slt::Offsets& offsets,
@@ -144,7 +152,10 @@ void SLTBuilder::updateEdgesLattice(const slt::Lattice& current_lattice,
 
   glm::uvec3 next_node_position;
   glm::uvec3 offset;
+  glm::uvec2 offset_dimension;
   glm::uvec3 direction;
+
+  glm::uvec3 sub_node_offset;
 
   glm::uvec3 sub_node;
 
@@ -152,19 +163,21 @@ void SLTBuilder::updateEdgesLattice(const slt::Lattice& current_lattice,
     offset = glm::uvec3(e.offset_position) * last_next;
     direction = e.direction;
 
+    offset_dimension = glm::uvec2(normalise(e.offset_dimension.x), normalise(e.offset_dimension.y));
+
+    sub_node_offset = glm::uvec3(e.offset_position) * last_current;
+
     // sub nodes always exist at same same place, thus can be calculated per edge
     unsigned int i_edge_node2 = 7 - 4 * e.offset_position.z 
                                   - 2 * e.offset_position.y 
                                   - e.offset_position.x;
     unsigned int i_edge_node1 = i_edge_node2 - 4 * direction.z - 2 * direction.y - direction.x;
 
-    for (unsigned int i = e.offset_dimension.x; 
-         i < next_lattice->getNNodes() - e.offset_dimension.y; 
-         i++) {
+    for (unsigned int i = offset_dimension.x; i < (next_lattice->getNNodes() - offset_dimension.y); i++) {
       next_node_position = offset + direction * i;
 
-      sub_node = glm::uvec3((glm::ivec3(next_node_position) * 2) -
-                            (glm::ivec3(direction) * int(e.offset_dimension.x)));
+      sub_node = glm::uvec3(glm::ivec3(sub_node_offset + direction * (2 * i)) - 
+                            (glm::ivec3(direction) * int(offset_dimension.x)));
       
       const slt::LatticeNode& edge_node1 = current_lattice.getLatticeNode(sub_node);
       const slt::LatticeNode& edge_node2 = current_lattice.getLatticeNode(sub_node + direction);
@@ -210,8 +223,14 @@ void SLTBuilder::updateSidesLattice(const slt::Lattice& current_lattice,
 
   glm::uvec3 next_node_position;
   glm::uvec3 offset;
+
+  glm::uvec3 sub_node_offset;
+
   glm::uvec3 d_i;
   glm::uvec3 d_j;
+
+  glm::uvec2 offset_dimension_i;
+  glm::uvec2 offset_dimension_j;
 
   glm::uvec3 sub_node00;
   glm::uvec3 sub_node01;
@@ -220,8 +239,13 @@ void SLTBuilder::updateSidesLattice(const slt::Lattice& current_lattice,
 
   for (const auto& s : offsets.sides) {
     offset = glm::uvec3(s.offset_position) * last_next;
+    sub_node_offset = glm::uvec3(s.offset_position) * last_current;
+
     d_i = s.direction_i;
     d_j = s.direction_j;
+
+    offset_dimension_i = glm::uvec2(normalise(s.offset_i.x), normalise(s.offset_i.y));
+    offset_dimension_j = glm::uvec2(normalise(s.offset_j.x), normalise(s.offset_j.y));
 
     // sub nodes always exist at same same place, thus can be calculated per side
     // we assume that position 11 equals node i+1 j+1 etc.
@@ -231,13 +255,14 @@ void SLTBuilder::updateSidesLattice(const slt::Lattice& current_lattice,
     unsigned i_node01 = i_node11 - 4 * d_i.z - 2 * d_i.y - d_i.x;
     unsigned i_node00 = i_node10 - 4 * d_i.z - 2 * d_i.y - d_i.x;
 
-    for (unsigned int j = s.offset_j.x; j < next_lattice->getNNodes() - s.offset_j.y; j++) {
-      for (unsigned int i = s.offset_i.x; i < next_lattice->getNNodes() - s.offset_i.y; i++) {
+    for (unsigned int j = offset_dimension_j.x; j < next_lattice->getNNodes() - offset_dimension_j.y; j++) {
+      for (unsigned int i = offset_dimension_i.x; i < next_lattice->getNNodes() - offset_dimension_i.y; i++) {
         next_node_position = offset + d_i * i + d_j * j;
+        
+        sub_node00 = glm::uvec3(glm::ivec3(sub_node_offset + d_i * (2 * i) + d_j * ( 2 * j)) - 
+                                (glm::ivec3(d_i) * int(offset_dimension_i.x)) -
+                                (glm::ivec3(d_j) * int(offset_dimension_j.x)));
 
-        sub_node00 = glm::uvec3((glm::ivec3(next_node_position) * 2) -
-                                (glm::ivec3(d_i) * int(s.offset_i.x)) -
-                                (glm::ivec3(d_j) * int(s.offset_j.x)));
         sub_node01 = sub_node00 + d_j;
         sub_node10 = sub_node00 + d_i;
         sub_node11 = sub_node01 + d_i;
@@ -289,10 +314,10 @@ slt::Lattice* SLTBuilder::combineLatticeStep(
   slt::Offsets offset = this->calculateOffsets(current_lattice);
 
   unsigned int next_nodes = unsigned int((current_lattice.getNNodes() + offset.x.x + offset.x.y) * 0.5);
-  slt::Lattice* p_next_lattice = new slt::Lattice((current_lattice.getOriginInLattice() -
-                                                   glm::ivec3(offset.x.x,
-                                                              offset.y.x,
-                                                              offset.z.x)),
+
+  glm::ivec3 origin = (current_lattice.getOriginInLattice() - glm::ivec3(offset.x.x, offset.y.x, offset.z.x)) / 2;
+  slt::Lattice* p_next_lattice = new slt::Lattice(current_lattice.getOctreeOrigin (),
+                                                  origin,
                                                   next_nodes,
                                                   current_lattice.getNodeSize() * 2);
 
