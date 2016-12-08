@@ -5,6 +5,12 @@
 #pragma once
 
 // ----------------------------------------------------------------------------
+//  Libraries
+// ----------------------------------------------------------------------------
+#include <glad\glad.h>
+
+
+// ----------------------------------------------------------------------------
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "world\PointLight.h"
@@ -29,10 +35,13 @@ public:
    * @param root_tile_size The size of the root tile
    */
   SingleLightTree(const world::PointLight& light,
-                  const glm::vec3 octree_origin,
-                  const glm::ivec3 position,
+                  const GLuint index,
+                  const glm::vec3 octree_offset,
+                  const glm::uvec3 origin_in_octree,
+                  const glm::uvec3 octree_middle,
                   const slt::Node& root,
-                  const float root_size,
+                  const unsigned int depth,
+                  const float minimum_node_size,
                   slt::FullLightNode const * const p_full_light,
                   slt::NoLightNode const * const p_no_light,
                   const std::vector<slt::PartialLightNode const *> partial_light_nodes);
@@ -59,32 +68,44 @@ public:
    * @return The position of this root in relation to a lattice
    *          of size this->getRootSize()
    */ 
-  glm::ivec3 getPosition() const { return glm::ivec3(this->position); }
+  inline glm::uvec3 getOriginInOctree() const { return this->origin_in_octree; }
 
-  glm::vec3 getOctreeOrigin() const { return glm::vec3(this->octree_origin); }
+  glm::vec3 getOriginInWorld() const {
+    return (this->getOctreeOffset() +
+            glm::vec3(this->getOriginInOctree()) * this->minimum_node_size ); 
+  }
+
+  glm::uvec3 getMiddleInOctree() const { return glm::uvec3(this->octree_middle); }
+
+  inline float getMinimumNodeSize() const { return this->minimum_node_size; }
+
+  inline glm::vec3 getOctreeOffset() const { return this->octree_offset; }
+
+  inline const unsigned int getDepth() const { return this->depth; }
 
   /*! @brief Get the size of the root node of this SingleLightTree
    *
    * @return The size of the root node of this SingleLightTree
    */
-  float getRootSize() const { return this->root_size; }
+  //float getRootSize() const { return this->root_size; }
+
+  inline GLuint getLightIndex() const { return this->index; }
 
   void exportToJson(const std::string& path);
 
 private:
   /*! @brief The PointLight of this SingleLightTree. */
   const world::PointLight& light;
+  const GLuint index;
 
-  /*! @brief The position of this SingleLightTree within the lattice 
-   *         of size of the root
-   */
-  const glm::ivec3 position;
+  const glm::uvec3 octree_middle;
 
-  // FIXME
-  const glm::vec3 octree_origin;
+  const glm::uvec3 origin_in_octree;
+  const glm::vec3 octree_offset;
+  const float minimum_node_size;
 
-  /*! @brief The size of the root node of this SingleLightTree */
-  float root_size;
+  /*! @brief The depth of this lattice. */
+  const unsigned int depth;
 
   /*! @brief The root SLTNode of this SingleLightTree */
   const slt::Node& root;

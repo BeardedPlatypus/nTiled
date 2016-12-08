@@ -48,9 +48,10 @@ public:
    *
    */
   Lattice(const glm::vec3 octree_origin,
-          const glm::ivec3 origin_in_lattice,
+          const glm::uvec3 origin_in_lattice,
           const unsigned int n_nodes,
-          const float node_size);
+          const int depth,
+          const float minimum_node_size);
 
   /*! @brief Construct a new slt::Lattice with the given parameters containing 
    *         a vector of size n_nodes^3 initialised with p_node.
@@ -64,25 +65,28 @@ public:
    *               will be filled
    */
   Lattice(const glm::vec3 octree_origin,
-          const glm::ivec3 origin_in_lattice,
+          const glm::uvec3 origin_lattice_coordinates,
           const unsigned int n_nodes,
-          const float node_size,
+          const int depth,
+          const float minimum_node_size,
           LatticeNode* p_node);
 
   /*! @brief Construct a new slt::Lattice initialised with NoLight nodes
    */
   Lattice(const glm::vec3 octree_origin,
-          const glm::ivec3 origin_in_lattice,
+          const glm::uvec3 origin_in_lattice,
           const unsigned int n_nodes,
-          const float node_size,
+          const int depth,
+          const float minimum_node_size,
           const NoLightNode& no_light);
 
   /*! @brief Construct a new Lattice initialised with FullLight nodes
    */
   Lattice(const glm::vec3 octree_origin,
-          const glm::ivec3 origin_in_lattice,
+          const glm::uvec3 origin_in_lattice,
           const unsigned int n_nodes,
-          const float node_size,
+          const int depth,
+          const float minimum_node_size,
           const FullLightNode& full_light);
 
   // --------------------------------------------------------------------------
@@ -153,25 +157,33 @@ public:
    *
    * @return The origin of this SLTLattice in respect to Lattice Coordinates
    */
-  glm::ivec3 getOriginInLattice() const { return this->origin_in_grid; }
+  glm::uvec3 getOriginInLattice() const { return this->origin_lattice_coordinates; }
+
+  glm::uvec3 getOriginInOctree() const { return this->getOriginInLattice() * (unsigned int(1) << (this->getDepth() - 1)); }
 
   /*! @brief Get the origin of this Lattice in respect ot World Coordinates
    *
    * @return The origin of this SLTLattice in respect to World Coordinates.
    */
   glm::vec4 getOriginInWorld() const {
-    return (glm::vec4(((glm::vec3(this->origin_in_grid) * node_size) + this->octree_origin), 1.0));
+    return (glm::vec4((this->getOctreeOffset() + 
+                       (glm::vec3(this->getOriginInOctree()) * this->minimum_node_size)),
+                      1.0));
   }
 
   /*! @brief Get the origin of the parent octree of this Lattice. 
    *
    * @return The origin of the parent octree of this Lattice.
    */
-  glm::vec3 getOctreeOrigin() const {
+  glm::vec3 getOctreeOffset() const {
     return this->octree_origin;
   }
 
-  const float getNodeSize() const { return this->node_size; }
+  inline const float getNodeSize() const { return this->minimum_node_size * (1 << (depth - 1)); }
+
+  inline const unsigned int getDepth() const { return this->depth; }
+
+  inline const float getMinimumNodeSize() const { return this->minimum_node_size; }
 
 private:
   /*! @brief Set the internal lattice node pointer to the provided pointer
@@ -188,17 +200,20 @@ private:
    */
   int getIndexNode(glm::uvec3 position) const;
 
+  /*! @brief The number of nodes in each dimension of this SLTLattice */
+  const unsigned int n_nodes;
+
   /*! @brief The position of this SLTLattice in Lattice Coordinates */
-  const glm::ivec3 origin_in_grid;
+  const glm::uvec3 origin_lattice_coordinates;
 
   /*! @brief The offset of the global octree in which this Lattice resides. */
   const glm::vec3 octree_origin;
 
-  /*! @brief The number of nodes in each dimension of this SLTLattice */
-  const unsigned int n_nodes;
+  /*! @brief The depth of this lattice. */
+  const unsigned int depth;
 
-  /*! @brief The size of a single node in a single dimension of this SLTLattice */
-  const float node_size;
+  /*! @brief The minimum node size of nodes. */
+  const float minimum_node_size;
 
   /*! @brief An array of SLTLatticeNode pointers, representing
    *         the internal lattice

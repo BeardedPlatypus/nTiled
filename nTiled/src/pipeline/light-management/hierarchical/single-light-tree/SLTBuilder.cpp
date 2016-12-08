@@ -15,16 +15,18 @@ namespace pipeline {
 namespace hierarchical {
 
 SLTBuilder::SLTBuilder(const float minimum_leaf_node_size,
-                       const glm::vec4 origin_lattice) : 
+                       const glm::vec4 origin_octree) : 
   minimum_leaf_node_size(minimum_leaf_node_size),
-  origin_lattice(origin_lattice / origin_lattice.w) { }
+  origin_octree(glm::vec3(origin_octree) / origin_octree.w) { }
 
 
-SingleLightTree* SLTBuilder::buildSingleLightTree(const world::PointLight& light) {
+SingleLightTree* SLTBuilder::buildSingleLightTree(const world::PointLight& light,
+                                                  GLuint index) {
   slt::NoLightNode* no_light = new slt::NoLightNode();
   slt::FullLightNode* full_light = new slt::FullLightNode();
 
   slt::Lattice* current_lattice = this->lightToLattice(light, no_light, full_light);
+
   slt::Lattice* next_lattice;
   
   std::vector<slt::PartialLightNode const *> partial_light_nodes =
@@ -39,11 +41,17 @@ SingleLightTree* SLTBuilder::buildSingleLightTree(const world::PointLight& light
     current_lattice = next_lattice;
   }
 
+  glm::uvec3 middle_slt = (current_lattice->getOriginInOctree() + 
+                           glm::uvec3(1 << (current_lattice->getDepth() - 2)));
+
   return new SingleLightTree(light,
-                             current_lattice->getOctreeOrigin(),
-                             current_lattice->getOriginInLattice(),
+                             index,
+                             current_lattice->getOctreeOffset(),
+                             current_lattice->getOriginInOctree(),
+                             middle_slt,
                              *current_lattice->getLatticeNode(glm::uvec3(0)).node,
-                             current_lattice->getNodeSize(),
+                             current_lattice->getDepth(),
+                             current_lattice->getMinimumNodeSize(),
                              full_light,
                              no_light,
                              partial_light_nodes);

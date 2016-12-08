@@ -15,9 +15,10 @@ namespace hierarchical {
 class SLTBuilder {
 public:
   SLTBuilder(const float minimum_leaf_node_size,
-             const glm::vec4 origin_lattice);
+             const glm::vec4 origin_octree);
 
-  SingleLightTree* buildSingleLightTree(const world::PointLight& light);
+  SingleLightTree* buildSingleLightTree(const world::PointLight& light,
+                                        GLuint index);
 
 private:
   // --------------------------------------------------------------------------
@@ -29,8 +30,8 @@ private:
                        float slt_node_edge);
 
   slt::Lattice* lightToLattice(const world::PointLight& light,
-                             slt::NoLightNode const * const no_light,
-                             slt::FullLightNode const * const full_light);
+                               slt::NoLightNode const * const no_light,
+                               slt::FullLightNode const * const full_light);
 
   // --------------------------------------------------------------------------
   // Phase 2
@@ -65,7 +66,7 @@ private:
 
   // --------------------------------------------------------------------------
   const float minimum_leaf_node_size;
-  const glm::vec4 origin_lattice;
+  const glm::vec3 origin_octree;
 };
 
 } // hierarchical

@@ -1,8 +1,8 @@
 /*! @file util.h
  *  @brief util.h contains utility math functions
  */
-
 #pragma once
+
 
 namespace nTiled {
 namespace math {

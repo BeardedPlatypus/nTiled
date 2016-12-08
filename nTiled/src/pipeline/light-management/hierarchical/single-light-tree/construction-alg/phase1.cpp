@@ -50,18 +50,20 @@ slt::Lattice* SLTBuilder::lightToLattice(
     const world::PointLight& light,
     slt::NoLightNode const * const no_light,
     slt::FullLightNode const * const full_light) {
+
   // Calculate size of the lattice
   // subtract the origin in lattice in order to have it relative to the origin of the lattice
-  glm::ivec3 lower_bottom_left = glm::ivec3(int(floor((light.position.x - light.radius - this->origin_lattice.x) / this->minimum_leaf_node_size)),
-                                            int(floor((light.position.y - light.radius - this->origin_lattice.y) / this->minimum_leaf_node_size)),
-                                            int(floor((light.position.z - light.radius - this->origin_lattice.z) / this->minimum_leaf_node_size)));
+  glm::uvec3 lower_bottom_left = glm::uvec3(int(floor((light.position.x - light.radius - this->origin_octree.x) / this->minimum_leaf_node_size)),
+                                            int(floor((light.position.y - light.radius - this->origin_octree.y) / this->minimum_leaf_node_size)),
+                                            int(floor((light.position.z - light.radius - this->origin_octree.z) / this->minimum_leaf_node_size)));
 
-  unsigned int n_tiles = int(floor((light.position.x + light.radius - this->origin_lattice.x) / this->minimum_leaf_node_size)) - lower_bottom_left.x + 1;
+  unsigned int n_tiles = int(floor((light.position.x + light.radius - this->origin_octree.x) / this->minimum_leaf_node_size)) - lower_bottom_left.x + 1;
 
   // Construct Lattice with FullLights
-  slt::Lattice* lattice = new slt::Lattice(glm::vec3(this->origin_lattice),
+  slt::Lattice* lattice = new slt::Lattice(this->origin_octree,
                                            lower_bottom_left,
                                            n_tiles,
+                                           1,
                                            this->minimum_leaf_node_size,
                                            *full_light);
 

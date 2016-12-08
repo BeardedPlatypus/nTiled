@@ -10,8 +10,15 @@
 namespace nTiled {
 namespace pipeline {
 namespace hierarchical {
-namespace slt {
 
+class SingleLightTree;
+
+namespace lo {
+class Node;
+
+} // lo
+
+namespace slt {
 
 class Node {
 public:
@@ -20,7 +27,17 @@ public:
   // --------------------------------------------------------------------------
   virtual ~Node() = 0;
 
+  // --------------------------------------------------------------------------
+  //  Interaction methods
+  // --------------------------------------------------------------------------
+  virtual void addToOctreeNode(lo::Node* node, const SingleLightTree& slt) const = 0;
+
+  // --------------------------------------------------------------------------
+  //  Debug methods
+  // --------------------------------------------------------------------------
   virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const = 0;
+
+
 };
 
 
@@ -28,6 +45,8 @@ class FullLightNode : public Node {
 public:
   FullLightNode();
   ~FullLightNode() override;
+
+  virtual void addToOctreeNode(lo::Node* node, const SingleLightTree& slt) const override;
 
   virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const override;
 };
@@ -37,6 +56,8 @@ class NoLightNode : public Node {
 public:
   NoLightNode();
   ~NoLightNode() override;
+
+  virtual void addToOctreeNode(lo::Node* node, const SingleLightTree& slt) const override;
 
   virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const override;
 };
@@ -57,9 +78,10 @@ public:
   PartialLightNode(Node const * const * children);
   ~PartialLightNode() override;
 
+  virtual void addToOctreeNode(lo::Node* node, const SingleLightTree& slt) const override;
+
   virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const override;
 
-private:
   //                xyz
   const Node& child_000;
   const Node& child_100;

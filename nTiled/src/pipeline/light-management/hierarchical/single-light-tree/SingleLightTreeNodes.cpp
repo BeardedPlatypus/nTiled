@@ -1,5 +1,8 @@
 #include "pipeline\light-management\hierarchical\single-light-tree\SingleLightTreeNodes.h"
 
+#include "pipeline\light-management\hierarchical\light-octree\Leaf.h"
+#include "pipeline\light-management\hierarchical\light-octree\Branch.h"
+
 namespace nTiled {
 namespace pipeline {
 namespace hierarchical {
@@ -11,6 +14,10 @@ Node::~Node() {}
 // ----------------------------------------------------------------------------
 FullLightNode::FullLightNode() {}
 FullLightNode::~FullLightNode() {}
+
+void FullLightNode::addToOctreeNode(lo::Node* node, const SingleLightTree& slt) const {
+  node->addLight(slt.getLightIndex());
+}
 
 void FullLightNode::exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const {
   writer.StartObject();
@@ -29,6 +36,8 @@ void NoLightNode::exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& write
   writer.String("no");
   writer.EndObject();
 }
+
+void NoLightNode::addToOctreeNode(lo::Node* node, const SingleLightTree& slt) const { }
 
 // ----------------------------------------------------------------------------
 PartialLightNode::PartialLightNode(const Node& child_000,
@@ -61,6 +70,10 @@ PartialLightNode::PartialLightNode(Node const * const * children) :
                    *(children[5]),
                    *(children[6]),
                    *(children[7])) {
+}
+
+void PartialLightNode::addToOctreeNode(lo::Node* node, const SingleLightTree& slt) const {
+  node->addPartialNode(slt, *this);
 }
 
 void PartialLightNode::exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const {

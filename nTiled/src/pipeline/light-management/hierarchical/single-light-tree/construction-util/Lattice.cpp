@@ -9,47 +9,62 @@ namespace slt {
 // ----------------------------------------------------------------------------
 //  Constructors
 // ----------------------------------------------------------------------------
-Lattice::Lattice(
-  const glm::vec3 octree_origin,
-  const glm::ivec3 origin_in_grid,
+Lattice::Lattice(const glm::vec3 octree_origin,
+                 const glm::uvec3 origin_lattice_coordinates,
                  const unsigned int n_nodes,
-                 const float node_size) :
+                 const int depth,
+                 const float minimum_node_size) :
   octree_origin(octree_origin),
-  origin_in_grid(origin_in_grid),
+  origin_lattice_coordinates(origin_lattice_coordinates),
   n_nodes(n_nodes),
-  node_size(node_size),
+  depth(depth),
+  minimum_node_size(minimum_node_size),
   unique_nodes(std::vector<LatticeNode*>()),
   lattice_nodes(std::vector<LatticeNode*>(n_nodes * n_nodes * n_nodes)) { }
 
 
 Lattice::Lattice(const glm::vec3 octree_origin,
-                 const glm::ivec3 origin_in_grid,
+                 const glm::uvec3 origin_lattice_coordinates,
                  const unsigned int n_nodes,
-                 const float node_size,
+                 const int depth,
+                 const float minimum_node_size,
                  LatticeNode* p_node) :
   octree_origin(octree_origin),
-  origin_in_grid(origin_in_grid),
+  origin_lattice_coordinates(origin_lattice_coordinates),
   n_nodes(n_nodes),
-  node_size(node_size),
+  depth(depth),
+  minimum_node_size(minimum_node_size),
   unique_nodes(std::vector<LatticeNode*>({ p_node })),
   lattice_nodes(std::vector<LatticeNode*>((n_nodes * n_nodes * n_nodes), p_node)) { }
 
 
 
 Lattice::Lattice(const glm::vec3 octree_origin,
-                 const glm::ivec3 origin_in_grid,
+                 const glm::uvec3 origin_in_grid,
                  const unsigned int n_nodes,
-                 const float node_size,
+                 const int depth,
+                 const float minimum_node_size,
                  const NoLightNode& no_light) :
-  Lattice(octree_origin, origin_in_grid, n_nodes, node_size, new LatticeNode(&no_light)) { }
+  Lattice(octree_origin, 
+          origin_in_grid, 
+          n_nodes, 
+          depth, 
+          minimum_node_size, 
+          new LatticeNode(&no_light)) { }
 
 
 Lattice::Lattice(const glm::vec3 octree_origin,
-                 const glm::ivec3 origin_in_grid,
+                 const glm::uvec3 origin_in_grid,
                  const unsigned int n_nodes,
-                 const float node_size,
+                 const int depth,
+                 const float minimum_node_size,
                  const FullLightNode& full_light) :
-  Lattice(octree_origin, origin_in_grid, n_nodes, node_size, new LatticeNode(&full_light)) { }
+  Lattice(octree_origin, 
+          origin_in_grid, 
+          n_nodes, 
+          depth, 
+          minimum_node_size, 
+          new LatticeNode(&full_light)) { }
 
 
 // ----------------------------------------------------------------------------

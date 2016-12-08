@@ -135,7 +135,7 @@ void SLTBuilder::updateCornersLattice(const slt::Lattice& current_lattice,
 
 //FIXME: DIRTY FIX
 unsigned int normalise(bool x) {
-  if (x > 0) {
+  if (x) {
     return 1;
   } else {
     return 0;
@@ -315,11 +315,12 @@ slt::Lattice* SLTBuilder::combineLatticeStep(
 
   unsigned int next_nodes = unsigned int((current_lattice.getNNodes() + offset.x.x + offset.x.y) * 0.5);
 
-  glm::ivec3 origin = (current_lattice.getOriginInLattice() - glm::ivec3(offset.x.x, offset.y.x, offset.z.x)) / 2;
-  slt::Lattice* p_next_lattice = new slt::Lattice(current_lattice.getOctreeOrigin (),
+  glm::uvec3 origin = (current_lattice.getOriginInLattice() - glm::uvec3(offset.x.x, offset.y.x, offset.z.x)) / (unsigned int (2));
+  slt::Lattice* p_next_lattice = new slt::Lattice(current_lattice.getOctreeOffset(),
                                                   origin,
                                                   next_nodes,
-                                                  current_lattice.getNodeSize() * 2);
+                                                  current_lattice.getDepth() + 1,
+                                                  current_lattice.getMinimumNodeSize());
 
   // Update middle section
   this->updateCoreLattice(current_lattice, offset, p_next_lattice, partial_light_nodes);

@@ -12,18 +12,24 @@ namespace pipeline {
 namespace hierarchical {
 
 SingleLightTree::SingleLightTree(const world::PointLight& light,
-                                 const glm::vec3 octree_origin,
-                                 const glm::ivec3 position,
+                                 const GLuint index,
+                                 const glm::vec3 octree_offset,
+                                 const glm::uvec3 origin_in_octree,
+                                 const glm::uvec3 octree_middle,
                                  const slt::Node& root,
-                                 const float root_size,
+                                 const unsigned int depth,
+                                 const float minimum_node_size,
                                  slt::FullLightNode const * const p_full_light,
                                  slt::NoLightNode const * const p_no_light,
                                  const std::vector<slt::PartialLightNode const *> partial_light_nodes) :
     light(light),
-    octree_origin(octree_origin),
-    position(position),
+    index(index),
+    octree_offset(octree_offset),
+    origin_in_octree(origin_in_octree),
+    octree_middle(octree_middle),
     root(root),
-    root_size(root_size),
+    depth(depth),
+    minimum_node_size(minimum_node_size),
     p_full_light(p_full_light),
     p_no_light(p_no_light),
     partial_light_nodes(partial_light_nodes) { }
@@ -49,7 +55,7 @@ void SingleLightTree::exportToJson(const std::string& path) {
   this->getRoot().exportToJson(writer);
 
   // write octree origin offset
-  glm::vec3 octree_origin = this->getOctreeOrigin();
+  glm::vec3 octree_origin = this->getOctreeOffset();
   writer.Key("octree_origin");
   writer.StartObject();
     writer.Key("x");
@@ -60,8 +66,13 @@ void SingleLightTree::exportToJson(const std::string& path) {
     writer.Double(octree_origin.z);
   writer.EndObject();
 
-  // write position in lattice coordinates
-  glm::ivec3 position = this->getPosition();
+  // write depth of this SLT
+  unsigned int depth = this->getDepth();
+  writer.Key("depth");
+  writer.Uint(depth);
+
+  // write position in octree coordinates
+  glm::uvec3 position = this->getOriginInOctree();
 
   writer.Key("position");
   writer.StartObject();
@@ -75,7 +86,7 @@ void SingleLightTree::exportToJson(const std::string& path) {
 
   // write size
   writer.Key("size");
-  writer.Double(this->getRootSize());
+  writer.Double(this->getMinimumNodeSize());
 
   // write light
   const world::PointLight& light = this->getLight();
