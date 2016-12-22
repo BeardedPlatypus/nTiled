@@ -13,13 +13,12 @@
 //  Defines
 // ----------------------------------------------------------------------------
 //#define SCENE_PATH std::string("../example/example_scene.json")
-#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/demo/scenes/turntable/monkey/forward_clustered/scene.json")
-
+//#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/pipers-alley/validation-scenes/arch/scene.json")
+#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/ziggurat-city/scene-json/scene.json")
 // ----------------------------------------------------------------------------
 //  Main
 // ----------------------------------------------------------------------------
 int main(int argc, char** argv) {
-  /*
   if (argc > 2) {
     std::cerr << "Usage: " << argv[0] << "<path_to_scene_def.json" << std::endl;
     return -1;
@@ -36,7 +35,8 @@ int main(int argc, char** argv) {
   nTiled::Controller controller = nTiled::Controller(scene_def_path);
   controller.initialise();
   controller.render();
-  */
+
+  /*
   nTiled::world::PointLight light0 = nTiled::world::PointLight("light",
                                                                glm::vec4(1.0, 1.0, 1.0, 1.0),
                                                                glm::vec3(1.0, 1.0, 1.0),
@@ -71,5 +71,6 @@ int main(int argc, char** argv) {
   //slt->exportToJson(path);
 
   //delete slt;
+  */
   return 0;
 }

@@ -90,7 +90,7 @@ void Branch::addLight(GLuint light_index) {
 }
 
 
-int Branch::getIndexChild(glm::bvec3 key) {
+int Branch::getIndexChild(glm::bvec3 key) const {
   int index = 0;
 
   if (key.x) index += 1;
@@ -108,6 +108,55 @@ void Branch::updateChild(Node* child) {
 
 Node* Branch::getChild(int index) {
   return this->sub_nodes[index];
+}
+
+
+glm::bvec2 Branch::toHashNode() const {
+  return glm::bvec2(false, true);
+}
+
+void Branch::extractData(glm::uvec3 point,
+                         std::vector<std::pair<glm::uvec3, glm::bvec2>>& hash_nodes,
+                         std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
+                         std::vector<GLuint>& light_index_list,
+                         std::vector<std::pair<glm::uvec3, Node*>> next_nodes) const {
+  hash_nodes.push_back(std::pair<glm::uvec3, glm::bvec2>(point, this->toHashNode()));
+
+  glm::uvec3 next_depth_origin = glm::uvec3(2 * point.x, 2 * point.y, 2 * point.z);
+
+  Node* child;
+  bool val[2] = { false, true };
+  for (unsigned short x = 0; x < 2; x++) {
+    for (unsigned short y = 0; y < 2; y++) {
+      for (unsigned short z = 0; z < 2; z++) {
+        child = this->sub_nodes[this->getIndexChild(glm::bvec3(val[x], val[y], val[z]))];
+        next_nodes.push_back(
+          std::pair<glm::uvec3, Node*>(next_depth_origin + glm::uvec3(x, y, z),
+                                       child));
+      }
+    }
+  }
+}
+
+
+void Branch::getSubNodes(glm::uvec3 current_point, 
+                         std::vector<std::pair<glm::uvec3, Node*>>& node_list) {
+  glm::uvec3 next_depth_origin = glm::uvec3(2 * current_point.x, 
+                                            2 * current_point.y, 
+                                            2 * current_point.z);
+
+  Node* child;
+  bool val[2] = { false, true };
+  for (unsigned short x = 0; x < 2; x++) {
+    for (unsigned short y = 0; y < 2; y++) {
+      for (unsigned short z = 0; z < 2; z++) {
+        child = this->sub_nodes[this->getIndexChild(glm::bvec3(val[x], val[y], val[z]))];
+        node_list.push_back(
+          std::pair<glm::uvec3, Node*>(next_depth_origin + glm::uvec3(x, y, z),
+                                       child));
+      }
+    }
+  }
 }
 
 

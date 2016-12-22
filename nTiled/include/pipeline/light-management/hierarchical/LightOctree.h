@@ -29,6 +29,8 @@ public:
   const float getMinimumLeafNodeSize() const { return this->minimum_leaf_node_size; }
   const unsigned int getDepth() const { return this->octree_depth; }
 
+  std::vector<std::pair<glm::uvec3, lo::Node*>> getNodesAtDepth(unsigned int depth);
+
 private:
   /*! @brief Root lo::Node of this LightOctree. */
   lo::Root* p_root;

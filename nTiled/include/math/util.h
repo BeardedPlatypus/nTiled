@@ -43,6 +43,16 @@ inline unsigned int getNextPow2(unsigned int x) {
   return x;
 }
 
+inline unsigned int gcd(unsigned int a, unsigned int b) {
+  unsigned int t;
+  while (b != 0) {
+    t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
+}
+
 
 } // math
 } // nTiled

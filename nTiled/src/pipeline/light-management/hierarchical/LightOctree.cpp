@@ -25,6 +25,31 @@ void LightOctree::addSLT(const SingleLightTree& slt) {
 }
 
 
+std::vector<std::pair<glm::uvec3, lo::Node*>> LightOctree::getNodesAtDepth(unsigned int depth) {
+  if (depth < 1) {
+    return std::vector<std::pair<glm::uvec3, lo::Node*>>();
+  }
+
+  unsigned short current = 0;
+  std::vector<std::pair<glm::uvec3, lo::Node*>> nodes[2] = {
+    std::vector<std::pair<glm::uvec3, lo::Node*>>(),
+    std::vector<std::pair<glm::uvec3, lo::Node*>>() };
+
+  nodes[current].push_back(
+    std::pair<glm::uvec3, lo::Node*>(glm::uvec3(0, 0, 0), this->p_root));
+
+  for (int i = 1; i < depth; i++) {
+    for (const std::pair<glm::uvec3, lo::Node*> n : nodes[current]) {
+      n.second->getSubNodes(n.first, nodes[(current + 1) & 1]);
+    }
+    nodes[current].clear();
+    current = (current + 1) & 1;
+  }
+
+  return nodes[current];
+}
+
+
 } // hierarchical
 } // pipeline
 } // nTiled

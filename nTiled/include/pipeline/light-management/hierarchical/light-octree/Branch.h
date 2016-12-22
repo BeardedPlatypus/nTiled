@@ -49,6 +49,16 @@ public:
    */
   virtual void updateChild(Node* child) override;
 
+  virtual glm::bvec2 toHashNode() const;
+
+  virtual void extractData(glm::uvec3 point,
+                           std::vector<std::pair<glm::uvec3, glm::bvec2>>& hash_nodes,
+                           std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
+                           std::vector<GLuint>& light_index_list,
+                           std::vector<std::pair<glm::uvec3, Node*>> next_nodes) const;
+
+  virtual void getSubNodes(glm::uvec3 current_point, std::vector<std::pair<glm::uvec3, Node*>>& node_list);
+
   virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const override;
 protected:
   virtual void addSLTInternal(const SingleLightTree& slt, unsigned int depth, glm::uvec3 current_middle) override;
@@ -69,7 +79,7 @@ private:
    * 
    * @return The index to the child Node corresponding with the key
    */
-  int getIndexChild(glm::bvec3 key);
+  int getIndexChild(glm::bvec3 key) const;
 
   /*! @brief The sub nodes of this BranchNode. */
   Node* sub_nodes[8];
