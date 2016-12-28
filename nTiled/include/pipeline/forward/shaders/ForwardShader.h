@@ -49,6 +49,11 @@ public:
                 const state::View& view,
                 GLint p_output_buffer);
 
+
+  ForwardShader(ForwardShaderId shader_id,
+                const world::World& world,
+                const state::View& view,
+                GLint p_output_buffer);
   // --------------------------------------------------------------------
   //  Attribute Getters
   // --------------------------------------------------------------------

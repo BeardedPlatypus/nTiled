@@ -38,13 +38,18 @@ public:
 
   unsigned char getIndex() const { return this->index; }
 
-  virtual glm::bvec2 toHashNode() const = 0;
+  virtual glm::uvec2 toHashNode() const = 0;
 
   virtual void extractData(glm::uvec3 point,
-                           std::vector<std::pair<glm::uvec3, glm::bvec2>>& hash_nodes,
+                           std::vector<std::pair<glm::uvec3, glm::u8vec2>>& hash_nodes,
                            std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
                            std::vector<GLuint>& light_index_list,
                            std::vector<std::pair<glm::uvec3, Node*>> next_nodes) const = 0;
+
+  virtual void extractDataLocal(glm::uvec3 point,
+                                std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
+                                std::vector<GLuint>& light_index_list,
+                                std::vector<std::pair<glm::uvec3, Node*>>& next_nodes) = 0;
 
   virtual void getSubNodes(glm::uvec3 current_point, std::vector<std::pair<glm::uvec3, Node*>>& node_list) = 0;
 

@@ -37,6 +37,10 @@ std::stringstream readShader(const std::string& path);
  */
 std::stringstream readShaderWithLights(const std::string& path, int n_lights);
 
+std::stringstream readShaderWithLightsAndOctreeMaps(const std::string& path,
+                                                    unsigned int n_lights,
+                                                    unsigned int n_octree_maps);
+
 /*! @brief Compile the given shader with the given shadertype into video memory
  *
  * @param shader_type The GLenum specifying the type of shader to be compiled

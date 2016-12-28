@@ -50,10 +50,6 @@ layout (std140) uniform LightBlock {
 
 //  Light Management
 // -----------------------------------------------------------------------------
-layout (std430, binding = 1) buffer LightClusterBuffer {
-    uvec2 clusters[];
-};
-
 layout (std430, binding = 2) buffer LightIndexBuffer {
     uint light_indices[];
 };
@@ -69,8 +65,6 @@ uniform vec3 octree_origin;
 
 // (1 / node_size)
 uniform float node_size_base_den;
-
-uniform vec4 viewport;
 
 /*!
  * Compute lambert shading for the attenuated light.
@@ -133,9 +127,9 @@ void main() {
     GeometryParam param = GeometryParam(fragment_position,
                                         normalize(fragment_normal),
                                         vec3(1.0f));
+
     // determine contributing lights
     // Find leaf node hash.
-
     vec3 octree_position = ((fragment_position.xyz / fragment_position.z) - octree_origin);
     uvec3 octree_coord;
     float node_size_den = node_size_base_den;
@@ -144,24 +138,27 @@ void main() {
     bvec2 partial_node = bvec2(false, false);
     uint depth = 0;
 
-    while (!partial_node.x) {
-        // calculate p
+    uvec2 leaf_node = uvec2(0, 0);
+
+    // test whether the use of depth is allowed
+    for (uint depth = 0; i < OCTREE_DEPTH; depth++) {
+        // traverse octree
         octree_coord = floor(octree_position * node_size);
         node_size_den *= 2;
 
-        // calculate h(p) -> partial_node
-        partial_node = obtainNodeFromHash(octree_coord, node_offset_tables[depth], node_hash_tables[depth]);
-        depth++;
-    }
+        partial_node = obtainNodeFromHash(octree_coord, 
+                                          node_offset_tables[depth], 
+                                          node_hash_tables[depth]);
 
-    // obtain leaf node from hash function
-    uvec2 leaf_node;
-
-    if (partial_node.y) {
-        // The actual depth was overshot by one due to while loop
-        leaf_node = obtainLeafFromHash(octree_coord, leaf_offset_tables[depth - 1], leaf_offset_tables[depth - 1]; 
-    } else {
-        leaf_node = uvec2(0, 0)
+        // obtain results if leaf is reached
+        if (partial_node.x) {
+            if (partial_node.y) {
+                leaf_node = obtainLeafFromHash(octree_coord, 
+                                               leaf_offset_tables[depth], 
+                                               leaf_hash_tables[depth]); 
+            }
+            break;
+        }
     }
 
     uint offset = leaf_node.x;

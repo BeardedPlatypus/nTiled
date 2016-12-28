@@ -48,13 +48,18 @@ public:
 
   virtual void exportToJson(rapidjson::Writer<rapidjson::StringBuffer>& writer) const override;
 
-  virtual glm::bvec2 toHashNode() const { return glm::bvec2(false, false); }
+  virtual glm::uvec2 toHashNode() const { return glm::uvec2(0, 0); }
 
   virtual void extractData(glm::uvec3 point,
-                           std::vector<std::pair<glm::uvec3, glm::bvec2>>& hash_nodes,
+                           std::vector<std::pair<glm::uvec3, glm::u8vec2>>& hash_nodes,
                            std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
                            std::vector<GLuint>& light_index_list,
                            std::vector<std::pair<glm::uvec3, Node*>> next_nodes) const;
+
+  virtual void extractDataLocal(glm::uvec3 point,
+                                std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
+                                std::vector<GLuint>& light_index_list,
+                                std::vector<std::pair<glm::uvec3, Node*>>& next_nodes);
 
   virtual void getSubNodes(glm::uvec3 current_point, std::vector<std::pair<glm::uvec3, Node*>>& node_list);
 

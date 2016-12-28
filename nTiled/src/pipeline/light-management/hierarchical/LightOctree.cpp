@@ -38,7 +38,7 @@ std::vector<std::pair<glm::uvec3, lo::Node*>> LightOctree::getNodesAtDepth(unsig
   nodes[current].push_back(
     std::pair<glm::uvec3, lo::Node*>(glm::uvec3(0, 0, 0), this->p_root));
 
-  for (int i = 1; i < depth; i++) {
+  for (unsigned int i = 1; i < depth; i++) {
     for (const std::pair<glm::uvec3, lo::Node*> n : nodes[current]) {
       n.second->getSubNodes(n.first, nodes[(current + 1) & 1]);
     }

@@ -64,11 +64,19 @@ void Root::updateChild(Node* child) {
 
 
 void Root::extractData(glm::uvec3 point,
-                       std::vector<std::pair<glm::uvec3, glm::bvec2>>& hash_nodes,
+                       std::vector<std::pair<glm::uvec3, glm::u8vec2>>& hash_nodes,
                        std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
                        std::vector<GLuint>& light_index_list,
                        std::vector<std::pair<glm::uvec3, Node*>> next_nodes) const {
   this->p_root->extractData(point, hash_nodes, leaf_nodes, light_index_list, next_nodes);
+}
+
+
+void Root::extractDataLocal(glm::uvec3 point,
+                            std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
+                            std::vector<GLuint>& light_index_list,
+                            std::vector<std::pair<glm::uvec3, Node*>>& next_nodes) {
+  this->p_root->extractDataLocal(point, leaf_nodes, light_index_list, next_nodes);
 }
 
 void Root::getSubNodes(glm::uvec3 current_point, std::vector<std::pair<glm::uvec3, Node*>>& node_list) {

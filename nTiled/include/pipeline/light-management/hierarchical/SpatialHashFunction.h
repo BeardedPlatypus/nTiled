@@ -8,27 +8,30 @@ namespace nTiled {
 namespace pipeline {
 namespace hierarchical {
 
-template <class R>
-struct EntryElement {
-  EntryElement(glm::uvec3 point, glm::uvec3 hash_0, R data);
-
-  glm::uvec3 point;
-  glm::uvec3 hash_0;
-  R data;
-};
-
-
-template <class R>
-struct ConstructionElement {
-  ConstructionElement(glm::uvec3 hash_1);
-
-  glm::uvec3 hash_1;
-  std::vector<EntryElement> elements;
-};
 
 
 template <class R>
 class SpatialHashFunction {
+  struct EntryElement {
+    EntryElement(glm::uvec3 point, glm::uvec3 hash_0, R data);
+    
+    glm::uvec3 point;
+    glm::uvec3 hash_0;
+    R data;
+  };
+
+  struct ConstructionElement {
+    ConstructionElement();
+    ConstructionElement(glm::uvec3 hash_1);
+
+    glm::uvec3 hash_1;
+    std::vector<EntryElement> elements;
+  };
+
+  struct ConstructionElementCompare {
+    bool operator() (ConstructionElement i, ConstructionElement j) { return (i.elements.size() < j.elements.size() ); }
+  } compare_struct;
+
 public:
   // --------------------------------------------------------------------------
   //  Constructor | Destructor
@@ -62,12 +65,12 @@ private:
   
   std::vector<GLushort>retrieveCandidates(glm::uvec3 p,
                                           unsigned int dim,
-                                          const std::vector<<bool>& offset_def,
+                                          const std::vector<bool>& offset_def,
                                           const std::vector<GLushort>& offset_val);
 
   bool isValidCandidate(GLushort candidate,
                         unsigned int m,
-                        const std::vector<EntryElement<R>>& elements,
+                        const std::vector<EntryElement>& elements,
                         const std::vector<bool> hash_table_def);
 
   // --------------------------------------------------------------------------

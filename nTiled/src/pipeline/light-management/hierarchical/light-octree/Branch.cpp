@@ -111,31 +111,49 @@ Node* Branch::getChild(int index) {
 }
 
 
-glm::bvec2 Branch::toHashNode() const {
-  return glm::bvec2(false, true);
+glm::uvec2 Branch::toHashNode() const {
+  return glm::uvec2(0, 1);
 }
 
 void Branch::extractData(glm::uvec3 point,
-                         std::vector<std::pair<glm::uvec3, glm::bvec2>>& hash_nodes,
+                         std::vector<std::pair<glm::uvec3, glm::u8vec2>>& hash_nodes,
                          std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
                          std::vector<GLuint>& light_index_list,
                          std::vector<std::pair<glm::uvec3, Node*>> next_nodes) const {
-  hash_nodes.push_back(std::pair<glm::uvec3, glm::bvec2>(point, this->toHashNode()));
-
   glm::uvec3 next_depth_origin = glm::uvec3(2 * point.x, 2 * point.y, 2 * point.z);
 
   Node* child;
   bool val[2] = { false, true };
+
+  glm::u8vec2 hash_node = glm::u8vec2(0, 0);
+  glm::uvec2 hash_node_child;
+  unsigned short shift;
+
   for (unsigned short x = 0; x < 2; x++) {
     for (unsigned short y = 0; y < 2; y++) {
       for (unsigned short z = 0; z < 2; z++) {
         child = this->sub_nodes[this->getIndexChild(glm::bvec3(val[x], val[y], val[z]))];
-        next_nodes.push_back(
-          std::pair<glm::uvec3, Node*>(next_depth_origin + glm::uvec3(x, y, z),
-                                       child));
+        child->extractDataLocal(next_depth_origin + glm::uvec3(x, y, z),
+                                leaf_nodes,
+                                light_index_list,
+                                next_nodes);
+        hash_node_child = child->toHashNode();
+        shift = (1 << (x + 2 * y + 4 * z));
+        hash_node.x += hash_node_child.x * shift;
+        hash_node.y += hash_node_child.y * shift;
       }
     }
   }
+
+  hash_nodes.push_back(std::pair<glm::uvec3, glm::u8vec2>(point, hash_node));
+}
+
+
+void Branch::extractDataLocal(glm::uvec3 point,
+                              std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
+                              std::vector<GLuint>& light_index_list,
+                              std::vector<std::pair<glm::uvec3, Node*>>& next_nodes) {
+  next_nodes.push_back(std::pair<glm::uvec3, Node*>(point, this));
 }
 
 

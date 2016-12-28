@@ -49,13 +49,18 @@ public:
    */
   virtual void updateChild(Node* child) override;
 
-  virtual glm::bvec2 toHashNode() const;
+  virtual glm::uvec2 toHashNode() const;
 
   virtual void extractData(glm::uvec3 point,
-                           std::vector<std::pair<glm::uvec3, glm::bvec2>>& hash_nodes,
+                           std::vector<std::pair<glm::uvec3, glm::u8vec2>>& hash_nodes,
                            std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
                            std::vector<GLuint>& light_index_list,
                            std::vector<std::pair<glm::uvec3, Node*>> next_nodes) const;
+
+  virtual void extractDataLocal(glm::uvec3 point,
+                                std::vector<std::pair<glm::uvec3, glm::uvec2>>& leaf_nodes,
+                                std::vector<GLuint>& light_index_list,
+                                std::vector<std::pair<glm::uvec3, Node*>>& next_nodes);
 
   virtual void getSubNodes(glm::uvec3 current_point, std::vector<std::pair<glm::uvec3, Node*>>& node_list);
 

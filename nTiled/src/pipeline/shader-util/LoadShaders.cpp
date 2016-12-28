@@ -53,6 +53,41 @@ std::stringstream readShaderWithLights(const std::string& path,
   return buffer;
 }
 
+std::stringstream readShaderWithLightsAndOctreeMaps(const std::string& path,
+                                                    unsigned int n_lights,
+                                                    unsigned int n_octree_maps) {
+  // open shader
+  std::ifstream f;
+  f.open(path.c_str(), std::ios::in | std::ios::binary);
+
+  if (!f.is_open()) {
+    throw std::runtime_error(std::string("Can't open shader file: ") + path);
+  }
+
+  std::stringstream buffer;
+
+  std::string replaceLineLights = "#define NUM_LIGHTS ";
+  std::string replaceLineOctreeMaps = "#define OCTREE_DEPTH ";
+
+  for (std::string line; std::getline(f, line);) {
+    if (line.compare(0, 
+                     replaceLineLights.size(), 
+                     replaceLineLights) == 0) {
+      buffer << replaceLineLights << std::to_string(n_lights) << std::endl;
+    } else if (line.compare(0, 
+                            replaceLineOctreeMaps.size(), 
+                            replaceLineOctreeMaps) == 0) {
+      buffer << replaceLineOctreeMaps << std::to_string(n_octree_maps) << std::endl;
+    } else {
+      buffer << line << std::endl;
+    }
+  }
+
+  return buffer;
+
+}
+
+
 GLuint compileShader(GLenum shaderType, const std::string& shaderRaw) {
   GLuint shader = glCreateShader(shaderType);
   if (!shader) {
