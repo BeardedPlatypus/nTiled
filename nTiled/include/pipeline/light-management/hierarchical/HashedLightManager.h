@@ -36,7 +36,12 @@ public:
   void constructLightOctree();
   void loadToShader(GLuint shader);
 
-  unsigned int getOctreeDepth() const { return this->p_linkless_octree->getDepth(); }
+  unsigned int getLinklessOctreeLevels() const { return this->p_linkless_octree->getNLevels(); }
+
+  void exportToJson(const std::string& path_lights,
+                    const std::string& path_light_octree,
+                    const std::string& path_linkless_octree,
+                    const std::string& path_light_indices) const;
 
 private:
   LightOctree* p_light_octree;

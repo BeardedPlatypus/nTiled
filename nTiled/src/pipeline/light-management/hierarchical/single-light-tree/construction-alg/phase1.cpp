@@ -63,7 +63,7 @@ slt::Lattice* SLTBuilder::lightToLattice(
   slt::Lattice* lattice = new slt::Lattice(this->origin_octree,
                                            lower_bottom_left,
                                            n_tiles,
-                                           1,
+                                           0,
                                            this->minimum_leaf_node_size,
                                            *full_light);
 

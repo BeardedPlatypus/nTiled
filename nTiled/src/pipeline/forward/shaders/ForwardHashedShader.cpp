@@ -78,7 +78,7 @@ void ForwardHashedShader::loadShaders(const std::string& path_vert_shader,
   // -----------------------------------------------------------------
   std::stringstream frag_shader_buffer = readShaderWithLightsAndOctreeMaps(path_frag_shader,
                                                                            this->world.p_lights.size(),
-                                                                           this->p_light_manager->getOctreeDepth());
+                                                                           this->p_light_manager->getLinklessOctreeLevels());
 
   GLuint frag_shader = compileShader(GL_FRAGMENT_SHADER,
                                      frag_shader_buffer.str());

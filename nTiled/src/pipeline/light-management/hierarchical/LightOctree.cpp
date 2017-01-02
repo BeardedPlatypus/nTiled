@@ -26,7 +26,7 @@ void LightOctree::addSLT(const SingleLightTree& slt) {
 
 
 std::vector<std::pair<glm::uvec3, lo::Node*>> LightOctree::getNodesAtDepth(unsigned int depth) {
-  if (depth < 1) {
+  if (depth < 0) {
     return std::vector<std::pair<glm::uvec3, lo::Node*>>();
   }
 
@@ -38,7 +38,7 @@ std::vector<std::pair<glm::uvec3, lo::Node*>> LightOctree::getNodesAtDepth(unsig
   nodes[current].push_back(
     std::pair<glm::uvec3, lo::Node*>(glm::uvec3(0, 0, 0), this->p_root));
 
-  for (unsigned int i = 1; i < depth; i++) {
+  for (unsigned int i = 0; i < depth; i++) {
     for (const std::pair<glm::uvec3, lo::Node*> n : nodes[current]) {
       n.second->getSubNodes(n.first, nodes[(current + 1) & 1]);
     }

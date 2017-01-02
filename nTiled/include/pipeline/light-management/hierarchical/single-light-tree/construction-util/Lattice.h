@@ -159,7 +159,7 @@ public:
    */
   glm::uvec3 getOriginInLattice() const { return this->origin_lattice_coordinates; }
 
-  glm::uvec3 getOriginInOctree() const { return this->getOriginInLattice() * (unsigned int(1) << (this->getDepth() - 1)); }
+  glm::uvec3 getOriginInOctree() const { return this->getOriginInLattice() * (unsigned int(1) << (this->getDepth())); }
 
   /*! @brief Get the origin of this Lattice in respect ot World Coordinates
    *
@@ -179,7 +179,7 @@ public:
     return this->octree_origin;
   }
 
-  inline const float getNodeSize() const { return this->minimum_node_size * (1 << (depth - 1)); }
+  inline const float getNodeSize() const { return this->minimum_node_size * (1 << (depth)); }
 
   inline const unsigned int getDepth() const { return this->depth; }
 

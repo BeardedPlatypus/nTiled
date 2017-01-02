@@ -4,6 +4,10 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
+#include "pipeline\light-management\hierarchical\LightOctreeExporter.h"
+#include <rapidjson\writer.h>
+#include <rapidjson\stringbuffer.h>
+#include <fstream>
 
 namespace nTiled {
 namespace pipeline {
@@ -126,13 +130,49 @@ void HashedLightManager::constructLightOctree() {
 
     current = (current + 1) & 1;
   }
-  
-  this->p_linkless_octree = new LinklessOctree(p_leaf_hash_functions,
+
+  // check if the depth values are right
+  unsigned int n_levels = this->p_light_octree->getDepth() - this->starting_depth;
+  unsigned int initial_nodes_n = 1 << n_levels;
+
+  this->p_linkless_octree = new LinklessOctree(this->p_light_octree->getMinimumLeafNodeSize(),
+                                               initial_nodes_n,
+                                               this->p_light_octree->getOrigin(),
+                                               p_leaf_hash_functions,
                                                p_has_leaf_hash_functions,
                                                p_node_hash_functions);
 }
 
 
+void HashedLightManager::exportToJson(const std::string& path_lights,
+                                      const std::string& path_light_octree,
+                                      const std::string& path_linkless_octree,
+                                      const std::string& path_light_indices) const { 
+  // export lights to path_lights
+  exportLights(path_lights, this->world.p_lights);
+  // export light octree to path_light_octree
+  exportLightOctree(path_light_octree, *this->p_light_octree);
+  // export linkless light octree to path_linkless_octree
+  this->p_linkless_octree->exportToJson(path_linkless_octree);
+
+  // export light indices
+  rapidjson::StringBuffer s;
+  rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+  writer.StartObject(); 
+  writer.Key("light-indices");
+  writer.StartArray();
+  for (GLuint val : this->light_index_list) {
+    writer.Uint(val);
+  }
+  writer.EndArray();
+  writer.EndObject();
+
+  std::ofstream output_stream;
+  output_stream.open(path_light_indices);
+  output_stream << s.GetString();
+  output_stream.close();
+}
 
 
 HashedLightManagerBuilder::HashedLightManagerBuilder() { }
@@ -149,6 +189,7 @@ HashedLightManager* HashedLightManagerBuilder::constructNewHashedLightManager(
                                 r_increase_ratio, 
                                 max_attempts);
 }
+
 
 }
 }

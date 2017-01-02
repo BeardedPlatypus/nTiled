@@ -64,7 +64,7 @@ LightOctree* LightOctreeBuilder::buildLightOctree(const std::vector<world::Point
   size += float(0.2 * minimum_leaf_node_size);
 
   unsigned int k = math::getNextPow2(int(ceil(size / minimum_leaf_node_size)));
-  unsigned int octree_depth = (unsigned int)(log2(k)) + 1;
+  unsigned int octree_depth = (unsigned int)(log2(k));
 
   // Calculate Single Light Trees and construct single octree
   // --------------------------------------------------------------------------

@@ -29,7 +29,7 @@ class SpatialHashFunction {
   };
 
   struct ConstructionElementCompare {
-    bool operator() (ConstructionElement i, ConstructionElement j) { return (i.elements.size() < j.elements.size() ); }
+    bool operator() (ConstructionElement i, ConstructionElement j) { return (i.elements.size() > j.elements.size() ); }
   } compare_struct;
 
 public:

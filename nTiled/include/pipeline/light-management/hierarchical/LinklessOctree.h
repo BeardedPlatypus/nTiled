@@ -13,16 +13,31 @@ namespace hierarchical {
 
 class LinklessOctree {
 public:
-  LinklessOctree(std::vector<SpatialHashFunction<glm::uvec2>*>* leaf_hash_maps,
+  LinklessOctree(float minimum_node_size,
+                 unsigned int initial_n_nodes_dim,
+                 glm::vec4 octree_origin,
+                 std::vector<SpatialHashFunction<glm::uvec2>*>* leaf_hash_maps,
                  std::vector<bool>* has_leaf_hash_map,
                  std::vector<SpatialHashFunction<glm::u8vec2>*>* node_hash_maps);
   ~LinklessOctree();
 
   void loadToShader(GLuint shader);
 
-  unsigned int getDepth() const { return this->node_hash_maps->size(); }
+  unsigned int getNLevels() const { return this->node_hash_maps->size(); }
+
+  unsigned int getInitialNNodesDim() const { return this->initial_n_nodes_dim; }
+
+  float getInitialNodeSize() const { return this->minimum_node_size * this->getInitialNNodesDim(); }
+
+  glm::vec4 getOrigin() const { return this->octree_origin; }
+
+  virtual void exportToJson(const std::string& path) const;
 
 private:
+  float minimum_node_size;
+  unsigned int initial_n_nodes_dim;
+  glm::vec4 octree_origin;
+
   std::vector<SpatialHashFunction<glm::uvec2>*>* leaf_hash_maps;
   std::vector<bool>* has_leaf_hash_map;
 
