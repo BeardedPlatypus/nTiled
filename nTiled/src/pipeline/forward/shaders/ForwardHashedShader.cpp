@@ -21,8 +21,8 @@ ForwardHashedShader::ForwardHashedShader(ForwardShaderId shader_id,
                                          const world::World& world,
                                          const state::View& view,
                                          GLint p_output_buffer,
-                                         const hierarchical::HashedLightManagerBuilder& light_manager_builder,
-                                         const hierarchical::HashedConfig& config) :
+                                         const hashed::HashedLightManagerBuilder& light_manager_builder,
+                                         const hashed::HashedConfig& config) :
     ForwardShader(shader_id,
                   world,
                   view,

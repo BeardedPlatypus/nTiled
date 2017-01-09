@@ -4,12 +4,10 @@
 #include "main\Controller.h"
 #include <iostream>
 
-#include "pipeline\light-management\hierarchical\single-light-tree\SLTBuilder.h"
-#include "pipeline\light-management\hierarchical\LightOctreeBuilder.h"
-
-#include "pipeline\light-management\hierarchical\LightOctreeExporter.h"
-
-#include "pipeline\light-management\hierarchical\HashedLightManager.h"
+#include "pipeline\light-management\hashed\HashedLightManager.h"
+#include "pipeline\light-management\hashed\light-octree\LightOctreeBuilder.h"
+#include "pipeline\light-management\hashed\light-octree\LightOctreeExporter.h"
+#include "pipeline\light-management\hashed\light-octree\single-light-tree\SingleLightTreeBuilder.h"
 
 // ----------------------------------------------------------------------------
 //  Defines
@@ -43,41 +41,70 @@ int main(int argc, char** argv) {
   controller.render();
   */
 
-  //nTiled::pipeline::hierarchical::SLTBuilder builder =  nTiled::pipeline::hierarchical::SLTBuilder(0.4,
+  /*
+  nTiled::pipeline::hashed::SingleLightTreeBuilder builder = nTiled::pipeline::hashed::SingleLightTreeBuilder(1.0,
+                                                                                                              glm::vec4(-1.9, -0.8, -1.1, 1.0),
+                                                                                                              3); */
   //                                                                                               glm::vec4(-1.8, -1.8, -1.8, 1.0));
   //nTiled::pipeline::hierarchical::SingleLightTree* slt = builder.buildSingleLightTree(light, 0);
 
   nTiled::world::World world = nTiled::world::World();
+  world.constructPointLight("light.0",
+                            glm::vec4(2.05, 2.05, 2.05, 1.0),
+                            glm::vec3(1.0, 1.0, 1.0),
+                            2.0,
+                            true,
+                            std::map<std::string, nTiled::world::Object*>());
+  /*
   world.constructPointLight("light.0",
                             glm::vec4(-0.8, 0.3, 0.0, 1.0),
                             glm::vec3(1.0, 1.0, 1.0),
                             1.0,
                             true,
                             std::map<std::string, nTiled::world::Object*>());
+
   world.constructPointLight("light.1",
                             glm::vec4(0.4, 0.3, 0.69282, 1.0),
                             glm::vec3(1.0, 1.0, 1.0),
                             1.0,
                             true,
                             std::map<std::string, nTiled::world::Object*>());
+
   world.constructPointLight("light.2",
                             glm::vec4(0.4, 0.3, -0.69282, 1.0),
                             glm::vec3(1.0, 1.0, 1.0),
                             1.0,
                             true,
                             std::map<std::string, nTiled::world::Object*>());
+                            */
 
-  nTiled::pipeline::hierarchical::HashedLightManager light_manager =
-    nTiled::pipeline::hierarchical::HashedLightManager(world,
-                                                       0.25,
-                                                       2,
-                                                       1.5,
-                                                       5);
+  nTiled::pipeline::hashed::HashedLightManager light_manager =
+    nTiled::pipeline::hashed::HashedLightManager(world,
+                                                 0.5,
+                                                 2,
+                                                 1.5,
+                                                 5);
   light_manager.constructLightOctree();
 
  
   std::string path_octree = "C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/octree_test.json";
   std::string path_lights = "C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/lights_test.json";
+  //std::string path_slt = "C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/slt_test.json";
+
+  /*
+  slt->exportToJson(path_slt,
+                    3,
+                    glm::vec3(-1.9, -0.8, -1.1),
+                    2.0); */
+
+  /*
+  nTiled::pipeline::hashed::LightOctreeBuilder builder = nTiled::pipeline::hashed::LightOctreeBuilder();
+  nTiled::pipeline::hashed::LightOctree* octree = builder.buildLightOctree(world.p_lights, 0.5);
+
+  nTiled::pipeline::hashed::exportLightOctree(path_octree, *octree);
+  nTiled::pipeline::hashed::exportLights(path_lights, world.p_lights);
+  */
+
   std::string path_linkless = "C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/linkless_test.json";
   std::string path_indices = "C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/indices_test.json";
 

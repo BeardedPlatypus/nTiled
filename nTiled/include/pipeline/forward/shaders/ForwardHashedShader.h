@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ForwardShader.h"
-#include "pipeline\light-management\hierarchical\HashedLightManager.h"
+#include "pipeline\light-management\hashed\HashedLightManager.h"
 
 namespace nTiled {
 namespace pipeline {
@@ -14,8 +14,8 @@ public:
                       const world::World& world,
                       const state::View& view,
                       GLint p_output_buffer,
-                      const hierarchical::HashedLightManagerBuilder& light_manager_builder,
-                      const hierarchical::HashedConfig& config);
+                      const hashed::HashedLightManagerBuilder& light_manager_builder,
+                      const hashed::HashedConfig& config);
 
   virtual void render() override;
 
@@ -24,7 +24,7 @@ protected:
                            const std::string& path_frag_shader);
 
 private:
-  hierarchical::HashedLightManager* p_light_manager;
+  hashed::HashedLightManager* p_light_manager;
 
   // openGL variables
   GLuint light_index_buffer;
