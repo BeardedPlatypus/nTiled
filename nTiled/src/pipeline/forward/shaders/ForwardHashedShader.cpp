@@ -88,6 +88,9 @@ void ForwardHashedShader::loadShaders(const std::string& path_vert_shader,
 
 void ForwardHashedShader::render() {
   glUseProgram(this->shader);
+  // update location octree origin relative to camera
+  this->p_light_manager->updateOctreeOrigin(this->shader, this->view.camera.getLookAt());
+
   // render objects
   this->renderObjects();
   glUseProgram(0);

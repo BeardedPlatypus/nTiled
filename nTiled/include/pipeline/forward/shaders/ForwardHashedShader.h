@@ -2,6 +2,7 @@
 
 #include "ForwardShader.h"
 #include "pipeline\light-management\hashed\HashedLightManager.h"
+#include "pipeline\light-management\hashed\HashedConfig.h"
 
 namespace nTiled {
 namespace pipeline {

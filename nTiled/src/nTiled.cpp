@@ -12,17 +12,16 @@
 // ----------------------------------------------------------------------------
 //  Defines
 // ----------------------------------------------------------------------------
-//#define SCENE_PATH std::string("../example/example_scene.json")
+#define SCENE_PATH std::string("../example/example_scene_hashed2.json")
 //#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/pipers-alley/validation-scenes/arch/scene.json")
-#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/ziggurat-city/scene-json/scene.json")
+//#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/ziggurat-city/scene-json/scene.json")
 
-#define OUTPUT_PATH_BASE = std::string("C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/")
+//#define OUTPUT_PATH_BASE = std::string("C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/")
 
 // ----------------------------------------------------------------------------
 //  Main
 // ----------------------------------------------------------------------------
 int main(int argc, char** argv) {
-  /*
   if (argc > 2) {
     std::cerr << "Usage: " << argv[0] << "<path_to_scene_def.json" << std::endl;
     return -1;
@@ -39,7 +38,6 @@ int main(int argc, char** argv) {
   nTiled::Controller controller = nTiled::Controller(scene_def_path);
   controller.initialise();
   controller.render();
-  */
 
   /*
   nTiled::pipeline::hashed::SingleLightTreeBuilder builder = nTiled::pipeline::hashed::SingleLightTreeBuilder(1.0,
@@ -47,14 +45,16 @@ int main(int argc, char** argv) {
                                                                                                               3); */
   //                                                                                               glm::vec4(-1.8, -1.8, -1.8, 1.0));
   //nTiled::pipeline::hierarchical::SingleLightTree* slt = builder.buildSingleLightTree(light, 0);
-
-  nTiled::world::World world = nTiled::world::World();
+  
+  //nTiled::world::World world = nTiled::world::World();
+  /*
   world.constructPointLight("light.0",
                             glm::vec4(2.05, 2.05, 2.05, 1.0),
                             glm::vec3(1.0, 1.0, 1.0),
                             2.0,
                             true,
                             std::map<std::string, nTiled::world::Object*>());
+                            */
   /*
   world.constructPointLight("light.0",
                             glm::vec4(-0.8, 0.3, 0.0, 1.0),
@@ -76,14 +76,13 @@ int main(int argc, char** argv) {
                             1.0,
                             true,
                             std::map<std::string, nTiled::world::Object*>());
-                            */
 
   nTiled::pipeline::hashed::HashedLightManager light_manager =
     nTiled::pipeline::hashed::HashedLightManager(world,
-                                                 0.5,
+                                                 0.3,
+                                                 3,
                                                  2,
-                                                 1.5,
-                                                 5);
+                                                 10);
   light_manager.constructLightOctree();
 
  
@@ -104,7 +103,7 @@ int main(int argc, char** argv) {
   nTiled::pipeline::hashed::exportLightOctree(path_octree, *octree);
   nTiled::pipeline::hashed::exportLights(path_lights, world.p_lights);
   */
-
+  /*
   std::string path_linkless = "C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/linkless_test.json";
   std::string path_indices = "C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/indices_test.json";
 
@@ -112,5 +111,6 @@ int main(int argc, char** argv) {
                              path_octree,
                              path_linkless,
                              path_indices);
+                             */
   return 0;
 }

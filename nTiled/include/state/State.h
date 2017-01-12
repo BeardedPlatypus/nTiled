@@ -9,6 +9,9 @@
 // ----------------------------------------------------------------------------
 #include <string>
 
+// ----------------------------------------------------------------------------
+//  State headers
+// ----------------------------------------------------------------------------
 #include "state\StateView.h"
 #include "state\StateShading.h"
 #include "state\StateTexture.h"
@@ -19,6 +22,7 @@
 // ----------------------------------------------------------------------------
 #include "world\World.h"
 #include "world\light-constructor\LightConstructor.h"
+#include "pipeline\light-management\hashed\HashedConfig.h"
 
 namespace nTiled {
 namespace state {
@@ -69,7 +73,8 @@ public:
         unsigned int frame_start,
         unsigned int frame_end,
         bool exit_after_done,
-        unsigned int exit_frame);
+        unsigned int exit_frame,
+        pipeline::hashed::HashedConfig hashed_config);
 
   /*! @brief Construct a new State with a DeferredPipeline given the provided 
    *         parameters.
@@ -109,7 +114,8 @@ public:
         unsigned int frame_start,
         unsigned int frame_end,
         bool exit_after_done,
-        unsigned int exit_frame);
+        unsigned int exit_frame,
+        pipeline::hashed::HashedConfig hashed_config);
 
   /*! @brief virtual destructor */
   ~State();

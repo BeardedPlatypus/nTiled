@@ -21,6 +21,8 @@
 
 #include "pipeline\PipelineType.h"
 
+#include "pipeline\light-management\hashed\HashedConfig.h"
+
 
 namespace nTiled {
 namespace state {
@@ -41,6 +43,7 @@ struct Shading {
    */
   Shading(std::vector<pipeline::ForwardShaderId> forward_shader_ids,
           glm::uvec2 tile_size,
+          pipeline::hashed::HashedConfig config,
           bool is_debug);
 
   /*! @brief Construct a new Shading object with a DeferredShader pipeline
@@ -53,6 +56,7 @@ struct Shading {
    */
   Shading(pipeline::DeferredShaderId deferred_shader_id,
           glm::uvec2 tile_size,
+          pipeline::hashed::HashedConfig config,
           bool is_debug);
 
   // Shaders
@@ -76,6 +80,8 @@ struct Shading {
 
   /*! @brief The tile_size in pixels used in Tiled and Clustered shading. */
   const glm::uvec2 tile_size;
+
+  const pipeline::hashed::HashedConfig hashed_config;
 };
 
 } // state

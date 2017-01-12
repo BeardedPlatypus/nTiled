@@ -1,11 +1,12 @@
 #version 440
 
 #define NUM_LIGHTS 3
-#define OCTREE_DEPTH 1
+#define OCTREE_DEPTH 0
 
 // Fragment Input Buffers
 // -----------------------------------------------------------------------------
 in vec4 fragment_position;
+in vec4 fragment_octree_position;
 in vec3 fragment_normal;
 
 // Fragment Output Buffers
@@ -50,15 +51,15 @@ layout (std140) uniform LightBlock {
 
 //  Light Management
 // -----------------------------------------------------------------------------
-layout (std430, binding = 2) buffer LightIndexBuffer {
+layout (std430, binding = 0) buffer LightIndexBuffer {
     uint light_indices[];
 };
 
-uniform sampler3D node_offset_tables[OCTREE_DEPTH];
-uniform sampler3D node_hash_tables[OCTREE_DEPTH];
+uniform usampler3D node_offset_tables[OCTREE_DEPTH];
+uniform usampler3D node_hash_tables[OCTREE_DEPTH];
 
-uniform sampler3D leaf_offset_tables[OCTREE_DEPTH];
-uniform sampler3D leaf_hash_tables[OCTREE_DEPTH];
+uniform usampler3D leaf_offset_tables[OCTREE_DEPTH];
+uniform usampler3D leaf_hash_tables[OCTREE_DEPTH];
 
 // octree origin in camera coordinates
 uniform vec3 octree_origin;
@@ -107,14 +108,23 @@ vec3 computeLight(Light light,
 }
 
 
-bvec2 obtainNodeFromHash(uvec3 coord, sampler3D offset_table, sampler3D hash_table ) {
-    return texture(hash_table, coord + texture(offset_table, coord).xyz).xy
+vec3 calcTexturePosition(uvec3 coord, usampler3D sampler) {
+    // textures are cube in nature, thus each dimension is of the same size
+    float texel_size = 1.0 / float(textureSize(sampler, 0).x);
+    return coord * texel_size;
 }
 
-uvec2 obtainLeafFromHash(uvec3 coord, sampler3D offset_table, sampler3D hash_table) {
-    return texture(hash_table, coord + texture(offset_table, coord).xyz).xy
-}
 
+uvec2 obtainNodeFromSpatialHashFunction(uvec3 coord, 
+                                        usampler3D offset_table, 
+                                        usampler3D hash_table) {
+    uint offset = texture(offset_table, 
+                          calcTexturePosition(coord, offset_table)).x;
+    uvec2 node = texture(hash_table, 
+                         calcTexturePosition((coord + offset),
+                                             hash_table)).xy;
+    return node;
+}
 
 // -----------------------------------------------------------------------------
 // Main
@@ -131,40 +141,51 @@ void main() {
     // determine contributing lights
     // Find leaf node hash.
     vec3 octree_position = ((fragment_position.xyz / fragment_position.z) - octree_origin);
-    uvec3 octree_coord;
+
     float node_size_den = node_size_base_den;
+    uvec3 octree_coord_cur = uvec3(floor(octree_position * node_size_den));
+    uvec3 octree_coord_new;
 
-    // traverse octree with hashing
-    bvec2 partial_node = bvec2(false, false);
-    uint depth = 0;
-
+    uvec2 partial_node;
     uvec2 leaf_node = uvec2(0, 0);
 
+    uvec3 local_node_index;
+    uint node_index;
+
+    bool is_leaf;
+    bool is_non_empty;
+
     // test whether the use of depth is allowed
-    for (uint depth = 0; i < OCTREE_DEPTH; depth++) {
-        // traverse octree
-        octree_coord = floor(octree_position * node_size);
-        node_size_den *= 2;
+    for (uint depth = 0; depth < OCTREE_DEPTH; depth++) {
+        partial_node = obtainNodeFromSpatialHashFunction(octree_coord_cur, 
+                                                         node_offset_tables[depth], 
+                                                         node_hash_tables[depth]);
 
-        partial_node = obtainNodeFromHash(octree_coord, 
-                                          node_offset_tables[depth], 
-                                          node_hash_tables[depth]);
+        node_size_den *= 0.5;
+        octree_coord_new = uvec3(floor(octree_position * node_size_den));
 
+        local_node_index = octree_coord_new - (octree_coord_cur * 2);
+        node_index = local_node_index.x + local_node_index.y * 2 + local_node_index.z * 4;
+
+        is_leaf = bool((partial_node.x & ( 1 << node_index )) >> node_index);
+        is_non_empty = bool((partial_node.y & ( 1 << node_index )) >> node_index);
+       
         // obtain results if leaf is reached
-        if (partial_node.x) {
-            if (partial_node.y) {
-                leaf_node = obtainLeafFromHash(octree_coord, 
-                                               leaf_offset_tables[depth], 
-                                               leaf_hash_tables[depth]); 
+        if (is_leaf) {
+            if (is_non_empty) {
+                leaf_node = obtainNodeFromSpatialHashFunction(octree_coord_new, 
+                                                              leaf_offset_tables[depth], 
+                                                              leaf_hash_tables[depth]); 
             }
             break;
+        } else {
+            octree_coord_cur = octree_coord_new;
         }
     }
 
     uint offset = leaf_node.x;
     uint n_lights = leaf_node.y;
 
-    // compute the contribution of each light
     for (uint i = offset; i < offset + n_lights; i++) {
         light_acc += computeLight(lights[light_indices[i]], param);
     }

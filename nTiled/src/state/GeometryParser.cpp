@@ -87,12 +87,16 @@ void state::parseGeometry(const std::string& path,
       pipeline::ShaderKey(pipeline::ForwardShaderId::ForwardTexturedTiled) },
     { "forward_clustered",
       pipeline::ShaderKey(pipeline::ForwardShaderId::ForwardClustered) },
+    { "forward_hashed",
+      pipeline::ShaderKey(pipeline::ForwardShaderId::ForwardHashed) },
     { "deferred_attenuated",
       pipeline::ShaderKey(pipeline::DeferredShaderId::DeferredAttenuated) },
     { "deferred_tiled",
       pipeline::ShaderKey(pipeline::DeferredShaderId::DeferredTiled) },
     { "deferred_clustered",
       pipeline::ShaderKey(pipeline::DeferredShaderId::DeferredClustered) },
+    { "deferred_hashed",
+      pipeline::ShaderKey(pipeline::DeferredShaderId::DeferredHashed) },
   };
 
   // Object constructor catalog

@@ -36,7 +36,8 @@ State::State(camera::Camera camera,                  // view
              unsigned int frame_start,
              unsigned int frame_end,
              bool exit_after_done,
-             unsigned int exit_frame) :
+             unsigned int exit_frame,
+             pipeline::hashed::HashedConfig hashed_config) :
     view(View(camera,
               camera_control,
               viewport,
@@ -45,6 +46,7 @@ State::State(camera::Camera camera,                  // view
     texture_catalog(TextureCatalog(texture_file_map)),
     shading(Shading(forward_shader_ids, 
                     tile_size,
+                    hashed_config,
                     is_debug)),
     log(is_logging_data,
         log_output_path,
@@ -67,7 +69,8 @@ State::State(camera::Camera camera,                  // view
              unsigned int frame_start,
              unsigned int frame_end,
              bool exit_after_done,
-             unsigned int exit_frame) :
+             unsigned int exit_frame,
+             pipeline::hashed::HashedConfig hashed_config) :
     view(View(camera,
               camera_control,
               viewport,
@@ -76,6 +79,7 @@ State::State(camera::Camera camera,                  // view
     texture_catalog(TextureCatalog(texture_file_map)),
     shading(Shading(deferred_shader_id, 
                     tile_size,
+                    hashed_config,
                     is_debug)),
     log(is_logging_data,
         log_output_path,
@@ -121,6 +125,17 @@ State* constructStateFromJson(const std::string& path) {
     tile_size_x = tile_size_json["x"].GetUint();
     tile_size_y = tile_size_json["y"].GetUint();
   }
+
+  pipeline::hashed::HashedConfig hashed_config = pipeline::hashed::HashedConfig();
+  rapidjson::Value::ConstMemberIterator hashed_config_itr = config.FindMember("hashed_config");
+  if (hashed_config_itr != config.MemberEnd()) {
+    auto& hashed_config_json = hashed_config_itr->value;
+
+    hashed_config = pipeline::hashed::HashedConfig(hashed_config_json["node_size"].GetFloat(),
+                                                   hashed_config_json["starting_depth"].GetUint(),
+                                                   hashed_config_json["r_increase_ratio"].GetFloat(),
+                                                   hashed_config_json["max_attempts"].GetUint());
+  } 
 
   // is debug
   rapidjson::Value::ConstMemberIterator itr = config.FindMember("is_debug");
@@ -299,7 +314,8 @@ State* constructStateFromJson(const std::string& path) {
                      logged_start_frame,
                      logged_end_frame,
                      exit_after_done,
-                     exit_frame);
+                     exit_frame,
+                     hashed_config);
   } else {
     return new State(camera,
                      camera_control,
@@ -315,7 +331,8 @@ State* constructStateFromJson(const std::string& path) {
                      logged_start_frame,
                      logged_end_frame,
                      exit_after_done,
-                     exit_frame);
+                     exit_frame,
+                     hashed_config);
   }
 }
 

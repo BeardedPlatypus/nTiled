@@ -23,17 +23,6 @@ namespace nTiled {
 namespace pipeline {
 namespace hashed {
 
-HashedConfig::HashedConfig(float minimum_node_size,
-                           unsigned int starting_depth,
-                           float r_increase_ratio,
-                           unsigned int max_attempts) :
-  minimum_node_size(minimum_node_size),
-  starting_depth(starting_depth),
-  r_increase_ratio(r_increase_ratio),
-  max_attempts(max_attempts) {
-}
-
-
 HashedLightManager::HashedLightManager(const world::World& world,
                                        float minimum_node_size,
                                        unsigned int starting_depth,
@@ -64,16 +53,48 @@ void HashedLightManager::loadToShader(GLuint shader) {
   glUniform3fv(p_octree_origin, 1, glm::value_ptr(octree_origin));
 
   // lode node size base den
-  GLfloat node_size_base_den = 1.0f / this->minimum_node_size;
+  GLfloat node_size_base_den = 1.0f / ((1 << (this->p_light_octree->getDepth() - 1 - this->starting_depth)) * this->minimum_node_size);
 
   GLint p_node_size_base_den = glGetUniformLocation(shader,
                                                     "node_size_base_den");
   glUniform1f(p_node_size_base_den, node_size_base_den);
 
+  // Construct LightIndex buffer
+  // ---------------------------
+  GLuint ssbo_handles[1];
+
+  glGenBuffers(1, ssbo_handles);
+  this->light_index_buffer = ssbo_handles[0];
+
+  glBindBuffer(GL_SHADER_STORAGE_BUFFER, light_index_buffer);
+  glBufferData(GL_SHADER_STORAGE_BUFFER,
+               sizeof(GLuint) * this->light_index_list.size(),
+               this->light_index_list.data(),
+               GL_DYNAMIC_DRAW);
+
+  // Link LightIndex buffer
+  glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, light_index_buffer);
+
+  // remove link
+  glBindBuffer(GL_UNIFORM_BUFFER, 0);
+
+
   this->p_linkless_octree->loadToShader(shader);
 
 }
 
+
+void HashedLightManager::updateOctreeOrigin(GLuint shader, const glm::mat4& lookAt) {
+  GLint p_octree_origin = glGetUniformLocation(shader, "octree_origin");
+  glm::vec4 octree_origin = (this->p_light_octree->getOrigin());
+  //glm::vec4 octree_origin_camera = lookAt * octree_origin;
+  glm::vec3 octree_origin_3 = glm::vec3(octree_origin.x,
+                                        octree_origin.y,
+                                        octree_origin.z) / octree_origin.w;
+
+
+  glUniform3fv(p_octree_origin, 1, glm::value_ptr(octree_origin_3));
+}
 
 
 void HashedLightManager::constructLightOctree() {

@@ -16,19 +16,6 @@ namespace nTiled {
 namespace pipeline {
 namespace hashed {
 
-struct HashedConfig {
-  HashedConfig(float minimum_node_size,
-               unsigned int starting_depth,
-               float r_increase_ratio,
-               unsigned int max_attempts);
-
-  float minimum_node_size;
-  unsigned int starting_depth;
-  float r_increase_ratio;
-  unsigned int max_attempts;
-};
-
-
 class HashedLightManager {
 public:
   HashedLightManager(const world::World& world,
@@ -43,6 +30,7 @@ public:
 
   void constructLightOctree();
   void loadToShader(GLuint shader);
+  void updateOctreeOrigin(GLuint shader, const glm::mat4& lookAt_matrix);
 
   unsigned int getLinklessOctreeLevels() const { return this->p_linkless_octree->getNLevels(); }
 
@@ -56,6 +44,8 @@ private:
   LinklessOctree* p_linkless_octree;
 
   std::vector<GLuint> light_index_list;
+
+  GLuint light_index_buffer;
 
   const world::World& world;
   const float minimum_node_size;

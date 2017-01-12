@@ -9,6 +9,7 @@
 #include <rapidjson\stringbuffer.h>
 #include <fstream>
 
+#include <iostream>
 
 namespace nTiled {
 namespace pipeline {
@@ -118,16 +119,21 @@ LinklessOctree::~LinklessOctree() {
 }
 
 
-void loadSpatialTable(GLenum texture_index,
+template <class R>
+void loadSpatialTable(GLuint index,
                       GLuint p_texture,
                       GLint internal_format,
                       GLsizei dimension,
                       GLenum pixel_data_format,
                       GLenum pixel_data_type,
-                      const GLvoid * data,
+                      R* data,//const GLvoid * data,
                       GLuint shader,
                       std::string glsl_sampler_name) {
-  glActiveTexture(texture_index);
+
+  GLuint p_texture_data = glGetUniformLocation(shader, glsl_sampler_name.c_str());
+  glUniform1i(p_texture_data, index);
+
+  glActiveTexture(GL_TEXTURE0 + index);
   glBindTexture(GL_TEXTURE_3D, p_texture);
 
   glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -135,6 +141,14 @@ void loadSpatialTable(GLenum texture_index,
   glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+
+  /*
+  std::cout << glsl_sampler_name <<  ": data: ";
+  for (unsigned int i = 0; i < dimension * dimension * dimension * 2; i++) {
+    std::cout << data[i] << " | ";
+  }
+  std::cout << std::endl;
+  */
 
   glTexImage3D(GL_TEXTURE_3D,     // target
                0,                 // mipmap level
@@ -148,17 +162,34 @@ void loadSpatialTable(GLenum texture_index,
                pixel_data_type, // pixel data type
                data);
 
-  GLuint p_texture_data = glGetUniformLocation(shader, glsl_sampler_name.c_str());
-  glUniform1i(p_texture_data,
-              texture_index);
 }
 
+
+template void loadSpatialTable(GLuint,
+                               GLuint,
+                               GLint,
+                               GLsizei,
+                               GLenum,
+                               GLenum,
+                               GLushort*,//const GLvoid * data,
+                               GLuint,
+                               std::string);
+
+template void loadSpatialTable(GLuint,
+                               GLuint,
+                               GLint,
+                               GLsizei,
+                               GLenum,
+                               GLenum,
+                               GLuint*,//const GLvoid * data,
+                               GLuint,
+                               std::string);
 
 void LinklessOctree::loadToShader(GLuint shader) {
   unsigned int n_levels = this->getNLevels();
 
   // generate octree spatial hash functions
-  GLuint* ps_octree_node_tables = new GLuint[n_levels]; // bvec2
+  GLuint* ps_octree_node_tables = new GLuint[n_levels];
   GLuint* ps_octree_offset_tables = new GLuint[n_levels];
 
   glGenTextures(n_levels, ps_octree_node_tables);
@@ -171,12 +202,10 @@ void LinklessOctree::loadToShader(GLuint shader) {
   glGenTextures(n_levels, ps_data_node_tables);
   glGenTextures(n_levels, ps_data_offset_tables);
 
-  std::string sampler_name;
-
   // create octree textures per level
   for (unsigned int i = 0; i < n_levels; i++) {
     // load octree_node_tables[i]
-    loadSpatialTable(GL_TEXTURE0 + 4 * i + 0,
+    loadSpatialTable(0 + 4 * i,
                      ps_octree_node_tables[i],
                      GL_RG8UI,
                      this->node_hash_maps->at(i)->getM(),
@@ -185,9 +214,8 @@ void LinklessOctree::loadToShader(GLuint shader) {
                      this->octree_hash_tables[i],
                      shader,
                      "node_hash_tables[" + std::to_string(i) + "]");
-
     // load octree_offset_tables[i]
-    loadSpatialTable(GL_TEXTURE0 + 4 * i + 1,
+    loadSpatialTable(1 + 4 * i,
                      ps_octree_offset_tables[i],
                      GL_R8UI,
                      this->node_hash_maps->at(i)->getR(),
@@ -200,18 +228,18 @@ void LinklessOctree::loadToShader(GLuint shader) {
     // load data nodes
     if (this->has_leaf_hash_map->at(i)) {
       // load leaf_node_tables[i]
-      loadSpatialTable(GL_TEXTURE0 + 4 * i + 2,
+      loadSpatialTable(2 + 4 * i,
                        ps_data_node_tables[i],
                        GL_RG32UI,
                        this->leaf_hash_maps->at(i)->getM(),
-                       GL_RED_INTEGER,
+                       GL_RG_INTEGER,
                        GL_UNSIGNED_INT,
                        this->data_hash_tables[i],
                        shader,
                        "leaf_hash_tables[" + std::to_string(i) + "]");
 
       // load leaf_offset_tables[i]
-      loadSpatialTable(GL_TEXTURE0 + 4 * i + 3,
+      loadSpatialTable(3 + 4 * i,
                        ps_data_offset_tables[i],
                        GL_R8UI,
                        this->leaf_hash_maps->at(i)->getR(),

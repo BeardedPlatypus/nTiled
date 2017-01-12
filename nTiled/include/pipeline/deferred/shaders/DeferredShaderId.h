@@ -20,7 +20,11 @@ enum class DeferredShaderId {
 
   // Clustered Deferred Shaders
   // --------------------------------------------------------------------
-  DeferredClustered
+  DeferredClustered,
+
+  // Hashed Deferred Shaders
+  // --------------------------------------------------------------------
+  DeferredHashed,
 };
 
 } // pipeline

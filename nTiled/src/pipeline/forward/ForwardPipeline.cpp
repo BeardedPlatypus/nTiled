@@ -6,14 +6,16 @@
 #include "pipeline\forward\shaders\ForwardAttenuatedShader.h"
 #include "pipeline\forward\shaders\ForwardTiledShader.h"
 #include "pipeline\forward\shaders\ForwardClusteredShader.h"
+#include "pipeline\forward\shaders\ForwardHashedShader.h"
 
 // Path defines
-#define VERT_PATH_BASIC std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic.vert")
-#define FRAG_PATH_BASIC_ATTENUATED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_attenuated.frag")
-#define FRAG_PATH_BASIC_TILED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_tiled.frag")
-#define FRAG_PATH_BASIC_CLUSTERED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/forward/shaders-glsl/lambert_clustered.frag")
+#define VERT_PATH_BASIC std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-implementation/nTiled/src/pipeline/forward/shaders-glsl/lambert_basic.vert")
+#define VERT_PATH_HASHED std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-implementation/nTiled/src/pipeline/forward/shaders-glsl/lambert_hashed.vert")
 
-#define FRAG_PATH_BASIC_ATTENUATED_TEST std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_attenuated_test.frag")
+#define FRAG_PATH_BASIC_ATTENUATED std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-implementation/nTiled/src/pipeline/forward/shaders-glsl/lambert_basic_attenuated.frag")
+#define FRAG_PATH_BASIC_TILED std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-implementation/nTiled/src/pipeline/forward/shaders-glsl/lambert_basic_tiled.frag")
+#define FRAG_PATH_BASIC_CLUSTERED std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-implementation/nTiled/src/pipeline/forward/shaders-glsl/lambert_clustered.frag")
+#define FRAG_PATH_BASIC_HASHED std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-implementation/nTiled/src/pipeline/forward/shaders-glsl/lambert_hashed.frag")
 
 namespace nTiled {
 namespace pipeline {
@@ -75,6 +77,15 @@ void ForwardPipeline::constructShaderCatalog() {
                                             this->output_buffer,
                                             this->state.shading.tile_size,
                                             ClusteredLightManagerBuilder());
+    } else if (id == ForwardShaderId::ForwardHashed) {
+      p_shader = new ForwardHashedShader(id, 
+                                         VERT_PATH_HASHED,
+                                         FRAG_PATH_BASIC_HASHED,
+                                         *(this->state.p_world),
+                                         this->state.view,
+                                         this->output_buffer,
+                                         hashed::HashedLightManagerBuilder(),
+                                         this->state.shading.hashed_config);
     } else {
       throw std::runtime_error(std::string("Unsupported shader"));
     }
