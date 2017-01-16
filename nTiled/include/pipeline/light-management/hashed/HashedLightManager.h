@@ -48,10 +48,10 @@ private:
   GLuint light_index_buffer;
 
   const world::World& world;
-  const float minimum_node_size;
-  const unsigned int starting_depth;
-  const float r_increase_ratio;
-  const unsigned int max_attempts;
+  float minimum_node_size;
+  unsigned int starting_depth;
+  float r_increase_ratio;
+  unsigned int max_attempts;
 };
 
 

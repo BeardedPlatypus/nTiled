@@ -64,7 +64,7 @@ uniform usampler3D leaf_hash_tables[OCTREE_DEPTH];
 // octree origin in camera coordinates
 uniform vec3 octree_origin;
 
-// (1 / node_size)
+// (1.0 / node_size)
 uniform float node_size_base_den;
 
 /*!
@@ -111,7 +111,7 @@ vec3 computeLight(Light light,
 vec3 calcTexturePosition(uvec3 coord, usampler3D sampler) {
     // textures are cube in nature, thus each dimension is of the same size
     float texel_size = 1.0 / float(textureSize(sampler, 0).x);
-    return coord * texel_size;
+    return coord * texel_size + (0.5 * texel_size);
 }
 
 
@@ -140,7 +140,7 @@ void main() {
 
     // determine contributing lights
     // Find leaf node hash.
-    vec3 octree_position = ((fragment_position.xyz / fragment_position.z) - octree_origin);
+    vec3 octree_position = (fragment_octree_position.xyz / fragment_octree_position.w) - octree_origin;
 
     float node_size_den = node_size_base_den;
     uvec3 octree_coord_cur = uvec3(floor(octree_position * node_size_den));
@@ -154,6 +154,8 @@ void main() {
 
     bool is_leaf;
     bool is_non_empty;
+
+    uint val = 0;
 
     // test whether the use of depth is allowed
     for (uint depth = 0; depth < OCTREE_DEPTH; depth++) {
@@ -181,6 +183,7 @@ void main() {
         } else {
             octree_coord_cur = octree_coord_new;
         }
+        val = depth;
     }
 
     uint offset = leaf_node.x;
@@ -192,4 +195,8 @@ void main() {
 
     // output result
     fragment_colour = vec3((vec3(0.1f) + (light_acc * 0.9)));
+
+    if (!is_leaf) { // && !is_non_empty) {
+        fragment_colour = vec3(1.0f, 0.0f, 0.0f);
+    }
 }

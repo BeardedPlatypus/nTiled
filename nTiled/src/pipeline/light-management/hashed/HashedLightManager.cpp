@@ -9,6 +9,7 @@
 #include <rapidjson\stringbuffer.h>
 #include <fstream>
 
+#include <iostream>
 
 // ----------------------------------------------------------------------------
 //  nTiled Headers
@@ -53,7 +54,8 @@ void HashedLightManager::loadToShader(GLuint shader) {
   glUniform3fv(p_octree_origin, 1, glm::value_ptr(octree_origin));
 
   // lode node size base den
-  GLfloat node_size_base_den = 1.0f / ((1 << (this->p_light_octree->getDepth() - 1 - this->starting_depth)) * this->minimum_node_size);
+  GLfloat node_size_base = ((1 << (this->p_light_octree->getDepth() - 1 - this->starting_depth)) * this->minimum_node_size);
+  GLfloat node_size_base_den = 1.0f / node_size_base;
 
   GLint p_node_size_base_den = glGetUniformLocation(shader,
                                                     "node_size_base_den");
@@ -91,8 +93,6 @@ void HashedLightManager::updateOctreeOrigin(GLuint shader, const glm::mat4& look
   glm::vec3 octree_origin_3 = glm::vec3(octree_origin.x,
                                         octree_origin.y,
                                         octree_origin.z) / octree_origin.w;
-
-
   glUniform3fv(p_octree_origin, 1, glm::value_ptr(octree_origin_3));
 }
 
@@ -112,7 +112,7 @@ void HashedLightManager::constructLightOctree() {
     std::vector<std::pair<glm::uvec3, lo::Node*>>() };
 
   std::string path_initial_nodes = "C:/Users/Monthy/Documents/projects/thesis/hierarchical-shading/test/initial_nodes.json";
-  exportInitialLayers(path_initial_nodes, nodes[0]);
+  //exportInitialLayers(path_initial_nodes, nodes[0]);
 
   // Hash Node data single layer
   std::vector<std::pair<glm::uvec3, glm::u8vec2>> hash_nodes =
