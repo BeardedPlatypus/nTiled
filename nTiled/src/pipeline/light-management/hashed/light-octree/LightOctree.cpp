@@ -6,11 +6,13 @@ namespace hashed {
 
 LightOctree::LightOctree(glm::vec4 octree_origin,
                          float minimum_leaf_node_size,
-                         unsigned int octree_depth) :
+                         unsigned int octree_depth,
+                         float octree_size) :
   octree_origin(octree_origin),
   minimum_leaf_node_size(minimum_leaf_node_size),
   octree_depth(octree_depth),
-  p_root(new lo::Root()) {
+  p_root(new lo::Root()),
+  octree_size(octree_size) {
 }
 
 

@@ -4,6 +4,7 @@
 //  Libraries
 // ----------------------------------------------------------------------------
 #include <glad\glad.h>
+#include <random>
 
 // ----------------------------------------------------------------------------
 //  nTiled headers
@@ -52,6 +53,10 @@ private:
   unsigned int starting_depth;
   float r_increase_ratio;
   unsigned int max_attempts;
+
+  // util
+  std::mt19937 gen;
+  std::uniform_int_distribution<unsigned short> distribution;
 };
 
 

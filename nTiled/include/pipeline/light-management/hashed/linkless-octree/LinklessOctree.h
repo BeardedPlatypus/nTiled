@@ -57,11 +57,12 @@ private:
   std::vector<SpatialHashFunction<glm::u8vec2>*>* node_hash_maps;
 
   // openGL raw data
-  GLushort** octree_hash_tables;
-  GLushort** octree_offset_tables;
+  GLubyte** octree_hash_tables;
+  GLubyte** octree_offset_tables;
 
   GLuint** data_hash_tables;
-  GLushort** data_offset_tables;
+  GLubyte** data_offset_tables;
+
 };
 
 

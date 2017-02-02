@@ -19,7 +19,8 @@ public:
   // --------------------------------------------------------------------------
   LightOctree(glm::vec4 octree_origin,
               float minimum_leaf_node_size,
-              unsigned int octree_depth);
+              unsigned int octree_depth,
+              float octree_size);
   ~LightOctree();
 
   // --------------------------------------------------------------------------
@@ -56,6 +57,12 @@ public:
   */
   const unsigned int getDepth() const { return this->octree_depth; }
 
+  /*! @brief Get the size of this LightOctree
+   *
+   * @return the size of this octree
+   */
+  const float getOctreeSize() const { return this->octree_size; }
+
   /*! @brief Get all the nodes at layer_i of this LightOctree
   *
   * @param layer_i The layer of which the nodes are obtained
@@ -76,6 +83,9 @@ private:
 
   /*! @brief Depth of this LightOctree */
   const unsigned int octree_depth;
+
+  /*! @brief Size of this octree. */
+  const float octree_size;
 };
 
 }

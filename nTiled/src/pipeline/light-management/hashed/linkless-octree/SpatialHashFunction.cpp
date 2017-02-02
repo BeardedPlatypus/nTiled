@@ -1,12 +1,23 @@
 #include "pipeline\light-management\hashed\linkless-octree\SpatialHashFunction.h"
 
+// ---------------------------------------------------------------------------
+//  Libraries
+// ---------------------------------------------------------------------------
 #include <cmath>
 #include <algorithm>
 #include <stdlib.h> 
 #include <exception>
 
+
+// ---------------------------------------------------------------------------
+//  nTiled Headers 
+// ---------------------------------------------------------------------------
 #include "math\util.h"
 
+
+// ---------------------------------------------------------------------------
+//  Exception definitions
+// ---------------------------------------------------------------------------
 class OctreeException : public std::exception {
   virtual const char* what() const throw() {
     return "Octree has exceeded build attempts.";
@@ -23,9 +34,12 @@ namespace hashed {
 // ----------------------------------------------------------------------------
 template <class R>
 SpatialHashFunction<R>::SpatialHashFunction(
-  const std::vector<std::pair<glm::uvec3, R>>& entries,
-  unsigned int max_attempts,
-  float ratio) {
+    const std::vector<std::pair<glm::uvec3, R>>& entries,
+    unsigned int max_attempts,
+    float ratio,
+    std::mt19937& gen,
+    std::uniform_int_distribution<unsigned short>& distribution) {
+
   // build initial values
   // --------------------------------------------------------------------------
   unsigned int n = entries.size();
@@ -46,7 +60,7 @@ SpatialHashFunction<R>::SpatialHashFunction(
 
   while (!has_build && i < max_attempts) {
     while (!isAcceptableParameters(m_dim, r_dim)) r_dim += 2;
-    has_build = buildTables(m_dim, r_dim, entries);
+    has_build = buildTables(m_dim, r_dim, entries, gen, distribution);
 
     if (!has_build) {
       r_dim = unsigned int(ceil(ratio * r_dim));
@@ -95,9 +109,11 @@ SpatialHashFunction<R>::ConstructionElement::ConstructionElement(glm::uvec3 hash
 //  Function
 template <class R>
 bool SpatialHashFunction<R>::buildTables(
-  unsigned int m,
-  unsigned int r,
-  std::vector<std::pair<glm::uvec3, R>> entries) {
+    unsigned int m,
+    unsigned int r,
+    std::vector<std::pair<glm::uvec3, R>> entries,
+    std::mt19937& gen,
+    std::uniform_int_distribution<unsigned short>& distribution) {
   // --------------------------------------------------------------------------
   //  define common variables
   glm::uvec3 h_0;
@@ -105,16 +121,25 @@ bool SpatialHashFunction<R>::buildTables(
 
   // --------------------------------------------------------------------------
   //  construct datastructures
-  std::vector<bool> hash_table_def = std::vector<bool>(m * m * m, false);
-  this->p_hash_table = new std::vector<R>(m * m * m);
 
-  std::vector<bool> offset_table_def = std::vector<bool>(r * r * r, false);
-  this->p_offset_table = new std::vector<GLushort>(r * r * r, 0);
+  // hash table
+  // ----------
+  this->p_hash_table = new std::vector<R>(m * m * m);
+  std::vector<bool> hash_table_def = std::vector<bool>(m * m * m, 
+                                                       false);
+
+  // offset table
+  // ------------
+  this->p_offset_table = new std::vector<glm::u8vec3>(r * r * r, 
+                                                      glm::u8vec3(0));
+  std::vector<bool> offset_table_def = std::vector<bool>(r * r * r, 
+                                                         false);
 
   std::vector<ConstructionElement> offset_table_raw =
     std::vector<ConstructionElement>(r * r * r);
 
-  // construct offset_table entries
+  // construct offset_table construction entries
+  // -------------------------------------------
   for (unsigned int x = 0; x < r; x++) {
     for (unsigned int y = 0; y < r; y++) {
       for (unsigned int z = 0; z < r; z++) {
@@ -137,19 +162,24 @@ bool SpatialHashFunction<R>::buildTables(
       EntryElement(e.first, h_0, e.second));
   }
 
+  // sort offset table based on number of collisions
   std::sort(offset_table_raw.begin(),
             offset_table_raw.end(),
             compare_struct);
 
   // --------------------------------------------------------------------------
   //  build tables
-  GLushort offset;
+  glm::u8vec3 offset;
   bool found_candidate;
 
   unsigned int hash_index;
   unsigned int offset_index;
 
+  std::vector<glm::u8vec3> candidate_vector = std::vector<glm::u8vec3>();
+
   for (const ConstructionElement& e : offset_table_raw) {
+    // stop construction if no elements map to this offset table entries
+    // all further elements will also consists of zero elements due to sorting
     if (e.elements.size() == 0) {
       break;
     }
@@ -157,10 +187,14 @@ bool SpatialHashFunction<R>::buildTables(
     found_candidate = false;
 
     // find offset from neighbouring offsets
-    for (GLushort candidate : this->retrieveCandidates(e.hash_1,
-                                                       r,
-                                                       offset_table_def,
-                                                       *p_offset_table)) {
+    candidate_vector.clear();
+    this->retrieveCandidates(e.hash_1,
+                             r,
+                             offset_table_def,
+                             *p_offset_table,
+                             candidate_vector);
+                                  
+    for (glm::u8vec3 candidate : candidate_vector) {
       if (isValidCandidate(candidate, m, e.elements, hash_table_def)) {
         offset = candidate;
         found_candidate = true;
@@ -170,14 +204,12 @@ bool SpatialHashFunction<R>::buildTables(
 
     // find offset by random iteration
     if (!found_candidate) {
-      // TODO check if better way
-      std::vector<GLushort> indices = std::vector<GLushort>();
-      for (GLushort i = 0; i < 256; i++) indices.push_back(i);
-      std::random_shuffle(indices.begin(), indices.end());
-
-      for (unsigned int i = 0; i < 256; i++) {
-        if (isValidCandidate(indices[i], m, e.elements, hash_table_def)) {
-          offset = indices[i];
+      for (unsigned int i = 0; i < 256 * 256 * 256; i++) {
+        glm::u8vec3 candidate = glm::u8vec3(distribution(gen),
+                                            distribution(gen),
+                                            distribution(gen));
+        if (isValidCandidate(candidate, m, e.elements, hash_table_def)) {
+          offset = candidate;
           found_candidate = true;
           break;
         }
@@ -196,9 +228,9 @@ bool SpatialHashFunction<R>::buildTables(
       (*p_offset_table)[offset_index] = offset;
 
       for (const EntryElement& element : e.elements) {
-        hash_index = toIndex(glm::uvec3((element.hash_0.x + offset) % m,
-                                        (element.hash_0.y + offset) % m,
-                                        (element.hash_0.z + offset) % m), m);
+        hash_index = toIndex(glm::uvec3((element.hash_0.x + offset.x) % m,
+                                        (element.hash_0.y + offset.y) % m,
+                                        (element.hash_0.z + offset.z) % m), m);
 
         hash_table_def[hash_index] = true;
         (*p_hash_table)[hash_index] = element.data;
@@ -225,12 +257,11 @@ bool SpatialHashFunction<R>::isAcceptableParameters(unsigned int m,
 
 
 template <class R>
-std::vector<GLushort> SpatialHashFunction<R>::retrieveCandidates(glm::uvec3 p,
-                                                                 unsigned int dim,
-                                                                 const std::vector<bool>& offset_def,
-                                                                 const std::vector<GLushort>& offset_val) {
-  std::vector<GLushort> candidates = std::vector<GLushort>();
-
+void SpatialHashFunction<R>::retrieveCandidates(glm::uvec3 p,
+                                                unsigned int dim,
+                                                const std::vector<bool>& offset_def,
+                                                const std::vector<glm::u8vec3>& offset_val,
+                                                std::vector<glm::u8vec3>& candidate_vector) {
   unsigned int val[3] = { 0, 1, (dim - 1) };
   unsigned int index;
 
@@ -240,28 +271,27 @@ std::vector<GLushort> SpatialHashFunction<R>::retrieveCandidates(glm::uvec3 p,
         index = this->toIndex(glm::uvec3((p.x + val[x]) % dim,
                                          (p.y + val[y]) % dim,
                                          (p.z + val[z]) % dim), dim);
-        if (offset_def[index] && std::find(candidates.begin(),
-                                           candidates.end(),
-                                           offset_val[index]) == candidates.end()) {
-          candidates.push_back(offset_val[index]);
+        if (offset_def[index] && 
+            std::find(candidate_vector.begin(),
+                      candidate_vector.end(),
+                      offset_val[index]) == candidate_vector.end()) {
+          candidate_vector.push_back(offset_val[index]);
         }
       }
     }
   }
-
-  return candidates;
 }
 
 
 template <class R>
-bool SpatialHashFunction<R>::isValidCandidate(GLushort candidate,
+bool SpatialHashFunction<R>::isValidCandidate(glm::u8vec3 candidate,
                                               unsigned int m,
                                               const std::vector<EntryElement>& elements,
                                               const std::vector<bool>& hash_table_def) {
   for (EntryElement e : elements) {
-    unsigned index = toIndex(glm::uvec3((e.hash_0.x + candidate) % m,
-                                        (e.hash_0.y + candidate) % m,
-                                        (e.hash_0.z + candidate) % m), m);
+    unsigned index = toIndex(glm::uvec3((e.hash_0.x + candidate.x) % m,
+                                        (e.hash_0.y + candidate.y) % m,
+                                        (e.hash_0.z + candidate.z) % m), m);
     if (hash_table_def[index])
       return false;
   }

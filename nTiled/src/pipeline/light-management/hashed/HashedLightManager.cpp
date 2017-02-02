@@ -29,11 +29,14 @@ HashedLightManager::HashedLightManager(const world::World& world,
                                        unsigned int starting_depth,
                                        float r_increase_ratio,
                                        unsigned int max_attempts) :
-  world(world),
-  minimum_node_size(minimum_node_size),
-  starting_depth(starting_depth),
-  r_increase_ratio(r_increase_ratio),
-  max_attempts(max_attempts) {
+    world(world),
+    minimum_node_size(minimum_node_size),
+    starting_depth(starting_depth),
+    r_increase_ratio(r_increase_ratio),
+    max_attempts(max_attempts) {
+  //std::random_device rd;
+  this->gen = std::mt19937(22);
+  this->distribution = std::uniform_int_distribution<unsigned short>(0, 255);
 }
 
 
@@ -60,6 +63,10 @@ void HashedLightManager::loadToShader(GLuint shader) {
   GLint p_node_size_base_den = glGetUniformLocation(shader,
                                                     "node_size_base_den");
   glUniform1f(p_node_size_base_den, node_size_base_den);
+
+  GLint p_octree_size = glGetUniformLocation(shader,
+                                             "octree_size");
+  glUniform1f(p_octree_size, this->p_light_octree->getOctreeSize());
 
   // Construct LightIndex buffer
   // ---------------------------
@@ -148,7 +155,9 @@ void HashedLightManager::constructLightOctree() {
     // construct spatial functions of this map
     p_node_hash_functions->push_back(new SpatialHashFunction<glm::u8vec2>(hash_nodes,
                                                                           this->max_attempts,
-                                                                          this->r_increase_ratio));
+                                                                          this->r_increase_ratio,
+                                                                          this->gen,
+                                                                          this->distribution));
 
     if (leaf_nodes.empty()) {
       p_has_leaf_hash_functions->push_back(false);
@@ -157,7 +166,9 @@ void HashedLightManager::constructLightOctree() {
       p_has_leaf_hash_functions->push_back(true);
       p_leaf_hash_functions->push_back(new SpatialHashFunction<glm::uvec2>(leaf_nodes,
                                                                            this->max_attempts,
-                                                                           this->r_increase_ratio));
+                                                                           this->r_increase_ratio,
+                                                                           this->gen,
+                                                                           this->distribution));
     }
     nodes[current].clear();
     hash_nodes.clear();

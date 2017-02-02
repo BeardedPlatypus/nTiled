@@ -66,6 +66,7 @@ uniform vec3 octree_origin;
 
 // (1.0 / node_size)
 uniform float node_size_base_den;
+uniform float octree_size;
 
 /*!
  * Compute lambert shading for the attenuated light.
@@ -111,15 +112,15 @@ vec3 computeLight(Light light,
 vec3 calcTexturePosition(uvec3 coord, usampler3D sampler) {
     // textures are cube in nature, thus each dimension is of the same size
     float texel_size = 1.0 / float(textureSize(sampler, 0).x);
-    return coord * texel_size + (0.5 * texel_size);
+    return coord * texel_size;
 }
 
 
 uvec2 obtainNodeFromSpatialHashFunction(uvec3 coord, 
                                         usampler3D offset_table, 
                                         usampler3D hash_table) {
-    uint offset = texture(offset_table, 
-                          calcTexturePosition(coord, offset_table)).x;
+    uvec3 offset = texture(offset_table, 
+                           calcTexturePosition(coord, offset_table)).xyz;
     uvec2 node = texture(hash_table, 
                          calcTexturePosition((coord + offset),
                                              hash_table)).xy;
@@ -196,7 +197,19 @@ void main() {
     // output result
     fragment_colour = vec3((vec3(0.1f) + (light_acc * 0.9)));
 
-    if (!is_leaf) { // && !is_non_empty) {
+    if (!is_leaf && !is_non_empty) {
         fragment_colour = vec3(1.0f, 0.0f, 0.0f);
     }
+
+    if (octree_position.x > octree_size || 
+        octree_position.y > octree_size || 
+        octree_position.z > octree_size ) {
+        fragment_colour = vec3(0.0, 1.0f, 0.0f);
+    }
+
+    /*
+    if (textureSize(leaf_offset_tables[0], 0).x == 5) {
+        fragment_colour = vec3(0.0, 1.0f, 1.0f);
+    }
+    */
 }

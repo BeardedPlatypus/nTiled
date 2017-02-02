@@ -36,12 +36,12 @@ LinklessOctree::LinklessOctree(
   unsigned int n_levels = this->getNLevels();
 
   // construct node data arrays
-  this->octree_hash_tables = new GLushort*[n_levels];
-  this->octree_offset_tables = new GLushort*[n_levels];
+  this->octree_hash_tables = new GLubyte*[n_levels];
+  this->octree_offset_tables = new GLubyte*[n_levels];
 
   // construct leaf data arrays
   this->data_hash_tables = new GLuint*[n_levels];
-  this->data_offset_tables = new GLushort*[n_levels];
+  this->data_offset_tables = new GLubyte*[n_levels];
 
   // Copy data into new arrays
   // --------------------------------------------------------------------------
@@ -55,7 +55,7 @@ LinklessOctree::LinklessOctree(
     // ------------------------------------------------------------------------
     data_index = 0;
     this->octree_hash_tables[i] =
-      new GLushort[this->node_hash_maps->at(i)->getHashTable().size() * 2];
+      new GLubyte[this->node_hash_maps->at(i)->getHashTable().size() * 2];
     for (glm::u8vec2 val : this->node_hash_maps->at(i)->getHashTable()) {
       this->octree_hash_tables[i][data_index++] = val.x;
       this->octree_hash_tables[i][data_index++] = val.y;
@@ -63,9 +63,12 @@ LinklessOctree::LinklessOctree(
 
     data_index = 0;
     this->octree_offset_tables[i] =
-      new GLushort[this->node_hash_maps->at(i)->getOffsetTable().size()];
-    for (GLushort val : this->node_hash_maps->at(i)->getOffsetTable()) {
-      this->octree_offset_tables[i][data_index++] = val;
+      new GLubyte[this->node_hash_maps->at(i)->getOffsetTable().size() * 3];
+
+    for (glm::u8vec3 val  : this->node_hash_maps->at(i)->getOffsetTable()) {
+      this->octree_offset_tables[i][data_index++] = val.x;
+      this->octree_offset_tables[i][data_index++] = val.y;
+      this->octree_offset_tables[i][data_index++] = val.z;
     }
 
     if (this->has_leaf_hash_map->at(i)) {
@@ -79,9 +82,11 @@ LinklessOctree::LinklessOctree(
 
       data_index = 0;
       this->data_offset_tables[i] =
-        new GLushort[this->leaf_hash_maps->at(i)->getOffsetTable().size()];
-      for (GLushort val : this->leaf_hash_maps->at(i)->getOffsetTable()) {
-        this->data_offset_tables[i][data_index++] = val;
+        new GLubyte[this->leaf_hash_maps->at(i)->getOffsetTable().size() * 3];
+      for (glm::u8vec3 val : this->leaf_hash_maps->at(i)->getOffsetTable()) {
+        this->data_offset_tables[i][data_index++] = val.x;
+        this->data_offset_tables[i][data_index++] = val.y;
+        this->data_offset_tables[i][data_index++] = val.z;
       }
     }
   }
@@ -142,48 +147,40 @@ void loadSpatialTable(GLuint index,
   glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
 
-  /*
-  std::cout << glsl_sampler_name <<  ": data: ";
-  for (unsigned int i = 0; i < dimension * dimension * dimension * 2; i++) {
-    std::cout << data[i] << " | ";
-  }
-  std::cout << std::endl;
-  */
-
   glTexImage3D(GL_TEXTURE_3D,     // target
                0,                 // mipmap level
-               internal_format,          // internal format: 2x8 bits unsigned integer, 2
-                                         // bits per node, 8 nodes packed per value
-               dimension,          // width
-               dimension,          // height
-               dimension,          // depth
+               internal_format,   // internal format: 2x8 bits unsigned integer, 2
+                                  // bits per node, 8 nodes packed per value
+               dimension,         // width
+               dimension,         // height
+               dimension,         // depth
                0,                 // border
-               pixel_data_format,     // pixel data format
-               pixel_data_type, // pixel data type
+               pixel_data_format, // pixel data format
+               pixel_data_type,   // pixel data type
                data);
 
 }
 
 
-template void loadSpatialTable(GLuint,
-                               GLuint,
-                               GLint,
-                               GLsizei,
-                               GLenum,
-                               GLenum,
-                               GLushort*,//const GLvoid * data,
-                               GLuint,
-                               std::string);
+template void loadSpatialTable(GLuint,       // index
+                               GLuint,       // p_texture
+                               GLint,        // internal_format
+                               GLsizei,      // dimension
+                               GLenum,       // pixel_data_format
+                               GLenum,       // pixel_data_type
+                               GLubyte*,     // data
+                               GLuint,       // shader
+                               std::string); // sampler name
 
-template void loadSpatialTable(GLuint,
-                               GLuint,
-                               GLint,
-                               GLsizei,
-                               GLenum,
-                               GLenum,
-                               GLuint*,//const GLvoid * data,
-                               GLuint,
-                               std::string);
+template void loadSpatialTable(GLuint,       // index
+                               GLuint,       // p_texture
+                               GLint,        // internal_format
+                               GLsizei,      // dimension
+                               GLenum,       // pixel_data_format
+                               GLenum,       // pixel_data_type
+                               GLuint*,      // data
+                               GLuint,       // shader
+                               std::string); // sampler name
 
 void LinklessOctree::loadToShader(GLuint shader) {
   unsigned int n_levels = this->getNLevels();
@@ -210,17 +207,17 @@ void LinklessOctree::loadToShader(GLuint shader) {
                      GL_RG8UI,
                      this->node_hash_maps->at(i)->getM(),
                      GL_RG_INTEGER,
-                     GL_UNSIGNED_SHORT,
+                     GL_UNSIGNED_BYTE,
                      this->octree_hash_tables[i],
                      shader,
                      "node_hash_tables[" + std::to_string(i) + "]");
     // load octree_offset_tables[i]
     loadSpatialTable(1 + 4 * i,
                      ps_octree_offset_tables[i],
-                     GL_R8UI,
+                     GL_RGB8UI,
                      this->node_hash_maps->at(i)->getR(),
-                     GL_RED_INTEGER,
-                     GL_UNSIGNED_SHORT,
+                     GL_RGB_INTEGER,
+                     GL_UNSIGNED_BYTE,
                      this->octree_offset_tables[i],
                      shader,
                      "node_offset_tables[" + std::to_string(i) + "]");
@@ -241,10 +238,10 @@ void LinklessOctree::loadToShader(GLuint shader) {
       // load leaf_offset_tables[i]
       loadSpatialTable(3 + 4 * i,
                        ps_data_offset_tables[i],
-                       GL_R8UI,
+                       GL_RGB8UI,
                        this->leaf_hash_maps->at(i)->getR(),
-                       GL_RED_INTEGER,
-                       GL_UNSIGNED_SHORT,
+                       GL_RGB_INTEGER,
+                       GL_UNSIGNED_BYTE,
                        this->data_offset_tables[i],
                        shader,
                        "leaf_offset_tables[" + std::to_string(i) + "]");
@@ -321,8 +318,15 @@ void LinklessOctree::exportToJson(const std::string& path) const {
 
     writer.Key("offset_table");
     writer.StartArray();
-    for (GLushort val : octree_func->getOffsetTable()) {
-      writer.Uint(val);
+    for (glm::u8vec3 val : octree_func->getOffsetTable()) {
+      writer.StartObject();
+        writer.Key("x");
+        writer.Uint(val.x);
+        writer.Key("y");
+        writer.Uint(val.y);
+        writer.Key("z");
+        writer.Uint(val.z);
+      writer.EndObject();
     }
     writer.EndArray();
     writer.EndObject();
@@ -347,18 +351,25 @@ void LinklessOctree::exportToJson(const std::string& path) const {
       writer.StartArray();
       for (glm::uvec2 val : data_func->getHashTable()) {
         writer.StartObject();
-        writer.Key("offset");
-        writer.Uint(val.x);
-        writer.Key("size");
-        writer.Uint(val.y);
+          writer.Key("offset");
+          writer.Uint(val.x);
+          writer.Key("size");
+          writer.Uint(val.y);
         writer.EndObject();
       }
       writer.EndArray();
 
       writer.Key("offset_table");
       writer.StartArray();
-      for (GLushort val : data_func->getOffsetTable()) {
-        writer.Uint(val);
+      for (glm::u8vec3 val : data_func->getOffsetTable()) {
+        writer.StartObject();
+        writer.Key("x");
+        writer.Uint(val.x);
+        writer.Key("y");
+        writer.Uint(val.y);
+        writer.Key("z");
+        writer.Uint(val.z);
+      writer.EndObject();
       }
       writer.EndArray();
     }

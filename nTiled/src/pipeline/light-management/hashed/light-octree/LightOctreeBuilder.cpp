@@ -70,7 +70,8 @@ LightOctree* LightOctreeBuilder::buildLightOctree(const std::vector<world::Point
 
   LightOctree* p_light_octree = new LightOctree(octree_origin,
                                                 minimum_leaf_node_size,
-                                                octree_depth);
+                                                octree_depth,
+                                                size);
 
   SingleLightTree* p_slt;
   world::PointLight* pl;
