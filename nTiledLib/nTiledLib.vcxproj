@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\camera\Camera.h" />
+    <ClInclude Include="include\camera\CameraConstructionData.h" />
+    <ClInclude Include="include\camera\CameraControl.h" />
+    <ClInclude Include="include\camera\CameraData.h" />
+    <ClInclude Include="include\gui\GuiManager.h" />
+    <ClInclude Include="include\gui\imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="include\lodepng.h" />
+    <ClInclude Include="include\log\Logger.h" />
+    <ClInclude Include="include\main\Clock.h" />
+    <ClInclude Include="include\main\Controller.h" />
+    <ClInclude Include="include\main\DrawMethod.h" />
+    <ClInclude Include="include\main\FrameEvent.h" />
+    <ClInclude Include="include\math\clamp.h" />
+    <ClInclude Include="include\math\util.h" />
+    <ClInclude Include="include\pipeline\debug-view\DebugPipeline.h" />
+    <ClInclude Include="include\pipeline\debug-view\shaders\DebugShader.h" />
+    <ClInclude Include="include\pipeline\debug-view\shaders\DebugShaderId.h" />
+    <ClInclude Include="include\pipeline\debug-view\shaders\DebugTileDisplayShader.h" />
+    <ClInclude Include="include\pipeline\deferred\DeferredPipeline.h" />
+    <ClInclude Include="include\pipeline\deferred\DeferredPipelineLogged.h" />
+    <ClInclude Include="include\pipeline\deferred\GBuffer.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\DeferredAttenuatedShader.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\DeferredClusteredShader.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\DeferredShader.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\DeferredShaderId.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\DeferredTiledShader.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\logged\DeferredAttenuatedShaderLogged.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\logged\DeferredClusteredShaderLogged.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\logged\DeferredTiledShaderLogged.h" />
+    <ClInclude Include="include\pipeline\forward\DepthBuffer.h" />
+    <ClInclude Include="include\pipeline\forward\ForwardPipeline.h" />
+    <ClInclude Include="include\pipeline\forward\ForwardPipelineLogged.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\ForwardAttenuatedShader.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\ForwardClusteredShader.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\ForwardHashedShader.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\ForwardShader.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\ForwardShaderId.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\ForwardTiledShader.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\logged\ForwardAttenuatedShaderLogged.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\logged\ForwardClusteredShaderLogged.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\logged\ForwardTiledShaderLogged.h" />
+    <ClInclude Include="include\pipeline\light-management\clustered\ClusteredLightManager.h" />
+    <ClInclude Include="include\pipeline\light-management\clustered\ClusteredLightManagerLogged.h" />
+    <ClInclude Include="include\pipeline\light-management\clustered\compute-client\ComputeShader.h" />
+    <ClInclude Include="include\pipeline\light-management\clustered\compute-client\KeyComputeShader.h" />
+    <ClInclude Include="include\pipeline\light-management\clustered\compute-client\KeySortAndCompactShader.h" />
+    <ClInclude Include="include\pipeline\light-management\clustered\compute-client\TestComputeShader.h" />
+    <ClInclude Include="include\pipeline\light-management\clustered\LightClustering.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\HashedConfig.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\HashedLightManager.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\LightOctree.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\LightOctreeBuilder.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\LightOctreeExceptions.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\LightOctreeExporter.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\nodes\Branch.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\nodes\Leaf.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\nodes\Node.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\nodes\Parent.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\nodes\Root.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\nodes\Full.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\nodes\No.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\nodes\Node.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\nodes\Partial.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\octree-layer\FillElement.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\octree-layer\OctreeLayer.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\octree-layer\OctreeLayerNode.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\octree-layer\Offsets.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\SingleLightTree.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\light-octree\single-light-tree\SingleLightTreeBuilder.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\linkless-octree\ExportFunctions.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\linkless-octree\LinklessOctree.h" />
+    <ClInclude Include="include\pipeline\light-management\hashed\linkless-octree\SpatialHashFunction.h" />
+    <ClInclude Include="include\pipeline\light-management\tiled\BoxProjector.h" />
+    <ClInclude Include="include\pipeline\light-management\tiled\LightGrid.h" />
+    <ClInclude Include="include\pipeline\light-management\tiled\LightProjector.h" />
+    <ClInclude Include="include\pipeline\light-management\tiled\TiledLightManager.h" />
+    <ClInclude Include="include\pipeline\light-management\tiled\TiledLightManagerLogged.h" />
+    <ClInclude Include="include\pipeline\pipeline-util\ConstructQuad.h" />
+    <ClInclude Include="include\pipeline\Pipeline.h" />
+    <ClInclude Include="include\pipeline\PipelineLight.h" />
+    <ClInclude Include="include\pipeline\PipelineObject.h" />
+    <ClInclude Include="include\pipeline\PipelineType.h" />
+    <ClInclude Include="include\pipeline\shader-util\LoadShaders.h" />
+    <ClInclude Include="include\pipeline\shader-util\LoadTextures.h" />
+    <ClInclude Include="include\pipeline\Shader.h" />
+    <ClInclude Include="include\pipeline\ShaderKey.h" />
+    <ClInclude Include="include\state\State.h" />
+    <ClInclude Include="include\state\StateLog.h" />
+    <ClInclude Include="include\state\StateShading.h" />
+    <ClInclude Include="include\state\StateTexture.h" />
+    <ClInclude Include="include\state\StateView.h" />
+    <ClInclude Include="include\world\light-constructor\LightConstructor.h" />
+    <ClInclude Include="include\world\light-constructor\PointLightConstructor.h" />
+    <ClInclude Include="include\world\Mesh.h" />
+    <ClInclude Include="include\world\object-constructor\AssImpConstructor.h" />
+    <ClInclude Include="include\world\object-constructor\ObjectConstructor.h" />
+    <ClInclude Include="include\world\Object.h" />
+    <ClInclude Include="include\world\PointLight.h" />
+    <ClInclude Include="include\world\World.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\camera\Camera.rst" />
+    <None Include="include\gui\GUI.rst" />
+    <None Include="include\log\Logged.rst" />
+    <None Include="include\main\Main.rst" />
+    <None Include="include\math\Math.rst" />
+    <None Include="include\pipeline\Pipeline.rst" />
+    <None Include="include\state\State.rst" />
+    <None Include="include\world\World.rst" />
+    <None Include="src\pipeline\deferred\shaders-glsl\lambert_gbuffer.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\lambert_gbuffer.vert" />
+    <None Include="src\pipeline\deferred\shaders-glsl\lambert_light.vert" />
+    <None Include="src\pipeline\deferred\shaders-glsl\lambert_light_attenuated.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\lambert_light_clustered.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\lambert_light_tiled.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\copy_depth.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\copy_depth.vert" />
+    <None Include="src\pipeline\forward\shaders-glsl\depth_clustered.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\depth_clustered.vert" />
+    <None Include="src\pipeline\forward\shaders-glsl\lambert_basic.vert" />
+    <None Include="src\pipeline\forward\shaders-glsl\lambert_basic_attenuated.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\lambert_basic_tiled.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\lambert_clustered.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\lambert_hashed.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\lambert_hashed.vert" />
+    <None Include="src\pipeline\forward\shaders-glsl\solid.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\solid.vert" />
+    <None Include="src\pipeline\light-management\clustered\compute-glsl\key_compute.glsl" />
+    <None Include="src\pipeline\light-management\clustered\compute-glsl\key_sort_and_compact.glsl" />
+    <None Include="src\pipeline\light-management\clustered\compute-glsl\test_compute.glsl" />
+    <None Include="src\pipeline\light-management\clustered\debug-visualise-glsl\key_visualise.frag" />
+    <None Include="src\pipeline\light-management\clustered\debug-visualise-glsl\key_visualise.vert" />
+    <None Include="src\pipeline\shader-glsl\texture_display.frag" />
+    <None Include="src\pipeline\shader-glsl\texture_display.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\GL\src\glad.c" />
+    <ClCompile Include="..\lib\imgui\imgui.cpp" />
+    <ClCompile Include="..\lib\imgui\imgui_draw.cpp" />
+    <ClCompile Include="src\camera\Camera.cpp" />
+    <ClCompile Include="src\camera\CameraConstructionData.cpp" />
+    <ClCompile Include="src\camera\CameraControl.cpp" />
+    <ClCompile Include="src\camera\CameraData.cpp" />
+    <ClCompile Include="src\gui\GuiManager.cpp" />
+    <ClCompile Include="src\gui\imgui_impl_glfw_gl3.cpp" />
+    <ClCompile Include="src\lodepng.cpp" />
+    <ClCompile Include="src\log\Logger.cpp" />
+    <ClCompile Include="src\main\Clock.cpp" />
+    <ClCompile Include="src\main\Controller.cpp" />
+    <ClCompile Include="src\main\DrawMethod.cpp" />
+    <ClCompile Include="src\main\FrameEvent.cpp" />
+    <ClCompile Include="src\pipeline\debug-view\DebugPipeline.cpp" />
+    <ClCompile Include="src\pipeline\debug-view\shaders\DebugShader.cpp" />
+    <ClCompile Include="src\pipeline\debug-view\shaders\DebugTileDisplayShader.cpp" />
+    <ClCompile Include="src\pipeline\deferred\DeferredPipeline.cpp" />
+    <ClCompile Include="src\pipeline\deferred\DeferredPipelineLogged.cpp" />
+    <ClCompile Include="src\pipeline\deferred\GBuffer.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\DeferredAttenuatedShader.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\DeferredClusteredShader.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\DeferredShader.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\DeferredTiledShader.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\Logged\DeferredAttenuatedShaderLogged.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\Logged\DeferredClusteredShaderLogged.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\Logged\DeferredTiledShaderLogged.cpp" />
+    <ClCompile Include="src\pipeline\forward\DepthBuffer.cpp" />
+    <ClCompile Include="src\pipeline\forward\ForwardPipeline.cpp" />
+    <ClCompile Include="src\pipeline\forward\ForwardPipelineLogged.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\ForwardAttenuatedShader.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\ForwardClusteredShader.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\ForwardHashedShader.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\ForwardShader.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\ForwardTiledShader.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\Logged\ForwardAttenuatedShaderLogged.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\Logged\ForwardClusteredShaderLogged.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\Logged\ForwardTiledShaderLogged.cpp" />
+    <ClCompile Include="src\pipeline\light-management\clustered\ClusteredLightManager.cpp" />
+    <ClCompile Include="src\pipeline\light-management\clustered\ClusteredLightManagerLogged.cpp" />
+    <ClCompile Include="src\pipeline\light-management\clustered\compute-client\KeyComputeShader.cpp" />
+    <ClCompile Include="src\pipeline\light-management\clustered\compute-client\KeySortAndCompactShader.cpp" />
+    <ClCompile Include="src\pipeline\light-management\clustered\compute-client\TestComputeShader.cpp" />
+    <ClCompile Include="src\pipeline\light-management\clustered\LightClustering.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\HashedConfig.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\HashedLightManager.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\LightOctree.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\LightOctreeBuilder.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\LightOctreeExporter.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\nodes\Branch.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\nodes\Leaf.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\nodes\Node.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\nodes\Root.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\single-light-octree\nodes\Full.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\single-light-octree\nodes\No.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\single-light-octree\nodes\Partial.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\single-light-octree\octree-layer\FillElement.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\single-light-octree\octree-layer\OctreeLayer.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\single-light-octree\octree-layer\OctreeLayerNode.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\single-light-octree\octree-layer\Offsets.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\single-light-octree\SingleLightTree.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\single-light-octree\SingleLightTreeBuilder.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\ExportFunctions.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\LinklessOctree.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\SpatialHashFunction.cpp" />
+    <ClCompile Include="src\pipeline\light-management\tiled\BoxProjector.cpp" />
+    <ClCompile Include="src\pipeline\light-management\tiled\LightGrid..cpp" />
+    <ClCompile Include="src\pipeline\light-management\tiled\TiledLightManager.cpp" />
+    <ClCompile Include="src\pipeline\light-management\tiled\TiledLightManagerLogged.cpp" />
+    <ClCompile Include="src\pipeline\pipeline-util\ConstructQuad.cpp" />
+    <ClCompile Include="src\pipeline\Pipeline.cpp" />
+    <ClCompile Include="src\pipeline\PipelineObject.cpp" />
+    <ClCompile Include="src\pipeline\shader-util\LoadShaders.cpp" />
+    <ClCompile Include="src\pipeline\shader-util\LoadTextures.cpp" />
+    <ClCompile Include="src\pipeline\Shader.cpp" />
+    <ClCompile Include="src\pipeline\ShaderKey.cpp" />
+    <ClCompile Include="src\state\GeometryParser.cpp" />
+    <ClCompile Include="src\state\LightParser.cpp" />
+    <ClCompile Include="src\state\State.cpp" />
+    <ClCompile Include="src\state\StateLog.cpp" />
+    <ClCompile Include="src\state\StateShading.cpp" />
+    <ClCompile Include="src\state\StateTexture.cpp" />
+    <ClCompile Include="src\state\StateView.cpp" />
+    <ClCompile Include="src\world\light-constructor\PointLightConstructor.cpp" />
+    <ClCompile Include="src\world\Mesh.cpp" />
+    <ClCompile Include="src\world\object-constructor\AssImpConstructor.cpp" />
+    <ClCompile Include="src\world\Object.cpp" />
+    <ClCompile Include="src\world\PointLight.cpp" />
+    <ClCompile Include="src\world\World.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5697A43F-CA95-4C1A-A991-26CD4DB018BB}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>nTiledLib</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\rapidjson\include;$(SolutionDir)lib\glm;$(SolutionDir)lib\glfw-3.1.2\include;$(SolutionDir)lib\GL\include;$(SolutionDir)lib\assimp\include;$(SolutionDir)lib\imgui;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\rapidjson\include;$(SolutionDir)lib\glm;$(SolutionDir)lib\glfw-3.1.2\include;$(SolutionDir)lib\GL\include;$(SolutionDir)lib\assimp\include;$(SolutionDir)lib\imgui;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
