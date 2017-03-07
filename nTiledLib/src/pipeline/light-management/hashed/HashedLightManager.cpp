@@ -15,8 +15,9 @@
 //  nTiled Headers
 // ----------------------------------------------------------------------------
 #include "pipeline\light-management\hashed\light-octree\LightOctreeBuilder.h"
-#include "pipeline\light-management\hashed\light-octree\LightOctreeExporter.h"
+#include "pipeline\light-management\hashed\linkless-octree\SpatialHashFunctionBuilder.h"
 
+#include "pipeline\light-management\hashed\light-octree\LightOctreeExporter.h"
 #include "pipeline\light-management\hashed\linkless-octree\ExportFunctions.h"
 
 
@@ -105,6 +106,12 @@ void HashedLightManager::updateOctreeOrigin(GLuint shader, const glm::mat4& look
 
 
 void HashedLightManager::constructLightOctree() {
+  SpatialHashFunctionBuilder<glm::u8vec2> node_function_builder =
+    SpatialHashFunctionBuilder<glm::u8vec2>();
+
+  SpatialHashFunctionBuilder<glm::uvec2> leaf_function_builder =
+    SpatialHashFunctionBuilder<glm::uvec2>();
+
   LightOctreeBuilder builder = LightOctreeBuilder();
   this->p_light_octree = builder.buildLightOctree(this->world.p_lights,
                                                   this->minimum_node_size);
@@ -153,22 +160,20 @@ void HashedLightManager::constructLightOctree() {
                                nodes[(current + 1) & 1]);
     }
     // construct spatial functions of this map
-    p_node_hash_functions->push_back(new SpatialHashFunction<glm::u8vec2>(hash_nodes,
-                                                                          this->max_attempts,
-                                                                          this->r_increase_ratio,
-                                                                          this->gen,
-                                                                          this->distribution));
+    p_node_hash_functions->push_back(
+      node_function_builder.constructHashFunction(hash_nodes,
+                                                  this->max_attempts,
+                                                  this->r_increase_ratio));
 
     if (leaf_nodes.empty()) {
       p_has_leaf_hash_functions->push_back(false);
       p_leaf_hash_functions->push_back(nullptr);
     } else {
       p_has_leaf_hash_functions->push_back(true);
-      p_leaf_hash_functions->push_back(new SpatialHashFunction<glm::uvec2>(leaf_nodes,
-                                                                           this->max_attempts,
-                                                                           this->r_increase_ratio,
-                                                                           this->gen,
-                                                                           this->distribution));
+      p_leaf_hash_functions->push_back(
+        leaf_function_builder.constructHashFunction(leaf_nodes,
+                                                    this->max_attempts,
+                                                    this->r_increase_ratio));
     }
     nodes[current].clear();
     hash_nodes.clear();

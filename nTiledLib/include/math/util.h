@@ -4,6 +4,8 @@
 #pragma once
 
 
+#include <glm/glm.hpp>
+
 namespace nTiled {
 namespace math {
 
@@ -53,6 +55,21 @@ inline unsigned int gcd(unsigned int a, unsigned int b) {
   return a;
 }
 
+
+/*! @brief Convert point p to an index within a single array given 
+ *          dimension dim.
+ * 
+ * @param p A 3d point which should be converted to a single 
+ *          index within an array.
+ * @param dim The dimension in which the index resides.
+ * 
+ * @returns The index within the one dimensional array that corresponds with
+ *          p
+ */
+inline unsigned int toIndex(glm::uvec3 p,
+                            unsigned int dim) {
+  return p.x + p.y * dim + p.z * dim * dim;
+}
 
 } // math
 } // nTiled
