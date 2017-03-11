@@ -92,7 +92,7 @@ SCENARIO("A constructed SpatialHashFunction should contain all entry elements wi
 
       glm::uvec3 loc;
       glm::u8vec2 data;
-      for (unsigned int i = 0; i <= 1000; ++i) {
+      for (unsigned int i = 0; i < 1000; ++i) {
         // generate data
         data = glm::u8vec2(distribution_u8vec3(gen),
                            distribution_u8vec3(gen));
@@ -115,9 +115,16 @@ SCENARIO("A constructed SpatialHashFunction should contain all entry elements wi
       nTiled::pipeline::hashed::SpatialHashFunction<glm::u8vec2>* p_hash_function_1 = 
         builder.constructHashFunction(entries, 10, 1.5);
 
+      glm::u8vec2 val_hash;
+      glm::u8vec2 val_actual;
+
       THEN("Each entry should be contained in the constructed SpatialHashFunction") {
         for (const std::pair<glm::uvec3, glm::u8vec2>& entry : entries) {
-          REQUIRE(p_hash_function_1->getData(entry.first) == entry.second);
+          val_hash = p_hash_function_1->getData(entry.first);
+          val_actual = entry.second;
+
+          REQUIRE(( val_actual.x == val_hash.x && 
+                    val_actual.y == val_hash.y ));
         }
       }
     }

@@ -34,9 +34,9 @@ SCENARIO("isAcceptableParameters should return True if parameters are acceptable
       THEN("True should be returned") {
         REQUIRE(builder.isAcceptableParameters(17, 5));
         REQUIRE(builder.isAcceptableParameters(23, 7));
-        REQUIRE(builder.isAcceptableParameters(121, 11));
+        REQUIRE(builder.isAcceptableParameters(123, 11));
         REQUIRE(builder.isAcceptableParameters(173, 31));
-        REQUIRE(builder.isAcceptableParameters(231, 51));
+        REQUIRE(builder.isAcceptableParameters(233, 51));
       }
     }
 

@@ -157,12 +157,12 @@ SCENARIO("ConstructionElementCompare should return the ConstructionElement with 
                                                                                   glm::uvec2(0, 0)));
       }
 
-      THEN("A should be bigger or equal to B") {
-        REQUIRE(compare(A1, B1));
-        REQUIRE(compare(A5, B5));
-        REQUIRE(compare(A10, B10));
-        REQUIRE(compare(A20, B20));
-        REQUIRE(compare(A50, B50));
+      THEN("A should be bigger to B") {
+        REQUIRE_FALSE(compare(A1, B1));
+        REQUIRE_FALSE(compare(A5, B5));
+        REQUIRE_FALSE(compare(A10, B10));
+        REQUIRE_FALSE(compare(A20, B20));
+        REQUIRE_FALSE(compare(A50, B50));
       }
     }
 
@@ -232,11 +232,11 @@ SCENARIO("ConstructionElementCompare should return the ConstructionElement with 
                                                                                   glm::uvec2(0, 0)));
       }
       THEN("B should be returned") {
-        REQUIRE(compare(A0, B1));
-        REQUIRE(compare(A4, B5));
-        REQUIRE(compare(A9, B10));
-        REQUIRE(compare(A19, B20));
-        REQUIRE(compare(A49, B50));
+        REQUIRE_FALSE(compare(A0, B1));
+        REQUIRE_FALSE(compare(A4, B5));
+        REQUIRE_FALSE(compare(A9, B10));
+        REQUIRE_FALSE(compare(A19, B20));
+        REQUIRE_FALSE(compare(A49, B50));
       }
     }
   }

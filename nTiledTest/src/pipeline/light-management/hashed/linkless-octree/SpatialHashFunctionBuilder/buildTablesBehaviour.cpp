@@ -17,84 +17,17 @@ SCENARIO("buildTables should throw a SpatialHashFunctionConstructionInvalidArgEx
     nTiled::pipeline::hashed::SpatialHashFunctionBuilder<glm::u8vec2> builder =
       nTiled::pipeline::hashed::SpatialHashFunctionBuilder<glm::u8vec2>();
 
-    std::vector<glm::u8vec2> hash_table = {};
-    std::vector<glm::u8vec3> offset_table = {};
-
-    WHEN("m_dim is zero") {
-      std::pair<glm::uvec3, glm::u8vec2> entry =
-        std::pair<glm::uvec3, glm::u8vec2>(glm::uvec3(0, 0, 0),
-                                           glm::u8vec2(1, 1));
-
-      std::vector<std::pair<glm::uvec3, glm::u8vec2>> entries = { entry };
-
-      hash_table.clear();
-      offset_table.clear();
-
-      THEN("A SpatialHashFunctionConstructionInvalidArgException is thrown") {
-        REQUIRE_THROWS_AS(builder.buildTables(0, 5, entries, 
-                                              hash_table, 
-                                              offset_table),
-                          nTiled::pipeline::hashed::SpatialHashFunctionConstructionInvalidArgException);
-      }
-    }
-
-    WHEN("r_dim is zero") {
-      std::pair<glm::uvec3, glm::u8vec2> entry =
-        std::pair<glm::uvec3, glm::u8vec2>(glm::uvec3(0, 0, 0),
-                                           glm::u8vec2(1, 1));
-
-      std::vector<std::pair<glm::uvec3, glm::u8vec2>> entries = { entry };
-
-      hash_table.clear();
-      offset_table.clear();
-
-      THEN("A SpatialHashFunctionConstructionInvalidArgException is thrown") {
-        REQUIRE_THROWS_AS(builder.buildTables(5, 0, entries,
-                                              hash_table, 
-                                              offset_table),
-                          nTiled::pipeline::hashed::SpatialHashFunctionConstructionInvalidArgException);
-      }
-    }
-
     WHEN("entries contains no elements") {
-      std::vector<std::pair<glm::uvec3, glm::u8vec2>> entries = {};
-
-      hash_table.clear();
-      offset_table.clear();
-
-      THEN("A SpatialHashFunctionConstructionInvalidArgException is thrown") {
-        REQUIRE_THROWS_AS(builder.buildTables(5, 2, entries,
-                                              hash_table, 
-                                              offset_table),
-                          nTiled::pipeline::hashed::SpatialHashFunctionConstructionInvalidArgException);
-
-      }
-    }
-
-    WHEN("entries is larger than m * m * m") {
-      std::pair<glm::uvec3, glm::u8vec2> entry_1 =
-        std::pair<glm::uvec3, glm::u8vec2>(glm::uvec3(0, 0, 0),
-                                           glm::u8vec2(1, 1));
-
-      std::pair<glm::uvec3, glm::u8vec2> entry_2 =
-        std::pair<glm::uvec3, glm::u8vec2>(glm::uvec3(5, 5, 5),
-                                           glm::u8vec2(1, 1));
-
-      std::pair<glm::uvec3, glm::u8vec2> entry_3 =
-        std::pair<glm::uvec3, glm::u8vec2>(glm::uvec3(256, 0, 0),
-                                           glm::u8vec2(1, 1));
-
-      std::vector<std::pair<glm::uvec3, glm::u8vec2>> entries = { 
-        entry_1,
-        entry_2,
-        entry_3
-      };
-
-      hash_table.clear();
-      offset_table.clear();
+      std::vector<nTiled::pipeline::hashed::SpatialHashFunctionBuilder<glm::u8vec2>::ConstructionElement> entry_vector = {};
+      
+      nTiled::pipeline::hashed::Table<glm::u8vec2> hash_table =
+        nTiled::pipeline::hashed::Table<glm::u8vec2>(5);
+      
+      nTiled::pipeline::hashed::Table<glm::u8vec3> offset_table =
+        nTiled::pipeline::hashed::Table<glm::u8vec3>(2);
 
       THEN("A SpatialHashFunctionConstructionInvalidArgException is thrown") {
-        REQUIRE_THROWS_AS(builder.buildTables(1, 2, entries,
+        REQUIRE_THROWS_AS(builder.buildTables(entry_vector,
                                               hash_table, 
                                               offset_table),
                           nTiled::pipeline::hashed::SpatialHashFunctionConstructionInvalidArgException);
@@ -131,36 +64,54 @@ SCENARIO("build tables should return a valid hash and offset table when presente
       REQUIRE(entries_1.size() == 1);
       REQUIRE(entries_2.size() == 1);
       REQUIRE(entries_3.size() == 1);
+
+      std::vector<nTiled::pipeline::hashed::SpatialHashFunctionBuilder<glm::u8vec2>::ConstructionElement> entry_vector_1 = {};
+      std::vector<nTiled::pipeline::hashed::SpatialHashFunctionBuilder<glm::u8vec2>::ConstructionElement> entry_vector_2 = {};
+      std::vector<nTiled::pipeline::hashed::SpatialHashFunctionBuilder<glm::u8vec2>::ConstructionElement> entry_vector_3 = {};
+      builder.mapEntryVector(entries_1, 1, 1, entry_vector_1);
+      builder.mapEntryVector(entries_2, 1, 1, entry_vector_2);
+      builder.mapEntryVector(entries_3, 1, 1, entry_vector_3);
+
       
-      std::vector<glm::u8vec2> hash_table_1 = {};
-      std::vector<glm::u8vec3> offset_table_1 = {};
+      // ----------------------------------------------------------------------
+      nTiled::pipeline::hashed::Table<glm::u8vec2> hash_table_1 =
+        nTiled::pipeline::hashed::Table<glm::u8vec2>(1);
+      
+      nTiled::pipeline::hashed::Table<glm::u8vec3> offset_table_1 =
+        nTiled::pipeline::hashed::Table<glm::u8vec3>(1);
 
-      std::vector<glm::u8vec2> hash_table_2 = {};
-      std::vector<glm::u8vec3> offset_table_2 = {};
+      // ----------------------------------------------------------------------
+      nTiled::pipeline::hashed::Table<glm::u8vec2> hash_table_2 =
+        nTiled::pipeline::hashed::Table<glm::u8vec2>(1);
+      
+      nTiled::pipeline::hashed::Table<glm::u8vec3> offset_table_2 =
+        nTiled::pipeline::hashed::Table<glm::u8vec3>(1);
 
-      std::vector<glm::u8vec2> hash_table_3 = {};
-      std::vector<glm::u8vec3> offset_table_3 = {};
+      // ----------------------------------------------------------------------
+      nTiled::pipeline::hashed::Table<glm::u8vec2> hash_table_3 =
+        nTiled::pipeline::hashed::Table<glm::u8vec2>(1);
+      
+      nTiled::pipeline::hashed::Table<glm::u8vec3> offset_table_3 =
+        nTiled::pipeline::hashed::Table<glm::u8vec3>(1);
       THEN("The hash table contains only the single entry and the offset table contains a single entry") {
         
-        REQUIRE(builder.buildTables(1, 1, entries_1, hash_table_1, offset_table_1));
-        REQUIRE(builder.buildTables(1, 1, entries_2, hash_table_2, offset_table_2));
-        REQUIRE(builder.buildTables(1, 1, entries_3, hash_table_3, offset_table_3));
+        REQUIRE(builder.buildTables(entry_vector_1, hash_table_1, offset_table_1));
+        REQUIRE(builder.buildTables(entry_vector_2, hash_table_2, offset_table_2));
+        REQUIRE(builder.buildTables(entry_vector_3, hash_table_3, offset_table_3));
 
-        REQUIRE(hash_table_1.size() == 1);
-        REQUIRE(offset_table_1.size() == 1);
-        REQUIRE(hash_table_1.at(0) == entry_1.second);
+        REQUIRE(hash_table_1.getPoint(glm::uvec3(0, 0, 0)).x == entry_1.second.x);
+        REQUIRE(hash_table_1.getPoint(glm::uvec3(0, 0, 0)).y == entry_1.second.y);
 
-        REQUIRE(hash_table_2.size() == 1);
-        REQUIRE(offset_table_2.size() == 1);
-        REQUIRE(hash_table_2.at(0) == entry_2.second);
+        REQUIRE(hash_table_2.getPoint(glm::uvec3(0, 0, 0)).x == entry_2.second.x);
+        REQUIRE(hash_table_2.getPoint(glm::uvec3(0, 0, 0)).y == entry_2.second.y);
 
-        REQUIRE(hash_table_3.size() == 1);
-        REQUIRE(offset_table_3.size() == 1);
-        REQUIRE(hash_table_3.at(0) == entry_3.second);
+        REQUIRE(hash_table_3.getPoint(glm::uvec3(0, 0, 0)).x == entry_3.second.x);
+        REQUIRE(hash_table_3.getPoint(glm::uvec3(0, 0, 0)).y == entry_3.second.y);
       }
     }
 
-    WHEN("The entry list contains a set of unique entries greater than one") {
+
+    WHEN("The entry list contains a set of unique entries greater than one that do not contain conflicting elements") {
       // generate different sized sets of entries
       std::mt19937 gen = std::mt19937(31);
       std::uniform_int_distribution<unsigned short> distribution_u8vec3 =
@@ -172,38 +123,64 @@ SCENARIO("build tables should return a valid hash and offset table when presente
       std::vector<std::pair<glm::uvec3, glm::u8vec2>> entries =
         std::vector<std::pair<glm::uvec3, glm::u8vec2>>();
 
-      std::vector<glm::uvec3> used_values = std::vector<glm::uvec3>();
+      std::vector<std::pair<glm::uvec3, glm::uvec3>> used_hashes = {};
 
       glm::uvec3 loc;
+      glm::uvec3 h_0;
+      glm::uvec3 h_1;
       glm::u8vec2 data;
-      for (unsigned int i = 0; i <= 100; ++i) {
+      bool found_value;
+
+      for (unsigned int i = 0; i < 100; ++i) {
         // generate data
         data = glm::u8vec2(distribution_u8vec3(gen),
                            distribution_u8vec3(gen));
         // find unique location
-        do {
+        found_value = false;
+        while (!found_value) {
           loc = glm::uvec3(distribution_uvec3(gen),
                            distribution_uvec3(gen),
                            distribution_u8vec3(gen));
-        } while (std::find(used_values.begin(), 
-                           used_values.end(),
-                           loc) != used_values.end());
-        used_values.push_back(loc);
-       
-        // build entries list
+          h_0 = glm::uvec3(loc.x % 7,
+                           loc.y % 7,
+                           loc.z % 7);
+          h_1 = glm::uvec3(loc.x % 3,
+                           loc.y % 3,
+                           loc.z % 3);
+
+          found_value = true;
+          for (const std::pair<glm::uvec3, glm::uvec3>& hashes : used_hashes) {
+            if ((hashes.first.x == h_0.x) &&
+                (hashes.first.y == h_0.y) &&
+                (hashes.first.z == h_0.z) &&
+                (hashes.second.x == h_1.x) &&
+                (hashes.second.y == h_1.y) &&
+                (hashes.second.z == h_1.z)) {
+              found_value = false;
+            }
+          }
+        }
         entries.push_back(std::pair<glm::uvec3, glm::u8vec2>(loc, data));
+        used_hashes.push_back(std::pair<glm::uvec3, glm::uvec3>(h_0, h_1));
       }
 
       REQUIRE(entries.size() == 100);
 
-      std::vector<glm::u8vec2> hash_table = {};
-      std::vector<glm::u8vec3> offset_table = {};
+      std::vector<nTiled::pipeline::hashed::SpatialHashFunctionBuilder<glm::u8vec2>::ConstructionElement> entry_vector = {};
+      builder.mapEntryVector(entries, 7, 3, entry_vector);
+
+      nTiled::pipeline::hashed::Table<glm::u8vec2> hash_table =
+        nTiled::pipeline::hashed::Table<glm::u8vec2>(7);
+      
+      nTiled::pipeline::hashed::Table<glm::u8vec3> offset_table =
+        nTiled::pipeline::hashed::Table<glm::u8vec3>(3);
+
+      glm::u8vec2 val_hash;
+      glm::u8vec2 val_actual;
 
       THEN("All elements are in the hash table H, and no collisions occur for these entries, and size of hash table H == m * m * m, and size of offset table Phi == r * r * r") {
-        REQUIRE(builder.buildTables(5, 3, entries, hash_table, offset_table));
-
-        REQUIRE(hash_table.size() == 125);
-        REQUIRE(offset_table.size() == 9);
+        bool has_build_tables = builder.buildTables(entry_vector, hash_table, offset_table);
+        REQUIRE(has_build_tables);
 
         glm::uvec3 loc_offset;
         glm::uvec3 loc_hash;
@@ -212,13 +189,17 @@ SCENARIO("build tables should return a valid hash and offset table when presente
           loc_offset = glm::uvec3(entry.first.x % 3,
                                   entry.first.y % 3,
                                   entry.first.z % 3);
-          offset = offset_table.at(nTiled::math::toIndex(loc_offset, 3));
+          offset = offset_table.getPoint(loc_offset);
           
-          loc_hash = glm::uvec3((entry.first.x + offset.x) % 5,
-                                (entry.first.y + offset.y) % 5,
-                                (entry.first.z + offset.z) % 5);
+          loc_hash = glm::uvec3(((entry.first.x  % 7 ) + offset.x ) % 7,
+                                ((entry.first.y  % 7 ) + offset.y ) % 7,
+                                ((entry.first.z  % 7 ) + offset.z ) % 7);
 
-          REQUIRE(hash_table.at(nTiled::math::toIndex(loc_hash, 5)) == entry.second);
+          val_hash = hash_table.getPoint(loc_hash);
+          val_actual = entry.second;
+
+          REQUIRE(( val_actual.x == val_hash.x && 
+                    val_actual.y == val_hash.y ));
         }
       }
     }
