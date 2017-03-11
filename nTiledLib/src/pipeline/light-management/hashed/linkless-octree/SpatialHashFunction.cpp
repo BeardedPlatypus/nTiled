@@ -13,13 +13,9 @@ namespace pipeline {
 namespace hashed {
 
 template <class R>
-SpatialHashFunction<R>::SpatialHashFunction(unsigned int m_dim,
-                                            std::vector<R>* p_hash_table,
-                                            unsigned int r_dim,
-                                            std::vector<glm::u8vec3>* p_offset_table) :
-    m_dim(m_dim),
+SpatialHashFunction<R>::SpatialHashFunction(Table<R>* p_hash_table,
+                                            Table<glm::u8vec3>* p_offset_table) :
     p_hash_table(p_hash_table),
-    r_dim(r_dim),
     p_offset_table(p_offset_table) {
 }
 
@@ -34,7 +30,7 @@ SpatialHashFunction<R>::~SpatialHashFunction() {
 // TODO: change this to a maybe?
 template <class R>
 R SpatialHashFunction<R>::getData(glm::uvec3 p) const {
-  return this->p_hash_table->at(0);
+  return this->p_hash_table->getPoint(glm::uvec3(0));
 }
 
 

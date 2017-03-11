@@ -54,23 +54,30 @@ SpatialHashFunction<R>* SpatialHashFunctionBuilder<R>::constructHashFunction(
   unsigned short i = 0;
   bool has_build = false;
 
-  std::vector<R>* p_hash_table = new std::vector<R>();
-  std::vector<glm::u8vec3>* p_offset_table = new std::vector<glm::u8vec3>();
+  Table<R>* p_hash_table = new Table<R>(m_dim);
+  Table<glm::u8vec3>* p_offset_table = new Table<glm::u8vec3>(r_dim);
+
+  std::vector<ConstructionElement> entry_vector;
 
   while (!has_build && i < max_attempts) {
     while (!this->isAcceptableParameters(m_dim, r_dim)) r_dim += 2;
-    has_build = buildTables(m_dim, 
-                            r_dim, 
-                            entries, 
-                            *p_hash_table, 
-                            *p_offset_table);
+
+    if (mapEntryVector(entries, m_dim, r_dim, entry_vector)) {
+      has_build = buildTables(entry_vector, 
+                              *p_hash_table, 
+                              *p_offset_table);
+    }
 
     if (!has_build) {
       r_dim = unsigned int(ceil(ratio * r_dim));
       if ((r_dim & 1) == 0) r_dim++;
 
-      p_hash_table->clear();
-      p_offset_table->clear();
+      delete p_hash_table;
+      delete p_offset_table;
+
+      p_hash_table = new Table<R>(m_dim);
+      p_offset_table = new Table<glm::u8vec3>(r_dim);
+
     }
     i++;
   }
@@ -81,81 +88,31 @@ SpatialHashFunction<R>* SpatialHashFunctionBuilder<R>::constructHashFunction(
     throw SpatialHashFunctionConstructionExhaustedException();
   }
 
-  return (new SpatialHashFunction<R>(m_dim, p_hash_table, r_dim, p_offset_table));
-
+  return (new SpatialHashFunction<R>(p_hash_table,p_offset_table));
 }
 
 
 template <class R>
 bool SpatialHashFunctionBuilder<R>::buildTables(
-    unsigned int m_dim,
-    unsigned int r_dim,
-    const std::vector<std::pair<glm::uvec3, R>>& entries,
-    std::vector<R>& hash_table,
-    std::vector<glm::u8vec3>& offset_table) {
+    const std::vector<ConstructionElement>& entry_vector,
+    Table<R>& hash_table,
+    Table<glm::u8vec3>& offset_table) {
   // --------------------------------------------------------------------------
-  // Sanitise input
-  if (m_dim == 0) throw SpatialHashFunctionConstructionInvalidArgException();
-  if (r_dim == 0) throw SpatialHashFunctionConstructionInvalidArgException();
-  if (entries.empty()) throw SpatialHashFunctionConstructionInvalidArgException();
-  if (entries.size() > ( m_dim * m_dim * m_dim )) throw SpatialHashFunctionConstructionInvalidArgException();
-
-  if (!hash_table.empty()) hash_table.clear();
-  if (!offset_table.empty()) offset_table.clear();
+  // sanitise input
+  if (entry_vector.empty()) 
+    throw SpatialHashFunctionConstructionInvalidArgException();
 
   // --------------------------------------------------------------------------
-  //  define common variables
+  // define common variables
   glm::uvec3 h_0;
   glm::uvec3 h_1;
 
-  // --------------------------------------------------------------------------
-  //  prepare datastructures
-  std::vector<bool> hash_table_def = std::vector<bool>(m_dim * m_dim * m_dim, false);
-  std::vector<bool> offset_table_def = std::vector<bool>(r_dim * r_dim * r_dim, false);
-
-  hash_table.reserve(m_dim * m_dim * m_dim);
-  offset_table.reserve(r_dim * r_dim * r_dim);
-
-  std::vector<ConstructionElement> offset_table_raw = std::vector<ConstructionElement>(r_dim * r_dim * r_dim);
-
-  for (unsigned int x = 0; x < r_dim; x++) {
-    for (unsigned int y = 0; y < r_dim; y++) {
-      for (unsigned int z = 0; z < r_dim; z++) {
-        h_1 = glm::uvec3(x, y, z);
-        offset_table_raw[math::toIndex(h_1, r_dim)] = ConstructionElement(h_1);
-      }
-    }
-  }
-
-  // --------------------------------------------------------------------------
-  //  build the values for the offset table
-  for (std::pair<glm::uvec3, R> e : entries) {
-    h_0 = glm::uvec3(e.first.x % m_dim,
-                     e.first.y % m_dim,
-                     e.first.z % m_dim);
-    h_1 = glm::uvec3(e.first.x % r_dim,
-                     e.first.y % r_dim,
-                     e.first.z % r_dim);
-    offset_table_raw[math::toIndex(h_1, r_dim)].elements.push_back(EntryElement(e.first, h_0, e.second));
-  }
-
-  ConstructionElementCompare const_compare = ConstructionElementCompare();
-  // sort offset table based on number of collisions
-  std::sort(offset_table_raw.begin(),
-            offset_table_raw.end(),
-            const_compare);
-
-  // --------------------------------------------------------------------------
-  //  build tables
   glm::u8vec3 offset;
   bool found_candidate;
 
-  unsigned int hash_index;
-  unsigned int offset_index;
-
   std::vector<glm::u8vec3> candidate_vector = std::vector<glm::u8vec3>();
 
-  for (const ConstructionElement& e : offset_table_raw) {
+  for (const ConstructionElement& e : entry_vector) {
     // stop construction if no elements map to this offset table entries
     // all further elements will also consists of zero elements due to sorting
     if (e.elements.size() == 0) {
@@ -167,13 +124,11 @@ bool SpatialHashFunctionBuilder<R>::buildTables(
     // find offset from neighbouring offsets
     candidate_vector.clear();
     this->retrieveCandidates(e.hash_1,
-                             r_dim,
-                             offset_table_def,
                              offset_table,
                              candidate_vector);
 
     for (glm::u8vec3 candidate : candidate_vector) {
-      if (isValidCandidate(candidate, m_dim, e.elements, hash_table_def)) {
+      if (isValidCandidate(candidate, e.elements, hash_table)) {
         offset = candidate;
         found_candidate = true;
         break;
@@ -186,7 +141,7 @@ bool SpatialHashFunctionBuilder<R>::buildTables(
         glm::u8vec3 candidate = glm::u8vec3(this->distribution(this->gen),
                                             this->distribution(this->gen),
                                             this->distribution(this->gen));
-        if (isValidCandidate(candidate, m_dim, e.elements, hash_table_def)) {
+        if (isValidCandidate(candidate, e.elements, hash_table)) {
           offset = candidate;
           found_candidate = true;
           break;
@@ -197,17 +152,13 @@ bool SpatialHashFunctionBuilder<R>::buildTables(
     if (!found_candidate) {
       return false;
     } else {
-      offset_index = math::toIndex(e.hash_1, r_dim);
-      offset_table_def[offset_index] = true;
-      offset_table[offset_index] = offset;
+      offset_table.setPoint(e.hash_1, offset);
 
       for (const EntryElement& element : e.elements) {
-        hash_index = math::toIndex(glm::uvec3((element.hash_0.x + offset.x) % m_dim,
-                                              (element.hash_0.y + offset.y) % m_dim,
-                                              (element.hash_0.z + offset.z) % m_dim), m_dim);
-
-        hash_table_def[hash_index] = true;
-        hash_table[hash_index] = element.data;
+        hash_table.setPoint(glm::uvec3((element.hash_0.x + offset.x) % hash_table.getDim(),
+                                       (element.hash_0.y + offset.y) % hash_table.getDim(),
+                                       (element.hash_0.z + offset.z) % hash_table.getDim()),
+                            element.data);
       }
     }
   }
@@ -217,39 +168,125 @@ bool SpatialHashFunctionBuilder<R>::buildTables(
 
 
 template <class R>
+bool SpatialHashFunctionBuilder<R>::mapEntryVector(
+    const std::vector<std::pair<glm::uvec3, R>>& entries,
+    unsigned int m_dim,
+    unsigned int r_dim,
+    std::vector<ConstructionElement>& result_entry_set) const {
+  // --------------------------------------------------------------------------
+  // Error Checking
+  if (entries.empty()) 
+    throw SpatialHashFunctionConstructionInvalidArgException();
+  if (m_dim == 0) 
+    throw SpatialHashFunctionConstructionInvalidArgException();
+  if (r_dim == 0) 
+    throw SpatialHashFunctionConstructionInvalidArgException();
+  if (m_dim * m_dim * m_dim < entries.size())
+    throw SpatialHashFunctionConstructionInvalidArgException();
+
+  // --------------------------------------------------------------------------
+  // Common variables
+  glm::uvec3 h_0;
+  glm::uvec3 h_1;
+
+  // --------------------------------------------------------------------------
+  // Prepare result
+  result_entry_set.clear();
+  result_entry_set.resize(r_dim * r_dim * r_dim);
+
+  for (unsigned int x = 0; x < r_dim; x++) {
+    for (unsigned int y = 0; y < r_dim; y++) {
+      for (unsigned int z = 0; z < r_dim; z++) {
+        h_1 = glm::uvec3(x, y, z);
+        result_entry_set.at(math::toIndex(h_1, r_dim)) =  
+          ConstructionElement(h_1);
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // Add entries and check for double collisions
+  unsigned int index;
+  bool similar_element;
+
+  for (std::pair<glm::uvec3, R> entry : entries) {
+    h_0 = glm::uvec3((entry.first.x % m_dim),
+                     (entry.first.y % m_dim),
+                     (entry.first.z % m_dim));
+    h_1 = glm::uvec3((entry.first.x % r_dim),
+                     (entry.first.y % r_dim),
+                     (entry.first.z % r_dim));
+    index = math::toIndex(h_1, r_dim);
+
+    similar_element = false;
+    for (EntryElement e : result_entry_set.at(index).elements) {
+      if ((e.hash_0.x == h_0.x) &&
+          (e.hash_0.y == h_0.y) &&
+          (e.hash_0.z == h_0.z)) {
+        if (entry.second == e.data) {
+          // element already exists within the set being added
+          similar_element = true;
+          break;
+        } else {
+          // element with similar hashes but different data is added
+          // thus impossible to construct perfect spatial hash function
+          return false;
+        }
+      }
+    }
+
+    if (!similar_element) {
+      result_entry_set.at(index).elements.push_back(
+        EntryElement(entry.first, h_0, entry.second));
+    }
+  }
+
+  ConstructionElementCompare const_compare = ConstructionElementCompare();
+  // sort offset table based on number of collisions
+  std::sort(result_entry_set.begin(),
+            result_entry_set.end(),
+            const_compare);
+
+  return true;
+}
+
+
+template <class R>
 bool SpatialHashFunctionBuilder<R>::isAcceptableParameters(unsigned int m,
-                                                        unsigned int r) {
+                                                           unsigned int r) {
   unsigned int m_mod_r = m % r;
-  return (r == 1 || (math::gcd(m, r) == 1 && m_mod_r != 1 && m_mod_r != (r - 1))); 
+  return (( r == 1 ) || 
+          ( m == 1 ) ||
+          ((math::gcd(m, r) == 1) && (m_mod_r != 1) && (m_mod_r != (r - 1)))); 
 }
 
 
 template <class R>
 void SpatialHashFunctionBuilder<R>::retrieveCandidates(
     glm::uvec3 p,
-    unsigned int r_dim,
-    const std::vector<bool>& offset_defined_table,
-    const std::vector<glm::u8vec3>& offset_table,
+    const Table<glm::u8vec3>& offset_table,
     std::vector<glm::u8vec3>& candidate_vector) {
-  // --------------------------------------------------------------------------
-  // Sanitise input
-  if (r_dim == 0) throw SpatialHashFunctionConstructionInvalidArgException();
 
   // --------------------------------------------------------------------------
-  unsigned int val[3] = { 0, 1, (r_dim - 1) };
-  unsigned int index;
+  unsigned int val[3] = { 0, 1, (offset_table.getDim() - 1) };
+  glm::uvec3 offset_point;
+  glm::u8vec3 candidate;
 
   for (int x = 0; x < 3; x++) {
     for (int y = 0; y < 3; y++) {
       for (int z = 0; z < 3; z++) {
-        index = math::toIndex(glm::uvec3((p.x + val[x]) % r_dim,
-                                         (p.y + val[y]) % r_dim,
-                                         (p.z + val[z]) % r_dim), r_dim);
-        if (offset_defined_table[index] &&
-            std::find(candidate_vector.begin(),
-                      candidate_vector.end(),
-                      offset_table[index]) == candidate_vector.end()) {
-          candidate_vector.push_back(offset_table[index]);
+        offset_point = glm::uvec3((p.x + val[x]) % offset_table.getDim(),
+                                  (p.y + val[y]) % offset_table.getDim(),
+                                  (p.z + val[z]) % offset_table.getDim());
+        
+        if (offset_table.isDefined(offset_point)) {
+          candidate = offset_table.getPoint(offset_point);
+
+          if (std::find(candidate_vector.begin(),
+                        candidate_vector.end(),
+                        candidate) == candidate_vector.end()) {
+            candidate_vector.push_back(candidate);
+          }
         }
       }
     }
@@ -260,21 +297,23 @@ void SpatialHashFunctionBuilder<R>::retrieveCandidates(
 template <class R>
 bool SpatialHashFunctionBuilder<R>::isValidCandidate(
     glm::u8vec3 candidate,
-    unsigned int m_dim,
     const std::vector<EntryElement>& elements,
-    const std::vector<bool>& hash_defined_table) {
+    const Table<R>& hash_table) {
   // --------------------------------------------------------------------------
   // Sanitise input
-  if (m_dim == 0) throw SpatialHashFunctionConstructionInvalidArgException();
   if (elements.empty()) throw SpatialHashFunctionConstructionInvalidArgException();
-  if (elements.size() > ( m_dim * m_dim * m_dim )) throw SpatialHashFunctionConstructionInvalidArgException();
+  if (elements.size() > ( hash_table.getDim() * 
+                          hash_table.getDim() * 
+                          hash_table.getDim() )) throw SpatialHashFunctionConstructionInvalidArgException();
 
   // --------------------------------------------------------------------------
   for (EntryElement e : elements) {
-    unsigned index = math::toIndex(glm::uvec3((e.hash_0.x + candidate.x) % m_dim,
-                                              (e.hash_0.y + candidate.y) % m_dim,
-                                              (e.hash_0.z + candidate.z) % m_dim), m_dim);
-    if (hash_defined_table[index]) return false;
+    if (hash_table.isDefined(glm::uvec3(
+      (e.hash_0.x + candidate.x) % hash_table.getDim(),
+      (e.hash_0.y + candidate.y) % hash_table.getDim(),
+      (e.hash_0.z + candidate.z) % hash_table.getDim()))) {
+      return false;
+    }
   }
 
   return true;

@@ -13,6 +13,7 @@
 //  nTiled headers
 // ---------------------------------------------------------------------------
 #include "SpatialHashFunction.h"
+#include "Table.h"
 
 
 namespace nTiled {
@@ -82,7 +83,7 @@ public:
    *         their elements. Returns the greater one.
    */
   struct ConstructionElementCompare {
-    bool operator() (ConstructionElement i, ConstructionElement j) { return (i.elements.size() > j.elements.size()); }
+    bool operator() (const ConstructionElement& i, const ConstructionElement& j) { return (i.elements.size() > j.elements.size()); }
   };
     // --------------------------------------------------------------------------
     //  Constructor
@@ -131,10 +132,26 @@ public:
    *          | Phi->size() == r_dim * r_dim * r_dim
    *          | FORALL e IN entries : H[h(e.first)] == e.second
    */
-  std::pair<std::vector<R>*, std::vector<glm::u8vec3>*> buildTables(
-      unsigned int m_dim,
-      unsigned int r_dim,
-      const std::vector<std::pair<glm::uvec3, R>>& entries);
+  bool buildTables(const std::vector<ConstructionElement>& entry_vector,
+                   Table<R>& hash_table,
+                   Table<glm::u8vec3>& offset_table);
+
+  /*! @brief map entries to result_entry_set, preparing the data to be used in
+   *         build tables.
+   *
+   * @param entries The entry set from which result_entry_set is constructed
+   * @param m_dim The dimension of the hashtable H
+   * @param r_dim The dimension of the offset table Phi
+   * @param result_entry_set The resulting vector in which the mapped data is 
+   *                         placed
+   *
+   * @returns True if a perfect hash function can be constructed with the given
+   *          entries and dimensions, false otherwise.
+   */
+  bool mapEntryVector(const std::vector<std::pair<glm::uvec3, R>>& entries,
+                      unsigned int m_dim,
+                      unsigned int r_dim,
+                      std::vector<ConstructionElement>& result_entry_set) const;
 
   /*! @brief Calculate whether m and r are acceptable parameters for the 
    *         construction of a SpatialHashFunction.
@@ -161,9 +178,7 @@ public:
    * @post FORALL p_i: next_to(p_i, p) -> Phi[p_i] IN candidate_vector
    */
   void retrieveCandidates(glm::uvec3 p,
-                          unsigned int r_dim,
-                          const std::vector<bool>& offset_defined_table,
-                          const std::vector<glm::u8vec3>& offset_table,
+                          const Table<glm::u8vec3>& offset_table,
                           std::vector<glm::u8vec3>& candidate_vector);
 
   /*! @brief Check whether the candidate offset value is a valid offset
@@ -179,9 +194,8 @@ public:
    * @returns True if candidate is a valid offset value, False otherwise
    */
   bool isValidCandidate(glm::u8vec3 candidate,
-                        unsigned int m_dim,
-                        const std::vector<glm::uvec3>& elements,
-                        const std::vector<bool>& hash_defined_table);
+                        const std::vector<EntryElement>& elements,
+                        const Table<R>& hash_table);
 
 
 private:

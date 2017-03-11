@@ -28,6 +28,28 @@ class SpatialHashFunctionConstructionInvalidArgException : public SpatialHashFun
   }
 };
 
+
+class SpatialHashFunctionConstructionExhaustedException : public SpatialHashFunctionException {
+  virtual const char* what() const throw() {
+    return "SpatialHashFunction has exceeded the number of tries to construct it.";
+  }
+};
+
+
+class SpatialHashFunctionConstructionIllegalAccessTableException : public SpatialHashFunctionException {
+  virtual const char* what() const throw() {
+    return "Table point accessed an undefined point";
+  }
+};
+
+
+class SpatialHashFunctionConstructionIllegalWriteTableException : public SpatialHashFunctionException {
+  virtual const char* what() const throw() {
+    return "Table point written a defined point";
+  }
+};
+
+
 }
 }
 }
