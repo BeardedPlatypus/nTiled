@@ -50,6 +50,13 @@ class SpatialHashFunctionConstructionIllegalWriteTableException : public Spatial
 };
 
 
+class SpatialHashFunctionIllegalAccessException : public SpatialHashFunctionException {
+  virtual const char* what() const throw() {
+    return "Hashfunction accessed at undefined point.";
+  }
+};
+
+
 }
 }
 }
