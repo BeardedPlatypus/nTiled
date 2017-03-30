@@ -183,6 +183,7 @@ template void loadSpatialTable(GLuint,       // index
                                std::string); // sampler name
 
 void LinklessOctree::loadToShader(GLuint shader) {
+  /*
   unsigned int n_levels = this->getNLevels();
 
   // generate octree spatial hash functions
@@ -246,7 +247,7 @@ void LinklessOctree::loadToShader(GLuint shader) {
                        shader,
                        "leaf_offset_tables[" + std::to_string(i) + "]");
     }
-  }
+  } */
 }
 
 

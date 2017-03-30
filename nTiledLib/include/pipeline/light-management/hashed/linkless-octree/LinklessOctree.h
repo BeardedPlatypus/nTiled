@@ -10,7 +10,6 @@
 // ----------------------------------------------------------------------------
 //  nTiled Headers
 // ----------------------------------------------------------------------------
-#include "pipeline\light-management\hashed\light-octree\LightOctree.h"
 #include "SpatialHashFunction.h"
 
 

@@ -1,56 +1,86 @@
 #include "pipeline\light-management\hashed\light-octree\LightOctree.h"
 
+
+// ----------------------------------------------------------------------------
+//  nTiled Headers
+// ----------------------------------------------------------------------------
+#include "pipeline\light-management\hashed\light-octree\nodes\LOLeaf.h"
+
 namespace nTiled {
 namespace pipeline {
 namespace hashed {
 
-LightOctree::LightOctree(glm::vec4 octree_origin,
-                         float minimum_leaf_node_size,
-                         unsigned int octree_depth,
-                         float octree_size) :
-  octree_origin(octree_origin),
-  minimum_leaf_node_size(minimum_leaf_node_size),
-  octree_depth(octree_depth),
-  p_root(new lo::Root()),
-  octree_size(octree_size) {
+
+// ----------------------------------------------------------------------------
+//  Constructor | Destructor
+// ----------------------------------------------------------------------------
+LightOctree::LightOctree(glm::vec3 origin,
+                         unsigned int depth,
+                         double minimal_node_size) :
+    origin(origin),
+    depth(depth),
+    minimal_node_size(minimal_node_size),
+    root(new LOLeaf()) {
 }
 
 
 LightOctree::~LightOctree() {
-  delete this->p_root;
+  delete this->root;
 }
 
 
-void LightOctree::addSLT(const SingleLightTree& slt) {
-  this->p_root->addSLT(0, glm::uvec3(0), slt);
-}
-
-
-std::vector<std::pair<glm::uvec3, lo::Node*>> LightOctree::getNodesAtDepth(unsigned int depth) {
-  if (depth < 0) {
-    return std::vector<std::pair<glm::uvec3, lo::Node*>>();
+// ----------------------------------------------------------------------------
+//  Get Methods
+// ----------------------------------------------------------------------------
+std::vector<GLuint> LightOctree::retrieveLights(glm::vec3 point) const {
+  // check whether point falls within light octree, if not return empty
+  glm::vec3 orig = this->getOrigin();
+  double width = this->getWidth();
+  if (point.x < orig.x ||
+      point.y < orig.y ||
+      point.z < orig.z ||
+      point.x > orig.x + width ||
+      point.y > orig.y + width ||
+      point.z > orig.z + width) {
+    return std::vector<GLuint>();
   }
 
-  unsigned short current = 0;
-  std::vector<std::pair<glm::uvec3, lo::Node*>> nodes[2] = {
-    std::vector<std::pair<glm::uvec3, lo::Node*>>(),
-    std::vector<std::pair<glm::uvec3, lo::Node*>>() };
-
-  nodes[current].push_back(
-    std::pair<glm::uvec3, lo::Node*>(glm::uvec3(0, 0, 0), this->p_root));
-
-  for (unsigned int i = 0; i < depth; i++) {
-    for (const std::pair<glm::uvec3, lo::Node*> n : nodes[current]) {
-      n.second->getSubNodes(n.first, nodes[(current + 1) & 1]);
-    }
-    nodes[current].clear();
-    current = (current + 1) & 1;
-  }
-
-  return nodes[current];
+  return this->root->retrieveLights(point, 
+                                    NodeDimensions(this->getOrigin(),
+                                                   this->getWidth()));
 }
 
 
+// ----------------------------------------------------------------------------
+//  Construction Methods
+// ----------------------------------------------------------------------------
+void LightOctree::addSLT(const SingleLightTree& slt, GLuint index) {
+  LONode* slt_root_node = this->constructAndRetrieveRoot(slt);
+  slt_root_node->addSLTNode(*(slt.getRoot()), 
+                            this,
+                            glm::bvec3(false),
+                            index);
 }
+
+
+LONode* LightOctree::constructAndRetrieveRoot(const SingleLightTree& slt) {
+  unsigned int depth_left = this->getDepth() - slt.getDepth();
+  glm::vec3 mid_point_slt = slt.getOrigin() + glm::vec3(0.5 * slt.getWidth());
+  NodeDimensions node_dim = NodeDimensions(this->getOrigin(), this->getWidth());
+
+  return this->getRoot()->retrieveAndConstructRoot(depth_left,
+                                                   mid_point_slt,
+                                                   node_dim,
+                                                   this,
+                                                   glm::bvec3(false));
 }
+
+
+void LightOctree::updateChild(glm::bvec3 _, LONode* child) {
+  this->root = child;
 }
+
+
+} // hashed
+} // pipeline
+} // nTiled
