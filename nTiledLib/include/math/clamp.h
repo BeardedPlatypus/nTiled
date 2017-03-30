@@ -13,9 +13,15 @@ namespace math {
  *
  * @return The clamped value of x
  */
-inline float clamp(float smallest, 
-                   float x, 
-                   float largest) {
+inline float clampf(float smallest, 
+                    float x, 
+                    float largest) {
+  return std::max(smallest, std::min(x, largest));
+}
+
+inline double clamp(double smallest,
+                    double x,
+                    double largest) {
   return std::max(smallest, std::min(x, largest));
 }
 
