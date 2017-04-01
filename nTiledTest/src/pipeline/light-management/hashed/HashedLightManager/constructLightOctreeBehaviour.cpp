@@ -18,7 +18,7 @@ SCENARIO("HashedLightManager::constructLightOctree should create a valid LightOc
       std::map<std::string, nTiled::world::Object*>();
     double radius = 20.0;
 
-    for (unsigned int i = 4; i <= 4; ++i) {
+    for (unsigned int i = 1; i <= 5; ++i) {
       w = new nTiled::world::World();
 
       for (unsigned int x = 0; x < i; ++x) {
@@ -43,59 +43,17 @@ SCENARIO("HashedLightManager::constructLightOctree should create a valid LightOc
     }
 
     WHEN("constructLightOctree is called") {
-      for (nTiled::pipeline::hashed::HashedLightManager& man : managers)
+      for (nTiled::pipeline::hashed::HashedLightManager& man : managers) {
         man.constructLightOctree();
+      }
 
       THEN("Each light should fit into the newly constructed LightOctree") {
-        for (unsigned int i = 0; i < 1; ++i) {
+        for (unsigned int i = 0; i < 5; ++i) {
           nTiled::pipeline::hashed::HashedLightManager& mana = managers.at(i);
           const nTiled::pipeline::hashed::LightOctree& lo = *(mana.getLightOctree());
           unsigned int dim = lo.getNNodes();
           glm::vec3 orig = lo.getOrigin();
           double width = lo.getWidth();
-
-          /*
-          glm::vec3 p = glm::vec3(-20.0,
-                                  -11.0,
-                                  -8.0);
-
-          std::vector<nTiled::pipeline::hashed::SingleLightTree*> slts =
-            mana.getSLTs();
-          bool val = slts.at(0)->isInLight(p);
-
-          std::vector<GLuint> indices = lo.retrieveLights(p);
-
-          for (unsigned int j = 0; j < slts.size(); ++j) {
-            glm::vec3 slt_origin = slts.at(i)->getOrigin();
-            double slt_width = slts.at(i)->getWidth();
-            if (((p.x >= slt_origin.x) && 
-                 (p.y >= slt_origin.y) &&
-                 (p.z >= slt_origin.z) &&
-                 (p.x <= slt_origin.x + slt_width) &&
-                 (p.y <= slt_origin.y + slt_width) &&
-                 (p.z <= slt_origin.z + slt_width)) &&
-                (slts.at(j)->isInLight(p))) {
-              if (std::find(indices.begin(),
-                            indices.end(),
-                            j) == indices.end()) {
-                bool failed = true;
-              }
-
-              REQUIRE(std::find(indices.begin(),
-                                indices.end(),
-                                j) != indices.end());
-            } else {
-              if (std::find(indices.begin(),
-                            indices.end(),
-                            j) != indices.end()) {
-                bool failed = true;
-              }
-              REQUIRE(std::find(indices.begin(),
-                                indices.end(),
-                                j) == indices.end());
-            }
-          }
-          */
 
           glm::vec3 offset = glm::vec3(orig.x - 0.05 * width,
                                        orig.y - 0.05 * width,
@@ -114,35 +72,24 @@ SCENARIO("HashedLightManager::constructLightOctree should create a valid LightOc
                                                  step_size * z);
                 indices = lo.retrieveLights(p);
 
-                for (unsigned int j = 0; j < slts.size(); ++j) {
-                  glm::vec3 slt_origin = slts.at(i)->getOrigin();
-                  double slt_width = slts.at(i)->getWidth();
-                  if (((p.x >= slt_origin.x) && 
-                       (p.y >= slt_origin.y) &&
-                       (p.z >= slt_origin.z) &&
-                       (p.x <= slt_origin.x + slt_width) &&
-                       (p.y <= slt_origin.y + slt_width) &&
-                       (p.z <= slt_origin.z + slt_width)) &&
-                      (slts.at(j)->isInLight(p))) {
-                    if (std::find(indices.begin(),
-                                  indices.end(),
-                                  j) == indices.end()) {
-                      bool failed = true;
-                    }
-
-                    REQUIRE(std::find(indices.begin(),
-                                      indices.end(),
-                                      j) != indices.end());
-                  } else {
-                    if (std::find(indices.begin(),
-                                  indices.end(),
-                                  j) != indices.end()) {
-                      bool failed = true;
-                    }
-                    REQUIRE(std::find(indices.begin(),
-                                      indices.end(),
-                                      j) == indices.end());
-                  }
+                //for (unsigned int j = 0; j < slts.size(); ++j) {
+                unsigned int j = 0;
+                glm::vec3 slt_origin = slts.at(i)->getOrigin();
+                double slt_width = slts.at(i)->getWidth();
+                if (((p.x >= slt_origin.x) &&
+                     (p.y >= slt_origin.y) &&
+                     (p.z >= slt_origin.z) &&
+                     (p.x <= slt_origin.x + slt_width) &&
+                     (p.y <= slt_origin.y + slt_width) &&
+                     (p.z <= slt_origin.z + slt_width)) &&
+                    (slts.at(j)->isInLight(p))) {
+                  REQUIRE(std::find(indices.begin(),
+                                    indices.end(),
+                                    j) != indices.end());
+                } else {
+                  REQUIRE(std::find(indices.begin(),
+                                    indices.end(),
+                                    j) == indices.end());
                 }
               }
             }
