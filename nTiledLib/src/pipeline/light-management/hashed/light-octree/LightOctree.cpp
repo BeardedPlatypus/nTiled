@@ -55,15 +55,15 @@ std::vector<GLuint> LightOctree::retrieveLights(glm::vec3 point) const {
 //  Construction Methods
 // ----------------------------------------------------------------------------
 void LightOctree::addSLT(const SingleLightTree& slt, GLuint index) {
-  LONode* slt_root_node = this->constructAndRetrieveRoot(slt);
-  slt_root_node->addSLTNode(*(slt.getRoot()), 
-                            this,
-                            glm::bvec3(false),
-                            index);
+  LONodeContainer slt_root_node = this->constructAndRetrieveRoot(slt);
+  slt_root_node.p_node->addSLTNode(*(slt.getRoot()), 
+                                   slt_root_node.p_parent,
+                                   glm::bvec3(false),
+                                   index);
 }
 
 
-LONode* LightOctree::constructAndRetrieveRoot(const SingleLightTree& slt) {
+LONodeContainer LightOctree::constructAndRetrieveRoot(const SingleLightTree& slt) {
   unsigned int depth_left = this->getDepth() - slt.getDepth();
   glm::vec3 mid_point_slt = slt.getOrigin() + glm::vec3(0.5 * slt.getWidth());
   NodeDimensions node_dim = NodeDimensions(this->getOrigin(), this->getWidth());

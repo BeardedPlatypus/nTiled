@@ -6,6 +6,8 @@
 // ----------------------------------------------------------------------------
 #include "pipeline\light-management\hashed\light-octree\nodes\LOParent.h"
 #include "pipeline\light-management\hashed\light-octree\nodes\LOBranch.h"
+#include "pipeline\light-management\hashed\light-octree\nodes\LONodeContainer.h"
+
 
 namespace nTiled {
 namespace pipeline {
@@ -42,12 +44,12 @@ void LOLeaf::addSLTNode(const SLTNode& node,
 }
 
 
-LONode* LOLeaf::retrieveAndConstructRoot(unsigned int depth_left,
-                                         glm::vec3 mid_point_slt,
-                                         NodeDimensions node_dim,
-                                         LOParent* p_parent,
-                                         glm::bvec3 index) {
-  if (depth_left == 0) return this;
+LONodeContainer LOLeaf::retrieveAndConstructRoot(unsigned int depth_left,
+                                                 glm::vec3 mid_point_slt,
+                                                 NodeDimensions node_dim,
+                                                 LOParent* p_parent,
+                                                 glm::bvec3 index) {
+  if (depth_left == 0) return LONodeContainer(this, p_parent);
 
   LONode* new_node = this->subdivide(p_parent, index);
   return new_node->retrieveAndConstructRoot(depth_left,

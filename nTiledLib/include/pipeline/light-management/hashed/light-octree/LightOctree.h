@@ -13,6 +13,7 @@
 #include "math\octree.h"
 #include "nodes\LONode.h"
 #include "nodes\LOParent.h"
+#include "nodes\LONodeContainer.h"
 
 #include "slt\SingleLightTree.h"
 
@@ -112,7 +113,7 @@ public:
    * @returns The node within this LightOctree that corresponds with the root
    *          node of the SingleLightTree
    */
-  LONode* constructAndRetrieveRoot(const SingleLightTree& slt);
+  LONodeContainer constructAndRetrieveRoot(const SingleLightTree& slt);
 
   virtual void updateChild(glm::bvec3 index, LONode* child);
 

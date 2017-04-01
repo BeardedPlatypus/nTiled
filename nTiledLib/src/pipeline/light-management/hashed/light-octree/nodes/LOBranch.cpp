@@ -5,6 +5,7 @@
 //  nTiled Headers
 // ----------------------------------------------------------------------------
 #include "pipeline\light-management\hashed\light-octree\nodes\LOLeaf.h"
+#include "pipeline\light-management\hashed\light-octree\nodes\LONodeContainer.h"
 
 
 namespace nTiled {
@@ -79,12 +80,12 @@ void LOBranch::addSLTNode(const SLTNode& node,
 }
 
 
-LONode* LOBranch::retrieveAndConstructRoot(unsigned int depth_left,
-                                           glm::vec3 mid_point_slt,
-                                           NodeDimensions node_dim,
-                                           LOParent* p_parent,
-                                           glm::bvec3 index) {
-  if (depth_left == 0) return this;
+LONodeContainer LOBranch::retrieveAndConstructRoot(unsigned int depth_left,
+                                                   glm::vec3 mid_point_slt,
+                                                   NodeDimensions node_dim,
+                                                   LOParent* p_parent,
+                                                   glm::bvec3 index) {
+  if (depth_left == 0) return LONodeContainer(this, p_parent);
 
   glm::bvec3 next_index = node_dim.getNextIndex(mid_point_slt);
   return this->getChildNode(next_index)->retrieveAndConstructRoot(depth_left - 1,

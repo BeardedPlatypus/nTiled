@@ -59,11 +59,11 @@ public:
                           glm::bvec3 node_index,
                           GLuint index);
 
-  virtual LONode* retrieveAndConstructRoot(unsigned int depth_left,
-                                           glm::vec3 mid_point_slt,
-                                           NodeDimensions node_dim,
-                                           LOParent* p_parent,
-                                           glm::bvec3 index);
+  virtual LONodeContainer retrieveAndConstructRoot(unsigned int depth_left,
+                                                   glm::vec3 mid_point_slt,
+                                                   NodeDimensions node_dim,
+                                                   LOParent* p_parent,
+                                                   glm::bvec3 index);
 
   /*! @brief Subdivide this node into a LOBranch node with 8 child nodes equal
    *         to this node.

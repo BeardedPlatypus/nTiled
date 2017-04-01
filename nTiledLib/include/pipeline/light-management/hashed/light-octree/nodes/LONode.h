@@ -16,6 +16,7 @@ namespace pipeline {
 namespace hashed {
 
 class LOParent;
+struct LONodeContainer;
 
 class LONode {
 public:
@@ -42,11 +43,11 @@ public:
    * @param node_dim The node dimensions corresponding with this node.
    * @param p_parent pointer to the parent of this node.
    */
-  virtual LONode* retrieveAndConstructRoot(unsigned int depth_left,
-                                           glm::vec3 mid_point_slt,
-                                           NodeDimensions node_dim,
-                                           LOParent* p_parent,
-                                           glm::bvec3 index) = 0;
+  virtual LONodeContainer retrieveAndConstructRoot(unsigned int depth_left,
+                                                   glm::vec3 mid_point_slt,
+                                                   NodeDimensions node_dim,
+                                                   LOParent* p_parent,
+                                                   glm::bvec3 index) = 0;
 
   // --------------------------------------------------------------------------
   //  Query methods

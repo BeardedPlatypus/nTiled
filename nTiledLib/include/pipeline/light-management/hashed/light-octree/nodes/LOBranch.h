@@ -63,11 +63,11 @@ public:
                           glm::bvec3 node_index,
                           GLuint index);
 
-  virtual LONode* retrieveAndConstructRoot(unsigned int depth_left,
-                                           glm::vec3 mid_point_slt,
-                                           NodeDimensions node_dim,
-                                           LOParent* p_parent,
-                                           glm::bvec3 index);
+  virtual LONodeContainer retrieveAndConstructRoot(unsigned int depth_left,
+                                                   glm::vec3 mid_point_slt,
+                                                   NodeDimensions node_dim,
+                                                   LOParent* p_parent,
+                                                   glm::bvec3 index);
 
   // --------------------------------------------------------------------------
   //  Parent methods
