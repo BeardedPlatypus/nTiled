@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\nTiled.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\HashedLightManager\constructEmptyLightOctreeBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\HashedLightManager\constructLightOctreeBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\HashedLightManager\constructLinklessOctreeBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\nodes\LOBranch\branchAddSLTNodeBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\nodes\LOBranch\branchConstructorBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\nodes\LOLeaf\leafAddSLTNodeBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\nodes\LOLeaf\leafConstructorBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\nodes\LOLeaf\leafSubdivideBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\slt\Lattice\getClosestNodeToLightSourceBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\slt\Lattice\getFurthestNodeToLightSourceBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\slt\Lattice\mapToNodeBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\slt\SingleLightTreeBuilder\constructLatticeBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\slt\SingleLightTreeBuilder\constructSLTBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\slt\SingleLightTreeBuilder\determineNodeTypeBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\slt\SingleLightTreeBuilder\getMaxSizeSLTBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\light-octree\slt\SingleLightTreeBuilder\nodeWithinLightBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\LinklessOctree\constructorLinklessOctreeBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\LinklessOctree\getInitialNNodesDimBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\LinklessOctree\getNLevelsBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\LinklessOctree\getOriginBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\SpatialHashFunctionBuilder\buildTablesBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\SpatialHashFunctionBuilder\constructHashFunctionBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\SpatialHashFunctionBuilder\constructionElementCompareBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\SpatialHashFunctionBuilder\isAcceptableParametersBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\SpatialHashFunctionBuilder\isValidCandidateBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\SpatialHashFunctionBuilder\mapEntryVectorBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\SpatialHashFunctionBuilder\retrieveCandidatesBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\SpatialHashFunction\getDataBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\Table\getPointBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\Table\setPointBehaviour.cpp" />
+    <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\Table\tableConstructorBehaviour.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nTiledLib\nTiledLib.vcxproj">
+      <Project>{5697a43f-ca95-4c1a-a991-26cd4db018bb}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3CFF369A-7339-4631-8B75-89902358C1AC}</ProjectGuid>
+    <RootNamespace>Project1</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>nTiledTest</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\catch\;$(SolutionDir)nTiledLib\include;$(SolutionDir)lib\rapidjson\include;$(SolutionDir)lib\glm;$(SolutionDir)lib\glfw-3.1.2\include;$(SolutionDir)lib\GL\include;$(SolutionDir)lib\assimp\include;$(SolutionDir)lib\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\assimp\lib\Release;$(SolutionDir)lib\glfw-3.1.2\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glu32.lib;assimp-vc140-mt.lib;zlibstatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)lib\catch\;$(SolutionDir)nTiledLib\include;$(SolutionDir)lib\rapidjson\include;$(SolutionDir)lib\glm;$(SolutionDir)lib\glfw-3.1.2\include;$(SolutionDir)lib\GL\include;$(SolutionDir)lib\assimp\include;$(SolutionDir)lib\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\assimp\lib\Release;$(SolutionDir)lib\glfw-3.1.2\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glu32.lib;assimp-vc140-mt.lib;zlibstatic.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
