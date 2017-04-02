@@ -5,6 +5,9 @@
 // ----------------------------------------------------------------------------
 #include "world\World.h"
 #include "light-octree\LightOctree.h"
+#include "linkless-octree\LinklessOctree.h"
+#include "HashedConfig.h"
+
 
 namespace nTiled {
 namespace pipeline {
@@ -20,6 +23,17 @@ public:
    * @param world A constant reference to the world this HashedLightManager
    *              observes
    * @param minimal_node_size The minimal node size 
+   * @param starting_depth The depth at which 
+   */
+  HashedLightManager(const world::World& world,
+                     HashedConfig hashed_config);
+                     
+
+  /*! @brief Construct a new HashedLightManager with the given parameters
+   *
+   * @param world A constant reference to the world this HashedLightManager
+   *              observes
+   * @param minimal_node_size The minimal node size 
    */
   HashedLightManager(const world::World& world,
                      double minimal_node_size);
@@ -27,6 +41,12 @@ public:
   /*! @brief Destruct this HashedLightManager.
    */
   ~HashedLightManager();
+
+  // --------------------------------------------------------------------------
+  /*! @brief Initialise this HashedLightManager by constructing all the 
+   *         data structures associated with it.
+   */
+  void init();
 
   // --------------------------------------------------------------------------
   //  Get | Set methods
@@ -37,11 +57,40 @@ public:
    */
   double getMinimalNodeSize() const { return this->minimal_node_size; }
 
+  /*! @brief Get the starting depth of the LinklessOctree of this 
+   *         HashedLightManager
+   *
+   * @returns The starting depth of the LinklessOctree of this 
+   *          HashedLightmanager
+   */
+  unsigned int getStartingDepth() const { return this->starting_depth; }
+
+  /*! @brief Get the increase ratio of r for the construction of the 
+   *         LinklessOctree.
+   * 
+   * @return The increase ratio of r for the construction of the LinklessOctree
+   */
+  double getRIncreaseRatio() const { return this->r_increase_ratio; }
+
+  /*! @brief Get the maximum number of attempts to construct a 
+   *         SpatialHashFunction of the LinklessOctree of this 
+   *         HashedLightManager.
+   *
+   * @return The maximum number of attempts to construct a SpatialHashFunction
+   */
+  unsigned int getMaxNAttempts() const { return this->max_attempts; }
+
   /*! @brief Get the reference to the world of this HashedLightManager. 
    *
    * @returns The world this HashedLightManager depicts
    */
   const world::World& getWorld() const { return this->world; }
+
+  /*! @brief Geth the LinklessOctree associated with this HashedLightManager. 
+   * 
+   * @returns The pointer to the LinklessOctree of this HashedLightManager
+   */
+  LinklessOctree* getLinklessOctree() { return this->p_linkless_octree; }
 
   /*! @brief Get the LightOctree associated with this HashedLightManager
    * 
@@ -55,7 +104,6 @@ public:
    * @returns a vector containing pointers to all the SingleLightTrees
    */
   const std::vector<SingleLightTree*>& getSLTs() const { return this->ps_slt; }
-
 
   // --------------------------------------------------------------------------
   //  LightOctree Construction methods
@@ -84,6 +132,10 @@ public:
   // --------------------------------------------------------------------------
   //  LinklessOctree Construction methods
   // --------------------------------------------------------------------------
+  /*! @brief Construct a new LinklessOctree based on the lights in the 
+   *         in the world associated with this HashedLightManager.
+   */
+  void constructLinklessOctree();
 
 private:
   // --------------------------------------------------------------------------
@@ -109,6 +161,24 @@ private:
 
   /*! @brief Whether this HashedLightManager has constructed slts. */
   bool has_constructed_slts;
+
+  // --------------------------------------------------------------------------
+  //  LinklessOctree variables
+  // --------------------------------------------------------------------------
+  /*! @brief Pointer to the LinklessOctree associated with this HashedShadingManager*/
+  LinklessOctree* p_linkless_octree;
+
+  /*! @brief Whether this HashedLightManager has constructed a LinklessOctree. */
+  bool has_constructed_linkless_octree;
+
+  /*! @brief The starting depth of the LinklessOctree. */
+  unsigned int starting_depth;
+
+  /*! @brief The increase ratio used in the construction of the LinklessOctree. */
+  double r_increase_ratio;
+
+  /*! @brief The max_attempts used to construct a LinklessOctree. */
+  unsigned int max_attempts;
 };
 
 }

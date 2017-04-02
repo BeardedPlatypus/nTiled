@@ -11,9 +11,9 @@ struct HashedConfig {
                float r_increase_ratio,
                unsigned int max_attempts);
 
-  float minimum_node_size;
+  double minimum_node_size;
   unsigned int starting_depth;
-  float r_increase_ratio;
+  double r_increase_ratio;
   unsigned int max_attempts;
 };
 

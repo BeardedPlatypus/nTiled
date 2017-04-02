@@ -31,6 +31,20 @@ LOBranch::LOBranch(LOLeaf* leaf) {
 }
 
 
+LOBranch::LOBranch(const LOBranch& node_ref) {
+  for (unsigned int x = 0; x < 2; ++x) {
+    for (unsigned int y = 0; y < 2; ++y) {
+      for (unsigned int z = 0; z < 2; ++z) {
+        const LONode& child = node_ref.getChildNodeConst(glm::bvec3(x == 1,
+                                                                    y == 1,
+                                                                    z == 1));
+        this->children[x + y * 2 + z * 4] = child.copy();
+      }
+    }
+  }
+}
+
+
 LOBranch::~LOBranch() {
   for (unsigned int i = 0; i < 8; ++i) {
     delete this->children[i];
@@ -96,6 +110,14 @@ LONodeContainer LOBranch::retrieveAndConstructRoot(unsigned int depth_left,
 }
 
 
+
+void LOBranch::addToConstructionVectors(glm::uvec3 position,
+                                        std::vector<std::pair<glm::uvec3, const LOBranch*>>& partials,
+                                        std::vector<std::pair<glm::uvec3, const LOLeaf*>>& leaves) const {
+  partials.push_back(std::pair<glm::uvec3, const LOBranch*>(position, this));
+}
+
+
 void LOBranch::updateChild(glm::bvec3 index, LONode* child) {
   unsigned int i = 0;
 
@@ -104,6 +126,35 @@ void LOBranch::updateChild(glm::bvec3 index, LONode* child) {
   if (index.z) i += 4;
 
   this->children[i] = child;
+}
+
+
+LOBranch* LOBranch::copy() const {
+  return new LOBranch(*this);
+}
+
+
+void LOBranch::retrieveNodesAtDepth(unsigned int depth_left,
+                                    glm::uvec3 position,
+                                    std::vector<std::pair<glm::uvec3, const LOBranch*>>& nodes) const {
+  if (depth_left == 0) {
+    nodes.push_back(std::pair<glm::uvec3, LOBranch*>(position, this->copy()));
+  } else {
+    glm::bvec3 child_index;
+    for (unsigned int x = 0; x < 2; ++x) {
+      for (unsigned int y = 0; y < 2; ++y) {
+        for (unsigned int z = 0; z < 2; ++z) {
+          child_index = glm::bvec3(x == 1,
+                                   y == 1,
+                                   z == 1);
+
+          this->getChildNodeConst(child_index).retrieveNodesAtDepth(depth_left - 1,
+                                                                    position + position + glm::uvec3(x, y, z),
+                                                                    nodes);
+        }
+      }
+    }
+  }
 }
 
 }

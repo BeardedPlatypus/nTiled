@@ -34,6 +34,13 @@ public:
    */
   LOBranch(LOLeaf* leaf);
 
+  /*! @brief Create a new LOBranch node with a copy of the children of the 
+   *         node_ref
+   *
+   * @param node_ref The reference node used to construct this new LOBranch
+   */
+  LOBranch(const LOBranch& node_ref);
+
   /*! @brief Destruct this LOBranch node.
    */
   ~LOBranch();
@@ -70,10 +77,29 @@ public:
                                                    glm::bvec3 index);
 
   // --------------------------------------------------------------------------
+  //  LinklessOctree Related methods
+  // --------------------------------------------------------------------------
+  virtual glm::u8vec2 getLinklessOctreeNodeRepresentation() const {
+    return glm::u8vec2(0, 1);
+  }
+
+  virtual void addToConstructionVectors(glm::uvec3 position,
+                                        std::vector<std::pair<glm::uvec3, const LOBranch*>>& partials,
+                                        std::vector<std::pair<glm::uvec3, const LOLeaf*>>& leaves) const;
+  // --------------------------------------------------------------------------
   //  Parent methods
   // --------------------------------------------------------------------------
   virtual void updateChild(glm::bvec3 index, LONode* child);
 
+  /*! @brief Copy this LOBranch into a new instance
+   *
+   * @returns a new copy of this LOBranch
+   */
+  virtual LOBranch* copy() const;
+
+  virtual void retrieveNodesAtDepth(unsigned int depth_left,
+                                    glm::uvec3 position,
+                                    std::vector<std::pair<glm::uvec3, const LOBranch*>>& nodes) const;
 private:
   /*! @brief The children nodes of this LOBranch node. */
   LONode* children[8];

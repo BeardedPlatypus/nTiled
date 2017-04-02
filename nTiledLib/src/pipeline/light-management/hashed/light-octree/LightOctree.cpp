@@ -52,6 +52,20 @@ std::vector<GLuint> LightOctree::retrieveLights(glm::vec3 point) const {
 
 
 // ----------------------------------------------------------------------------
+//  LinklessOctree construction related methods
+// ----------------------------------------------------------------------------
+std::vector<std::pair<glm::uvec3, const LOBranch*>> LightOctree::retrieveNodesAtDepth(unsigned int depth_i) const {
+  std::vector<std::pair<glm::uvec3, const LOBranch*>> nodes = {};
+
+  this->getRootConst().retrieveNodesAtDepth(depth_i,
+                                            glm::uvec3(0),
+                                            nodes);
+
+  return nodes;
+}
+
+
+// ----------------------------------------------------------------------------
 //  Construction Methods
 // ----------------------------------------------------------------------------
 void LightOctree::addSLT(const SingleLightTree& slt, GLuint index) {
@@ -79,6 +93,8 @@ LONodeContainer LightOctree::constructAndRetrieveRoot(const SingleLightTree& slt
 void LightOctree::updateChild(glm::bvec3 _, LONode* child) {
   this->root = child;
 }
+
+
 
 
 } // hashed

@@ -54,13 +54,16 @@ SpatialHashFunction<R>* SpatialHashFunctionBuilder<R>::constructHashFunction(
   unsigned short i = 0;
   bool has_build = false;
 
-  Table<R>* p_hash_table = new Table<R>(m_dim);
-  Table<glm::u8vec3>* p_offset_table = new Table<glm::u8vec3>(r_dim);
+  Table<R>* p_hash_table;
+  Table<glm::u8vec3>* p_offset_table;
 
   std::vector<ConstructionElement> entry_vector;
 
-  while (!has_build && i < max_attempts) {
+  do {
     while (!this->isAcceptableParameters(m_dim, r_dim)) r_dim += 2;
+
+    p_hash_table = new Table<R>(m_dim);
+    p_offset_table = new Table<glm::u8vec3>(r_dim);
 
     if (mapEntryVector(entries, m_dim, r_dim, entry_vector)) {
       has_build = buildTables(entry_vector, 
@@ -75,12 +78,10 @@ SpatialHashFunction<R>* SpatialHashFunctionBuilder<R>::constructHashFunction(
       delete p_hash_table;
       delete p_offset_table;
 
-      p_hash_table = new Table<R>(m_dim);
-      p_offset_table = new Table<glm::u8vec3>(r_dim);
 
     }
     i++;
-  }
+  } while (!has_build && i < max_attempts);
 
   // check if build
   // --------------------------------------------------------------------------

@@ -62,6 +62,45 @@ public:
    */
   virtual std::vector<GLuint> retrieveLights(glm::vec3 point,
                                              NodeDimensions node) const = 0;
+
+  // --------------------------------------------------------------------------
+  //  LinklessOctree Construction Related methods
+  // --------------------------------------------------------------------------
+  /*! @brief Get the LinklessOctree node representation specified as 
+   *         glm::u8vec2( 1 if LOLeaf else 0,
+   *                      1 if LOBranch OR (LOLeaf && !isEmpty() ) else 0)
+   *         
+   * @returns The LinklessOctree node representation.
+   */
+  virtual glm::u8vec2 getLinklessOctreeNodeRepresentation() const = 0;
+
+  /*! @brief Add this LONode to either partials or leaves
+   *
+   * @param position The position of this LONode
+   * @param partials Reference to the list of partials being constructed
+   * @param leaves Reference to the list of leaves being constructed
+   */
+  virtual void addToConstructionVectors(glm::uvec3 position,
+                                        std::vector<std::pair<glm::uvec3, const LOBranch*>>& partials,
+                                        std::vector<std::pair<glm::uvec3, const LOLeaf*>>& leaves) const = 0;
+
+  /*! @brief Copy this LONode
+   *
+   * @returns a pointer to the new copy of this LONode
+   */
+  virtual LONode* copy() const = 0;
+
+  /*! @brief Descend into this node until depth_left is zero, then add the 
+   *         node to nodes.
+   * 
+   * @param depth_left The depth left before a node is added
+   * @param position The position of this node
+   * @param nodes The nodes to which the nodes at depth_left are added.
+   */
+  virtual void retrieveNodesAtDepth(unsigned int depth_left,
+                                    glm::uvec3 position,
+                                    std::vector<std::pair<glm::uvec3, const LOBranch*>>& nodes) const = 0;
+
 };
 
 }

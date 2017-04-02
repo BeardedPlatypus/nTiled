@@ -6,7 +6,7 @@
 #include "pipeline\forward\shaders\ForwardAttenuatedShader.h"
 #include "pipeline\forward\shaders\ForwardTiledShader.h"
 #include "pipeline\forward\shaders\ForwardClusteredShader.h"
-#include "pipeline\forward\shaders\ForwardHashedShader.h"
+//#include "pipeline\forward\shaders\ForwardHashedShader.h"
 
 // Path defines
 #define VERT_PATH_BASIC std::string("../nTiledLib/src/pipeline/forward/shaders-glsl/lambert_basic.vert")
@@ -77,7 +77,9 @@ void ForwardPipeline::constructShaderCatalog() {
                                             this->output_buffer,
                                             this->state.shading.tile_size,
                                             ClusteredLightManagerBuilder());
-    } else if (id == ForwardShaderId::ForwardHashed) {
+    /*
+    } 
+    else if (id == ForwardShaderId::ForwardHashed) {
       p_shader = new ForwardHashedShader(id, 
                                          VERT_PATH_HASHED,
                                          FRAG_PATH_BASIC_HASHED,
@@ -86,6 +88,7 @@ void ForwardPipeline::constructShaderCatalog() {
                                          this->output_buffer,
                                          hashed::HashedLightManagerBuilder(),
                                          this->state.shading.hashed_config);
+                                         */
     } else {
       throw std::runtime_error(std::string("Unsupported shader"));
     }

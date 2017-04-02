@@ -68,8 +68,40 @@ LOBranch* LOLeaf::subdivide(LOParent* parent, glm::bvec3 index) {
 }
 
 
+void LOLeaf::addToConstructionVectors(glm::uvec3 position,
+                                        std::vector<std::pair<glm::uvec3, const LOBranch*>>& partials,
+                                        std::vector<std::pair<glm::uvec3, const LOLeaf*>>& leaves) const {
+  leaves.push_back(std::pair<glm::uvec3, const LOLeaf*>(position, this));
+}
+
+
 void LOLeaf::addIndex(GLuint index) {
   this->indices.push_back(index);
+}
+
+
+LOLeaf* LOLeaf::copy() const {
+  return new LOLeaf(*this);
+}
+
+
+void LOLeaf::retrieveNodesAtDepth(unsigned int depth_left,
+                                  glm::uvec3 position,
+                                  std::vector<std::pair<glm::uvec3, const LOBranch*>>& nodes) const {
+  if (depth_left == 0) {
+    nodes.push_back(std::pair<glm::uvec3, LOBranch*>(position, new LOBranch(this->copy())));
+  } else {
+    glm::bvec3 child_index;
+    for (unsigned int x = 0; x < 2; ++x) {
+      for (unsigned int y = 0; y < 2; ++y) {
+        for (unsigned int z = 0; z < 2; ++z) {
+          this->retrieveNodesAtDepth(depth_left - 1,
+                                     position + position + glm::uvec3(x, y, z),
+                                     nodes);
+        }
+      }
+    }
+  }
 }
 
 }

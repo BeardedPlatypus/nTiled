@@ -52,6 +52,27 @@ public:
   std::vector<GLuint> getIndices() const { return this->indices; }
 
   // --------------------------------------------------------------------------
+  //  LinklessOctree Related methods
+  // --------------------------------------------------------------------------
+  virtual glm::u8vec2 getLinklessOctreeNodeRepresentation() const {
+    return glm::u8vec2(1, this->isEmpty() ? 0 : 1);
+  }
+
+  virtual void addToConstructionVectors(glm::uvec3 position,
+                                        std::vector<std::pair<glm::uvec3, const LOBranch*>>& partials,
+                                        std::vector<std::pair<glm::uvec3, const LOLeaf*>>& leaves) const;
+
+  /*! @brief Copy this LOLeaf into a new instance
+   *
+   * @returns a new copy of this LOLeaf
+   */
+  virtual LOLeaf* copy() const;
+
+  virtual void retrieveNodesAtDepth(unsigned int depth_left,
+                                    glm::uvec3 position,
+                                    std::vector<std::pair<glm::uvec3, const LOBranch*>>& nodes) const;
+
+  // --------------------------------------------------------------------------
   //  Construction methods
   // --------------------------------------------------------------------------
   virtual void addSLTNode(const SLTNode& node, 

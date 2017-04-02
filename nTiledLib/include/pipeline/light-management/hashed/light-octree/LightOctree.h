@@ -52,6 +52,8 @@ public:
    */
   LONode* getRoot() { return this->root; }
 
+  const LONode& getRootConst() const { return *this->root; }
+
   /*! @brief Get the origin of this LightOctree.
    *
    * @returns The origin of this LightOctree
@@ -89,9 +91,22 @@ public:
    * 
    * @param point The point of which the light indices should be retrieved
    *
-   * @returns Indices of all lights that potentiall effect this point.
+   * @returns Indices of all lights that potentially effect this point.
    */
   std::vector<GLuint> retrieveLights(glm::vec3 point) const;
+
+  // --------------------------------------------------------------------------
+  //  LinklessOctree construction related methods
+  // --------------------------------------------------------------------------
+  /*! @brief Retrieve and copy all the nodes at depth i
+   *
+   * param depth_i The depth of which the nodes should be retrieved.
+   *
+   * @returns A vector containing all nodes and corresponding locations at
+   *          depth i
+   */
+  std::vector<std::pair<glm::uvec3, const LOBranch*>> retrieveNodesAtDepth(unsigned int depth_i) const;
+
 
   // --------------------------------------------------------------------------
   //  Construction methods

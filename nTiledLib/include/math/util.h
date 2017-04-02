@@ -71,5 +71,17 @@ inline unsigned int toIndex(glm::uvec3 p,
   return p.x + p.y * dim + p.z * dim * dim;
 }
 
+
+/*! @brief Extract the kth bit from val 
+ * 
+ * @param val The value of which the bit is extracted
+ * @param k_bit The index of the bit to be extracted
+ *
+ * @returns the kth bit of val as a boolean value.
+ */
+inline bool extractBit(glm::u8 val, unsigned int k_bit) {
+  return ((val & (1 << k_bit)) >> k_bit) == 1;
+}
+
 } // math
 } // nTiled

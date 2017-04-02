@@ -4,14 +4,16 @@
 //  Libraries
 // ----------------------------------------------------------------------------
 #include <vector>
-#include <glm\glm.hpp>
 #include <glad\glad.h>
+#include <glm\glm.hpp>
+
 
 // ----------------------------------------------------------------------------
 //  nTiled Headers
 // ----------------------------------------------------------------------------
 #include "SpatialHashFunction.h"
 
+#include "math\octree.h"
 
 namespace nTiled {
 namespace pipeline {
@@ -19,51 +21,146 @@ namespace hashed {
 
 class LinklessOctree {
 public:
-  LinklessOctree(float minimum_node_size,
-                 unsigned int starting_depth,
-                 unsigned int initial_n_nodes_dim,
-                 glm::vec4 octree_origin,
-                 std::vector<SpatialHashFunction<glm::uvec2>*>* leaf_hash_maps,
-                 std::vector<bool>* has_leaf_hash_map,
-                 std::vector<SpatialHashFunction<glm::u8vec2>*>* node_hash_maps);
+  // --------------------------------------------------------------------------
+  //  Constructors | Destructors
+  // --------------------------------------------------------------------------
+  /*! @brief Construct a new LinklessOctree with the given parameters
+   *
+   * @param depth The depth of this LinklessOctree
+   * @param n_levels The number of levels of this LinklessOctree
+   * @param minimum_node_size The size of a single smallest node within this 
+   *                          LinklessOctree
+   * @param origin The origin of this LinklessOctree
+   *
+   * @param p_octree_hash_maps Pointer to the vector containing the hash maps 
+   *                           describing the structure of this LinklessOctree
+   * @param p_data_hash_map_exists Pointer to the vector describing whether a
+   *                               level contains data or not.
+   * @param p_data_hash_maps Pointer to the vector containing the hash maps 
+   *                         describing the data associated with this 
+   *                         LinklessOctree
+   * @param p_light_indices Pointer to the vector containing the list of light
+   *                        indices associated with this LinklessOctree
+   */
+  LinklessOctree(unsigned int depth,
+                 unsigned int n_levels,
+                 double minimum_node_size,
+                 glm::vec3 origin,
+                 std::vector<SpatialHashFunction<glm::u8vec2>*>* p_octree_hash_maps,
+                 std::vector<bool>* p_data_hash_map_exists,
+                 std::vector<SpatialHashFunction<glm::uvec2>*>* p_data_hash_maps,
+                 std::vector<GLuint>* p_light_indices);
+
+  /*! @brief Destruct this LinklessOctree. */
   ~LinklessOctree();
 
-  void loadToShader(GLuint shader);
+  // --------------------------------------------------------------------------
+  //  Get methods
+  // --------------------------------------------------------------------------
+  /*! @brief Get the origin of this LinklessOctree
+   * 
+   * @returns The origin of this LinklessOctree
+   */
+  glm::vec3 getOrigin() const { return this->origin; }
 
-  unsigned int getNLevels() const { return this->node_hash_maps->size(); }
+  /*! @brief Get the depth of this LinklessOctree. 
+   * 
+   * @returns The depth of this LinklessOctree 
+   */
+  unsigned int getDepth() const { return this->depth; }
 
-  unsigned int getInitialNNodesDim() const { return this->initial_n_nodes_dim; }
+  /*! @brief Get the size of the minimum nodes of this LinklessOctree
+   *
+   * @returns The size of the minimum nodes of this LinklessOctree.
+   */
+  double getMinimumNodeSize() const { return this->minimum_node_size; }
 
-  float getInitialNodeSize() const { return this->minimum_node_size * (1 << (this->getNLevels())); }
+  /*! @brief Get the number of levels of this LinklessOctree
+   * 
+   * @returns the number of levels of this LinklessOctree
+   */
+  unsigned int getNLevels() const { return this->n_levels; }
 
-  glm::vec4 getOrigin() const { return this->octree_origin; }
+  /*! @brief Get the total number of nodes of this LinklessOctree
+   *        
+   * @returns The total number of minimum nodes in a single dimension.
+   */
+  unsigned int getTotalNNodes() const { 
+    return math::calculateNNodes(this->getDepth() - 1);
+  }
 
-  virtual void exportToJson(const std::string& path) const;
+  /*! @Brief Get the number of nodes of the first level of this LinklessOctree. 
+   * 
+   * @returns The number of nodes of the first level of this LinklessOctree.
+   */
+  unsigned int getInitialNNodes() const {
+    return math::calculateNNodes(this->getDepth() - (this->getNLevels() + 1));
+  }
+
+  /*! @brief Get the total width in a single dimension of this LinklessOctree
+   *
+   * @returns The total width in a single dimension of this LinklessOctree
+   */
+  double getWidth() const { 
+    return this->getTotalNNodes() * this->getMinimumNodeSize(); 
+  }
+
+  // --------------------------------------------------------------------------
+  /*! @brief Retrieve the light indices associated with the provided point
+   *
+   * @param point The point of which the light indices should be retrieved
+   *
+   * @returns Indices of all lights that potentially effect this point.
+   */
+  std::vector<GLuint> retrieveLights(glm::vec3 point) const;
 
 private:
-  float minimum_node_size;
-  unsigned int starting_depth;
-  unsigned int initial_n_nodes_dim;
-  glm::vec4 octree_origin;
+  // --------------------------------------------------------------------------
+  //  Octree Attributes
+  // --------------------------------------------------------------------------
+  /*! @brief The depth of this LinklessOctree.
+   * @note The depth is specified as the number of levels such that 
+   *       n_nodes = 2^(depth - 1)
+   */
+  unsigned int depth;
 
-  std::vector<SpatialHashFunction<glm::uvec2>*>* leaf_hash_maps;
-  std::vector<bool>* has_leaf_hash_map;
+  /*! @brief The number of levels this LinklessOctree. contains
+   * @note The n_levels is specified such that 
+   *       initial number of nodes = 2^(depth - n_levels)
+   */
+  unsigned int n_levels;
 
-  /*! @brief node_hash_maps contains per depth level the nodes of that specific
-  *         depth level packed into GLushorts
-  *         index is defined as i = x * 1 + y * 2 + z * 4
-  */
-  std::vector<SpatialHashFunction<glm::u8vec2>*>* node_hash_maps;
+  /*! @brief The minimum node size used in this LinklessOctree. */
+  double minimum_node_size;
 
-  // openGL raw data
-  GLubyte** octree_hash_tables;
-  GLubyte** octree_offset_tables;
+  /*! @brief The origin of this LinklessOctree in world coordinates. */
+  glm::vec3 origin;
 
-  GLuint** data_hash_tables;
-  GLubyte** data_offset_tables;
+  // --------------------------------------------------------------------------
+  //  Octree Data
+  // --------------------------------------------------------------------------
+  /*! @brief The hash maps of this LinklessOctree describing the octree 
+   *         structure
+   */
+  std::vector<SpatialHashFunction<glm::u8vec2>*>* p_octree_hash_maps;
 
+  /*! @brief Vector indicating whether a data hashmap exists for a specific 
+   *         level.
+   */
+  std::vector<bool>* p_data_hash_map_exists;
+
+  /*! @brief The hash maps of this LinklessOctree containing the light data
+   *         contains a nullptr if there exists no leaf hash map for that level
+   */
+  std::vector<SpatialHashFunction<glm::uvec2>*>* p_data_hash_maps;
+
+  /*! @brief The light indices associated with this LinklessOctree. */
+  std::vector<GLuint>* p_light_indices;
+
+  // --------------------------------------------------------------------------
+  //  openGL specific data
+  // --------------------------------------------------------------------------
 };
-
 
 }
 }
