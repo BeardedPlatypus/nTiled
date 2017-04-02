@@ -237,3 +237,11 @@ _Pvt_Extensions
 
 # generated xml files from doxygen
 docs/doxyxml/
+
+# sphinx build files
+docs/build/
+
+# nTiled libraries
+nTiled/lib/
+
+nTiled/imgui.ini
