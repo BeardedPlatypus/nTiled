@@ -3,8 +3,8 @@
 #include "pipeline\light-management\hashed\Exceptions.h"
 
 
-SCENARIO("HashedLightManager::constructLightOctree should create a valid LightOctree when provided with a non empty world",
-         "[LightOctreeFull][HashedLightManager][constructLightOctree]") {
+SCENARIO("HashedLightManager::constructLinklessOctree should create a valid LinklessOctree when provided with a non empty world",
+         "[LightOctreeFull][HashedLightManager][constructLinklessOctree]") {
   GIVEN("A set of worlds with varying number of lights") {
     double node_size = 3.0;
     std::vector<nTiled::world::World*> worlds = {};
@@ -39,26 +39,31 @@ SCENARIO("HashedLightManager::constructLightOctree should create a valid LightOc
       }
 
       worlds.push_back(w);
-      managers.push_back(nTiled::pipeline::hashed::HashedLightManager(*w, node_size));
+      nTiled::pipeline::hashed::HashedConfig conf =
+        nTiled::pipeline::hashed::HashedConfig(node_size,
+                                               2,
+                                               2.0,
+                                               10);
+      managers.push_back(nTiled::pipeline::hashed::HashedLightManager(*w, conf));
     }
 
-    WHEN("constructLightOctree is called") {
+    WHEN("constructLinklessOctree is called") {
       for (nTiled::pipeline::hashed::HashedLightManager& man : managers) {
-        man.constructLightOctree();
+        man.constructLinklessOctree();
       }
 
-      THEN("Each light should fit into the newly constructed LightOctree") {
+      THEN("Each light should fit into the newly constructed LinklessOctree") {
         for (unsigned int i = 0; i < 5; ++i) {
           nTiled::pipeline::hashed::HashedLightManager& mana = managers.at(i);
-          const nTiled::pipeline::hashed::LightOctree& lo = *(mana.getLightOctree());
-          unsigned int dim = lo.getNNodes();
+          const nTiled::pipeline::hashed::LinklessOctree& lo = *(mana.getLinklessOctree());
+          unsigned int dim = lo.getTotalNNodes();
           glm::vec3 orig = lo.getOrigin();
           double width = lo.getWidth();
 
           glm::vec3 offset = glm::vec3(orig.x - 0.05 * width,
                                        orig.y - 0.05 * width,
                                        orig.z - 0.05 * width);
-          double step_size = node_size * 0.6;
+          double step_size = node_size * 0.75;
 
           std::vector<GLuint> indices;
           std::vector<nTiled::pipeline::hashed::SingleLightTree*> slts =
@@ -82,10 +87,27 @@ SCENARIO("HashedLightManager::constructLightOctree should create a valid LightOc
                        (p.y <= slt_origin.y + slt_width) &&
                        (p.z <= slt_origin.z + slt_width)) &&
                       (slts.at(j)->isInLight(p))) {
+
+                    if (std::find(indices.begin(),
+                                  indices.end(),
+                                  j) == indices.end()) {
+                      indices = lo.retrieveLights(p);
+                      bool durp = slts.at(j)->isInLight(p);
+                      bool has_failed = true;
+                    }
+
                     REQUIRE(std::find(indices.begin(),
                                       indices.end(),
                                       j) != indices.end());
                   } else {
+                    if (std::find(indices.begin(),
+                                  indices.end(),
+                                  j) != indices.end()) {
+                      indices = lo.retrieveLights(p);
+                      bool durp = slts.at(j)->isInLight(p);
+                      bool has_failed = true;
+                    }
+
                     REQUIRE(std::find(indices.begin(),
                                       indices.end(),
                                       j) == indices.end());
