@@ -114,6 +114,16 @@ public:
    */
   std::vector<GLuint> retrieveLights(glm::vec3 point) const;
 
+  // --------------------------------------------------------------------------
+  //  openGL methods
+  // --------------------------------------------------------------------------
+  /*! @brief Load this linkless octree to the openGLshader specified with
+   *         shader_id
+   * 
+   * @param shader_id The shader to which this octree should be added
+   */
+  void loadToShader(GLuint shader_id);
+
 private:
   // --------------------------------------------------------------------------
   //  Octree Attributes
@@ -160,6 +170,35 @@ private:
   // --------------------------------------------------------------------------
   //  openGL specific data
   // --------------------------------------------------------------------------
+  // TODO: Integrate this with other datastructures
+
+  /*! @brief The openGL representation of the data tables of p_octree_hash_maps. */
+  GLubyte** p_octree_hash_maps_data_opengl;
+
+  /*! @brief The openGL representation of the offset tables of p_octree_hash_maps. */
+  GLubyte** p_octree_hash_maps_offset_opengl;
+
+  /*! @brief The openGL representation of the data table of p_data_hash_maps. */
+  GLuint** p_data_hash_maps_data_opengl;
+
+  /*! @brief The openGL representation of the offset tables of p_data_hash_maps. */
+  GLubyte** p_data_hash_maps_offset_opengl;
+
+  // --------------------------------------------------------------------------
+  /*! @brief Array of openGL pointers to the textures used to store p_octree_hash_maps_data_opengl. */
+  GLuint* ps_gfx_octree_node_tables;
+
+  /*! @brief Array of openGL pointers to the textures used to store p_octree_hash_maps_offset_opengl. */
+  GLuint* ps_gfx_octree_offset_tables;
+
+  /*! @brief Array of openGL pointers to the textures used to store p_data_hash_maps_data_opengl. */
+  GLuint* ps_gfx_data_node_tables;
+
+  /*! @brief Array of openGL pointers to the textures used to store p_data_hash_maps_offset_opengl. */
+  GLuint* ps_gfx_data_offset_tables;
+
+  /*! @brief OpenGL pointer to the array storing p_light_indices. */
+  GLuint p_gfx_light_indices;
 };
 
 }

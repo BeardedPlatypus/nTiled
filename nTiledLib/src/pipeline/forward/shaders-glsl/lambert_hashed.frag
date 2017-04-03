@@ -3,213 +3,226 @@
 #define NUM_LIGHTS 3
 #define OCTREE_DEPTH 0
 
+
 // Fragment Input Buffers
 // -----------------------------------------------------------------------------
+// Position of this fragment in coordinates same as lights
 in vec4 fragment_position;
-in vec4 fragment_octree_position;
+
+// Normal of this fragment in coordinates same as lights
 in vec3 fragment_normal;
+
+// Position of this fragment in octree coordinates
+in vec3 fragment_octree_position;
+
 
 // Fragment Output Buffers
 // -----------------------------------------------------------------------------
 //out vec4 fragment_colour;
 layout (location=0) out vec3 fragment_colour;
 
+
 // Variable Definitions
 // -----------------------------------------------------------------------------
 // Structs
-/*! Light Struct
- *
- * position: position of this light
- * intensity: the intensity (colour) with which this light is emitting
- * radius: the radius of the light sphere of this light
- * is_emitting: whether this light is emitting or not
+/*! @brief Light struct describes a single light within this pipeline.
  */
 struct Light {
-    vec4 position;    // 4
-    vec3 intensity;   // 3
-    float radius;     // 1
-    int is_emitting;  
+  /*! @brief The position of this Light in ... coordinates. */
+  vec4 position;    // 4
+  /*! @brief The colour / intensity of this Light. */
+  vec3 intensity;   // 3
+  /*! @brief The radius of this Light */
+  float radius;     // 1
+  /*! @brief Whether this Light is emitting light. */
+  int is_emitting;  
 };
 
-/*! GeometryParam for Lambert Shading.
- *
- *  position: the position at the fragment in the same coordinate system
-              as the light
- *  normal  : the normal at the fragment.
- *  colour  : the colour at the fragment.
+
+/*! @brief GeometryParam struct describes the surface of a single point.
  */
 struct GeometryParam {
-    vec4 position;
-    vec3 normal;
-    vec3 colour;
+  /*! @brief The position of the fragment of this GeometryParam in ... coordinates. */
+  vec4 position;
+  /*! @brief The normal of the fragment of this GeometryParam. */
+  vec3 normal;
+  /*! @brief The colour of the fragment of this GeometryParam. */
+  vec3 colour;
 };
 
+
 // -----------------------------------------------------------------------------
+/*! @brief Array of Lights used in this Shader. */
 layout (std140) uniform LightBlock {
-    Light lights[NUM_LIGHTS];
+  Light lights[NUM_LIGHTS];
 };
+
 
 //  Light Management
 // -----------------------------------------------------------------------------
+/*! @brief Buffer of light indices used in this Shader. */
 layout (std430, binding = 0) buffer LightIndexBuffer {
-    uint light_indices[];
+  uint light_indices[];
 };
 
-uniform usampler3D node_offset_tables[OCTREE_DEPTH];
-uniform usampler3D node_hash_tables[OCTREE_DEPTH];
 
-uniform usampler3D leaf_offset_tables[OCTREE_DEPTH];
-uniform usampler3D leaf_hash_tables[OCTREE_DEPTH];
+// octree structure linkless octree
+uniform usampler3D octree_offset_tables[OCTREE_DEPTH];
+uniform usampler3D octree_data_tables[OCTREE_DEPTH];
 
-// octree origin in camera coordinates
-uniform vec3 octree_origin;
 
-// (1.0 / node_size)
-uniform float node_size_base_den;
-uniform float octree_size;
+// data linkless octree
+uniform usampler3D light_offset_tables[OCTREE_DEPTH];
+uniform usampler3D light_data_tables[OCTREE_DEPTH];
 
-/*!
- * Compute lambert shading for the attenuated light.
+
+uniform float node_size_den;
+uniform float octree_width;
+
+
+/*! @brief Compute Lambert shading for the attenuated light and return 
+ *         the colour shaded by this Light.
  *
- * param:
- *     light (Light): light of this computeLight
- *     param (GeometryParam): struct containing the geometry parameters
- *                            needed for the light computation
- *                            - position: position of the fragment in the
- *                                        same coordinate system as the
- *                                        light position.
- *                            - normal: the normal (normalised) at the
- *                                      fragment.
- *                            - colour: the colour of this fragment
+ * @param light Light used in this Lambert shading
+ * @param param Fragment description in this Lambert shading
+ *
+ * @returns The colour from this light add the described fragment.
  */ 
 vec3 computeLight(Light light,
                   GeometryParam param) {
-    vec3 L = vec3(light.position - param.position);
-    float d = length(L);
+  vec3 L = vec3(light.position - param.position);
+  float d = length(L);
 
-    if (d < light.radius) {
-        vec3 light_direction = L / d;
+  if (d < light.radius) {
+    vec3 light_direction = L / d;
 
-        // compute light attenuation
-        float attenuation = clamp(1.0 - ( d / light.radius ),
-                                  0.0f,
-                                  1.0f);
-        attenuation *= attenuation;
+    // compute light attenuation
+    float attenuation = clamp(1.0 - ( d / light.radius ),
+                              0.0f,
+                              1.0f);
+    attenuation *= attenuation;
 
-        // compute lambert for this light
-        float cos_angular_incidence = clamp(dot(param.normal, light_direction),
-                                            0.0f,
-                                            1.0f);
-        return (param.colour *
-                light.intensity *
-                cos_angular_incidence * attenuation);
-    } else {
-        return vec3(0.0);
-    }
+    // compute lambert for this light
+    float cos_angular_incidence = clamp(dot(param.normal, light_direction),
+                                        0.0f,
+                                        1.0f);
+    return (param.colour *
+            light.intensity *
+            cos_angular_incidence * attenuation);
+  } else {
+    return vec3(0.0);
+  }
 }
 
 
+/*! @brief Calculate the texture position given the specidief coordinate and 
+ *         sampler.
+ *
+ * @param coord The texel position in integer coordinates.
+ * @param sampler The sampler of which the texel should be retrieved.
+ *
+ * @returns the position in vec3 within the sampler.
+ */
 vec3 calcTexturePosition(uvec3 coord, usampler3D sampler) {
-    // textures are cube in nature, thus each dimension is of the same size
-    float texel_size = 1.0 / float(textureSize(sampler, 0).x);
-    return coord * texel_size;
+  // textures are cube in nature, thus each dimension is of the same size
+  float texel_size = 1.0 / float(textureSize(sampler, 0).x);
+  return coord * texel_size;
 }
 
 
+/*! @brief Obtain the data associated at the specified coordinate from the 
+ *         specified spatial hash function.
+ * 
+ * @param coord The coordinate to be retrieved from the spatial hash function
+ * @param offset_table The offset table of the spatial hash function
+ * @param hash_table The hash table of the spatial hash function
+ *
+ * @returns the data associated with the specified coordinate from the 
+ *          the specified spatial hash function.
+ */
 uvec2 obtainNodeFromSpatialHashFunction(uvec3 coord, 
                                         usampler3D offset_table, 
                                         usampler3D hash_table) {
-    uvec3 offset = texture(offset_table, 
-                           calcTexturePosition(coord, offset_table)).xyz;
-    uvec2 node = texture(hash_table, 
-                         calcTexturePosition((coord + offset),
-                                             hash_table)).xy;
-    return node;
+  uvec3 offset = texture(offset_table, 
+                         calcTexturePosition(coord, offset_table)).xyz;
+  uvec2 node = texture(hash_table, 
+                       calcTexturePosition((coord + offset),
+                                           hash_table)).xy;
+  return node;
 }
+
+
+/*! @brief Extract the kth bit from val 
+ * 
+ * @param val The value of which the bit is extracted
+ * @param k_bit The index of the bit to be extracted
+ *
+ * @returns the kth bit of val as a boolean value.
+ */
+bool extractBit(uint val, uint k_bit) {
+  return ((val & (1 << k_bit)) >> k_bit) == 1;
+}
+
 
 // -----------------------------------------------------------------------------
 // Main
 // -----------------------------------------------------------------------------
 void main() {
-    // light accumulator
-    vec3 light_acc = vec3(0.0f);
+  vec3 light_acc = vec3(0.0f);
 
-    // set geometry param
-    GeometryParam param = GeometryParam(fragment_position,
-                                        normalize(fragment_normal),
-                                        vec3(1.0f));
+  GeometryParam param = GeometryParam(fragment_position,
+                                      normalize(fragment_normal),
+                                      vec3(1.0f));
 
-    // determine contributing lights
-    // Find leaf node hash.
-    vec3 octree_position = (fragment_octree_position.xyz / fragment_octree_position.w) - octree_origin;
+  // Retrieve the relevant lights.
+  uvec2 light_data = uvec2(0, 0);
 
-    float node_size_den = node_size_base_den;
-    uvec3 octree_coord_cur = uvec3(floor(octree_position * node_size_den));
-    uvec3 octree_coord_new;
+  if (fragment_octree_position.x >= 0.0f &&
+      fragment_octree_position.y >= 0.0f &&
+      fragment_octree_position.z >= 0.0f &&
+      fragment_octree_position.x < octree_width &&
+      fragment_octree_position.y < octree_width &&
+      fragment_octree_position.z < octree_width) {
 
-    uvec2 partial_node;
-    uvec2 leaf_node = uvec2(0, 0);
+    float next_node_size_den = node_size_den;
+    uvec3 octree_coord_cur;
+    uvec3 octree_coord_next = uvec3(floor(fragment_octree_position * next_node_size_den));
 
-    uvec3 local_node_index;
-    uint node_index;
+    uvec3 index_dif;
+    uint index_int;
 
-    bool is_leaf;
-    bool is_non_empty;
+    uvec2 octree_data;
 
-    uint val = 0;
+    for (uint layer_i = 0; layer_i < OCTREE_DEPTH; ++layer_i) {
+      octree_coord_cur = octree_coord_next;
 
-    // test whether the use of depth is allowed
-    for (uint depth = 0; depth < OCTREE_DEPTH; depth++) {
-        partial_node = obtainNodeFromSpatialHashFunction(octree_coord_cur, 
-                                                         node_offset_tables[depth], 
-                                                         node_hash_tables[depth]);
+      next_node_size_den *= 2;
+      octree_coord_next = uvec3(floor(fragment_octree_position * next_node_size_den));
+      index_dif = octree_coord_next - (octree_coord_cur * 2);
+      index_int = index_dif.x + index_dif.y * 2 + index_dif.z * 4;
 
-        node_size_den *= 0.5;
-        octree_coord_new = uvec3(floor(octree_position * node_size_den));
-
-        local_node_index = octree_coord_new - (octree_coord_cur * 2);
-        node_index = local_node_index.x + local_node_index.y * 2 + local_node_index.z * 4;
-
-        is_leaf = bool((partial_node.x & ( 1 << node_index )) >> node_index);
-        is_non_empty = bool((partial_node.y & ( 1 << node_index )) >> node_index);
-       
-        // obtain results if leaf is reached
-        if (is_leaf) {
-            if (is_non_empty) {
-                leaf_node = obtainNodeFromSpatialHashFunction(octree_coord_new, 
-                                                              leaf_offset_tables[depth], 
-                                                              leaf_hash_tables[depth]); 
-            }
-            break;
-        } else {
-            octree_coord_cur = octree_coord_new;
+      octree_data = obtainNodeFromSpatialHashFunction(octree_coord_cur,
+                                                      octree_offset_tables[layer_i],
+                                                      octree_data_tables[layer_i]);
+      
+      if(extractBit(octree_data.x, index_int)) {
+        if(extractBit(octree_data.y, index_int)) {
+          light_data = obtainNodeFromSpatialHashFunction(octree_coord_next,
+                                                         light_offset_tables[layer_i],
+                                                         light_data_tables[layer_i]);
         }
-        val = depth;
+        break;
+      }
     }
+  }
+   
+  uint offset = light_data.x;
+  uint n_lights = light_data.y;
 
-    uint offset = leaf_node.x;
-    uint n_lights = leaf_node.y;
+  for (uint i = offset; i < offset + n_lights; ++i) {
+    light_acc += computeLight(lights[light_indices[i]], param);
+  }
 
-    for (uint i = offset; i < offset + n_lights; i++) {
-        light_acc += computeLight(lights[light_indices[i]], param);
-    }
-
-    // output result
-    fragment_colour = vec3((vec3(0.1f) + (light_acc * 0.9)));
-
-    if (!is_leaf && !is_non_empty) {
-        fragment_colour = vec3(1.0f, 0.0f, 0.0f);
-    }
-
-    if (octree_position.x > octree_size || 
-        octree_position.y > octree_size || 
-        octree_position.z > octree_size ) {
-        fragment_colour = vec3(0.0, 1.0f, 0.0f);
-    }
-
-    /*
-    if (textureSize(leaf_offset_tables[0], 0).x == 5) {
-        fragment_colour = vec3(0.0, 1.0f, 1.0f);
-    }
-    */
+  // output result
+  fragment_colour = vec3((vec3(0.1f) + (light_acc * 0.9)));
 }
