@@ -173,16 +173,20 @@ private:
   // TODO: Integrate this with other datastructures
 
   /*! @brief The openGL representation of the data tables of p_octree_hash_maps. */
-  GLubyte** p_octree_hash_maps_data_opengl;
+  //GLubyte** p_octree_hash_maps_data_opengl;
+  std::vector<std::vector<GLubyte>> gl_octree_data;
 
   /*! @brief The openGL representation of the offset tables of p_octree_hash_maps. */
-  GLubyte** p_octree_hash_maps_offset_opengl;
+  //GLubyte** p_octree_hash_maps_offset_opengl;
+  std::vector<std::vector<GLubyte>> gl_octree_offset;
 
   /*! @brief The openGL representation of the data table of p_data_hash_maps. */
-  GLuint** p_data_hash_maps_data_opengl;
+  //GLuint** p_data_hash_maps_data_opengl;
+  std::vector<std::vector<GLuint>> gl_light_data;
 
   /*! @brief The openGL representation of the offset tables of p_data_hash_maps. */
-  GLubyte** p_data_hash_maps_offset_opengl;
+  //GLubyte** p_data_hash_maps_offset_opengl;
+  std::vector<std::vector<GLubyte>> gl_light_offset;
 
   // --------------------------------------------------------------------------
   /*! @brief Array of openGL pointers to the textures used to store p_octree_hash_maps_data_opengl. */

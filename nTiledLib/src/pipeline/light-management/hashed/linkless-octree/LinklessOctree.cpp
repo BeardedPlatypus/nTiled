@@ -6,6 +6,9 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <string>
 
+
+#include "pipeline\pipeline-util\GLError.h"
+
 namespace nTiled {
 namespace pipeline {
 namespace hashed {
@@ -30,6 +33,56 @@ LinklessOctree::LinklessOctree(
     p_data_hash_map_exists(p_data_hash_map_exists),
     p_data_hash_maps(p_data_hash_maps),
     p_light_indices(p_light_indices) {
+  this->gl_octree_data = {};
+  this->gl_octree_offset = {};
+  this->gl_light_data = {};
+  this->gl_light_offset = {};
+
+  for (unsigned int i = 0; i < this->n_levels; ++i) {
+    std::vector<GLubyte> octree_dat = {};
+    for (glm::u8vec2 val : this->p_octree_hash_maps->at(i)->getHashTable()) {
+      octree_dat.push_back(GLubyte(val.x));
+      octree_dat.push_back(GLubyte(val.y));
+      octree_dat.push_back(GLubyte(0));
+      octree_dat.push_back(GLubyte(0));
+    }
+    this->gl_octree_data.push_back(octree_dat);
+
+
+    std::vector<GLubyte> octree_offset = {};
+    for (glm::u8vec3 val : this->p_octree_hash_maps->at(i)->getOffsetTable()) {
+      octree_offset.push_back(GLubyte(val.x));
+      octree_offset.push_back(GLubyte(val.y));
+      octree_offset.push_back(GLubyte(val.z));
+      octree_offset.push_back(GLubyte(0));
+    }
+    this->gl_octree_offset.push_back(octree_offset);
+
+
+    std::vector<GLuint> light_dat = {};
+    if (this->p_data_hash_map_exists->at(i)) {
+      for (glm::uvec2 val : this->p_data_hash_maps->at(i)->getHashTable()) {
+        light_dat.push_back(GLuint(val.x));
+        light_dat.push_back(GLuint(val.y));
+        light_dat.push_back(GLuint(0));
+        light_dat.push_back(GLuint(0));
+      }
+    }
+    this->gl_light_data.push_back(light_dat);
+
+
+    std::vector<GLubyte> light_offset = {};
+    if (this->p_data_hash_map_exists->at(i)) {
+      for (glm::u8vec3 val : this->p_data_hash_maps->at(i)->getOffsetTable()) {
+        light_offset.push_back(GLubyte(val.x));
+        light_offset.push_back(GLubyte(val.y));
+        light_offset.push_back(GLubyte(val.z));
+        light_offset.push_back(GLubyte(0));
+      }
+    }
+    this->gl_light_offset.push_back(light_offset);
+  }
+  /*
   // construct arrays of openGL data
   this->p_octree_hash_maps_data_opengl = new GLubyte*[this->getNLevels()];
   this->p_octree_hash_maps_offset_opengl = new GLubyte*[this->getNLevels()];
@@ -93,13 +146,14 @@ LinklessOctree::LinklessOctree(
       }
     }
   }
-
+  */
 }
 
 
 LinklessOctree::~LinklessOctree() {
   // Remove openGL arrays
   // --------------------------------------------------------------------------
+  /*
   for (unsigned int i = 0; i < this->getNLevels(); ++i) {
     delete[] this->p_octree_hash_maps_data_opengl[i];
     delete[] this->p_octree_hash_maps_offset_opengl[i];
@@ -115,6 +169,7 @@ LinklessOctree::~LinklessOctree() {
 
   delete[] this->p_data_hash_maps_data_opengl;
   delete[] this->p_data_hash_maps_offset_opengl;
+  */
 
   //  Remove CPU datastructures
   // --------------------------------------------------------------------------
@@ -198,26 +253,43 @@ std::vector<GLuint> LinklessOctree::retrieveLights(glm::vec3 point) const {
 // ----------------------------------------------------------------------------
 //  loadSpatialTable
 template <class R>
-void loadSpatialTable(GLuint index,
-                      GLuint p_texture,
+void loadSpatialTable(GLuint* p_tex,
+                      GLuint index,
                       GLint internal_format,
                       GLsizei dimension,
                       GLenum pixel_data_format,
                       GLenum pixel_data_type,
-                      R* data,//const GLvoid * data,
+                      const std::vector<R>& data,//R* data,//const GLvoid * data,
                       GLuint shader,
                       std::string glsl_sampler_name) {
+  glGenTextures(1, p_tex);
+
+  glActiveTexture(GL_TEXTURE0 + index);
+  glBindTexture(GL_TEXTURE_3D, *p_tex);
+
+  glTexStorage3D(GL_TEXTURE_3D,
+                 1,
+                 internal_format,
+                 dimension, dimension, dimension);
+
+  glTexSubImage3D(GL_TEXTURE_3D,
+                  0,
+                  0, 0, 0,
+                  dimension, dimension, dimension,
+                  pixel_data_format,
+                  pixel_data_type,
+                  data.data());
+
+  GLint tex_uniform_loc = glGetUniformLocation(shader, glsl_sampler_name.c_str());
+  glUniform1i(tex_uniform_loc, index);
+
+  /*
   GLuint p_texture_data = glGetUniformLocation(shader, glsl_sampler_name.c_str());
   glUniform1i(p_texture_data, index);
 
   glActiveTexture(GL_TEXTURE0 + index);
-  glBindTexture(GL_TEXTURE_3D, p_texture);
 
-  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+  glBindTexture(GL_TEXTURE_3D, p_texture);
 
   glTexImage3D(GL_TEXTURE_3D,     // target
                0,                 // mipmap level
@@ -230,25 +302,51 @@ void loadSpatialTable(GLuint index,
                pixel_data_format, // pixel data format
                pixel_data_type,   // pixel data type
                data);
+  /*
+  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+  */
+  /*
+  glTexStorage3D(GL_TEXTURE_3D,
+                 1,
+                 internal_format,
+                 dimension,
+                 dimension,
+                 dimension);
+
+  glTexSubImage3D(GL_TEXTURE_3D,
+                  0, 0, 0, 0,
+                  dimension,
+                  dimension,
+                  dimension,
+                  pixel_data_format,
+                  pixel_data_type,
+                  data);
+
+  glBindTexture(GL_TEXTURE_3D, 0);
+  */
 }
 
-template void loadSpatialTable(GLuint,       // index
-                               GLuint,       // p_texture
+template void loadSpatialTable(GLuint*,
+                               GLuint,       // index
                                GLint,        // internal_format
                                GLsizei,      // dimension
                                GLenum,       // pixel_data_format
                                GLenum,       // pixel_data_type
-                               GLubyte*,     // data
+                               const std::vector<GLubyte>&,//GLubyte*,     // data
                                GLuint,       // shader
                                std::string); // sampler name
 
-template void loadSpatialTable(GLuint,       // index
-                               GLuint,       // p_texture
+template void loadSpatialTable(GLuint*,      
+                               GLuint,       // index
                                GLint,        // internal_format
                                GLsizei,      // dimension
                                GLenum,       // pixel_data_format
                                GLenum,       // pixel_data_type
-                               GLuint*,      // data
+                               const std::vector<GLuint>&,//GLuint*,      // data
                                GLuint,       // shader
                                std::string); // sampler name
 
@@ -258,46 +356,47 @@ template void loadSpatialTable(GLuint,       // index
 void LinklessOctree::loadToShader(GLuint shader) {
   // --------------------------------------------------------------------------
   //  construct Initial openGL values
-
   unsigned int n_levels = this->getNLevels();
 
   // generate octree spatial hash functions
   this->ps_gfx_octree_node_tables = new GLuint[n_levels];
   this->ps_gfx_octree_offset_tables = new GLuint[n_levels];
 
-  glGenTextures(n_levels, this->ps_gfx_octree_node_tables);
-  glGenTextures(n_levels, this->ps_gfx_octree_offset_tables);
-
   // generate data spatial hash functions
-  this->ps_gfx_data_node_tables = new GLuint[n_levels];
-  this->ps_gfx_data_offset_tables = new GLuint[n_levels];
+  // calculate number of data textures needed.
+  unsigned int n_data_layers = 0;
+  for (unsigned int i = 0; i < n_levels; ++i)
+    if (this->p_data_hash_map_exists->at(i))
+      n_data_layers += 1;
 
-  glGenTextures(n_levels, this->ps_gfx_data_node_tables);
-  glGenTextures(n_levels, this->ps_gfx_data_offset_tables);
+
+  this->ps_gfx_data_node_tables = new GLuint[n_data_layers];
+  this->ps_gfx_data_offset_tables = new GLuint[n_data_layers];
 
   // create octree textures per level
+  unsigned int data_layer_i = 0;
   for (unsigned int i = 0; i < n_levels; i++) {
     // ------------------------------------------------------------------------
     // load octree_node_tables[i]
-    loadSpatialTable<GLubyte>(0 + 4 * i,
-                              this->ps_gfx_octree_node_tables[i],
-                              GL_RG8UI,
+    loadSpatialTable<GLubyte>(&this->ps_gfx_octree_node_tables[i],
+                              0 + 4 * i,
+                              GL_RGBA8UI,
                               this->p_octree_hash_maps->at(i)->getM(),
-                              GL_RG_INTEGER,
+                              GL_RGBA_INTEGER,
                               GL_UNSIGNED_BYTE,
-                              this->p_octree_hash_maps_data_opengl[i],
+                              this->gl_octree_data.at(i),//this->p_octree_hash_maps_data_opengl[i],
                               shader,
                               "octree_data_tables[" + std::to_string(i) + "]");
 
     // ------------------------------------------------------------------------
     // load octree_offset_tables[i]
-    loadSpatialTable<GLubyte>(1 + 4 * i,
-                              this->ps_gfx_octree_offset_tables[i],
-                              GL_RGB8UI,
+    loadSpatialTable<GLubyte>(&this->ps_gfx_octree_offset_tables[i],
+                              1 + 4 * i,
+                              GL_RGBA8UI,
                               this->p_octree_hash_maps->at(i)->getR(),
-                              GL_RGB_INTEGER,
+                              GL_RGBA_INTEGER,
                               GL_UNSIGNED_BYTE,
-                              this->p_octree_hash_maps_offset_opengl[i],
+                              this->gl_octree_offset.at(i),//this->p_octree_hash_maps_offset_opengl[i],
                               shader,
                               "octree_offset_tables[" + std::to_string(i) + "]");
 
@@ -305,27 +404,29 @@ void LinklessOctree::loadToShader(GLuint shader) {
     if (this->p_data_hash_map_exists->at(i)) {
       // ----------------------------------------------------------------------
       // load leaf_node_tables[i]
-      loadSpatialTable<GLuint>(2 + 4 * i,
-                               this->ps_gfx_data_node_tables[i],
-                               GL_RG32UI,
+      loadSpatialTable<GLuint>(&this->ps_gfx_data_node_tables[data_layer_i],
+                               2 + 4 * i,
+                               GL_RGBA32UI,
                                this->p_data_hash_maps->at(i)->getM(),
-                               GL_RG_INTEGER,
+                               GL_RGBA_INTEGER,
                                GL_UNSIGNED_INT,
-                               this->p_data_hash_maps_data_opengl[i],
+                               this->gl_light_data.at(i),//this->p_data_hash_maps_data_opengl[i],
                                shader,
                                "light_data_tables[" + std::to_string(i) + "]");
 
       // ----------------------------------------------------------------------
       // Load leaf_offset_tables[i]
-      loadSpatialTable<GLubyte>(3 + 4 * i,
-                                this->ps_gfx_data_offset_tables[i],
-                                GL_RGB8UI,
+      loadSpatialTable<GLubyte>(&this->ps_gfx_data_offset_tables[data_layer_i],
+                                3 + 4 * i,
+                                GL_RGBA8UI,
                                 this->p_data_hash_maps->at(i)->getR(),
-                                GL_RGB_INTEGER,
+                                GL_RGBA_INTEGER,
                                 GL_UNSIGNED_BYTE,
-                                this->p_data_hash_maps_offset_opengl[i],
+                                this->gl_light_offset.at(i), //this->p_data_hash_maps_offset_opengl[i],
                                 shader,
                                 "light_offset_tables[" + std::to_string(i) + "]");
+
+      data_layer_i += 1;
     }
   }
 
@@ -342,7 +443,6 @@ void LinklessOctree::loadToShader(GLuint shader) {
   glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, this->p_gfx_light_indices);
 
   glBindBuffer(GL_UNIFORM_BUFFER, 0);
-
   // --------------------------------------------------------------------------
   //  Load matrix variables
   GLuint p_node_size_den = glGetUniformLocation(shader, "node_size_den");
@@ -358,6 +458,117 @@ void LinklessOctree::loadToShader(GLuint shader) {
   GLuint p_octree_width = glGetUniformLocation(shader, "octree_width");
   float octree_width = float(this->getWidth());
   glUniform1f(p_octree_width, octree_width);
+
+  // --------------------------------------------------------------------------
+  //  Test values
+  /*
+  GLuint p_test;
+  glActiveTexture(GL_TEXTURE0 + 0);
+
+  glGenTextures(1, &p_test);
+  glBindTexture(GL_TEXTURE_2D, p_test);
+
+  glTexStorage2D(GL_TEXTURE_2D,
+                 1,
+                 GL_R8UI,
+                 1,
+                 1);
+
+  GLubyte test_dat[] = { 20 };
+  glTexSubImage2D(GL_TEXTURE_2D,
+                  0,
+                  0, 0,
+                  1, 1,
+                  GL_RED_INTEGER,
+                  GL_UNSIGNED_BYTE,
+                  test_dat);
+
+  /*
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  */
+
+  /*
+  GLuint p_sampler_test;
+  glGenSamplers(1, &p_sampler_test);
+
+  /*
+  glSamplerParameteri(p_sampler_test, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+  glSamplerParameteri(p_sampler_test, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+  glSamplerParameteri(p_sampler_test, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glSamplerParameteri(p_sampler_test, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  */
+
+  /*
+  glBindSampler(0, p_sampler_test);
+  glBindTexture(GL_TEXTURE_2D, 0);
+
+  GLuint p_uniform_sampler_test = glGetUniformLocation(shader, "test");
+  glUniform1i(p_uniform_sampler_test, 0);
+  */
+  /*
+  GLuint p_test;
+  glGenTextures(1, &p_test);
+  glBindTexture(GL_TEXTURE_2D, p_test);
+
+  glTexStorage2D(GL_TEXTURE_2D,
+                 1,
+                 GL_RG8UI,
+                 1,
+                 1);
+
+  GLubyte test_dat[] = { 20, 15 };
+  glTexSubImage2D(GL_TEXTURE_2D,
+                  0,
+                  0, 0,
+                  1, 1,
+                  GL_RG_INTEGER,
+                  GL_UNSIGNED_BYTE,
+                  test_dat);
+
+  GLint test_uniform_loc = glGetUniformLocation(shader, "test");
+  glUniform1i(test_uniform_loc, 0);
+  glActiveTexture(GL_TEXTURE0);
+
+  glBindTexture(GL_TEXTURE_2D, p_test);
+  */
+  /*
+  GLuint p_test;
+  glGenTextures(1, &p_test);
+
+  glActiveTexture(GL_TEXTURE0 + 1);
+  glBindTexture(GL_TEXTURE_3D, p_test);
+
+  glTexStorage3D(GL_TEXTURE_3D,
+                 1,
+                 GL_RG8UI,
+                 2, 2, 2);
+
+  GLubyte test_dat[] = { 20, 15,
+                         19, 16,
+                         18, 17,
+                         17, 18,
+                         16, 19,
+                         15, 20,
+                         14, 21,
+                         13, 22,
+                       };
+
+  glTexSubImage3D(GL_TEXTURE_3D,
+                  0,
+                  0, 0, 0,
+                  2, 2, 2,
+                  GL_RG_INTEGER,
+                  GL_UNSIGNED_BYTE,
+                  test_dat);
+
+  GLint test_uniform_loc = glGetUniformLocation(shader, "test");
+  glUniform1i(test_uniform_loc, 1);
+  */
 }
 
 

@@ -7,7 +7,7 @@
 // ----------------------------------------------------------------------------
 //  Defines
 // ----------------------------------------------------------------------------
-#define SCENE_PATH std::string("../example/example_scene_hashed2.json")
+#define SCENE_PATH std::string("../example/example_scene_hashed.json")
 //#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/pipers-alley/validation-scenes/arch/scene.json")
 //#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/ziggurat-city/scene-json/scene.json")
 

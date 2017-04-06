@@ -41,5 +41,5 @@ void main() {
     fragment_normal = (inv_transpose_model_to_camera *
                        vec4(vertex_normal, 0.0f)).xyz;
 
-    fragment_octree_position = (vertex_position.xyz / vertex_position.w) - octree_origin;
+    fragment_octree_position = (vertex_position.xyz / vertex_position.w) - octree_origin.xyz;
 }

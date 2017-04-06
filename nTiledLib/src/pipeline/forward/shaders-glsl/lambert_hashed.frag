@@ -80,6 +80,10 @@ uniform float node_size_den;
 uniform float octree_width;
 
 
+//uniform usampler2D test;
+uniform usampler3D test;
+
+
 /*! @brief Compute Lambert shading for the attenuated light and return 
  *         the colour shaded by this Light.
  *
@@ -125,8 +129,10 @@ vec3 computeLight(Light light,
  */
 vec3 calcTexturePosition(uvec3 coord, usampler3D sampler) {
   // textures are cube in nature, thus each dimension is of the same size
-  float texel_size = 1.0 / float(textureSize(sampler, 0).x);
-  return coord * texel_size;
+  //float texel_size = 1.0 / float(textureSize(sampler, 0).x);
+  //return coord * texel_size;
+  float texture_size = float(textureSize(sampler, 0).x);
+  return mod(vec3(coord), texture_size) / texture_size;
 }
 
 
@@ -140,14 +146,21 @@ vec3 calcTexturePosition(uvec3 coord, usampler3D sampler) {
  * @returns the data associated with the specified coordinate from the 
  *          the specified spatial hash function.
  */
-uvec2 obtainNodeFromSpatialHashFunction(uvec3 coord, 
+uvec2 obtainNodeFromSpatialHashFunction(ivec3 coord, 
                                         usampler3D offset_table, 
                                         usampler3D hash_table) {
+  /*
   uvec3 offset = texture(offset_table, 
                          calcTexturePosition(coord, offset_table)).xyz;
   uvec2 node = texture(hash_table, 
                        calcTexturePosition((coord + offset),
                                            hash_table)).xy;
+  */
+  ivec3 h_offset_mod = ivec3(mod(coord, textureSize(offset_table, 0).x));
+  ivec3 offset = ivec3(texelFetch(offset_table, h_offset_mod, 0).rgb);
+
+  ivec3 h_coord_mod = ivec3(mod((coord + offset), textureSize(hash_table, 0).x));
+  uvec2 node = texelFetch(hash_table, h_coord_mod, 0).rg;
   return node;
 }
 
@@ -185,8 +198,8 @@ void main() {
       fragment_octree_position.z < octree_width) {
 
     float next_node_size_den = node_size_den;
-    uvec3 octree_coord_cur;
-    uvec3 octree_coord_next = uvec3(floor(fragment_octree_position * next_node_size_den));
+    ivec3 octree_coord_cur;
+    ivec3 octree_coord_next = ivec3(floor(fragment_octree_position * next_node_size_den));
 
     uvec3 index_dif;
     uint index_int;
@@ -197,7 +210,7 @@ void main() {
       octree_coord_cur = octree_coord_next;
 
       next_node_size_den *= 2;
-      octree_coord_next = uvec3(floor(fragment_octree_position * next_node_size_den));
+      octree_coord_next = ivec3(floor(fragment_octree_position * next_node_size_den));
       index_dif = octree_coord_next - (octree_coord_cur * 2);
       index_int = index_dif.x + index_dif.y * 2 + index_dif.z * 4;
 
@@ -215,13 +228,266 @@ void main() {
       }
     }
   }
-   
+
+  // check octree_map data
+  /*
+  if (texelFetch(octree_data_tables[0], ivec3(0), 0).r ==  23 && // 23
+      texelFetch(octree_data_tables[0], ivec3(0), 0).g == 255 && // 255
+      // -------------------------------------------------------------------
+      texelFetch(octree_offset_tables[0], ivec3(0), 0).r ==  44 &&
+      texelFetch(octree_offset_tables[0], ivec3(0), 0).g == 132 &&
+      texelFetch(octree_offset_tables[0], ivec3(0), 0).b == 117 ) { /* && // 44
+      texelFetch(octree_offset_tables[0], ivec3(0), 0).g ==   0 && // 132
+      texelFetch(octree_offset_tables[0], ivec3(0), 0).b ==   0) { /*&& // 117
+  /*
+  if(// ---------------------------------------------------------
+     texelFetch(octree_offset_tables[0], ivec3(0), 0).r ==   0 &&
+     texelFetch(octree_offset_tables[0], ivec3(0), 0).g ==   0 &&
+     texelFetch(octree_offset_tables[0], ivec3(0), 0).b ==   0 &&
+     // ---------------------------------------------------------
+     texelFetch(octree_data_tables[0], ivec3(0), 0).r ==   0 &&
+     texelFetch(octree_data_tables[0], ivec3(0), 0).g ==   0 &&
+     // ---------------------------------------------------------
+     texelFetch(octree_offset_tables[1], ivec3(0), 0).r ==   0 &&
+     texelFetch(octree_offset_tables[1], ivec3(0), 0).g ==   0 &&
+     texelFetch(octree_offset_tables[1], ivec3(0), 0).b ==   0 &&
+  */
+  /*
+  if(// ---------------------------------------------------------
+     //texelFetch(octree_offset_tables[0], ivec3(0), 0).r ==  44 && // 44
+     //texelFetch(octree_offset_tables[0], ivec3(0), 0).g == 132 && // 132
+     //texelFetch(octree_offset_tables[0], ivec3(0), 0).b == 117 && // 117
+     // ---------------------------------------------------------
+     texelFetch(octree_data_tables[0], ivec3(0), 0).r ==  23 &&
+     texelFetch(octree_data_tables[0], ivec3(0), 0).g == 255 &&
+     // ---------------------------------------------------------
+     //texelFetch(octree_offset_tables[1], ivec3(0), 0).r == 102 &&
+     //texelFetch(octree_offset_tables[1], ivec3(0), 0).g == 100 &&
+     //texelFetch(octree_offset_tables[1], ivec3(0), 0).b == 192 &&
+     // ---------------------------------------------------------
+     //textureSize(octree_data_tables[1], 0).x == 3 &&
+     //textureSize(octree_data_tables[1], 0).y == 3 &&
+     //textureSize(octree_data_tables[1], 0).z == 3 &&
+
+     texelFetch(octree_data_tables[1], ivec3(0, 0, 0), 0).r ==   0 && //  0 (0, 0, 0)
+     texelFetch(octree_data_tables[1], ivec3(0, 0, 0), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(1, 0, 0), 0).r ==   0 && //  1 (1, 0, 0)
+     texelFetch(octree_data_tables[1], ivec3(1, 0, 0), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(2, 0, 0), 0).r ==   0 && //  2 (2, 0, 0)
+     texelFetch(octree_data_tables[1], ivec3(2, 0, 0), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(0, 1, 0), 0).r ==   0 && //  3 (0, 1, 0)
+     texelFetch(octree_data_tables[1], ivec3(0, 1, 0), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(1, 1, 0), 0).r ==   0 && //  4 (1, 1, 0)
+     texelFetch(octree_data_tables[1], ivec3(1, 1, 0), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(2, 1, 0), 0).r ==   0 && //  5 (2, 1, 0)
+     texelFetch(octree_data_tables[1], ivec3(2, 1, 0), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(0, 2, 0), 0).r ==   0 && //  6 (0, 2, 0)
+     texelFetch(octree_data_tables[1], ivec3(0, 2, 0), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(1, 2, 0), 0).r == 255 && //  7 (1, 2, 0) = (255, 119)
+     texelFetch(octree_data_tables[1], ivec3(1, 2, 0), 0).g == 119 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(2, 2, 0), 0).r ==   0 && //  8 (2, 2, 0)
+     texelFetch(octree_data_tables[1], ivec3(2, 2, 0), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(0, 0, 1), 0).r ==   0 && //  9 (0, 0, 1)
+     texelFetch(octree_data_tables[1], ivec3(0, 0, 1), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(1, 0, 1), 0).r ==   0 && // 10 (1, 0, 1) --> found 13 should be (0, 0)
+     texelFetch(octree_data_tables[1], ivec3(1, 0, 1), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(2, 0, 1), 0).r ==   0 && // 11 (2, 0, 1)
+     texelFetch(octree_data_tables[1], ivec3(2, 0, 1), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(0, 1, 1), 0).r ==   0 && // 12 (0, 1, 1) -- found 16 should be (0, 0)
+     texelFetch(octree_data_tables[1], ivec3(0, 1, 1), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(1, 1, 1), 0).r == 255 && // 13 (1, 1, 1) = (255, 95)
+     texelFetch(octree_data_tables[1], ivec3(1, 1, 1), 0).g ==  95 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(2, 1, 1), 0).r ==   0 && // 14 (2, 1, 1)
+     texelFetch(octree_data_tables[1], ivec3(2, 1, 1), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(0, 2, 1), 0).r == 255 && // 15 (0, 2, 1) = (255, 63)
+     texelFetch(octree_data_tables[1], ivec3(0, 2, 1), 0).g ==  63 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(1, 2, 1), 0).r == 255 && // 16 (1, 2, 1) = (255, 23)
+     texelFetch(octree_data_tables[1], ivec3(1, 2, 1), 0).g ==  23 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(2, 2, 1), 0).r ==   0 && // 17 (2, 2, 1)
+     texelFetch(octree_data_tables[1], ivec3(2, 2, 1), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(0, 0, 2), 0).r ==   0 && // 18 (0, 0, 2)
+     texelFetch(octree_data_tables[1], ivec3(0, 0, 2), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(1, 0, 2), 0).r ==   0 && // 19 (1, 0, 2)
+     texelFetch(octree_data_tables[1], ivec3(1, 0, 2), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(2, 0, 2), 0).r ==   0 && // 20 (2, 0, 2)
+     texelFetch(octree_data_tables[1], ivec3(2, 0, 2), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(0, 1, 2), 0).r ==   0 && // 21 (0, 1, 2) -> should be (0, 0)
+     texelFetch(octree_data_tables[1], ivec3(0, 1, 2), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(1, 1, 2), 0).r ==   0 && // 22 (1, 1, 2)
+     texelFetch(octree_data_tables[1], ivec3(1, 1, 2), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(2, 1, 2), 0).r ==   0 && // 23 (2, 1, 2)
+     texelFetch(octree_data_tables[1], ivec3(2, 1, 2), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(0, 2, 2), 0).r ==   0 && // 24 (0, 2, 2)
+     texelFetch(octree_data_tables[1], ivec3(0, 2, 2), 0).g ==   0 &&
+     // -
+     texelFetch(octree_data_tables[1], ivec3(1, 2, 2), 0).r ==   0 && // 25 (1, 2, 2)
+     texelFetch(octree_data_tables[1], ivec3(1, 2, 2), 0).g ==   0 &&
+     // - 
+     texelFetch(octree_data_tables[1], ivec3(2, 2, 2), 0).r ==   0 && // 26 (2, 2, 2)
+     texelFetch(octree_data_tables[1], ivec3(2, 2, 2), 0).g ==   0 ) {
+/*
+  if (texelFetch(test, ivec3(0, 0, 0), 0).r == 20 &&
+      texelFetch(test, ivec3(0, 0, 0), 0).g == 15 &&
+
+      texelFetch(test, ivec3(1, 0, 0), 0).r == 19 &&
+      texelFetch(test, ivec3(1, 0, 0), 0).g == 16 &&
+
+      texelFetch(test, ivec3(0, 1, 0), 0).r == 18 &&
+      texelFetch(test, ivec3(0, 1, 0), 0).g == 17 &&
+
+      texelFetch(test, ivec3(1, 1, 0), 0).r == 17 &&
+      texelFetch(test, ivec3(1, 1, 0), 0).g == 18 &&
+
+      texelFetch(test, ivec3(0, 0, 1), 0).r == 16 &&
+      texelFetch(test, ivec3(0, 0, 1), 0).g == 19 &&
+
+      texelFetch(test, ivec3(1, 0, 1), 0).r == 15 &&
+      texelFetch(test, ivec3(1, 0, 1), 0).g == 20 &&
+
+      texelFetch(test, ivec3(0, 1, 1), 0).r == 14 &&
+      texelFetch(test, ivec3(0, 1, 1), 0).g == 21 &&
+
+      texelFetch(test, ivec3(1, 1, 1), 0).r == 13 &&
+      texelFetch(test, ivec3(1, 1, 1), 0).g == 22) { */
+  /*
+    light_acc = vec3(0.0, 1.0, 0.0);
+  } else {
+    light_acc = vec3(1.0, 0.0, 0.0);
+  }
+  */
+  /*
+  if (texelFetch(octree_data_tables[0], ivec3(0, 0, 0), 0).r == 255 &&
+      texelFetch(octree_data_tables[0], ivec3(0, 0, 0), 0).g ==  23 &&
+      // ----------------------------------------------------------------------
+      texelFetch(octree_offset_tables[0], ivec3(0, 0, 0), 0).r ==  44 &&
+      texelFetch(octree_offset_tables[0], ivec3(0, 0, 0), 0).g == 132 &&
+      texelFetch(octree_offset_tables[0], ivec3(0, 0, 0), 0).b == 117 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(0, 0, 0), 0).r ==  3 && //  0 
+      texelFetch(light_data_tables[0], ivec3(0, 0, 0), 0).g ==  1 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(1, 0, 0), 0).r ==  0 && //  1
+      texelFetch(light_data_tables[0], ivec3(1, 0, 0), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(2, 0, 0), 0).r ==  0 && //  2
+      texelFetch(light_data_tables[0], ivec3(2, 0, 0), 0).g ==  1 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(0, 1, 0), 0).r ==  0 && //  3
+      texelFetch(light_data_tables[0], ivec3(0, 1, 0), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(1, 1, 0), 0).r ==  0 && //  4
+      texelFetch(light_data_tables[0], ivec3(1, 1, 0), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(2, 1, 0), 0).r ==  2 && //  5
+      texelFetch(light_data_tables[0], ivec3(2, 1, 0), 0).g ==  1 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(0, 2, 0), 0).r ==  0 && //  6
+      texelFetch(light_data_tables[0], ivec3(0, 2, 0), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(1, 2, 0), 0).r ==  0 && //  7
+      texelFetch(light_data_tables[0], ivec3(1, 2, 0), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(2, 2, 0), 0).r ==  0 && //  8
+      texelFetch(light_data_tables[0], ivec3(2, 2, 0), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(0, 0, 1), 0).r ==  0 && //  9
+      texelFetch(light_data_tables[0], ivec3(0, 0, 1), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(1, 0, 1), 0).r ==  0 && // 10
+      texelFetch(light_data_tables[0], ivec3(1, 0, 1), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(2, 0, 1), 0).r ==  1 && // 11
+      texelFetch(light_data_tables[0], ivec3(2, 0, 1), 0).g ==  1 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(0, 1, 1), 0).r ==  0 && // 12
+      texelFetch(light_data_tables[0], ivec3(0, 1, 1), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(1, 1, 1), 0).r ==  0 && // 13
+      texelFetch(light_data_tables[0], ivec3(1, 1, 1), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(2, 1, 1), 0).r ==  0 && // 14
+      texelFetch(light_data_tables[0], ivec3(2, 1, 1), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(0, 2, 1), 0).r ==  0 && // 15
+      texelFetch(light_data_tables[0], ivec3(0, 2, 1), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(1, 2, 1), 0).r ==  0 && // 16
+      texelFetch(light_data_tables[0], ivec3(1, 2, 1), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(2, 2, 1), 0).r ==  0 && // 17
+      texelFetch(light_data_tables[0], ivec3(2, 2, 1), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(0, 0, 2), 0).r ==  0 && // 18
+      texelFetch(light_data_tables[0], ivec3(0, 0, 2), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(1, 0, 2), 0).r ==  0 && // 19
+      texelFetch(light_data_tables[0], ivec3(1, 0, 2), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(2, 0, 2), 0).r ==  0 && // 20
+      texelFetch(light_data_tables[0], ivec3(2, 0, 2), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(0, 1, 2), 0).r ==  0 && // 21
+      texelFetch(light_data_tables[0], ivec3(0, 1, 2), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(1, 1, 2), 0).r ==  0 && // 22
+      texelFetch(light_data_tables[0], ivec3(1, 1, 2), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(2, 1, 2), 0).r ==  0 && // 23
+      texelFetch(light_data_tables[0], ivec3(2, 1, 2), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(0, 2, 2), 0).r ==  0 && // 24
+      texelFetch(light_data_tables[0], ivec3(0, 2, 2), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(1, 2, 2), 0).r ==  0 && // 25
+      texelFetch(light_data_tables[0], ivec3(1, 2, 2), 0).g ==  0 &&
+      // ----------------------------------------------------------------------
+      texelFetch(light_data_tables[0], ivec3(2, 2, 2), 0).r ==  0 && // 26
+      texelFetch(light_data_tables[0], ivec3(2, 2, 2), 0).g ==  0 && 
+      // ----------------------------------------------------------------------
+      texelFetch(light_offset_tables[0], ivec3(0, 0, 0), 0).r ==  44 &&
+      texelFetch(light_offset_tables[0], ivec3(0, 0, 0), 0).g == 132 &&
+      texelFetch(light_offset_tables[0], ivec3(0, 0, 0), 0).b == 117 ) {
+    light_acc = vec3(0.0, 1.0, 0.0);
+  } else {
+    light_acc = vec3(1.0, 0.0, 0.0);
+  }
+  */
+     
   uint offset = light_data.x;
   uint n_lights = light_data.y;
 
   for (uint i = offset; i < offset + n_lights; ++i) {
     light_acc += computeLight(lights[light_indices[i]], param);
   }
+  /*
+  if (offset == 3) {
+    light_acc = vec3(1.0, 0.0, 0.0);
+  }
+  */
 
   // output result
   fragment_colour = vec3((vec3(0.1f) + (light_acc * 0.9)));
