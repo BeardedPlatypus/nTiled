@@ -63,7 +63,13 @@ HashedLightManager::~HashedLightManager() {
 //  LightOctree construction
 // ----------------------------------------------------------------------------
 void HashedLightManager::constructLinklessOctree() {
+  // construct LightOctree
   this->constructLightOctree();
+
+  // Check if the depth is compatible
+  if (this->getLightOctree()->getDepth() <= this->getStartingDepth()) {
+    throw HashedShadingInvalidStartingDepthException();
+  }
 
   SpatialHashFunctionBuilder<glm::u8vec2> octree_map_builder =
     SpatialHashFunctionBuilder<glm::u8vec2>();

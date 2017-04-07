@@ -18,6 +18,13 @@ class HashedShadingNoLightException : public HashedShadingException {
   }
 };
 
+
+class HashedShadingInvalidStartingDepthException : public HashedShadingException {
+  virtual const char* what() const throw() {
+    return "The starting_depth paramater exceeds the actual depth of the octree.";
+  }
+};
+
 }
 }
 }
