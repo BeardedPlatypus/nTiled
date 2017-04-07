@@ -145,7 +145,6 @@ void main() {
     vec2 tex_coords = calcTextureCoordinates();
     vec3 diffuse_colour = texture(diffuse_tex, tex_coords).xyz;
     
-    vec4 coords_camera_space = getCameraCoordinates(tex_coords);
     if (diffuse_colour.rgb == vec3(0.0f)) {
         fragment_colour = vec4(0.0f);
     } else {
