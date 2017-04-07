@@ -379,7 +379,7 @@ void LinklessOctree::loadToShader(GLuint shader) {
     // ------------------------------------------------------------------------
     // load octree_node_tables[i]
     loadSpatialTable<GLubyte>(&this->ps_gfx_octree_node_tables[i],
-                              0 + 4 * i,
+                              0 + 4 * (i + 1),
                               GL_RGBA8UI,
                               this->p_octree_hash_maps->at(i)->getM(),
                               GL_RGBA_INTEGER,
@@ -391,7 +391,7 @@ void LinklessOctree::loadToShader(GLuint shader) {
     // ------------------------------------------------------------------------
     // load octree_offset_tables[i]
     loadSpatialTable<GLubyte>(&this->ps_gfx_octree_offset_tables[i],
-                              1 + 4 * i,
+                              1 + 4 * (i + 1),
                               GL_RGBA8UI,
                               this->p_octree_hash_maps->at(i)->getR(),
                               GL_RGBA_INTEGER,
@@ -405,7 +405,7 @@ void LinklessOctree::loadToShader(GLuint shader) {
       // ----------------------------------------------------------------------
       // load leaf_node_tables[i]
       loadSpatialTable<GLuint>(&this->ps_gfx_data_node_tables[data_layer_i],
-                               2 + 4 * i,
+                               2 + 4 * (i + 1),
                                GL_RGBA32UI,
                                this->p_data_hash_maps->at(i)->getM(),
                                GL_RGBA_INTEGER,
@@ -417,7 +417,7 @@ void LinklessOctree::loadToShader(GLuint shader) {
       // ----------------------------------------------------------------------
       // Load leaf_offset_tables[i]
       loadSpatialTable<GLubyte>(&this->ps_gfx_data_offset_tables[data_layer_i],
-                                3 + 4 * i,
+                                3 + 4 * (i + 1),
                                 GL_RGBA8UI,
                                 this->p_data_hash_maps->at(i)->getR(),
                                 GL_RGBA_INTEGER,
