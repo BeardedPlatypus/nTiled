@@ -30,7 +30,7 @@ ForwardHashedShader::ForwardHashedShader(
     ForwardShader(shader_id, world, view, p_output_buffer),
     p_light_manager(light_manager_builder.constructNewHashedLightManager(world, config)) {
 
-  this->p_light_manager->constructLinklessOctree();
+  this->p_light_manager->init();
 
   this->loadShaders(path_vertex_shader, path_fragment_shader);
   this->loadObjects();

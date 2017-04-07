@@ -62,10 +62,13 @@ HashedLightManager::~HashedLightManager() {
 // ----------------------------------------------------------------------------
 //  LightOctree construction
 // ----------------------------------------------------------------------------
-void HashedLightManager::constructLinklessOctree() {
-  // construct LightOctree
+void HashedLightManager::init() {
   this->constructLightOctree();
+  this->constructLinklessOctree();
+}
 
+
+void HashedLightManager::constructLinklessOctree() {
   // Check if the depth is compatible
   if (this->getLightOctree()->getDepth() <= this->getStartingDepth()) {
     throw HashedShadingInvalidStartingDepthException();
@@ -186,7 +189,11 @@ void HashedLightManager::constructLinklessOctree() {
 void HashedLightManager::constructLightOctree() {
   this->constructEmptyLightOctree();
   this->constructSLTs();
+  this->addConstructedSLTs();
+}
 
+
+void HashedLightManager::addConstructedSLTs() {
   std::vector<SingleLightTree*> slts = this->getSLTs();
   for (unsigned int i = 0; i < slts.size(); ++i) {
     this->getLightOctree()->addSLT(*(slts.at(i)), i);

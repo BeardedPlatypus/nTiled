@@ -18,7 +18,7 @@ SCENARIO("HashedLightManager::constructLinklessOctree should create a valid Link
       std::map<std::string, nTiled::world::Object*>();
     double radius = 20.0;
 
-    for (unsigned int i = 1; i <= 5; ++i) {
+    for (unsigned int i = 1; i <= 2; ++i) {
       w = new nTiled::world::World();
 
       for (unsigned int x = 0; x < i; ++x) {
@@ -49,11 +49,11 @@ SCENARIO("HashedLightManager::constructLinklessOctree should create a valid Link
 
     WHEN("constructLinklessOctree is called") {
       for (nTiled::pipeline::hashed::HashedLightManager& man : managers) {
-        man.constructLinklessOctree();
+        man.init();
       }
 
       THEN("Each light should fit into the newly constructed LinklessOctree") {
-        for (unsigned int i = 0; i < 5; ++i) {
+        for (unsigned int i = 0; i < 2; ++i) {
           nTiled::pipeline::hashed::HashedLightManager& mana = managers.at(i);
           const nTiled::pipeline::hashed::LinklessOctree& lo = *(mana.getLinklessOctree());
           unsigned int dim = lo.getTotalNNodes();

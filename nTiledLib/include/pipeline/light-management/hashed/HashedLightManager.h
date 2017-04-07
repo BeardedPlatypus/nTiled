@@ -20,10 +20,9 @@ public:
   // --------------------------------------------------------------------------
   /*! @brief Construct a new HashedLightManager with the given parameters
    *
-   * @param world A constant reference to the world this HashedLightManager
-   *              observes
-   * @param minimal_node_size The minimal node size 
-   * @param starting_depth The depth at which 
+   * @param world The world this HashedLightManager is observing
+   * @param hashed_config The configuration values for this 
+   *                      HashedLightManager
    */
   HashedLightManager(const world::World& world,
                      HashedConfig hashed_config);
@@ -41,12 +40,6 @@ public:
   /*! @brief Destruct this HashedLightManager.
    */
   ~HashedLightManager();
-
-  // --------------------------------------------------------------------------
-  /*! @brief Initialise this HashedLightManager by constructing all the 
-   *         data structures associated with it.
-   */
-  void init();
 
   // --------------------------------------------------------------------------
   //  Get | Set methods
@@ -108,6 +101,11 @@ public:
   // --------------------------------------------------------------------------
   //  LightOctree Construction methods
   // --------------------------------------------------------------------------
+  /*! @brief Initialise this HashedLightmanager by building all relevant 
+   *         datastructures.
+   */
+  void init();
+
   //TODO keep track whether this is called for memory management purposes
   /*! @brief Construct a new LightOctree based on the lights in the world 
    *         associated with this HashedLightManager. 
@@ -115,19 +113,23 @@ public:
    *         The new LightOctree can be obtained with 
    *         (new this)->getLightOctree();
    */
-  void constructLightOctree();
+  virtual void constructLightOctree();
 
   /*! @brief Construct a new empty LightOctree with the size and origin
    *         such that it will fit all the lights in the world associated
    *         with this HashedLightManager
    */
-  void constructEmptyLightOctree();
+  virtual void constructEmptyLightOctree();
 
   /*! @brief Construct a SingleLightTree for each light in the world associated
    *         with this HashedLightManager. these can be obtained with
    *         (new this)->getSLTs();
    */
-  void constructSLTs();
+  virtual void constructSLTs();
+
+  /*! @Brief Add the constructed SingleLightTrees to the current LightOctree
+   */
+  virtual void addConstructedSLTs();
   
   // --------------------------------------------------------------------------
   //  LinklessOctree Construction methods
@@ -135,7 +137,7 @@ public:
   /*! @brief Construct a new LinklessOctree based on the lights in the 
    *         in the world associated with this HashedLightManager.
    */
-  void constructLinklessOctree();
+  virtual void constructLinklessOctree();
 
 private:
   // --------------------------------------------------------------------------
