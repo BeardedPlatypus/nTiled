@@ -66,7 +66,12 @@ public:
                  const world::World& world,
                  const state::View& view,
                  GLint p_output_buffer);
- 
+
+  DeferredShader(DeferredShaderId shader_id,
+                 const world::World& world,
+                 const state::View& view,
+                 GLint p_output_buffer);
+
   // --------------------------------------------------------------------
   //  Attribute Getters
   // --------------------------------------------------------------------
@@ -141,6 +146,18 @@ protected:
    *              should be created.
    */
   virtual void constructPipelineLight(const world::PointLight& light);
+
+  /*! @brief Initialise openGL gBuffer values
+   */
+  virtual void initialiseGBuffer();
+
+  /*! @brief Initialise Geometry pass openGL values. 
+   */
+  virtual void initialiseGeometryPass();
+
+  /*! @brief Initialise Light pass openGL values. 
+   */
+  virtual void initialiseLightPass();
 
   // --------------------------------------------------------------------------
   //  Render subfunctions

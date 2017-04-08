@@ -20,6 +20,19 @@ namespace nTiled {
 namespace pipeline {
 
 DeferredShader::DeferredShader(DeferredShaderId shader_id,
+                               const world::World& world,
+                               const state::View& view,
+                               GLint p_output_buffer) :
+  id(shader_id),
+  world(world),
+  view(view),
+  gBuffer(GBuffer(view.viewport.x,
+                  view.viewport.y)),
+  p_output_buffer(p_output_buffer) {
+}
+
+
+DeferredShader::DeferredShader(DeferredShaderId shader_id,
                                const std::string& path_geometry_vert_shader,
                                const std::string& path_geometry_frag_shader,
                                const std::string& path_light_vert_shader,
@@ -27,90 +40,20 @@ DeferredShader::DeferredShader(DeferredShaderId shader_id,
                                const world::World& world,
                                const state::View& view,
                                GLint p_output_buffer) :
-    id(shader_id),
-    world(world),
-    view(view),
-    gBuffer(GBuffer(view.viewport.x,
-                    view.viewport.y)),
-    p_output_buffer(p_output_buffer) {
+  DeferredShader(shader_id, world, view, p_output_buffer) { 
   this->loadShaders(path_geometry_vert_shader,
                     path_geometry_frag_shader,
                     path_light_vert_shader,
                     path_light_frag_shader);
 
-  // set up objects
   this->loadObjects();
-
-  // set up lights
   this->loadLights();
 
-  // construct viewplane quad
   this->fullscreen_quad = constructQuad();
 
-  // set up misc values
-  glm::mat4 perspective_matrix = view.camera.getPerspectiveMatrix();
-  glm::mat4 inverse_perspective_matrix = glm::inverse(perspective_matrix);
-
-  // Geometry pass
-  // -------------
-  GLint p_camera_to_clip = glGetUniformLocation(this->geometry_pass_sp,
-                                                "camera_to_clip");
-
-  glUseProgram(this->geometry_pass_sp);
-  glUniformMatrix4fv(p_camera_to_clip,
-                     1,
-                     GL_FALSE,
-                     glm::value_ptr(perspective_matrix));
-  glUseProgram(0);
-
-
-  // Light pass
-  // ----------
-  GLint p_perspective_matrix = glGetUniformLocation(this->light_pass_sp,
-                                                    "perspective_matrix");
-  GLint p_inv_perspective_matrix = glGetUniformLocation(this->light_pass_sp,
-                                                        "inv_perspective_matrix");
-
-  GLint p_viewport = glGetUniformLocation(this->light_pass_sp,
-                                          "viewport");
-  GLint p_depthrange = glGetUniformLocation(this->light_pass_sp,
-                                            "depth_range");
-
-  glm::vec4 viewport = glm::vec4(0.0f, 0.0f, 
-                                 this->view.viewport.x,
-                                 this->view.viewport.y);
-  glm::vec2 depthrange = this->view.camera.getDepthrange();
-
-  glUseProgram(this->light_pass_sp);
-  glUniformMatrix4fv(p_perspective_matrix,
-                     1, GL_FALSE,
-                     glm::value_ptr(perspective_matrix));
-  glUniformMatrix4fv(p_inv_perspective_matrix,
-                     1, GL_FALSE,
-                     glm::value_ptr(inverse_perspective_matrix));
-
-  glUniform4fv(p_viewport, 1, glm::value_ptr(viewport));
-  glUniform2fv(p_depthrange, 1, glm::value_ptr(depthrange));
-  glUseProgram(0);
-
-  // Set up GBuffer
-  // --------------
-  GLint p_diffuse_texture = glGetUniformLocation(this->light_pass_sp,
-                                                 "diffuse_tex");
-  GLint p_normal_texture = glGetUniformLocation(this->light_pass_sp,
-                                                "normal_tex");
-  GLint p_depth_texture = glGetUniformLocation(this->light_pass_sp,
-                                               "depth_tex");
-
-  glUseProgram(this->light_pass_sp);
-  glUniform1i(p_diffuse_texture,
-              GL_TEXTURE0);// +this->gBuffer.GBUFFER_TEXTURE_TYPE_DIFFUSE);
-  glUniform1i(p_normal_texture,
-              GL_TEXTURE1);//GL_TEXTURE0 + this->gBuffer.GBUFFER_TEXTURE_TYPE_NORMAL);
-  glUniform1i(p_depth_texture,
-              GL_TEXTURE2);//GL_TEXTURE0 + this->gBuffer.GBUFFER_NUM_TEXTURES);
-
-  glUseProgram(0);
+  this->initialiseGeometryPass();
+  this->initialiseLightPass();
+  this->initialiseGBuffer();
 }
 
 void DeferredShader::render() {
@@ -134,6 +77,7 @@ void DeferredShader::render() {
   this->renderLightPass();
   //this->renderBuffers();
 }
+
 
 void DeferredShader::loadObjects() {
   for (world::Object* p_obj : this->world.p_objects) {
@@ -257,6 +201,74 @@ void DeferredShader::constructPipelineLight(const world::PointLight& light) {
                            light.is_emitting };
     this->lights.push_back(data);
 }
+
+
+void DeferredShader::initialiseGBuffer() {
+  GLint p_diffuse_texture = glGetUniformLocation(this->light_pass_sp,
+                                                 "diffuse_tex");
+  GLint p_normal_texture = glGetUniformLocation(this->light_pass_sp,
+                                                "normal_tex");
+  GLint p_depth_texture = glGetUniformLocation(this->light_pass_sp,
+                                               "depth_tex");
+
+  glUseProgram(this->light_pass_sp);
+  glUniform1i(p_diffuse_texture,
+              GL_TEXTURE0);// +this->gBuffer.GBUFFER_TEXTURE_TYPE_DIFFUSE);
+  glUniform1i(p_normal_texture,
+              GL_TEXTURE1);//GL_TEXTURE0 + this->gBuffer.GBUFFER_TEXTURE_TYPE_NORMAL);
+  glUniform1i(p_depth_texture,
+              GL_TEXTURE2);//GL_TEXTURE0 + this->gBuffer.GBUFFER_NUM_TEXTURES);
+  glUseProgram(0);
+}
+
+
+void DeferredShader::initialiseGeometryPass() {
+  glm::mat4 perspective_matrix = view.camera.getPerspectiveMatrix();
+  GLint p_camera_to_clip = glGetUniformLocation(this->geometry_pass_sp,
+                                                "camera_to_clip");
+
+  glUseProgram(this->geometry_pass_sp);
+  glUniformMatrix4fv(p_camera_to_clip,
+                     1,
+                     GL_FALSE,
+                     glm::value_ptr(perspective_matrix));
+  glUseProgram(0);
+
+}
+
+
+void DeferredShader::initialiseLightPass() {
+  glm::mat4 perspective_matrix = view.camera.getPerspectiveMatrix();
+  glm::mat4 inverse_perspective_matrix = glm::inverse(perspective_matrix);
+
+  GLint p_perspective_matrix = glGetUniformLocation(this->light_pass_sp,
+                                                    "perspective_matrix");
+  GLint p_inv_perspective_matrix = glGetUniformLocation(this->light_pass_sp,
+                                                        "inv_perspective_matrix");
+
+  GLint p_viewport = glGetUniformLocation(this->light_pass_sp,
+                                          "viewport");
+  GLint p_depthrange = glGetUniformLocation(this->light_pass_sp,
+                                            "depth_range");
+
+  glm::vec4 viewport = glm::vec4(0.0f, 0.0f, 
+                                 this->view.viewport.x,
+                                 this->view.viewport.y);
+  glm::vec2 depthrange = this->view.camera.getDepthrange();
+
+  glUseProgram(this->light_pass_sp);
+  glUniformMatrix4fv(p_perspective_matrix,
+                     1, GL_FALSE,
+                     glm::value_ptr(perspective_matrix));
+  glUniformMatrix4fv(p_inv_perspective_matrix,
+                     1, GL_FALSE,
+                     glm::value_ptr(inverse_perspective_matrix));
+
+  glUniform4fv(p_viewport, 1, glm::value_ptr(viewport));
+  glUniform2fv(p_depthrange, 1, glm::value_ptr(depthrange));
+  glUseProgram(0);
+}
+
 
 void DeferredShader::renderGeometryPass() {
 

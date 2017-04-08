@@ -7,6 +7,7 @@
 #include "pipeline\forward\shaders\logged\ForwardAttenuatedShaderLogged.h"
 #include "pipeline\forward\shaders\logged\ForwardTiledShaderLogged.h"
 #include "pipeline\forward\shaders\logged\ForwardClusteredShaderLogged.h"
+#include "pipeline\forward\shaders\logged\ForwardHashedShaderLogged.h"
 
 #include "pipeline\light-management\tiled\TiledLightManagerLogged.h"
 #include "pipeline\light-management\clustered\ClusteredLightManagerLogged.h"
@@ -14,9 +15,12 @@
 // TODO: move this to an external file
 // Path defines
 #define VERT_PATH_BASIC std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic.vert")
+#define VERT_PATH_HASHED std::string("../nTiledLib/src/pipeline/forward/shaders-glsl/lambert_hashed.vert")
+
 #define FRAG_PATH_BASIC_ATTENUATED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_attenuated.frag")
 #define FRAG_PATH_BASIC_TILED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_tiled.frag")
 #define FRAG_PATH_BASIC_CLUSTERED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/forward/shaders-glsl/lambert_clustered.frag")
+#define FRAG_PATH_BASIC_HASHED std::string("../nTiledLib/src/pipeline/forward/shaders-glsl/lambert_hashed.frag")
 
 namespace nTiled {
 namespace pipeline {
@@ -59,6 +63,16 @@ void ForwardPipelineLogged::constructShaderCatalog() {
                                                   glm::uvec2(32, 32),
                                                   ClusteredLightManagerLoggedBuilder(this->logger),
                                                   this->logger);
+    } else if (id == ForwardShaderId::ForwardHashed) {
+      p_shader = new ForwardHashedShaderLogged(id, 
+                                         VERT_PATH_HASHED,
+                                         FRAG_PATH_BASIC_HASHED,
+                                         *(this->state.p_world),
+                                         this->state.view,
+                                         this->output_buffer,
+                                         hashed::HashedLightManagerLoggedBuilder(this->logger),
+                                         this->state.shading.hashed_config,
+                                         this->logger);
     } else {
       throw std::runtime_error(std::string("Unsupported shader"));
     }

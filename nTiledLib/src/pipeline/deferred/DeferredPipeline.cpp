@@ -6,6 +6,8 @@
 #include "pipeline\deferred\shaders\DeferredAttenuatedShader.h"
 #include "pipeline\deferred\shaders\DeferredTiledShader.h"
 #include "pipeline\deferred\shaders\DeferredClusteredShader.h"
+#include "pipeline\deferred\shaders\DeferredHashedShader.h"
+
 
 // Path defines
 #define VERT_PATH_GEO std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.vert")
@@ -16,6 +18,7 @@
 #define FRAG_PATH_LIGHT_ATTENUATED std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_light_attenuated.frag")
 #define FRAG_PATH_LIGHT_TILED std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_light_tiled.frag")
 #define FRAG_PATH_LIGHT_CLUSTERED std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_light_clustered.frag")
+#define FRAG_PATH_LIGHT_HASHED std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_light_hashed.frag")
 
 namespace nTiled {
 namespace pipeline {
@@ -76,6 +79,18 @@ void DeferredPipeline::constructShader() {
       this->output_buffer,
       this->state.shading.tile_size,
       ClusteredLightManagerBuilder());
+  } else if (id == DeferredShaderId::DeferredHashed) {
+    this->p_deferred_shader = new DeferredHashedShader(
+      DeferredShaderId::DeferredHashed,
+      VERT_PATH_GEO,
+      FRAG_PATH_GEO,
+      VERT_PATH_LIGHT,
+      FRAG_PATH_LIGHT_HASHED,
+      *(this->state.p_world),
+      this->state.view,
+      this->output_buffer,
+      hashed::HashedLightManagerBuilder(),
+      this->state.shading.hashed_config);
   } else {
     throw std::runtime_error(std::string("Unsupported shader"));
   }

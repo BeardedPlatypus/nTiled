@@ -45,8 +45,6 @@ public:
                        const hashed::HashedLightManagerBuilder& light_manager_builder,
                        const hashed::HashedConfig& config);
 
-  ~DeferredHashedShader();
-
   virtual void renderGeometryPass() override;
   virtual void renderLightPass() override;
 

@@ -12,7 +12,7 @@ namespace nTiled {
 namespace pipeline {
 
 
-class DeferredHashedShaderLogged : DeferredHashedShader {
+class DeferredHashedShaderLogged : public DeferredHashedShader {
 public:
   /*! @brief Construct a new DeferredHashedShaderLogged with the given parameters
    *

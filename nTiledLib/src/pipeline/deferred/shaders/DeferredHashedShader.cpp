@@ -1,9 +1,10 @@
 #include "pipeline\deferred\shaders\DeferredHashedShader.h"
 
-// ----------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 //  Libraries
-// ----------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_inverse.hpp>
 
 #include <fstream>
 #include <sstream>
@@ -13,6 +14,7 @@
 //  nTiled headers
 // ----------------------------------------------------------------------------
 #include "pipeline\shader-util\LoadShaders.h"
+#include "pipeline\pipeline-util\ConstructQuad.h"
 
 namespace nTiled {
 namespace pipeline {
@@ -29,25 +31,29 @@ DeferredHashedShader::DeferredHashedShader(
     const hashed::HashedLightManagerBuilder& light_manager_builder,
     const hashed::HashedConfig& config) :
   DeferredShader(shader_id,
-                 path_geometry_pass_vertex_shader,
-                 path_geometry_pass_fragment_shader,
-                 path_light_pass_vertex_shader,
-                 path_light_pass_fragment_shader,
                  world,
                  view,
                  p_output_buffer),
-  p_light_manager(light_manager_builder.constructNewHashedLightManager(world,
+  p_light_manager(light_manager_builder.constructNewHashedLightManager(world, 
                                                                        config)) {
   this->p_light_manager->init();
-  glUseProgram(this->light_pass_sp);
+  this->loadShaders(path_geometry_pass_vertex_shader,
+                    path_geometry_pass_fragment_shader,
+                    path_light_pass_vertex_shader,
+                    path_light_pass_fragment_shader);
 
+  this->loadObjects();
+  this->loadLights();
+
+  this->fullscreen_quad = constructQuad();
+
+  this->initialiseGeometryPass();
+  this->initialiseLightPass();
+  this->initialiseGBuffer();
+
+  glUseProgram(this->light_pass_sp);
   this->p_light_manager->getLinklessOctree()->loadToShader(this->light_pass_sp);
   glUseProgram(0);
-}
-
-
-DeferredHashedShader::~DeferredHashedShader() {
-  delete this->p_light_manager;
 }
 
 
@@ -60,7 +66,7 @@ void DeferredHashedShader::renderGeometryPass() {
 
 void DeferredHashedShader::renderLightPass() {
   glUseProgram(this->light_pass_sp);
-  // upload inv_camera_matrix
+
   glm::mat4 inv_camera_matrix = glm::inverse(view.camera.getLookAt());
   GLint p_inv_camera = glGetUniformLocation(this->light_pass_sp,
                                             "inv_camera_matrix");
@@ -110,14 +116,16 @@ void DeferredHashedShader::loadShaders(const std::string& path_geometry_vert_sha
   // Fragment Shader
   // -----------------------------------------------------------------
   std::stringstream light_frag_shader_buffer = 
-    readShaderWithLightsAndOctreeMaps(path_light_frag_shader,
-                                      this->world.p_lights.size(),
-                                      this->p_light_manager->getLinklessOctree()->getNLevels());
+    readShaderWithLightsAndOctreeMaps(
+      path_light_frag_shader,
+      this->world.p_lights.size(),
+      this->p_light_manager->getLinklessOctree()->getNLevels());
 
   GLuint light_frag_shader = compileShader(GL_FRAGMENT_SHADER,
                                            light_frag_shader_buffer.str());
   this->light_pass_sp = createProgram(light_vert_shader, light_frag_shader);
 }
+
 
 
 }

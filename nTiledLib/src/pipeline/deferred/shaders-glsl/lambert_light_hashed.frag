@@ -204,7 +204,7 @@ void main() {
   
     vec3 light_acc = vec3(0.0f);
 
-    GeometryParam param = GeometryParam(coords_camera_space_position,
+    GeometryParam param = GeometryParam(coords_camera_space,
                                         normal,
                                         diffuse_colour);
 
@@ -253,8 +253,8 @@ void main() {
           break;
         }
       }
-    }
-     
+    } 
+
     uint offset = light_data.x;
     uint n_lights = light_data.y;
 
