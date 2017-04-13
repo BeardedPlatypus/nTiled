@@ -25,7 +25,7 @@ out vec3 fragment_octree_position;
 uniform mat4 camera_to_clip;
 uniform mat4 model_to_camera;
 uniform mat4 inv_transpose_model_to_camera;
-
+uniform mat4 model_to_world;
 uniform vec3 octree_origin;
 
 // -----------------------------------------------------------------------------
@@ -41,5 +41,6 @@ void main() {
     fragment_normal = (inv_transpose_model_to_camera *
                        vec4(vertex_normal, 0.0f)).xyz;
 
-    fragment_octree_position = (vertex_position.xyz / vertex_position.w) - octree_origin.xyz;
+    vec4 world_coord = model_to_world * vertex_position;
+    fragment_octree_position = (world_coord.xyz / world_coord.w) - octree_origin.xyz;
 }

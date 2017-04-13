@@ -39,6 +39,7 @@ public:
                       const hashed::HashedConfig& config);
 
   virtual void render() override;
+  virtual void preObjectRendering(PipelineObject* p_obj) override;
 
 protected:
   virtual void loadShaders(const std::string& path_vert_shader,

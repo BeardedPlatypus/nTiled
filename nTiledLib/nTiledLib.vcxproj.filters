@@ -312,6 +312,27 @@
     <ClInclude Include="include\pipeline\light-management\hashed\linkless-octree\LinklessOctree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\pipeline\light-management\hashed\HashedLightManagerBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\forward\shaders\ForwardHashedShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\pipeline-util\GLError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\light-management\hashed\HashedLightManagerLogged.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\deferred\shaders\DeferredHashedShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\deferred\shaders\logged\DeferredHashedShaderLogged.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\forward\shaders\logged\ForwardHashedShaderLogged.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\camera\Camera.rst" />
@@ -347,6 +368,7 @@
     <None Include="src\pipeline\light-management\clustered\compute-glsl\test_compute.glsl" />
     <None Include="src\pipeline\light-management\clustered\debug-visualise-glsl\key_visualise.frag" />
     <None Include="src\pipeline\light-management\clustered\debug-visualise-glsl\key_visualise.vert" />
+    <None Include="src\pipeline\deferred\shaders-glsl\lambert_light_hashed.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\camera\Camera.cpp">
@@ -599,6 +621,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\pipeline\light-management\hashed\linkless-octree\LinklessOctree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\light-management\hashed\HashedLightManagerBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\forward\shaders\ForwardHashedShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\pipeline-util\GLError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\light-management\hashed\HashedLightManagerLogged.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\deferred\shaders\DeferredHashedShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\deferred\shaders\Logged\DeferredHashedShaderLogged.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\forward\shaders\Logged\ForwardHashedShaderLogged.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

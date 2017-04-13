@@ -214,25 +214,41 @@ unsigned int SingleLightTreeBuilder::getMaxNNodesSLT(const world::PointLight& li
   // calculate raw size
   double width = 2 * light.radius;
   unsigned int n_minimum_nodes = int(ceil(width / this->getMinimalNodeSize()));
-  unsigned int n_nodes_pow = unsigned int(ceil(log2(n_minimum_nodes)));
-  unsigned int n_nodes = (1 << n_nodes_pow);
-  double size = n_nodes * this->getMinimalNodeSize();
+  unsigned int n_nodes = (1 << (unsigned int(ceil(log2(n_minimum_nodes))))); // 2 ^ (ceil(lb(n_minimum_nodes)))
 
-  // calculate coordinates
-  glm::uvec3 coord_s = glm::uvec3(floor((light.position.x - light.radius - origin_octree.x) / size),
-                                  floor((light.position.y - light.radius - origin_octree.y) / size),
-                                  floor((light.position.z - light.radius - origin_octree.z) / size));
-  glm::uvec3 coord_b = glm::uvec3(floor((light.position.x + light.radius - origin_octree.x) / size),
-                                  floor((light.position.y + light.radius - origin_octree.y) / size),
-                                  floor((light.position.z + light.radius - origin_octree.z) / size));
+  double denominator = 1.0 / (n_nodes * this->getMinimalNodeSize());
 
-  if ((coord_s.x == coord_b.x) &&
-      (coord_s.y == coord_b.y) &&
-      (coord_s.z == coord_b.z)) {
-    return n_nodes;
-  } else {
-    return n_nodes * 2;
+  glm::vec3 p_min = glm::vec3(light.position.x - light.radius - origin_octree.x,
+                              light.position.y - light.radius - origin_octree.y,
+                              light.position.z - light.radius - origin_octree.z);
+
+  glm::vec3 p_max = glm::vec3(light.position.x + light.radius - origin_octree.x,
+                              light.position.y + light.radius - origin_octree.y,
+                              light.position.z + light.radius - origin_octree.z);
+
+  glm::uvec3 node_min_p = glm::uvec3(unsigned int(floor(p_min.x * denominator)),
+                                     unsigned int(floor(p_min.y * denominator)),
+                                     unsigned int(floor(p_min.z * denominator)));
+
+  glm::uvec3 node_max_p = glm::uvec3(unsigned int(floor(p_max.x * denominator)),
+                                     unsigned int(floor(p_max.y * denominator)),
+                                     unsigned int(floor(p_max.z * denominator)));
+
+  while (!(node_min_p.x == node_max_p.x &&
+           node_min_p.y == node_max_p.y &&
+           node_min_p.z == node_max_p.z)) {
+    n_nodes *= 2;
+    denominator *= 0.5;
+    node_min_p = glm::uvec3(unsigned int(floor(p_min.x * denominator)),
+                            unsigned int(floor(p_min.y * denominator)),
+                            unsigned int(floor(p_min.z * denominator)));
+
+    node_max_p = glm::uvec3(unsigned int(floor(p_max.x * denominator)),
+                            unsigned int(floor(p_max.y * denominator)),
+                            unsigned int(floor(p_max.z * denominator)));
   }
+
+  return n_nodes;
 }
 
 
@@ -325,13 +341,16 @@ SingleLightTree* SingleLightTreeBuilder::constructSLT(const world::PointLight& l
       queue.pop();
 
       // subdivide current element
-      for (unsigned int x_i = 0; x_i < 2; x_i++) {
-        for (unsigned int y_i = 0; y_i < 2; y_i++) {
-          for (unsigned int z_i = 0; z_i < 2; z_i++) {
+      for (unsigned int x_i = 0; x_i < 2; ++x_i) {
+        for (unsigned int y_i = 0; y_i < 2; ++y_i) {
+          for (unsigned int z_i = 0; z_i < 2; ++z_i) {
+
             index = glm::bvec3(x_i == 1,
                                y_i == 1,
                                z_i == 1);
             next_dim = cur_dim.getNextDimensions(index);
+            bool within_light = this->nodeWithinLight(light, next_dim.origin, next_dim.size);
+
             next_node_type = this->determineNodeType(next_dim.origin,
                                                      next_dim.size, 
                                                      *p_lattice);

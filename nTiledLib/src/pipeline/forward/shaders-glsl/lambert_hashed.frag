@@ -19,7 +19,7 @@ in vec3 fragment_octree_position;
 // Fragment Output Buffers
 // -----------------------------------------------------------------------------
 //out vec4 fragment_colour;
-layout (location=0) out vec3 fragment_colour;
+out vec4 fragment_colour;
 
 
 // Variable Definitions
@@ -166,6 +166,7 @@ void main() {
   // Retrieve the relevant lights.
   uvec2 light_data = uvec2(0, 0);
 
+
   if (fragment_octree_position.x >= 0.0f &&
       fragment_octree_position.y >= 0.0f &&
       fragment_octree_position.z >= 0.0f &&
@@ -182,7 +183,7 @@ void main() {
 
     uvec2 octree_data;
 
-    for (uint layer_i = 0; layer_i < OCTREE_DEPTH; ++layer_i) {
+    for (uint layer_i = 0; layer_i < OCTREE_DEPTH; layer_i++) {
       octree_coord_cur = octree_coord_next;
 
       next_node_size_den *= 2;
@@ -203,15 +204,23 @@ void main() {
         break;
       }
     }
-  }
+  } 
 
   uint offset = light_data.x;
   uint n_lights = light_data.y;
 
-  for (uint i = offset; i < offset + n_lights; ++i) {
+  /*
+  if (n_lights == 0) {
+    light_acc = vec3(1.0, 0.0, 0.0);
+  }
+  */
+
+  for (uint i = offset; i < offset + n_lights; i++) {
+  //for (int i =0; i < NUM_LIGHTS; i++) {
+    //light_acc += computeLight(lights[i], param);
     light_acc += computeLight(lights[light_indices[i]], param);
   }
 
   // output result
-  fragment_colour = vec3((vec3(0.1f) + (light_acc * 0.9)));
+  fragment_colour = vec4((vec3(0.1f) + (light_acc * 0.9)), 1.0f);
 }

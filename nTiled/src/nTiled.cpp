@@ -7,8 +7,12 @@
 // ----------------------------------------------------------------------------
 //  Defines
 // ----------------------------------------------------------------------------
+//#define SCENE_PATH std::string("C:/Users/Monthy/Desktop/pipers-alley-hashed/pipers_alley_hashed.json")
+#define SCENE_PATH std::string("C:/Users/Monthy/Desktop/ziggurat-city-hashed/ziggurat_city_hashed.json")
+//#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/plane-test/scene-def/forward_attenuated.json")
+//#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/plane-test/scene-def/forward_hashed.json")
 //#define SCENE_PATH std::string("../example/example_scene_hashed_def1.json")
-#define SCENE_PATH std::string("../example/example_scene_hashed_def2.json")
+//#define SCENE_PATH std::string("../example/example_scene_hashed_def2.json")
 //#define SCENE_PATH std::string("../example/example_scene_hashed.json")
 //#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/pipers-alley/validation-scenes/arch/scene.json")
 //#define SCENE_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/thesis-data-suite/scenes/ziggurat-city/scene-json/scene.json")

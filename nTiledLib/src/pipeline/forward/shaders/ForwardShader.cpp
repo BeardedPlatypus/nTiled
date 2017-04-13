@@ -212,6 +212,10 @@ void ForwardShader::renderObjects() {
     glGetUniformLocation(this->shader, "inv_transpose_model_to_camera");
 
   for (PipelineObject* p_obj : this->ps_obj) {
+    //  pre object rendering
+    // ---------------------
+    this->preObjectRendering(p_obj);
+
     // Update model to camera
     // ----------------------
     glm::mat4 model_to_camera = lookAt * p_obj->transformation_matrix;

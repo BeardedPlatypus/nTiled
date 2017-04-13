@@ -81,5 +81,17 @@ void ForwardHashedShader::render() {
 }
 
 
+void ForwardHashedShader::preObjectRendering(PipelineObject* p_obj) {
+  GLint p_model_to_world = 
+    glGetUniformLocation(this->shader, "model_to_world");
+
+  glm::mat4 model_to_world = p_obj->transformation_matrix;
+  glUniformMatrix4fv(p_model_to_world,
+                     1,
+                     GL_FALSE,
+                     glm::value_ptr(model_to_world));
+}
+
+
 }
 }

@@ -121,3 +121,100 @@ SCENARIO("HashedLightManager::constructLinklessOctree should create a valid Link
     }
   }
 }
+
+
+SCENARIO("HashedLightManager::constructLinklessOctree should create a valid LinklessOctree when provided with a specific world",
+         "[LightOctreeFull][HashedLightManager][constructLinklessOctree][faulty_scene]") {
+  GIVEN("A set of worlds with 2 lights") {
+    double node_size = 10.0;
+
+    nTiled::world::World* w = new nTiled::world::World();
+
+    std::string name = "just_testing_things";
+    glm::vec3 intensity = glm::vec3(1.0);
+    std::map<std::string, nTiled::world::Object*> empty_map =
+      std::map<std::string, nTiled::world::Object*>();
+    double radius = 70.0;
+
+    glm::vec4 position_1 = glm::vec4(0.0,
+                                     12.0,
+                                     130.0,
+                                     1.0);
+    w->constructPointLight(name,
+                           position_1,
+                           intensity,
+                           radius,
+                           true,
+                           empty_map);
+
+    glm::vec4 position_2 = glm::vec4(0.0,
+                                     12.0,
+                                     -130.0,
+                                     1.0);
+    w->constructPointLight(name,
+                           position_2,
+                           intensity,
+                           radius,
+                           true,
+                           empty_map);
+
+    nTiled::pipeline::hashed::HashedConfig conf =
+      nTiled::pipeline::hashed::HashedConfig(node_size,
+                                             1,
+                                             1.5,
+                                             15);
+
+    nTiled::pipeline::hashed::HashedLightManager* p_man = new nTiled::pipeline::hashed::HashedLightManager(*w, conf);
+
+    WHEN("constructLinklessOctree is called") {
+      p_man->init();
+
+      THEN("Each light should fit into the newly constructed LinklessOctree") {
+        const nTiled::pipeline::hashed::LinklessOctree& lo = *(p_man->getLinklessOctree());
+        unsigned int dim = lo.getTotalNNodes();
+        glm::vec3 orig = lo.getOrigin();
+        double width = lo.getWidth();
+
+        glm::vec3 offset = glm::vec3(orig.x - 0.05 * width,
+                                     orig.y - 0.05 * width,
+                                     orig.z - 0.05 * width);
+        double step_size = node_size * 0.75;
+
+        std::vector<GLuint> indices;
+        std::vector<nTiled::pipeline::hashed::SingleLightTree*> slts =
+          p_man->getSLTs();
+
+        for (unsigned int x = 0; x < 2 * dim; ++x) {
+          for (unsigned int y = 0; y < 2 * dim; ++y) {
+            for (unsigned int z = 0; z < 2 * dim; ++z) {
+              glm::vec3 p = offset + glm::vec3(step_size * x,
+                                               step_size * y,
+                                               step_size * z);
+              indices = lo.retrieveLights(p);
+
+              for (unsigned int j = 0; j < slts.size(); ++j) {
+                glm::vec3 slt_origin = slts.at(j)->getOrigin();
+                double slt_width = slts.at(j)->getWidth();
+                if (((p.x >= slt_origin.x) &&
+                     (p.y >= slt_origin.y) &&
+                     (p.z >= slt_origin.z) &&
+                     (p.x <= slt_origin.x + slt_width) &&
+                     (p.y <= slt_origin.y + slt_width) &&
+                     (p.z <= slt_origin.z + slt_width)) &&
+                    (slts.at(j)->isInLight(p))) {
+                  REQUIRE(std::find(indices.begin(),
+                                    indices.end(),
+                                    j) != indices.end());
+                } else {
+                  REQUIRE(std::find(indices.begin(),
+                                    indices.end(),
+                                    j) == indices.end());
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

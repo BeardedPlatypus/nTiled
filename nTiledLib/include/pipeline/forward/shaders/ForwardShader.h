@@ -80,6 +80,13 @@ public:
     this->p_output_buffer = p_output_buffer; 
   }
 
+  /*! @brief Functionality executed before rendering an object in renderObjects
+   *         which can be extended by child classes.
+   *
+   * @param p_obj pointer to the PipelineObject which will be rendered.
+   */
+  virtual void preObjectRendering(PipelineObject* p_obj) { }
+
 protected:
   // --------------------------------------------------------------------------
   //  glsl management
