@@ -213,3 +213,150 @@ SCENARIO("constructSLT should build a valid SLT when provided with a specific li
 
 
 
+SCENARIO("constructSLT should build a valid SLT when provided with a specific light 2",
+         "[LightOctreeFull][SLTFull][SLTBuilder][constructSLT][SLTSizeTest2]") {
+  GIVEN("A SLTBuilder and a light") {
+    glm::vec3 origin_octree = glm::vec3(-1948.09802,
+                                        -140.394577,
+                                        -215.444885);
+    double node_size = 60.0;
+
+    nTiled::pipeline::hashed::SingleLightTreeBuilder builder =
+      nTiled::pipeline::hashed::SingleLightTreeBuilder(node_size,
+                                                       origin_octree);
+
+    std::string name = "just_testing_things";
+    glm::vec3 intensity = glm::vec3(1.0);
+    std::map<std::string, nTiled::world::Object*> empty_map =
+      std::map<std::string, nTiled::world::Object*>();
+
+    glm::vec4 light_position = glm::vec4(-1762.0980224609375,
+                                         259.2957763671875,
+                                         124.4700927734375,
+                                         1.0);
+
+    double radius = 180.0;
+
+    nTiled::world::PointLight light = 
+      nTiled::world::PointLight(name, 
+                                light_position,
+                                intensity,
+                                radius,
+                                true,
+                                empty_map);
+
+    WHEN("A SLT is created out of this light") {
+      nTiled::pipeline::hashed::SingleLightTree* slt =
+        builder.constructSLT(light);
+      THEN("The SLT should correctly model the corresponding light") {
+        unsigned int n_steps = 3 + 3 + 3 * slt->getNNodes() + 1;
+        double step_size = (slt->getMinimalNodeSize() * 2 + slt->getWidth()) / n_steps;
+        double step_offset = 0.1 * slt->getMinimalNodeSize();
+
+        glm::vec3 slt_origin = slt->getOrigin();
+        double slt_width = slt->getWidth();
+        double minimal_size = slt->getMinimalNodeSize();
+
+        for (unsigned int x_i = 0; x_i < n_steps; x_i++) {
+          for (unsigned int y_i = 0; y_i < n_steps; y_i++) {
+            for (unsigned int z_i = 0; z_i < n_steps; z_i++) {
+              glm::vec3 point = (slt->getOrigin() + glm::vec3(x_i * step_size + step_offset,
+                                                              y_i * step_size + step_offset,
+                                                              z_i * step_size + step_offset) -
+                                 glm::vec3(slt->getMinimalNodeSize()));
+
+
+              glm::vec3 node_origin_point = glm::vec3(floor((point.x - slt_origin.x) / minimal_size) * minimal_size + slt_origin.x,
+                                                      floor((point.y - slt_origin.y) / minimal_size) * minimal_size + slt_origin.y,
+                                                      floor((point.z - slt_origin.z) / minimal_size) * minimal_size + slt_origin.z);
+
+              bool result_math_lid = builder.nodeWithinLight(light, node_origin_point, minimal_size);
+              bool result_slt_lid = slt->isInLight(point);
+
+              if (result_math_lid != result_slt_lid) {
+                bool is_failed = true;
+              }
+
+              REQUIRE(result_math_lid == result_slt_lid);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+SCENARIO("constructSLT should build a valid SLT when provided with a specific light 3",
+         "[LightOctreeFull][SLTFull][SLTBuilder][constructSLT][SLTSizeTest3]") {
+  GIVEN("A SLTBuilder and a light") {
+    glm::vec3 origin_octree = glm::vec3(-1948.09802,
+                                        -140.394577,
+                                        -215.444885);
+    double node_size = 60.0;
+
+    nTiled::pipeline::hashed::SingleLightTreeBuilder builder =
+      nTiled::pipeline::hashed::SingleLightTreeBuilder(node_size,
+                                                       origin_octree);
+
+    std::string name = "just_testing_things";
+    glm::vec3 intensity = glm::vec3(1.0);
+    std::map<std::string, nTiled::world::Object*> empty_map =
+      std::map<std::string, nTiled::world::Object*>();
+
+    glm::vec4 light_position = glm::vec4(-569.6400146484375,
+                                         45.60542297363281,
+                                         -29.44487714767456,
+                                         1.0);
+
+
+    double radius = 180.0;
+
+    nTiled::world::PointLight light = 
+      nTiled::world::PointLight(name, 
+                                light_position,
+                                intensity,
+                                radius,
+                                true,
+                                empty_map);
+
+    WHEN("A SLT is created out of this light") {
+      nTiled::pipeline::hashed::SingleLightTree* slt =
+        builder.constructSLT(light);
+      THEN("The SLT should correctly model the corresponding light") {
+        unsigned int n_steps = 3 + 3 + 3 * slt->getNNodes() + 1;
+        double step_size = (slt->getMinimalNodeSize() * 2 + slt->getWidth()) / n_steps;
+        double step_offset = 0.1 * slt->getMinimalNodeSize();
+
+        glm::vec3 slt_origin = slt->getOrigin();
+        double slt_width = slt->getWidth();
+        double minimal_size = slt->getMinimalNodeSize();
+
+        for (unsigned int x_i = 0; x_i < n_steps; x_i++) {
+          for (unsigned int y_i = 0; y_i < n_steps; y_i++) {
+            for (unsigned int z_i = 0; z_i < n_steps; z_i++) {
+              glm::vec3 point = (slt->getOrigin() + glm::vec3(x_i * step_size + step_offset,
+                                                              y_i * step_size + step_offset,
+                                                              z_i * step_size + step_offset) -
+                                 glm::vec3(slt->getMinimalNodeSize()));
+
+
+              glm::vec3 node_origin_point = glm::vec3(floor((point.x - slt_origin.x) / minimal_size) * minimal_size + slt_origin.x,
+                                                      floor((point.y - slt_origin.y) / minimal_size) * minimal_size + slt_origin.y,
+                                                      floor((point.z - slt_origin.z) / minimal_size) * minimal_size + slt_origin.z);
+
+              bool result_math_lid = builder.nodeWithinLight(light, node_origin_point, minimal_size);
+              bool result_slt_lid = slt->isInLight(point);
+
+              if (result_math_lid != result_slt_lid) {
+                bool is_failed = true;
+              }
+
+              REQUIRE(result_math_lid == result_slt_lid);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
