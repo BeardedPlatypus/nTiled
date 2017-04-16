@@ -5,9 +5,11 @@ namespace pipeline {
 namespace hashed {
 
 LONodeContainer::LONodeContainer(LONode* p_node,
-                                 LOParent* p_parent) :
+                                 LOParent* p_parent,
+                                 glm::bvec3 index) :
   p_node(p_node),
-  p_parent(p_parent) {
+  p_parent(p_parent),
+  index(index) {
 }
 
 }

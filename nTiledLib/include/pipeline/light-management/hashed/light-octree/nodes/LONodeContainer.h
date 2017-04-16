@@ -19,13 +19,17 @@ struct LONodeContainer {
    * @param p_parent pointer to the parent of this LONode
    */
   LONodeContainer(LONode* p_node,
-                  LOParent* p_parent);
+                  LOParent* p_parent,
+                  glm::bvec3 index);
 
   /*! @brief Pointer to the node of this LONodeContainer. */
   LONode* p_node;
 
   /*! @brief Pointer to parent of this LONodeContainer's p_node. */
   LOParent* p_parent;
+
+  /*! @brief index the node of this LONodeContainer has in parent. */
+  glm::bvec3 index;
 };
 
 

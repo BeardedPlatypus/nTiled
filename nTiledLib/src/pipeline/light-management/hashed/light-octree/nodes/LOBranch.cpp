@@ -99,7 +99,7 @@ LONodeContainer LOBranch::retrieveAndConstructRoot(unsigned int depth_left,
                                                    NodeDimensions node_dim,
                                                    LOParent* p_parent,
                                                    glm::bvec3 index) {
-  if (depth_left == 0) return LONodeContainer(this, p_parent);
+  if (depth_left == 0) return LONodeContainer(this, p_parent, index);
 
   glm::bvec3 next_index = node_dim.getNextIndex(mid_point_slt);
   return this->getChildNode(next_index)->retrieveAndConstructRoot(depth_left - 1,

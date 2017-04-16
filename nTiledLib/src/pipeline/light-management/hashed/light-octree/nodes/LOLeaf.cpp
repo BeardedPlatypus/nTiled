@@ -49,7 +49,7 @@ LONodeContainer LOLeaf::retrieveAndConstructRoot(unsigned int depth_left,
                                                  NodeDimensions node_dim,
                                                  LOParent* p_parent,
                                                  glm::bvec3 index) {
-  if (depth_left == 0) return LONodeContainer(this, p_parent);
+  if (depth_left == 0) return LONodeContainer(this, p_parent, index);
 
   LONode* new_node = this->subdivide(p_parent, index);
   return new_node->retrieveAndConstructRoot(depth_left,

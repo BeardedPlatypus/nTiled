@@ -72,7 +72,7 @@ void LightOctree::addSLT(const SingleLightTree& slt, GLuint index) {
   LONodeContainer slt_root_node = this->constructAndRetrieveRoot(slt);
   slt_root_node.p_node->addSLTNode(*(slt.getRoot()), 
                                    slt_root_node.p_parent,
-                                   glm::bvec3(false),
+                                   slt_root_node.index,
                                    index);
 }
 
