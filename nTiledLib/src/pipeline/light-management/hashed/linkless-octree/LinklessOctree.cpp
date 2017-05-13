@@ -122,12 +122,12 @@ LinklessOctree::~LinklessOctree() {
 std::vector<GLuint> LinklessOctree::retrieveLights(glm::vec3 point) const {
   glm::vec3 orig = this->getOrigin();
   double width = this->getWidth();
-  if (point.x < orig.x ||
-      point.y < orig.y ||
-      point.z < orig.z ||
-      point.x > orig.x + width ||
-      point.y > orig.y + width ||
-      point.z > orig.z + width) {
+  if (point.x <= orig.x ||
+      point.y <= orig.y ||
+      point.z <= orig.z ||
+      point.x >= orig.x + width ||
+      point.y >= orig.y + width ||
+      point.z >= orig.z + width) {
     return std::vector<GLuint>();
   }
 
@@ -141,9 +141,9 @@ std::vector<GLuint> LinklessOctree::retrieveLights(glm::vec3 point) const {
   unsigned int n_nodes = this->getInitialNNodes();
 
   glm::uvec3 coord_cur;
-  glm::uvec3 coord_next = glm::uvec3(floor(p_octree_coord.x / next_node_size),
-                                     floor(p_octree_coord.y / next_node_size),
-                                     floor(p_octree_coord.z / next_node_size));
+  glm::uvec3 coord_next = glm::uvec3(ceil(p_octree_coord.x / next_node_size) - 1,
+                                     ceil(p_octree_coord.y / next_node_size) - 1,
+                                     ceil(p_octree_coord.z / next_node_size) - 1);
 
   glm::uvec3 index_dif;
   unsigned int index_int;
@@ -151,9 +151,9 @@ std::vector<GLuint> LinklessOctree::retrieveLights(glm::vec3 point) const {
   for (unsigned int layer_i = 0; layer_i < this->getNLevels(); ++layer_i) {
     coord_cur = coord_next;
     next_node_size *= 0.5;
-    coord_next = glm::uvec3(floor(p_octree_coord.x / next_node_size),
-                            floor(p_octree_coord.y / next_node_size),
-                            floor(p_octree_coord.z / next_node_size));
+    coord_next = glm::uvec3(ceil(p_octree_coord.x / next_node_size) - 1,
+                            ceil(p_octree_coord.y / next_node_size) - 1,
+                            ceil(p_octree_coord.z / next_node_size) - 1);
     index_dif = coord_next - (coord_cur + coord_cur);
     index_int = index_dif.x + index_dif.y * 2 + index_dif.z * 4;
 

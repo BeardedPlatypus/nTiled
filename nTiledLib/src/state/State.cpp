@@ -131,10 +131,17 @@ State* constructStateFromJson(const std::string& path) {
   if (hashed_config_itr != config.MemberEnd()) {
     auto& hashed_config_json = hashed_config_itr->value;
 
+    unsigned int hashed_seed = 22;
+    rapidjson::Value::ConstMemberIterator hashed_seed_itr = hashed_config_json.FindMember("seed");
+    if (hashed_seed_itr != hashed_config_json.MemberEnd()) {
+      hashed_seed = hashed_config_json["seed"].GetUint();
+    }
+
     hashed_config = pipeline::hashed::HashedConfig(hashed_config_json["node_size"].GetFloat(),
                                                    hashed_config_json["starting_depth"].GetUint(),
                                                    hashed_config_json["r_increase_ratio"].GetFloat(),
-                                                   hashed_config_json["max_attempts"].GetUint());
+                                                   hashed_config_json["max_attempts"].GetUint(),
+                                                   hashed_seed);
   } 
 
   // is debug

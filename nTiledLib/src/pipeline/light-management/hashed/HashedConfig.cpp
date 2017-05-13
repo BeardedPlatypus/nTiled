@@ -15,7 +15,21 @@ HashedConfig::HashedConfig(float minimum_node_size,
   minimum_node_size(minimum_node_size),
   starting_depth(starting_depth),
   r_increase_ratio(r_increase_ratio),
-  max_attempts(max_attempts) {
+  max_attempts(max_attempts),
+  seed(22) {
+}
+
+
+HashedConfig::HashedConfig(float minimum_node_size,
+                           unsigned int starting_depth,
+                           float r_increase_ratio,
+                           unsigned int max_attempts,
+                           unsigned int seed) :
+  minimum_node_size(minimum_node_size),
+  starting_depth(starting_depth),
+  r_increase_ratio(r_increase_ratio),
+  max_attempts(max_attempts),
+  seed(seed) {
 }
 
 }

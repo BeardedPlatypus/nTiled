@@ -30,6 +30,7 @@ HashedLightManager::HashedLightManager(const world::World& world,
   starting_depth(hashed_config.starting_depth),
   r_increase_ratio(hashed_config.r_increase_ratio),
   max_attempts(hashed_config.max_attempts),
+  hash_builder_seed(hashed_config.seed),
   ps_slt({}),
   has_constructed_light_octree(false),
   has_constructed_slts(false),
@@ -75,10 +76,10 @@ void HashedLightManager::constructLinklessOctree() {
   }
 
   SpatialHashFunctionBuilder<glm::u8vec2> octree_map_builder =
-    SpatialHashFunctionBuilder<glm::u8vec2>();
+    SpatialHashFunctionBuilder<glm::u8vec2>(this->hash_builder_seed);
 
   SpatialHashFunctionBuilder<glm::uvec2> data_map_builder =
-    SpatialHashFunctionBuilder<glm::uvec2>();
+    SpatialHashFunctionBuilder<glm::uvec2>(this->hash_builder_seed);
 
   std::vector<std::pair<glm::uvec3, const LOBranch*>> nodes_at_depth =
     this->getLightOctree()->retrieveNodesAtDepth(this->getStartingDepth());

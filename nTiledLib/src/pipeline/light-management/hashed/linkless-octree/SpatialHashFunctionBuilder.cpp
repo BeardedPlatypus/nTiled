@@ -28,6 +28,13 @@ SpatialHashFunctionBuilder<R>::SpatialHashFunctionBuilder() {
 
 
 template <class R>
+SpatialHashFunctionBuilder<R>::SpatialHashFunctionBuilder(unsigned int seed) {
+  this->gen = std::mt19937(seed);
+  this->distribution = std::uniform_int_distribution<unsigned short>(0, 255);
+}
+
+
+template <class R>
 SpatialHashFunction<R>* SpatialHashFunctionBuilder<R>::constructHashFunction(
     const std::vector<std::pair<glm::uvec3, R>>& entries,
     unsigned int max_attempts,

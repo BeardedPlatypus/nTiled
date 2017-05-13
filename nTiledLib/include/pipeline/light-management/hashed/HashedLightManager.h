@@ -181,6 +181,9 @@ private:
 
   /*! @brief The max_attempts used to construct a LinklessOctree. */
   unsigned int max_attempts;
+
+  /*! @brief The seed used in the random number generator constructed hashfunctions. */
+  unsigned int hash_builder_seed;
 };
 
 

@@ -93,6 +93,15 @@ public:
      * @returns A new SpatialHashFunctionBuilder
      */
     SpatialHashFunctionBuilder();
+
+    /*! @brief Construct a new SpatialHashFunctionBuilder using the given seed
+     *
+     * @param seed The seed being used in the random number generator utilised
+     *             this new SpatialHashFunctionBuilder
+     * 
+     * @returns A new SpatialHashFunctionBuilder
+     */
+    SpatialHashFunctionBuilder(unsigned int seed);
   
     // --------------------------------------------------------------------------
     //  SpatialHashFunction construction method
