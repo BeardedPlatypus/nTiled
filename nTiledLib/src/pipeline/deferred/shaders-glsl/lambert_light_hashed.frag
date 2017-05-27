@@ -6,7 +6,7 @@
 // Fragment Output Buffers
 // -----------------------------------------------------------------------------
 //out vec4 fragment_colour;
-layout (location=0) out vec4 fragment_colour;
+out vec4 fragment_colour;
 
 
 // Variable Definitions

@@ -106,6 +106,21 @@ public:
   }
 
   // --------------------------------------------------------------------------
+  std::vector<GLuint>* getLightIndices() const { return this->p_light_indices; }
+  
+  std::vector<SpatialHashFunction<glm::u8vec2>*>* getOctreeHashMaps() {
+    return this->p_octree_hash_maps;
+  }
+
+  std::vector<SpatialHashFunction<glm::uvec2>*>* getDataHashMaps() {
+    return this->p_data_hash_maps;
+  }
+
+  std::vector<bool>* getDataHashMapsExists() {
+    return this->p_data_hash_map_exists;
+  }
+
+  // --------------------------------------------------------------------------
   /*! @brief Retrieve the light indices associated with the provided point
    *
    * @param point The point of which the light indices should be retrieved

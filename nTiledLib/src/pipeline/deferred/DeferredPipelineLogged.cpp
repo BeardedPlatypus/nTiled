@@ -73,7 +73,7 @@ void DeferredPipelineLogged::constructShader() {
       this->logger);
   } else if (id == DeferredShaderId::DeferredHashed) {
     this->p_deferred_shader = new DeferredHashedShaderLogged(
-      DeferredShaderId::DeferredClustered,
+      DeferredShaderId::DeferredHashed,
       VERT_PATH_GEO,
       FRAG_PATH_GEO,
       VERT_PATH_LIGHT,

@@ -79,11 +79,6 @@ uniform usampler3D light_data_tables[OCTREE_DEPTH];
 uniform float node_size_den;
 uniform float octree_width;
 
-
-//uniform usampler2D test;
-uniform usampler3D test;
-
-
 /*! @brief Compute Lambert shading for the attenuated light and return 
  *         the colour shaded by this Light.
  *
@@ -164,7 +159,7 @@ void main() {
                                       vec3(1.0f));
 
   // Retrieve the relevant lights.
-  uvec2 light_data = uvec2(0, 0);
+  uvec2 light_data = uvec2(51, 53);
 
 
   if (fragment_octree_position.x >= 0.0f &&
@@ -204,20 +199,12 @@ void main() {
         break;
       }
     }
-  } 
+  }
 
   uint offset = light_data.x;
   uint n_lights = light_data.y;
 
-  /*
-  if (n_lights == 0) {
-    light_acc = vec3(1.0, 0.0, 0.0);
-  }
-  */
-
   for (uint i = offset; i < offset + n_lights; i++) {
-  //for (int i =0; i < NUM_LIGHTS; i++) {
-    //light_acc += computeLight(lights[i], param);
     light_acc += computeLight(lights[light_indices[i]], param);
   }
 

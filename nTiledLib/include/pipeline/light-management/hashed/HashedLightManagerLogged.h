@@ -32,6 +32,8 @@ public:
   virtual void constructSLTs() override;
   virtual void constructLinklessOctree() override;
 
+  void exportMemoryUsageData(const std::string& path);
+
 private:
   logged::ExecutionTimeLogger& logger;
 };
