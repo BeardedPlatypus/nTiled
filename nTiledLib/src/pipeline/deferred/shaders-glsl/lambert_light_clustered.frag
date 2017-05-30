@@ -151,7 +151,7 @@ void main() {
     vec3 diffuse_colour = texture(diffuse_tex, tex_coords).xyz;
     
     if (diffuse_colour.rgb == vec3(0.0f)) {
-        fragment_colour = vec4(0.0f);
+        fragment_colour = vec4(0.0, 0.0, 0.0f, 1.0f);
     } else {
         vec4 coords_camera_space = getCameraCoordinates(tex_coords);
         vec3 normal = normalize(texture(normal_tex, tex_coords)).xyz;
@@ -182,7 +182,7 @@ void main() {
         }
         */
         for (uint i = offset; i < offset + n_lights; i++) {
-            light_acc += computeLight(lights[light_indices[i]], param);
+          light_acc += computeLight(lights[light_indices[i]], param);
         }
 
         // output result

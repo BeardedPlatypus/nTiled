@@ -199,7 +199,7 @@ void main() {
 
             imageStore(unique_clusters_tex, 
                        ivec2(x_unique, y_unique) + offset, 
-                       uvec4(output_k_val));
+                       uvec4(output_k_val, 45, 55, 66));
             value_unique = output_k_val;
             value_unique_is_not_set = false;
         }
@@ -212,5 +212,5 @@ void main() {
     // write away the total number of unique clusters found
     imageStore(n_clusters_tex, 
                ivec2(gl_GlobalInvocationID.xy), 
-               uvec4(cursor_index + 1));
+               uvec4(cursor_index + 1, 35, 35, 35));
 }

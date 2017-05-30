@@ -16,7 +16,8 @@
 // ----------------------------------------------------------------------------
 // Define
 // ----------------------------------------------------------------------------
-#define KEY_SORT_SHADER_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/light-management/clustered/compute-glsl/key_sort_and_compact.glsl")
+#define KEY_SORT_SHADER_PATH std::string("../nTiledLib/src/pipeline/light-management/clustered/compute-glsl/key_sort_and_compact.glsl")
+//#define KEY_SORT_SHADER_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/light-management/clustered/compute-glsl/key_sort_and_compact.glsl")
 
 namespace nTiled {
 namespace pipeline {
@@ -146,7 +147,17 @@ void KeySortAndCompactShader::execute() {
                  n_indices,
                  n_tiles.x * n_tiles.y);
                  */
+  std::vector<GLushort> cluster_indices = std::vector<GLushort>(viewport.x * viewport.y);
+  glBindTexture(GL_TEXTURE_2D, this->cluster_index_texture);
+  glGetTexImage(GL_TEXTURE_2D,
+                0,
+                GL_RED_INTEGER,
+                GL_UNSIGNED_SHORT,
+                cluster_indices.data());
+
+
   glBindTexture(GL_TEXTURE_2D, 0);
+
   // format
   this->n_indices_tiles = std::vector<GLushort>();
   this->k_values_tiles = std::vector<GLushort>();

@@ -13,14 +13,14 @@
 #include "pipeline\light-management\hashed\HashedLightManagerBuilder.h"
 
 // Path defines
-#define VERT_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.vert")
-#define FRAG_PATH_GEO std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.frag")
+#define VERT_PATH_GEO std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.vert")
+#define FRAG_PATH_GEO std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_gbuffer.frag")
 
-#define VERT_PATH_LIGHT std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light.vert")
+#define VERT_PATH_LIGHT std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_light.vert")
 
-#define FRAG_PATH_LIGHT_ATTENUATED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_attenuated.frag")
-#define FRAG_PATH_LIGHT_TILED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_tiled.frag")
-#define FRAG_PATH_LIGHT_CLUSTERED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/deferred/shaders-glsl/lambert_light_clustered.frag")
+#define FRAG_PATH_LIGHT_ATTENUATED std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_light_attenuated.frag")
+#define FRAG_PATH_LIGHT_TILED std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_light_tiled.frag")
+#define FRAG_PATH_LIGHT_CLUSTERED std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_light_clustered.frag")
 #define FRAG_PATH_LIGHT_HASHED std::string("../nTiledLib/src/pipeline/deferred/shaders-glsl/lambert_light_hashed.frag")
 
 namespace nTiled {
@@ -55,7 +55,7 @@ void DeferredPipelineLogged::constructShader() {
       *(this->state.p_world),
       this->state.view,
       this->output_buffer,
-      glm::uvec2(32, 32),
+      this->state.shading.tile_size,
       TiledLightManagerLoggedBuilder(this->logger),
       this->logger);
   } else if (id == DeferredShaderId::DeferredClustered) {
@@ -68,7 +68,7 @@ void DeferredPipelineLogged::constructShader() {
       *(this->state.p_world),
       this->state.view,
       this->output_buffer,
-      glm::uvec2(32, 32),
+      this->state.shading.tile_size,
       ClusteredLightManagerLoggedBuilder(this->logger),
       this->logger);
   } else if (id == DeferredShaderId::DeferredHashed) {

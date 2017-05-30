@@ -29,7 +29,8 @@
 // ----------------------------------------------------------------------------
 //  defines
 // ----------------------------------------------------------------------------
-#define KEY_COMPUTE_SHADER_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/light-management/clustered/compute-glsl/key_compute.glsl")
+//#define KEY_COMPUTE_SHADER_PATH std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/light-management/clustered/compute-glsl/key_compute.glsl")
+#define KEY_COMPUTE_SHADER_PATH std::string("../nTiledLib/src/pipeline/light-management/clustered/compute-glsl/key_compute.glsl")
 
 // debug
 #define VERT_SHADER_PATH_DEBUG std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/light-management/clustered/debug-visualise-glsl/key_visualise.vert")

@@ -114,8 +114,18 @@ void DeferredClusteredShader::loadLightClustering() {
   glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 
   glActiveTexture(GL_TEXTURE3);
-  glBindTexture(GL_TEXTURE_2D, this->k_index_map);
+  glBindTexture(GL_TEXTURE_2D, this->p_clustered_light_manager->getKIndexMapPointer()); //this->k_index_map);
   glActiveTexture(GL_TEXTURE0);
+
+  /*
+  std::vector<GLushort> cluster_indices = std::vector<GLushort>(this->view.viewport.x * this->view.viewport.y);
+  glBindTexture(GL_TEXTURE_2D, this->k_index_map);
+  glGetTexImage(GL_TEXTURE_2D,
+                0,
+                GL_RED_INTEGER,
+                GL_UNSIGNED_SHORT,
+                cluster_indices.data());
+                */
 }
 
 }
