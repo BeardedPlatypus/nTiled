@@ -35,6 +35,7 @@ LightClustering::LightClustering(glm::uvec2 dimensions,
   }
 }
 
+
 void LightClustering::initFrame(const std::vector<GLushort>& unique_clusters,
                                 const std::vector<GLushort>& n_clusters_tile) {
   unsigned int offset = 0;
@@ -51,6 +52,7 @@ void LightClustering::initFrame(const std::vector<GLushort>& unique_clusters,
     offset += n_clusters_tile[i];
   }
 }
+
 
 void LightClustering::incrementLight(glm::uvec3 frustrum_begin,
                                      glm::uvec3 frustrum_end,
@@ -80,6 +82,7 @@ void LightClustering::incrementLight(glm::uvec3 frustrum_begin,
     }
   }
 }
+
 
 void LightClustering::finaliseClusters() {
   this->cluster_to_light_index_map.clear();

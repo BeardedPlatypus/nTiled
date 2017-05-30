@@ -4,6 +4,7 @@
 //  Libraries
 // ----------------------------------------------------------------------------
 #include <cmath>
+#include <algorithm>
 
 //  shader source manipulation
 #include <fstream>
@@ -116,8 +117,8 @@ void ClusteredLightManager::buildClustering() {
 
       // calculate z_value of light in camera space
       glm::vec4 light_camera_pos = view.camera.getLookAt() * light->position;
-      frustrum_begin.z = GLuint(floor(log(-(light_camera_pos.z + light->radius) / view.camera.getDepthrange().x) * this->k_inv_denominator));
-      frustrum_end.z = GLuint(floor(log(-(light_camera_pos.z - light->radius) / view.camera.getDepthrange().x) * this->k_inv_denominator));
+      frustrum_begin.z = GLuint(std::max(int(floor(log(-(light_camera_pos.z + light->radius) / view.camera.getDepthrange().x) * this->k_inv_denominator)), 0));
+      frustrum_end.z = GLuint(std::max(int(floor(log(-(light_camera_pos.z - light->radius) / view.camera.getDepthrange().x) * this->k_inv_denominator)), 0));
 
       this->light_clustering.incrementLight(frustrum_begin,
                                             frustrum_end,

@@ -116,14 +116,15 @@ void KeySortAndCompactShader::execute() {
   // Extract relevant values
   // -----------------------
   // extract
-  GLushort* unique_indices = new GLushort[viewport.x * viewport.y];
+  //GLushort* unique_indices = new GLushort[viewport.x * viewport.y];
+  std::vector<GLushort> unique_indices = std::vector<GLushort>(viewport.x * viewport.y);
   glActiveTexture(GL_TEXTURE5);
   glBindTexture(GL_TEXTURE_2D, this->unique_clusters_texture);
   glGetTexImage(GL_TEXTURE_2D,
                 0,
                 GL_RED_INTEGER,
                 GL_UNSIGNED_SHORT,
-                unique_indices);
+                unique_indices.data());
 
   /*
   printToConsole(std::string("unique indices: "),
@@ -132,13 +133,14 @@ void KeySortAndCompactShader::execute() {
 
   std::cout << std::endl;
   */
-  GLushort* n_indices = new GLushort[n_tiles.x * n_tiles.y];
+  //GLushort* n_indices = new GLushort[n_tiles.x * n_tiles.y];
+  std::vector<GLushort> n_indices = std::vector<GLushort>(n_tiles.x * n_tiles.y);
   glBindTexture(GL_TEXTURE_2D, this->n_clusters_texture);
   glGetTexImage(GL_TEXTURE_2D,
                 0,
                 GL_RED_INTEGER,
                 GL_UNSIGNED_SHORT,
-                n_indices);
+                n_indices.data());
   /*
   printToConsole(std::string("number of indices per tile:"),
                  n_indices,
@@ -153,16 +155,21 @@ void KeySortAndCompactShader::execute() {
   unsigned int pixel_cursor;
   unsigned int tile_y_jump_counter;
 
+  // Loop over all tiles
   for (unsigned y_i = 0; y_i < this->n_tiles.y; y_i++) {
     for (unsigned x_i = 0; x_i < this->n_tiles.x; x_i++) {
-      n_clusters_tile = n_indices[y_i * n_tiles.x + x_i];
+
+      // Per tile find number of clusters
+      n_clusters_tile = n_indices.at(y_i * n_tiles.x + x_i);
       this->n_indices_tiles.push_back(n_clusters_tile);
 
+      // Set location of the cursor
       pixel_cursor = y_i * this->tile_size.y * this->viewport.x + x_i * this->tile_size.x;
       tile_y_jump_counter = this->tile_size.x;
 
+      // Loop over all clusters
       for (unsigned int k_i = 0; k_i < n_clusters_tile; k_i++) {
-        this->k_values_tiles.push_back(unique_indices[pixel_cursor]);
+        this->k_values_tiles.push_back(unique_indices.at(pixel_cursor));
         pixel_cursor++;
 
         tile_y_jump_counter--;
@@ -174,8 +181,8 @@ void KeySortAndCompactShader::execute() {
     }
   }
 
-  delete[] unique_indices;
-  delete[] n_indices;
+  //delete[] unique_indices;
+  //delete[] n_indices;
 }
 
 // Load shader
