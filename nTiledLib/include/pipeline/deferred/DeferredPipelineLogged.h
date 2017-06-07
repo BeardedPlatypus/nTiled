@@ -32,7 +32,7 @@ public:
 protected:
   virtual void constructShader() override;
 
-  /*! @brief Reference to ExecutionTimeLogger of this ForwardPipelineLogged. */
+  /*! @brief Reference to ExecutionTimeLogger of this DeferredPipelineLogged. */
   logged::ExecutionTimeLogger& logger;
 };
 

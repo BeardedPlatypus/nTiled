@@ -32,7 +32,9 @@ State::State(camera::Camera camera,                  // view
              glm::uvec2 tile_size,
              bool is_debug,
              bool is_logging_data,
+             bool is_counting_calculations,
              std::string log_output_path,
+             std::string log_output_path_calculations,
              unsigned int frame_start,
              unsigned int frame_end,
              bool exit_after_done,
@@ -49,7 +51,9 @@ State::State(camera::Camera camera,                  // view
                     hashed_config,
                     is_debug)),
     log(is_logging_data,
+        is_counting_calculations,
         log_output_path,
+        log_output_path_calculations,
         frame_start, 
         frame_end,
         exit_after_done,
@@ -65,7 +69,9 @@ State::State(camera::Camera camera,                  // view
              glm::uvec2 tile_size,
              bool is_debug,
              bool is_logging_data,
+             bool is_counting_calculations,
              std::string log_output_path,
+             std::string log_output_path_calculations,
              unsigned int frame_start,
              unsigned int frame_end,
              bool exit_after_done,
@@ -82,7 +88,9 @@ State::State(camera::Camera camera,                  // view
                     hashed_config,
                     is_debug)),
     log(is_logging_data,
+        is_counting_calculations,
         log_output_path,
+        log_output_path_calculations,
         frame_start, 
         frame_end,
         exit_after_done,
@@ -150,9 +158,11 @@ State* constructStateFromJson(const std::string& path) {
 
   // is logging data
   bool is_logging_data = false;
+  bool is_counting_calculations = false;
   unsigned int logged_start_frame = 0;
   unsigned int logged_end_frame = 0;
   std::string log_output_path = "";
+  std::string log_output_path_calculations = "";
 
   rapidjson::Value::ConstMemberIterator log_itr = config.FindMember("log");
   if (log_itr != config.MemberEnd()) {
@@ -162,6 +172,12 @@ State* constructStateFromJson(const std::string& path) {
     log_output_path = log_json["output_path"].GetString();
     logged_start_frame = log_json["frame_start"].GetUint();
     logged_end_frame   = log_json["frame_end"].GetUint();
+
+    rapidjson::Value::ConstMemberIterator is_counting_itr = log_json.FindMember("is_counting_calculations");
+    if (is_counting_itr != log_json.MemberEnd()) {
+      is_counting_calculations = is_counting_itr->value.GetBool();
+      log_output_path_calculations = log_json["output_path_calculations"].GetString();
+    }
   }
 
   // should exit after finishing data
@@ -317,7 +333,9 @@ State* constructStateFromJson(const std::string& path) {
                      glm::uvec2(tile_size_x, tile_size_y),
                      is_debug,
                      is_logging_data,
+                     is_counting_calculations,
                      log_output_path,
+                     log_output_path_calculations,
                      logged_start_frame,
                      logged_end_frame,
                      exit_after_done,
@@ -334,7 +352,9 @@ State* constructStateFromJson(const std::string& path) {
                      glm::uvec2(tile_size_x, tile_size_y),
                      is_debug,
                      is_logging_data,
+                     is_counting_calculations,
                      log_output_path,
+                     log_output_path_calculations,
                      logged_start_frame,
                      logged_end_frame,
                      exit_after_done,

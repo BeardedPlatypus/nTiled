@@ -2,9 +2,11 @@
 
 #include "pipeline\forward\ForwardPipeline.h"
 #include "pipeline\forward\ForwardPipelineLogged.h"
+#include "pipeline\forward\ForwardPipelineCounted.h"
 
 #include "pipeline\deferred\DeferredPipeline.h"
 #include "pipeline\deferred\DeferredPipelineLogged.h"
+#include "pipeline\deferred\DeferredPipelineCounted.h"
 
 #include "pipeline\debug-view\DebugPipeline.h"
 
@@ -41,6 +43,10 @@ Controller::~Controller() {
   delete p_gui_manager;
   delete p_pipeline;
   delete p_state;
+
+  if (this->p_state->log.is_counting_calculations) {
+    delete p_light_calc_logger;
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -108,6 +114,14 @@ void Controller::initialiseNTiledComponents() {
   if (this->p_state->shading.pipeline_type == nTiled::pipeline::PipelineType::Forward) {
     if (!(this->p_state->log.is_logging_data)) {
       p_render_pipeline = new pipeline::ForwardPipeline(*(this->p_state));
+    } else if (this->p_state->log.is_counting_calculations) {
+      this->p_light_calc_logger = new logged::LightCalculationsLogger(
+        this->clock, 
+        this->p_state->log.path_calculations,
+        this->p_state->view.viewport.x, 
+        this->p_state->view.viewport.y);
+      p_render_pipeline = new nTiled::pipeline::ForwardPipelineCounted(*this->p_state,
+                                                                       *this->p_light_calc_logger);
     } else {
       p_render_pipeline = new nTiled::pipeline::ForwardPipelineLogged(*(this->p_state), 
                                                                       *(this->p_logger));
@@ -115,6 +129,14 @@ void Controller::initialiseNTiledComponents() {
   } else {
     if (!this->p_state->log.is_logging_data) {
       p_render_pipeline = new nTiled::pipeline::DeferredPipeline(*(this->p_state));
+    } else if (this->p_state->log.is_counting_calculations) {
+      this->p_light_calc_logger = new logged::LightCalculationsLogger(
+        this->clock,
+        this->p_state->log.path_calculations,
+        this->p_state->view.viewport.x,
+        this->p_state->view.viewport.y);
+      p_render_pipeline = new nTiled::pipeline::DeferredPipelineCounted(*this->p_state,
+                                                                        *this->p_light_calc_logger);
     } else {
       p_render_pipeline = new nTiled::pipeline::DeferredPipelineLogged(*(p_state), 
                                                                        *(p_logger));
@@ -129,7 +151,6 @@ void Controller::initialiseNTiledComponents() {
   } else {
     this->p_pipeline = p_render_pipeline;
   }
-
 
   this->p_gui_manager = new gui::GuiManager(*(this->p_state));
   this->p_gui_manager->init(*(this->p_window));
@@ -160,17 +181,28 @@ void Controller::initialiseFrameEvents() {
   // --------------------------------------------------------------------------
   // Export logging
   if (this->p_state->log.is_logging_data) {
-    this->event_queue.push(new ToggleLoggingDataEvent(this->p_state->log.frame_start,
-                                                      index,
-                                                      true));
-    index += 1;
-    this->event_queue.push(new ToggleLoggingDataEvent(this->p_state->log.frame_end,
-                                                      index,
-                                                      false));
-    index += 1;
-    this->event_queue.push(new ExportLoggingDataEvent(this->p_state->log.frame_end,
-                                                      index));
-    index += 1;
+    if (this->p_state->log.is_counting_calculations) {
+      this->event_queue.push(new ToggleLoggingLightCalculationsEvent(this->p_state->log.frame_start,
+                                                                     index,
+                                                                     true));
+      index += 1;
+      this->event_queue.push(new ToggleLoggingLightCalculationsEvent(this->p_state->log.frame_end,
+                                                                     index,
+                                                                     false));
+      index += 1;
+    } else {
+      this->event_queue.push(new ToggleLoggingDataEvent(this->p_state->log.frame_start,
+                                                        index,
+                                                        true));
+      index += 1;
+      this->event_queue.push(new ToggleLoggingDataEvent(this->p_state->log.frame_end,
+                                                        index,
+                                                        false));
+      index += 1;
+      this->event_queue.push(new ExportLoggingDataEvent(this->p_state->log.frame_end,
+                                                        index));
+      index += 1;
+    }
   }
 
   // --------------------------------------------------------------------------
@@ -255,6 +287,15 @@ void Controller::toggleLoggingData(bool activate) {
 
 void Controller::exportLogData() {
   this->p_logger->exportLog(this->p_state->log.path);
+}
+
+
+void Controller::toggleLoggingLightCalculations(bool activate) {
+  if (activate) {
+    this->p_light_calc_logger->activate();
+  } else {
+    this->p_light_calc_logger->deactivate();
+  }
 }
 
 

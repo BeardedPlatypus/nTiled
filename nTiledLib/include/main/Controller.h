@@ -27,6 +27,7 @@
 #include "pipeline\Pipeline.h"
 
 #include "log\Logger.h"
+#include "log\LightCalculationsLogger.h"
 
 #include "Clock.h"
 #include "FrameEvent.h"
@@ -77,6 +78,12 @@ public:
    * @param activate Bool to which logging data should be set.
    */
   void toggleLoggingData(bool activate);
+
+  /*! @brief Set logging LightCalculations of this Controller to activate
+   *
+   * @param activate Bool to which logging data should be set.
+   */
+  void toggleLoggingLightCalculations(bool activate);
 
   /*! @brief Export the logged data.
    */
@@ -135,6 +142,9 @@ private:
 
   /*! @brief Pointer to the ExecutiontimeLogger of this Controller. */
   logged::ExecutionTimeLogger* p_logger;
+
+  /*! @brief Pointer to the LightCalculationsLogger of this Controller. */
+  logged::LightCalculationsLogger* p_light_calc_logger;
   
   // --------------------------------------------------------------------------
   // FrameEvents

@@ -3,23 +3,10 @@
 #define NUM_LIGHTS 3
 #define OCTREE_DEPTH 0
 
-
-// Fragment Input Buffers
-// -----------------------------------------------------------------------------
-// Position of this fragment in coordinates same as lights
-in vec4 fragment_position;
-
-// Normal of this fragment in coordinates same as lights
-in vec3 fragment_normal;
-
-// Position of this fragment in octree coordinates
-in vec3 fragment_octree_position;
-
-
 // Fragment Output Buffers
 // -----------------------------------------------------------------------------
 //out vec4 fragment_colour;
-out vec4 fragment_colour;
+out uint light_calculations;
 
 
 // Variable Definitions
@@ -58,6 +45,20 @@ layout (std140) uniform LightBlock {
 };
 
 
+// -----------------------------------------------------------------------------
+// MRT texture samplers
+layout(binding = 0) uniform sampler2D diffuse_tex;
+layout(binding = 1) uniform sampler2D normal_tex;
+layout(binding = 2) uniform sampler2D depth_tex;
+
+uniform mat4 perspective_matrix;
+uniform mat4 inv_perspective_matrix;
+uniform mat4 inv_camera_matrix;
+
+uniform vec4 viewport;
+uniform vec2 depth_range;
+
+
 //  Light Management
 // -----------------------------------------------------------------------------
 /*! @brief Buffer of light indices used in this Shader. */
@@ -78,6 +79,9 @@ uniform usampler3D light_data_tables[OCTREE_DEPTH];
 
 uniform float node_size_den;
 uniform float octree_width;
+uniform vec3 octree_origin;
+
+
 
 /*! @brief Compute Lambert shading for the attenuated light and return 
  *         the colour shaded by this Light.
@@ -111,6 +115,43 @@ vec3 computeLight(Light light,
   } else {
     return vec3(0.0);
   }
+}
+
+
+/*!
+ * Compute the texture coordinates of this fragment.
+ */
+vec2 calcTextureCoordinates() {
+    return gl_FragCoord.xy / viewport.zw;
+}
+
+
+/*!
+ * Compute the camera coordinates of this fragment given the texture coordinates
+ *
+ * param:
+ *     tex_coords (vec2): the texture coordinates of this fragment.
+ */
+vec4 getCameraCoordinates(in vec2 tex_coords) {
+    // Define the normalized device coordinates
+    vec3 device;
+    device.xy = (2.0f * ((gl_FragCoord.xy - vec2(0.5f, 0.5f) - viewport.xy) /
+                          viewport.zw)) - 1.0f;
+    device.z = 2.0f * texture(depth_tex, tex_coords).x - 1.0f;
+
+    // Calculate actual coordinates
+    vec4 raw_coords = inv_perspective_matrix * vec4(device, 1.0f);
+    vec4 coords = raw_coords / raw_coords.w;
+
+    return coords;
+}
+
+
+vec3 getWorldCoordinates(in vec4 camera_coordinates) {
+  vec4 raw_coords = inv_camera_matrix * camera_coordinates;
+  vec4 coords = raw_coords / raw_coords.w;
+
+  return coords.xyz;
 }
 
 
@@ -152,62 +193,69 @@ bool extractBit(uint val, uint k_bit) {
 // Main
 // -----------------------------------------------------------------------------
 void main() {
-  vec3 light_acc = vec3(0.0f);
+  vec2 tex_coords = calcTextureCoordinates();
+  vec3 diffuse_colour = texture(diffuse_tex, tex_coords).xyz;
+    
+  if (diffuse_colour.rgb == vec3(0.0f)) {
+    light_calculations = 0;
+  } else {
+    vec4 coords_camera_space = getCameraCoordinates(tex_coords);
+    vec3 normal = normalize(texture(normal_tex, tex_coords)).xyz;
+  
+    GeometryParam param = GeometryParam(coords_camera_space,
+                                        normal,
+                                        diffuse_colour);
 
-  GeometryParam param = GeometryParam(fragment_position,
-                                      normalize(fragment_normal),
-                                      vec3(1.0f));
+    // Retrieve the relevant lights.
+    uvec2 light_data = uvec2(0, 0);
 
-  // Retrieve the relevant lights.
-  uvec2 light_data = uvec2(0, 0);
+    // calculate the octree position
+    vec3 fragment_octree_position =  
+        getWorldCoordinates(coords_camera_space) - octree_origin;
+    
 
+    if (fragment_octree_position.x >= 0.0f &&
+        fragment_octree_position.y >= 0.0f &&
+        fragment_octree_position.z >= 0.0f &&
+        fragment_octree_position.x < octree_width &&
+        fragment_octree_position.y < octree_width &&
+        fragment_octree_position.z < octree_width) {
 
-  if (fragment_octree_position.x >= 0.0f &&
-      fragment_octree_position.y >= 0.0f &&
-      fragment_octree_position.z >= 0.0f &&
-      fragment_octree_position.x < octree_width &&
-      fragment_octree_position.y < octree_width &&
-      fragment_octree_position.z < octree_width) {
+      float next_node_size_den = node_size_den;
+      ivec3 octree_coord_cur;
+      ivec3 octree_coord_next = ivec3(floor(fragment_octree_position * next_node_size_den));
 
-    float next_node_size_den = node_size_den;
-    ivec3 octree_coord_cur;
-    ivec3 octree_coord_next = ivec3(floor(fragment_octree_position * next_node_size_den));
+      uvec3 index_dif;
+      uint index_int;
 
-    uvec3 index_dif;
-    uint index_int;
+      uvec2 octree_data;
 
-    uvec2 octree_data;
+      for (uint layer_i = 0; layer_i < OCTREE_DEPTH; ++layer_i) {
+        octree_coord_cur = octree_coord_next;
 
-    for (uint layer_i = 0; layer_i < OCTREE_DEPTH; layer_i++) {
-      octree_coord_cur = octree_coord_next;
+        next_node_size_den *= 2;
+        octree_coord_next = ivec3(floor(fragment_octree_position * next_node_size_den));
+        index_dif = octree_coord_next - (octree_coord_cur * 2);
+        index_int = index_dif.x + index_dif.y * 2 + index_dif.z * 4;
 
-      next_node_size_den *= 2;
-      octree_coord_next = ivec3(floor(fragment_octree_position * next_node_size_den));
-      index_dif = octree_coord_next - (octree_coord_cur * 2);
-      index_int = index_dif.x + index_dif.y * 2 + index_dif.z * 4;
-
-      octree_data = obtainNodeFromSpatialHashFunction(octree_coord_cur,
-                                                      octree_offset_tables[layer_i],
-                                                      octree_data_tables[layer_i]);
+        octree_data = obtainNodeFromSpatialHashFunction(octree_coord_cur,
+                                                        octree_offset_tables[layer_i],
+                                                        octree_data_tables[layer_i]);
       
-      if(extractBit(octree_data.x, index_int)) {
-        if(extractBit(octree_data.y, index_int)) {
-          light_data = obtainNodeFromSpatialHashFunction(octree_coord_next,
-                                                         light_offset_tables[layer_i],
-                                                         light_data_tables[layer_i]);
+        if(extractBit(octree_data.x, index_int)) {
+          if(extractBit(octree_data.y, index_int)) {
+            light_data = obtainNodeFromSpatialHashFunction(octree_coord_next,
+                                                           light_offset_tables[layer_i],
+                                                           light_data_tables[layer_i]);
+          }
+          break;
         }
-        break;
       }
-    }
+    } 
+
+    uint offset = light_data.x;
+    uint n_lights = light_data.y;
+
+    light_calculations = n_lights;
   }
-
-  uint offset = light_data.x;
-  uint n_lights = light_data.y;
-
-  for (uint i = offset; i < offset + n_lights; i++) {
-    light_acc += computeLight(lights[light_indices[i]], param);
-  }
-
-  // output result
-  fragment_colour = vec4((vec3(0.1f) + (light_acc * 0.9)), 1.0f);
 }

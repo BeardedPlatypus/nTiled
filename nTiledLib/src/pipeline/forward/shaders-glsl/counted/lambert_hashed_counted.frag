@@ -19,7 +19,7 @@ in vec3 fragment_octree_position;
 // Fragment Output Buffers
 // -----------------------------------------------------------------------------
 //out vec4 fragment_colour;
-out vec4 fragment_colour;
+out uint light_calculations;
 
 
 // Variable Definitions
@@ -79,40 +79,6 @@ uniform usampler3D light_data_tables[OCTREE_DEPTH];
 uniform float node_size_den;
 uniform float octree_width;
 
-/*! @brief Compute Lambert shading for the attenuated light and return 
- *         the colour shaded by this Light.
- *
- * @param light Light used in this Lambert shading
- * @param param Fragment description in this Lambert shading
- *
- * @returns The colour from this light add the described fragment.
- */ 
-vec3 computeLight(Light light,
-                  GeometryParam param) {
-  vec3 L = vec3(light.position - param.position);
-  float d = length(L);
-
-  if (d < light.radius) {
-    vec3 light_direction = L / d;
-
-    // compute light attenuation
-    float attenuation = clamp(1.0 - ( d / light.radius ),
-                              0.0f,
-                              1.0f);
-    attenuation *= attenuation;
-
-    // compute lambert for this light
-    float cos_angular_incidence = clamp(dot(param.normal, light_direction),
-                                        0.0f,
-                                        1.0f);
-    return (param.colour *
-            light.intensity *
-            cos_angular_incidence * attenuation);
-  } else {
-    return vec3(0.0);
-  }
-}
-
 
 /*! @brief Obtain the data associated at the specified coordinate from the 
  *         specified spatial hash function.
@@ -152,8 +118,6 @@ bool extractBit(uint val, uint k_bit) {
 // Main
 // -----------------------------------------------------------------------------
 void main() {
-  vec3 light_acc = vec3(0.0f);
-
   GeometryParam param = GeometryParam(fragment_position,
                                       normalize(fragment_normal),
                                       vec3(1.0f));
@@ -204,10 +168,5 @@ void main() {
   uint offset = light_data.x;
   uint n_lights = light_data.y;
 
-  for (uint i = offset; i < offset + n_lights; i++) {
-    light_acc += computeLight(lights[light_indices[i]], param);
-  }
-
-  // output result
-  fragment_colour = vec4((vec3(0.1f) + (light_acc * 0.9)), 1.0f);
+  light_calculations = n_lights;
 }

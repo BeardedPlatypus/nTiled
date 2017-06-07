@@ -14,12 +14,12 @@
 
 // TODO: move this to an external file
 // Path defines
-#define VERT_PATH_BASIC std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic.vert")
+#define VERT_PATH_BASIC std::string("../nTiledLib/src/pipeline/forward/shaders-glsl/lambert_basic.vert")
 #define VERT_PATH_HASHED std::string("../nTiledLib/src/pipeline/forward/shaders-glsl/lambert_hashed.vert")
 
-#define FRAG_PATH_BASIC_ATTENUATED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_attenuated.frag")
-#define FRAG_PATH_BASIC_TILED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/shader-glsl/lambert_basic_tiled.frag")
-#define FRAG_PATH_BASIC_CLUSTERED std::string("C:/Users/Monthy/Documents/projects/thesis/implementation_new/nTiled/nTiled/src/pipeline/forward/shaders-glsl/lambert_clustered.frag")
+#define FRAG_PATH_BASIC_ATTENUATED std::string("../nTiledLib/src/pipeline/forward/shaders-glsl/lambert_basic_attenuated.frag")
+#define FRAG_PATH_BASIC_TILED std::string("../nTiledLib/src/pipeline/forward/shaders-glsl/lambert_basic_tiled.frag")
+#define FRAG_PATH_BASIC_CLUSTERED std::string("../nTiledLib/src/pipeline/forward/shaders-glsl/lambert_clustered.frag")
 #define FRAG_PATH_BASIC_HASHED std::string("../nTiledLib/src/pipeline/forward/shaders-glsl/lambert_hashed.frag")
 
 namespace nTiled {
@@ -50,7 +50,7 @@ void ForwardPipelineLogged::constructShaderCatalog() {
                                               *(this->state.p_world),
                                               this->state.view,
                                               this->output_buffer,
-                                              glm::uvec2(32, 32),
+                                              this->state.shading.tile_size,
                                               TiledLightManagerLoggedBuilder(this->logger),
                                               this->logger);
     } else if (id == ForwardShaderId::ForwardClustered) {
@@ -60,7 +60,7 @@ void ForwardPipelineLogged::constructShaderCatalog() {
                                                   *(this->state.p_world),
                                                   this->state.view,
                                                   this->output_buffer,
-                                                  glm::uvec2(32, 32),
+                                                  this->state.shading.tile_size,
                                                   ClusteredLightManagerLoggedBuilder(this->logger),
                                                   this->logger);
     } else if (id == ForwardShaderId::ForwardHashed) {

@@ -137,6 +137,34 @@ public:
 };
 
 
+class ToggleLoggingLightCalculationsEvent : public FrameEvent {
+public:
+  /*! @brief Construct a new ToggleLoggingDataEvent with the specified
+   *         parameters
+   *
+   * @param frame The frame at which this FrameEvent should be executed
+   * @param index The index of this FrameEVent
+   * @param activate Whether this ToggleLoggingDataEvent should turn logging
+   *                 on or off.
+   */
+  ToggleLoggingLightCalculationsEvent(unsigned long frame,
+                                      unsigned long index,
+                                      bool activate);
+
+  /*! @brief Execute this FrameEvent by setting the  tracking of data
+   *         of the specified Controller to activate.
+   *
+   * @param controller Pointer to the controller on which this FrameEvent
+   *                   operates.
+   */
+  virtual void execute(Controller* controller);
+
+private:
+  /*! @brief Whether this ToggleLoggingDataEvent should turn logging on or off. */
+  const bool activate;
+};
+
+
 /*! @brief ExitEvent is responsible for signalling the Controller to end 
  *         the execution of nTiled at the specified frame.
  */

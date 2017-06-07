@@ -28,7 +28,9 @@ struct Log {
    * @param exit_frame The frame at which nTiled should exit if exit_after_done
    */
   Log(bool is_logging_data,
+     bool is_counting_calculations,
       std::string path,
+      std::string path_calculations,
       unsigned int frame_start,
       unsigned int frame_end,
       bool exit_after_done,
@@ -51,8 +53,15 @@ struct Log {
 
   /*! @brief Whether this run of nTiled is logging data. */
   bool is_logging_data;
+
+  /*! @brief Whether this run is counting the number of calculations per pixels. */
+  bool is_counting_calculations;
+
   /*! @brief The path to where the logged data should be written. */
   std::string path;
+
+  /*! @brief The path to where the logged calculation data should be written. */
+  std::string path_calculations;
 
   /*! @brief The frame at which logging should start. */
   unsigned int frame_start;
