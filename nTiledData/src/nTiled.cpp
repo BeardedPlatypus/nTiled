@@ -13,8 +13,9 @@ int main(int argc, char** argv) {
   }
 
   nTiled::main::DataController controller =
-    nTiled::main::DataController(std::string(argv[1]));
-  
+    nTiled::main::DataController(argv[1]);
+
+
   controller.init();
   controller.execute();
   controller.exportData();
