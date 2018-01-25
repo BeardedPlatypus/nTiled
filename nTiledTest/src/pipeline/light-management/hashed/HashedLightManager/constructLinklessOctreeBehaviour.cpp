@@ -260,7 +260,7 @@ SCENARIO("HashedLightManager::constructLightOctree should create a valid Linkles
     nTiled::pipeline::hashed::HashedLightManager* man = 
       new nTiled::pipeline::hashed::HashedLightManager(*w,
                                                        nTiled::pipeline::hashed::HashedConfig(60.0,
-                                                                                              1,
+                                                                                              0,
                                                                                               1.5,
                                                                                               15));
 
@@ -305,6 +305,9 @@ SCENARIO("HashedLightManager::constructLightOctree should create a valid Linkles
                   if (std::find(indices.begin(),
                                 indices.end(),
                                 j) == indices.end()) {
+                    bool in_light = slts.at(j)->isInLight(p);
+                    std::vector<GLuint> light_octree_indices = man->getLightOctree()->retrieveLights(p);
+                    std::vector<GLuint> linkless_octree_indices = lo.retrieveLights(p);
                     bool has_failed = true;
                   }
                   REQUIRE(std::find(indices.begin(),
