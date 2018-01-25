@@ -8,6 +8,8 @@
 
 # `nTiled`
 
+<iframe src='//gifs.com/embed/ntiledbanner-0VE67L' frameborder='0' scrolling='no' width='360px' height='360px' style='-webkit-backface-visibility: hidden;-webkit-transform: scale(1);' ></iframe>
+
 `nTiled` is an `openGL` viewer that implements tiled and clustered shading as
 well as a novel technique named hierarchical shading. It is written to evaulate
 the time and space complexity of said algorithms.  
