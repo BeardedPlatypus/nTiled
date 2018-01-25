@@ -10,6 +10,9 @@
 
 ## Overview
 
+
+<p align="center"><img src="https://i.imgur.com/iKZHE1S.png" alt="nTiled Render" title="nTiled Render" width=50% /></p>
+
 `nTiled` is an `openGL` renderer that implements both a forward and deferred
 pipeline. It supports three light assignment algorithms:
 
@@ -86,10 +89,11 @@ configured. Once completed, the program should compile.
 
 ## Usage
 
-<img src="http://i.imgur.com/kYHsWii.png" alt="nTiled ui" title="nTiled ui" align="middle" height=400px />
+<p align="center"><img src="http://i.imgur.com/kYHsWii.png" alt="nTiled ui" title="nTiled ui" width=50% /></p>
 
-`nTiled` can be run by running the produced executable followed by
-the path to a run configuration file.
+`nTiled` can be run with configuration `json` files that specify the scene,
+lights, shaders, camera, etc. This is done by running the produced 
+executable as follows: 
 
     nTiled <path_to_conf_file.json>
 
