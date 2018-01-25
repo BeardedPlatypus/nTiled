@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -26,9 +26,11 @@
     <ClInclude Include="include\gui\GuiManager.h" />
     <ClInclude Include="include\gui\imgui_impl_glfw_gl3.h" />
     <ClInclude Include="include\lodepng.h" />
+    <ClInclude Include="include\log\LightCalculationsLogger.h" />
     <ClInclude Include="include\log\Logger.h" />
     <ClInclude Include="include\main\Clock.h" />
     <ClInclude Include="include\main\Controller.h" />
+    <ClInclude Include="include\main\DataController.h" />
     <ClInclude Include="include\main\DrawMethod.h" />
     <ClInclude Include="include\main\FrameEvent.h" />
     <ClInclude Include="include\math\clamp.h" />
@@ -40,8 +42,13 @@
     <ClInclude Include="include\pipeline\debug-view\shaders\DebugShaderId.h" />
     <ClInclude Include="include\pipeline\debug-view\shaders\DebugTileDisplayShader.h" />
     <ClInclude Include="include\pipeline\deferred\DeferredPipeline.h" />
+    <ClInclude Include="include\pipeline\deferred\DeferredPipelineCounted.h" />
     <ClInclude Include="include\pipeline\deferred\DeferredPipelineLogged.h" />
     <ClInclude Include="include\pipeline\deferred\GBuffer.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\counted\DeferredAttenuatedShaderCounted.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\counted\DeferredClusteredShaderCounted.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\counted\DeferredHashedShaderCounted.h" />
+    <ClInclude Include="include\pipeline\deferred\shaders\counted\DeferredTiledShaderCounted.h" />
     <ClInclude Include="include\pipeline\deferred\shaders\DeferredAttenuatedShader.h" />
     <ClInclude Include="include\pipeline\deferred\shaders\DeferredClusteredShader.h" />
     <ClInclude Include="include\pipeline\deferred\shaders\DeferredHashedShader.h" />
@@ -54,7 +61,12 @@
     <ClInclude Include="include\pipeline\deferred\shaders\logged\DeferredTiledShaderLogged.h" />
     <ClInclude Include="include\pipeline\forward\DepthBuffer.h" />
     <ClInclude Include="include\pipeline\forward\ForwardPipeline.h" />
+    <ClInclude Include="include\pipeline\forward\ForwardPipelineCounted.h" />
     <ClInclude Include="include\pipeline\forward\ForwardPipelineLogged.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\counted\ForwardAttenuatedShaderCounted.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\counted\ForwardClusteredShaderCounted.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\counted\ForwardHashedShaderCounted.h" />
+    <ClInclude Include="include\pipeline\forward\shaders\counted\ForwardTiledShaderCounted.h" />
     <ClInclude Include="include\pipeline\forward\shaders\ForwardAttenuatedShader.h" />
     <ClInclude Include="include\pipeline\forward\shaders\ForwardClusteredShader.h" />
     <ClInclude Include="include\pipeline\forward\shaders\ForwardHashedShader.h" />
@@ -135,6 +147,10 @@
     <None Include="include\pipeline\Pipeline.rst" />
     <None Include="include\state\State.rst" />
     <None Include="include\world\World.rst" />
+    <None Include="src\pipeline\deferred\shaders-glsl\counted\lambert_light_attenuated_counted.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\counted\lambert_light_clustered_counted.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\counted\lambert_light_hashed_counted.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\counted\lambert_light_tiled_counted.frag" />
     <None Include="src\pipeline\deferred\shaders-glsl\lambert_gbuffer.frag" />
     <None Include="src\pipeline\deferred\shaders-glsl\lambert_gbuffer.vert" />
     <None Include="src\pipeline\deferred\shaders-glsl\lambert_light.vert" />
@@ -144,6 +160,10 @@
     <None Include="src\pipeline\deferred\shaders-glsl\lambert_light_tiled.frag" />
     <None Include="src\pipeline\forward\shaders-glsl\copy_depth.frag" />
     <None Include="src\pipeline\forward\shaders-glsl\copy_depth.vert" />
+    <None Include="src\pipeline\forward\shaders-glsl\counted\lambert_attenuated_counted.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\counted\lambert_clustered_counted.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\counted\lambert_hashed_counted.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\counted\lambert_tiled_counted.frag" />
     <None Include="src\pipeline\forward\shaders-glsl\depth_clustered.frag" />
     <None Include="src\pipeline\forward\shaders-glsl\depth_clustered.vert" />
     <None Include="src\pipeline\forward\shaders-glsl\lambert_basic.vert" />
@@ -173,17 +193,24 @@
     <ClCompile Include="src\gui\GuiManager.cpp" />
     <ClCompile Include="src\gui\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="src\lodepng.cpp" />
+    <ClCompile Include="src\log\LightCalculationsLogger.cpp" />
     <ClCompile Include="src\log\Logger.cpp" />
     <ClCompile Include="src\main\Clock.cpp" />
     <ClCompile Include="src\main\Controller.cpp" />
+    <ClCompile Include="src\main\DataController.cpp" />
     <ClCompile Include="src\main\DrawMethod.cpp" />
     <ClCompile Include="src\main\FrameEvent.cpp" />
     <ClCompile Include="src\pipeline\debug-view\DebugPipeline.cpp" />
     <ClCompile Include="src\pipeline\debug-view\shaders\DebugShader.cpp" />
     <ClCompile Include="src\pipeline\debug-view\shaders\DebugTileDisplayShader.cpp" />
     <ClCompile Include="src\pipeline\deferred\DeferredPipeline.cpp" />
+    <ClCompile Include="src\pipeline\deferred\DeferredPipelineCounted.cpp" />
     <ClCompile Include="src\pipeline\deferred\DeferredPipelineLogged.cpp" />
     <ClCompile Include="src\pipeline\deferred\GBuffer.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\counted\DeferredAttenuatedShaderCounted.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\counted\DeferredClusteredShaderCounted.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\counted\DeferredHashedShaderCounted.cpp" />
+    <ClCompile Include="src\pipeline\deferred\shaders\counted\DeferredTiledShaderCounted.cpp" />
     <ClCompile Include="src\pipeline\deferred\shaders\DeferredAttenuatedShader.cpp" />
     <ClCompile Include="src\pipeline\deferred\shaders\DeferredClusteredShader.cpp" />
     <ClCompile Include="src\pipeline\deferred\shaders\DeferredHashedShader.cpp" />
@@ -195,7 +222,12 @@
     <ClCompile Include="src\pipeline\deferred\shaders\Logged\DeferredTiledShaderLogged.cpp" />
     <ClCompile Include="src\pipeline\forward\DepthBuffer.cpp" />
     <ClCompile Include="src\pipeline\forward\ForwardPipeline.cpp" />
+    <ClCompile Include="src\pipeline\forward\ForwardPipelineCounted.cpp" />
     <ClCompile Include="src\pipeline\forward\ForwardPipelineLogged.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\counted\ForwardAttenuatedShaderCounted.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\counted\ForwardClusteredShaderCounted.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\counted\ForwardHashedShaderCounted.cpp" />
+    <ClCompile Include="src\pipeline\forward\shaders\counted\ForwardTiledShaderCounted.cpp" />
     <ClCompile Include="src\pipeline\forward\shaders\ForwardAttenuatedShader.cpp" />
     <ClCompile Include="src\pipeline\forward\shaders\ForwardClusteredShader.cpp" />
     <ClCompile Include="src\pipeline\forward\shaders\ForwardHashedShader.cpp" />
@@ -259,32 +291,32 @@
     <ProjectGuid>{5697A43F-CA95-4C1A-A991-26CD4DB018BB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>nTiledLib</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>

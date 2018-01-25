@@ -333,6 +333,42 @@
     <ClInclude Include="include\pipeline\forward\shaders\logged\ForwardHashedShaderLogged.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\main\DataController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\deferred\shaders\counted\DeferredAttenuatedShaderCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\log\LightCalculationsLogger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\deferred\DeferredPipelineCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\forward\ForwardPipelineCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\deferred\shaders\counted\DeferredClusteredShaderCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\deferred\shaders\counted\DeferredTiledShaderCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\deferred\shaders\counted\DeferredHashedShaderCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\forward\shaders\counted\ForwardAttenuatedShaderCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\forward\shaders\counted\ForwardClusteredShaderCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\forward\shaders\counted\ForwardHashedShaderCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pipeline\forward\shaders\counted\ForwardTiledShaderCounted.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\camera\Camera.rst" />
@@ -369,6 +405,14 @@
     <None Include="src\pipeline\light-management\clustered\debug-visualise-glsl\key_visualise.frag" />
     <None Include="src\pipeline\light-management\clustered\debug-visualise-glsl\key_visualise.vert" />
     <None Include="src\pipeline\deferred\shaders-glsl\lambert_light_hashed.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\counted\lambert_light_attenuated_counted.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\counted\lambert_light_clustered_counted.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\counted\lambert_light_hashed_counted.frag" />
+    <None Include="src\pipeline\deferred\shaders-glsl\counted\lambert_light_tiled_counted.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\counted\lambert_attenuated_counted.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\counted\lambert_clustered_counted.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\counted\lambert_hashed_counted.frag" />
+    <None Include="src\pipeline\forward\shaders-glsl\counted\lambert_tiled_counted.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\camera\Camera.cpp">
@@ -642,6 +686,42 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\pipeline\forward\shaders\Logged\ForwardHashedShaderLogged.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main\DataController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\log\LightCalculationsLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\deferred\shaders\counted\DeferredAttenuatedShaderCounted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\deferred\shaders\counted\DeferredClusteredShaderCounted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\deferred\shaders\counted\DeferredHashedShaderCounted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\deferred\shaders\counted\DeferredTiledShaderCounted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\forward\shaders\counted\ForwardAttenuatedShaderCounted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\forward\shaders\counted\ForwardClusteredShaderCounted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\forward\shaders\counted\ForwardHashedShaderCounted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\forward\shaders\counted\ForwardTiledShaderCounted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\deferred\DeferredPipelineCounted.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\pipeline\forward\ForwardPipelineCounted.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
