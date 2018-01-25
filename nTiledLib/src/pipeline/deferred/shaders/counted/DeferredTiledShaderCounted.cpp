@@ -32,8 +32,8 @@ DeferredTiledShaderCounted::DeferredTiledShaderCounted(
 void DeferredTiledShaderCounted::renderLightPassObjects() {
   this->logger.preRender();
   DeferredTiledShader::renderLightPassObjects();
-  this->logger.postRender();
   this->logger.extractCalculations();
+  this->logger.postRender();
 }
 
 } // pipeline

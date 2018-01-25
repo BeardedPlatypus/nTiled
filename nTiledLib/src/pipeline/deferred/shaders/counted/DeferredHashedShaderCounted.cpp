@@ -33,8 +33,8 @@ DeferredHashedShaderCounted::DeferredHashedShaderCounted(
 void DeferredHashedShaderCounted::renderLightPassObjects() {
   this->logger.preRender();
   DeferredHashedShader::renderLightPassObjects();
-  this->logger.postRender();
   this->logger.extractCalculations();
+  this->logger.postRender();
 }
 
 

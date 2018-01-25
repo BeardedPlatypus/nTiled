@@ -76,6 +76,7 @@ public:
         unsigned int frame_end,
         bool exit_after_done,
         unsigned int exit_frame,
+        bool display_light_calculations,
         pipeline::hashed::HashedConfig hashed_config);
 
   /*! @brief Construct a new State with a DeferredPipeline given the provided 
@@ -119,6 +120,7 @@ public:
         unsigned int frame_end,
         bool exit_after_done,
         unsigned int exit_frame,
+        bool display_light_calculations,
         pipeline::hashed::HashedConfig hashed_config);
 
   /*! @brief virtual destructor */

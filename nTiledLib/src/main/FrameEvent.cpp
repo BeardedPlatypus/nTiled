@@ -69,7 +69,19 @@ void ToggleLoggingLightCalculationsEvent::execute(Controller* controller) {
 
 
 // ----------------------------------------------------------------------------
-//  ExpitEvent
+//  ExportLoggingDataEvent
+ExportLoggingLightCalculationsDataEvent::ExportLoggingLightCalculationsDataEvent(
+    unsigned long frame,
+    unsigned long index) :
+  FrameEvent(frame, index) { }
+
+void ExportLoggingLightCalculationsDataEvent::execute(Controller* controller) {
+  controller->exportLightCalculationsLogData();
+}
+
+
+// ----------------------------------------------------------------------------
+//  ExitEvent
 ExitEvent::ExitEvent(unsigned long frame, unsigned long index) :
   FrameEvent(frame, index) { }
 

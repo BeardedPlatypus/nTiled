@@ -4,6 +4,12 @@
 #include <iostream>
 #include <fstream>
 
+// Json include
+#include <rapidjson\document.h>
+#include <rapidjson\writer.h>
+#include <rapidjson\stringbuffer.h>
+
+
 namespace nTiled {
 namespace logged {
 
@@ -150,9 +156,10 @@ void LightCalculationsLogger::extractCalculations() {
                   light_calculations.data());
     glBindTexture(GL_TEXTURE_2D, 0);
 
+    /*
     // export data to disk
     std::string file_path = this->output_path +
-      ("frame_" + std::to_string(clock.getCurrentFrame()) + ".dat");
+      ("/frame_" + std::to_string(clock.getCurrentFrame()) + ".dat");
 
     std::ofstream frame_file;
     frame_file.open(file_path, std::ios::out | std::ios::trunc);
@@ -162,7 +169,51 @@ void LightCalculationsLogger::extractCalculations() {
     }
 
     frame_file.close();
+    */
+    glBindFramebuffer(GL_READ_FRAMEBUFFER,
+                      0);
+
+    unsigned long summed_calculations = 0;
+    
+
+    for (unsigned int i = 0; i < this->width * this->height; ++i) {
+      // divide by 10 if attenuated
+      summed_calculations += light_calculations.at(i);
+    }
+
+    this->n_light_calc_data.push_back(std::pair<unsigned long, unsigned long>(this->clock.getCurrentFrame(),
+                                                                              summed_calculations));
   }
+}
+
+
+void LightCalculationsLogger::exportLog() {
+  rapidjson::StringBuffer s;
+  rapidjson::Writer<rapidjson::StringBuffer> writer(s);
+
+  writer.StartObject(); // base object
+  writer.Key("frames");
+  writer.StartArray();
+    
+    // build frame data
+    for (std::pair<unsigned long, unsigned long>& frame : this->n_light_calc_data) {
+      writer.StartObject();
+      writer.Key("frame");
+      writer.Uint64(frame.first);
+
+      writer.Key("n_calc");
+      writer.Uint64(frame.second);
+      writer.EndObject();
+    }
+
+  writer.EndArray();
+  writer.EndObject();
+
+  // Write to path
+  std::ofstream output_stream;
+  output_stream.open(this->output_path);
+  output_stream << s.GetString();
+  output_stream.close();
 }
 
 

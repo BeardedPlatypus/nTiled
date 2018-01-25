@@ -17,6 +17,8 @@ ForwardAttenuatedShader::ForwardAttenuatedShader(
                                            p_output_buffer) { }
 
 void ForwardAttenuatedShader::render() {
+  //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, this->p_output_buffer);
+
   glUseProgram(this->shader);
   // render objects
   this->renderObjects();

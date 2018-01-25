@@ -39,11 +39,13 @@ State::State(camera::Camera camera,                  // view
              unsigned int frame_end,
              bool exit_after_done,
              unsigned int exit_frame,
+             bool display_light_calculations,
              pipeline::hashed::HashedConfig hashed_config) :
     view(View(camera,
               camera_control,
               viewport,
-              output)),
+              output,
+              display_light_calculations)),
     p_world(p_world),
     texture_catalog(TextureCatalog(texture_file_map)),
     shading(Shading(forward_shader_ids, 
@@ -76,11 +78,13 @@ State::State(camera::Camera camera,                  // view
              unsigned int frame_end,
              bool exit_after_done,
              unsigned int exit_frame,
+             bool display_light_calculations,
              pipeline::hashed::HashedConfig hashed_config) :
     view(View(camera,
               camera_control,
               viewport,
-              output)),
+              output,
+              display_light_calculations)),
     p_world(p_world),
     texture_catalog(TextureCatalog(texture_file_map)),
     shading(Shading(deferred_shader_id, 
@@ -176,7 +180,10 @@ State* constructStateFromJson(const std::string& path) {
     rapidjson::Value::ConstMemberIterator is_counting_itr = log_json.FindMember("is_counting_calculations");
     if (is_counting_itr != log_json.MemberEnd()) {
       is_counting_calculations = is_counting_itr->value.GetBool();
-      log_output_path_calculations = log_json["output_path_calculations"].GetString();
+
+      if (is_counting_calculations) {
+        log_output_path_calculations = log_json["output_path_calculations"].GetString();
+      }
     }
   }
 
@@ -284,6 +291,14 @@ State* constructStateFromJson(const std::string& path) {
     output = new ViewOutput();
   }
 
+  bool display_light_calculations = false;
+
+  rapidjson::Value::ConstMemberIterator display_light_calculations_itr = config.FindMember("display_light_calculations");
+  if (display_light_calculations_itr != config.MemberEnd()) {
+    auto& display_light_calculations_json = display_light_calculations_itr->value;
+    display_light_calculations = display_light_calculations_json.GetBool();
+  }
+
 
   // Build World and Texture Component
   // ------------------------------------------------------------------------
@@ -340,6 +355,7 @@ State* constructStateFromJson(const std::string& path) {
                      logged_end_frame,
                      exit_after_done,
                      exit_frame,
+                     display_light_calculations,
                      hashed_config);
   } else {
     return new State(camera,
@@ -359,6 +375,7 @@ State* constructStateFromJson(const std::string& path) {
                      logged_end_frame,
                      exit_after_done,
                      exit_frame,
+                     display_light_calculations,
                      hashed_config);
   }
 }

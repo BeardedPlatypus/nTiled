@@ -22,8 +22,8 @@ ForwardAttenuatedShaderCounted::ForwardAttenuatedShaderCounted(
 void ForwardAttenuatedShaderCounted::renderObjects() {
   this->logger.preRender();
   ForwardAttenuatedShader::renderObjects();
-  this->logger.postRender();
   this->logger.extractCalculations();
+  this->logger.postRender();
 }
 
 

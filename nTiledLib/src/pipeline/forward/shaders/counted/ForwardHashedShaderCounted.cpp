@@ -28,8 +28,8 @@ ForwardHashedShaderCounted::ForwardHashedShaderCounted(
 void ForwardHashedShaderCounted::renderObjects() {
   this->logger.preRender();
   ForwardHashedShader::renderObjects();
-  this->logger.postRender();
   this->logger.extractCalculations();
+  this->logger.postRender();
 }
 
 

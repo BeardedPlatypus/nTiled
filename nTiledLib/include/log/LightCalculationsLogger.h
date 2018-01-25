@@ -5,6 +5,7 @@
 // ----------------------------------------------------------------------------
 #include <glad\glad.h>
 #include <string>
+#include <vector>
 
 // ----------------------------------------------------------------------------
 //  nTiled Headers
@@ -57,6 +58,10 @@ public:
    */
   void extractCalculations();
 
+  /*! @brief Export the number of calculations to a json file
+   */
+  void exportLog();
+
 private:
   bool is_active;
 
@@ -66,6 +71,8 @@ private:
   const Clock& clock;
   /*! @brief The output path of this LightCalculationsLogger. */
   const std::string output_path;
+
+  std::vector<std::pair<unsigned long, unsigned long>> n_light_calc_data;
 
   // GBuffer attributes
   // --------------------------------------------------------------------------

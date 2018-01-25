@@ -28,8 +28,8 @@ ForwardTiledShaderCounted::ForwardTiledShaderCounted(
 void ForwardTiledShaderCounted::renderObjects() {
   this->logger.preRender();
   ForwardTiledShader::renderObjects();
-  this->logger.postRender();
   this->logger.extractCalculations();
+  this->logger.postRender();
 }
 
 } // pipeline

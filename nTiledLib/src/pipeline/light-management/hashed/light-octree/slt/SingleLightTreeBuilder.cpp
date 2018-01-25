@@ -82,11 +82,31 @@ Lattice* SingleLightTreeBuilder::constructLattice(const world::PointLight& light
   glm::vec3 origin_in_octree = this->getOriginOctree();
 
   // calculate origin of the lattice
-  glm::vec3 origin = glm::vec3(floor((light.position.x - light.radius - origin_in_octree.x) / node_size) * node_size + origin_in_octree.x,
-                               floor((light.position.y - light.radius - origin_in_octree.y) / node_size) * node_size + origin_in_octree.y,
-                               floor((light.position.z - light.radius - origin_in_octree.z) / node_size) * node_size + origin_in_octree.z);
+  //glm::vec3 origin = glm::vec3(floor((light.position.x - light.radius - origin_in_octree.x) / node_size) * node_size + origin_in_octree.x,
+  //                             floor((light.position.y - light.radius - origin_in_octree.y) / node_size) * node_size + origin_in_octree.y,
+  //                             floor((light.position.z - light.radius - origin_in_octree.z) / node_size) * node_size + origin_in_octree.z);
 
-  unsigned int n_nodes = int(ceil((light.position.x + light.radius - origin.x) / node_size));
+  //unsigned int n_nodes = int(floor((light.position.x + light.radius - origin.x) / node_size)) + 1;
+
+  //unsigned int n_nodes_y = int(floor((light.position.y + light.radius - origin.y) / node_size)) + 1; 
+  //if (n_nodes < n_nodes_y) n_nodes = n_nodes_y;
+  //unsigned int n_nodes_z = int(floor((light.position.z + light.radius - origin.z) / node_size)) + 1; 
+  //if (n_nodes < n_nodes_z) n_nodes = n_nodes_z;
+  glm::uvec3 p_min = glm::uvec3(unsigned int(floor(light.position.x - light.radius - origin_in_octree.x) / node_size),
+                                unsigned int(floor(light.position.y - light.radius - origin_in_octree.y) / node_size),
+                                unsigned int(floor(light.position.z - light.radius - origin_in_octree.z) / node_size));
+
+  glm::uvec3 p_max = glm::uvec3(unsigned int(floor(light.position.x + light.radius - origin_in_octree.x) / node_size),
+                                unsigned int(floor(light.position.y + light.radius - origin_in_octree.y) / node_size),
+                                unsigned int(floor(light.position.z + light.radius - origin_in_octree.z) / node_size));
+
+  unsigned int n_nodes = p_max.x - p_min.x + 1;
+  if (p_max.y - p_min.y + 1 > n_nodes) n_nodes = p_max.y - p_min.y + 1;
+  if (p_max.z - p_min.z + 1 > n_nodes) n_nodes = p_max.z - p_min.z + 1;
+
+  glm::vec3 origin =  glm::vec3(p_min.x * node_size + origin_in_octree.x,
+                                p_min.y * node_size + origin_in_octree.y,
+                                p_min.z * node_size + origin_in_octree.z);
 
   Lattice* p_lattice = new Lattice(origin, n_nodes, node_size, light);
 

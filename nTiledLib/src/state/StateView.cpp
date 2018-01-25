@@ -8,11 +8,13 @@ namespace state {
 View::View(camera::Camera camera,
            camera::CameraControl* p_camera_control,
            glm::uvec2 viewport,
-           ViewOutput* output) :
+           ViewOutput* output,
+           bool display_light_calculations) :
   camera(camera),
   camera_control(p_camera_control),
   viewport(viewport), 
-  output(output) {
+  output(output),
+  display_light_calculations(display_light_calculations) {
 }
 
 View::~View() {

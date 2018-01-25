@@ -89,6 +89,7 @@ public:
    */
   void exportLogData();
 
+  void exportLightCalculationsLogData();
   /*! @brief Stop executing nTiled 
    */
   void exit();

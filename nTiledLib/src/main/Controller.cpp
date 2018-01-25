@@ -190,6 +190,9 @@ void Controller::initialiseFrameEvents() {
                                                                      index,
                                                                      false));
       index += 1;
+      this->event_queue.push(new ExportLoggingLightCalculationsDataEvent(this->p_state->log.frame_end,
+                                                                         index));
+      index += 1;
     } else {
       this->event_queue.push(new ToggleLoggingDataEvent(this->p_state->log.frame_start,
                                                         index,
@@ -289,6 +292,10 @@ void Controller::exportLogData() {
   this->p_logger->exportLog(this->p_state->log.path);
 }
 
+
+void Controller::exportLightCalculationsLogData() {
+  this->p_light_calc_logger->exportLog();
+}
 
 void Controller::toggleLoggingLightCalculations(bool activate) {
   if (activate) {

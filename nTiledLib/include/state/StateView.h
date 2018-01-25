@@ -79,7 +79,8 @@ struct View {
   View(camera::Camera camera,
        camera::CameraControl* camera_control,
        glm::uvec2 viewport,
-       ViewOutput* output);
+       ViewOutput* output,
+       bool display_light_calculations);
 
   /*! @brief Destructor of this View. 
    */
@@ -97,6 +98,8 @@ struct View {
 
   /*! @brief Pointer to the ViewOutput of this View. */
   const ViewOutput* output;
+
+  bool display_light_calculations;
 };
 
 

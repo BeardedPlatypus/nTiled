@@ -1,10 +1,11 @@
 #version 440
 
 #define NUM_LIGHTS 3
+#define M_PI 3.1415926535897932384626433832795
 
 // Fragment Output Buffers
 // -----------------------------------------------------------------------------
-out uint light_calculations;
+out vec4 fragment_colour;
 
 // Variable Definitions
 // -----------------------------------------------------------------------------
@@ -73,6 +74,22 @@ uniform mat4 inv_perspective_matrix;
 uniform vec4 viewport;
 uniform vec2 depth_range;
 
+// Function Definitions
+// -----------------------------------------------------------------------------
+vec3 computeCubeHelix(float lambda, 
+                      float rotations,
+                      float start_colour,
+                      float hue) {
+  float phi = 2 * M_PI * ( start_colour / 3 + rotations * lambda);
+  float alpha = hue * lambda * (1 - lambda) * 0.5;
+
+  float cos_phi = cos(phi);
+  float sin_phi = sin(phi);
+
+  return (vec3(lambda) + vec3(alpha * (-0.14861 * cos_phi +  1.78277 * sin_phi),
+                              alpha * (-0.29227 * cos_phi + -0.90649 * sin_phi),
+                              alpha * ( 1.97294 * cos_phi)));
+}
 
 /*!
  * Compute the texture coordinates of this fragment.
@@ -80,7 +97,6 @@ uniform vec2 depth_range;
 vec2 calcTextureCoordinates() {
     return gl_FragCoord.xy / viewport.zw;
 }
-
 
 /*!
  * Compute the camera coordinates of this fragment given the texture coordinates
@@ -111,15 +127,8 @@ void main() {
     vec3 diffuse_colour = texture(diffuse_tex, tex_coords).xyz;
     
     if (diffuse_colour.rgb == vec3(0.0f)) {
-        light_calculations = 0;
+        fragment_colour = vec4(0.0, 0.0, 0.0f, 1.0f);
     } else {
-        vec4 coords_camera_space = getCameraCoordinates(tex_coords);
-        vec3 normal = normalize(texture(normal_tex, tex_coords)).xyz;
-
-        GeometryParam param = GeometryParam(coords_camera_space,
-                                            normal,
-                                            diffuse_colour);
-
         // determine contributing lights
         vec2 screen_position = gl_FragCoord.xy - vec2(0.5f, 0.5f);
         uint tile_index = uint(floor(screen_position.x / tile_size.x) +
@@ -132,7 +141,10 @@ void main() {
         uint offset = cluster_map.x;
         uint n_lights = cluster_map.y;
 
-        // output result
-        light_calculations = n_lights;
+        vec3 cube_helix = computeCubeHelix( float(n_lights) / float(NUM_LIGHTS), 
+                                           -1.5, 
+                                            0.5,
+                                            1.2);
+        fragment_colour = vec4(cube_helix, 1.0);
     }   
 }

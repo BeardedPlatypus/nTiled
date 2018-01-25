@@ -97,6 +97,22 @@ vec3 computeLight(Light light,
     }
 }
 
+
+vec3 displayNormal(GeometryParam param) {
+  vec3 col = (param.normal + vec3(1.0)) / 2.0;
+  return col;
+}
+
+
+vec3 displayAlbedo(GeometryParam param) {
+  return param.colour;
+}
+
+
+vec3 displayDepth(GeometryParam param) {
+  return (vec3(1.0) - vec3((-1.0 * param.position.z / param.position.w) / depth_range.y));
+} 
+
 /*!
  * Compute the texture coordinates of this fragment.
  */
@@ -145,11 +161,14 @@ void main() {
                                             normal,
                                             diffuse_colour);
         // compute the contribution of each light
+        /*
         for (int i = 0; i < NUM_LIGHTS; i++) {
             light_acc += computeLight(lights[i], param);
         }
+        */
 
         // output result
-        fragment_colour = vec4((vec3(0.1) + (0.9 * light_acc)), 1.0);
+        //fragment_colour = vec4((vec3(0.1) + (0.9 * light_acc)), 1.0);
+        fragment_colour = vec4(displayDepth(param), 1.0);
     }   
 }

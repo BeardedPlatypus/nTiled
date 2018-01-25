@@ -33,8 +33,8 @@ DeferredClusteredShaderCounted::DeferredClusteredShaderCounted(
 void DeferredClusteredShaderCounted::renderLightPassObjects() {
   this->logger.preRender();
   DeferredClusteredShader::renderLightPassObjects();
-  this->logger.postRender();
   this->logger.extractCalculations();
+  this->logger.postRender();
 }
 
 

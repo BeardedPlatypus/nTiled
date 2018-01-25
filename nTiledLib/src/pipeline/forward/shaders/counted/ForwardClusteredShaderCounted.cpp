@@ -25,8 +25,8 @@ ForwardClusteredShaderCounted::ForwardClusteredShaderCounted(
 void ForwardClusteredShaderCounted::renderObjects() {
   this->logger.preRender();
   ForwardClusteredShader::renderObjects();
-  this->logger.postRender();
   this->logger.extractCalculations();
+  this->logger.postRender();
 }
 
 

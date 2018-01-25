@@ -55,6 +55,7 @@ public:
 };
 
 
+// ----------------------------------------------------------------------------
 /*! @brief The SetDrawMethodEvent sets the DrawMethod of the controller
  *         specified during execution to the DrawMethod with which it
  *         was initiated.
@@ -87,6 +88,7 @@ private:
 };
 
 
+// ----------------------------------------------------------------------------
 /*! @brief ToggleLoggingDataEvent is responsible for turning 
  *         the tracking of execution time within the Controller on and off.
  */
@@ -137,6 +139,7 @@ public:
 };
 
 
+// ----------------------------------------------------------------------------
 class ToggleLoggingLightCalculationsEvent : public FrameEvent {
 public:
   /*! @brief Construct a new ToggleLoggingDataEvent with the specified
@@ -165,6 +168,26 @@ private:
 };
 
 
+/*! @brief ExportLogginLightCalculationsDatagDataEvent is responsible for signalling 
+ *         the Controller at the specified frame to export the tracked lightcalculation
+ *         data within an execution.
+ */
+class ExportLoggingLightCalculationsDataEvent : public FrameEvent {
+public:
+  ExportLoggingLightCalculationsDataEvent(unsigned long frame,
+                                          unsigned long index);
+
+  /*! @brief Execute this FrameEvent by signalling the Controller to export 
+   *         all tracked data.
+   *
+   * @param controller Pointer to the controller on which this FrameEvent 
+   *                   operates.
+   */
+  virtual void execute(Controller* controller);
+};
+
+
+// ----------------------------------------------------------------------------
 /*! @brief ExitEvent is responsible for signalling the Controller to end 
  *         the execution of nTiled at the specified frame.
  */

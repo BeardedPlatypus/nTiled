@@ -10,6 +10,7 @@ in vec3 fragment_normal;
 // Fragment Output Buffers
 // -----------------------------------------------------------------------------
 out uint light_calculations;
+//layout (location=0) out uint light_calculations;
 
 // Variable Definitions
 // -----------------------------------------------------------------------------
@@ -51,5 +52,5 @@ layout (std140) uniform LightBlock {
 // Main
 // -----------------------------------------------------------------------------
 void main() {
-    light_calculations = NUM_LIGHTS;
+    light_calculations = 4; //NUM_LIGHTS;
 }
