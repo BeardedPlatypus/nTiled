@@ -8,7 +8,7 @@
 
 # `nTiled`
 
-[![nTiled Banner](https://gifs.com/embed/ntiledbanner-0VE67L)]()
+[![nTiled Banner](https://j.gifs.com/0VE67L.gif)]()
 
 `nTiled` is an `openGL` viewer that implements tiled and clustered shading as
 well as a novel technique named hierarchical shading. It is written to evaulate
